@@ -62,10 +62,6 @@ public class AndroidTools extends Extension {
 		return Environment.getExternalStorageDirectory().getPath();
 	}
 
-	public static String getFileUrl(String path){
-		return Uri.fromFile(path);
-	}
-
 	public static void goToSettings() {
 		Intent myAppSettings = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + Extension.packageName));
 		myAppSettings.addCategory(Intent.CATEGORY_DEFAULT);
@@ -107,14 +103,6 @@ public class AndroidTools extends Extension {
 			Log.e("AndroidTools", e.toString());
 		}
 	}
-
-	public static void playVideo(String path) {
-		Uri fileUri = Uri.fromFile(new File(path));
-		Intent intent = new Intent();
-		intent.setAction(Intent.ACTION_VIEW);
-		intent.setDataAndType(fileUri, "video/mp4");
-		Extension.mainActivity.startActivity(intent);
-    }
 
 	public static HaxeObject callback;
 
