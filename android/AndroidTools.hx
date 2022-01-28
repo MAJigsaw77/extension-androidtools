@@ -85,6 +85,6 @@ class AndroidTools {
 	private static var goToSettings_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "goToSettings", "()V");
 	private static var getSDKversion_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "getSDKversion", "()I");
 	private static var getFileUrl_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "getFileUrl", "(Ljava/lang/String;)");	
-	private static var toast_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "playVideo", "(Ljava/lang/String;)V");
+	private static var playVideo_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "playVideo", "(Ljava/lang/String;)V");
 	#end
 }
