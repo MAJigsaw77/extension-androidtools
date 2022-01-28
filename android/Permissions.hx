@@ -86,6 +86,7 @@ abstract Permissions(String) to String from String {
     inline public static var LOCATION_HARDWARE = "android.permission.LOCATION_HARDWARE";
     inline public static var MANAGE_DOCUMENTS = "android.permission.MANAGE_DOCUMENTS";
     inline public static var MANAGE_OWN_CALLS = "android.permission.MANAGE_OWN_CALLS";
+    inline public static var MANAGE_OWN_CALLS = "android.permission.MANAGE_EXTERNAL_STORAGE";
     inline public static var MASTER_CLEAR = "android.permission.MASTER_CLEAR";
     inline public static var MEDIA_CONTENT_CONTROL = "android.permission.MEDIA_CONTENT_CONTROL";
     inline public static var MODIFY_AUDIO_SETTINGS = "android.permission.MODIFY_AUDIO_SETTINGS";
