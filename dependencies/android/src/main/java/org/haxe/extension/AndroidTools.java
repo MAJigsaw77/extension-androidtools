@@ -64,7 +64,7 @@ public class AndroidTools extends Extension {
 	}
 
 	public static String getFileUrl(String path){
-		return Uri.fromFile(new File(path));
+		return Uri.fromFile(new File(path)).toString();
 	}
 
 	public static void goToSettings() {
