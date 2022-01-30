@@ -20,6 +20,7 @@ import org.haxe.lime.HaxeObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.Object;
+import java.io.File;
 
 /* 
 	You can use the Android Extension class in order to hook
