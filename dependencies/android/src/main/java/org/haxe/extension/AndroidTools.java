@@ -62,6 +62,10 @@ public class AndroidTools extends Extension {
 		return Environment.getExternalStorageDirectory().getPath();
 	}
 
+	public static String getFileUrl(String path){
+		return return Uri.fromFile(new File(path));
+	}
+
 	public static void goToSettings() {
 		Intent myAppSettings = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + Extension.packageName));
 		myAppSettings.addCategory(Intent.CATEGORY_DEFAULT);
