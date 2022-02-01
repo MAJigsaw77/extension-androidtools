@@ -1,14 +1,17 @@
 # AndroidTools
-extension for haxe (in dev lol)
+
+Extension For Haxe Android Only
+
+Some Code Example
 
 ```haxe
-// to request permission, use this
+// To request permission, use this
 AndroidTools.requestPermission(Permissions.READ_EXTERNAL_STORAGE);
 
-// to get granted permissions(string) array use this
+// To get granted permissions(string) array use this
 AndroidTools.getGrantedPermissions();
 
-// to get a file url use this, path is the file
+// To get a file url use this, path is the file
 AndroidTools.getFileUrl(path);
 
 ```
