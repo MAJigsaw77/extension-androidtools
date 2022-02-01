@@ -11,7 +11,4 @@ AndroidTools.getGrantedPermissions();
 // to get a file url use this, path is the file
 AndroidTools.getFileUrl(path);
 
-// to play a video use this, path is the video(the video needs to be mp4)
-AndroidTools.playVideo(path);
-
 ```
