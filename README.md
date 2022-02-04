@@ -5,8 +5,11 @@ Extension For Haxe Android Only
 Some Code Example
 
 ```haxe
-// To request permission, use this
+// To request permission
 AndroidTools.requestPermission(Permissions.READ_EXTERNAL_STORAGE);
+
+// To request multiple permissions
+AndroidTools.requestPermissions([Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE]);
 
 // To get granted permissions(string) array use this
 AndroidTools.getGrantedPermissions();
@@ -22,5 +25,8 @@ AndroidTools.getExternalStorageDirectory();
 
 // To go in app settings from the app
 AndroidTools.goToSettings();
+
+// To get the app granted permissions
+AndroidTools.getGrantedPermissions();
 
 ```
