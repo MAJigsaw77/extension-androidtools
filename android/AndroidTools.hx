@@ -40,7 +40,7 @@ class AndroidTools {
 		return null;
 	}
 
-	// try do not use this
+	// the best thing ever!!!
 	public static function getExternalStorageDirectory():String {
 		#if android
 		return getExternalStorageDirectory_jni();
