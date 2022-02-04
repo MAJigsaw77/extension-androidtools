@@ -26,7 +26,4 @@ AndroidTools.getExternalStorageDirectory();
 // To go in app settings from the app
 AndroidTools.goToSettings();
 
-// To get the app granted permissions
-AndroidTools.getGrantedPermissions();
-
 ```
