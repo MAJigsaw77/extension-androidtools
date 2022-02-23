@@ -101,9 +101,11 @@ public class AndroidTools extends Extension {
 		}
 	}
 
-	public static void toast(String text, int duration){
+	public static void toast(String text){
 		try {
-			Toast.makeText(Extension.mainContext, text, duration).show();
+                        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+                        Toast.setMargin(50,50);
+                        Toast.show();
 		}catch (Exception e){
 			Log.e("AndroidTools", e.toString());
 		}
