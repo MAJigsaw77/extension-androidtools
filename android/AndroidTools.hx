@@ -32,10 +32,9 @@ class AndroidTools {
 		return null;
 	}
 
-	// short dur - 0, long dur - 1
-	public static function toast(text:String, duration:Int = 0) {
+	public static function toast(text:String) {
 		#if android
-		return toast_jni(text, duration);
+		return toast_jni(text);
 		#end
 		return null;
 	}
@@ -73,7 +72,7 @@ class AndroidTools {
 	private static var request_permissions_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "requestPermissions", "([Ljava/lang/String;I)V");
 	private static var getGrantedPermissions_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "getGrantedPermissions", "()[Ljava/lang/String;");
 	private static var openFileManager_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "openFileManager", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V");
-	private static var toast_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "toast", "(Ljava/lang/String;I)V");
+	private static var toast_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "toast", "(Ljava/lang/String;)V");
 	private static var getExternalStorageDirectory_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "getExternalStorageDirectory", "()Ljava/lang/String;");
 	private static var goToSettings_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "goToSettings", "()V");
 	private static var getSDKversion_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "getSDKversion", "()I");
