@@ -26,4 +26,7 @@ AndroidTools.getExternalStorageDirectory();
 // To go in app settings from the app
 AndroidTools.goToSettings();
 
+Will make a text, to appear on your screen, and value is the duration of the text
+AndroidTools.toast("Loool", 1);
+
 ```
