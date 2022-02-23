@@ -103,7 +103,7 @@ public class AndroidTools extends Extension {
 
 	public static void toast(String text){
 		try {
-                        Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);  
+                        Toast toast = Toast.makeText(Extension.mainContext, text, Toast.LENGTH_SHORT);
                         toast.setMargin(50,50);  
                         toast.show();  
 		}catch (Exception e){
