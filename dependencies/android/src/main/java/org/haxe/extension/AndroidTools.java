@@ -151,45 +151,7 @@ public class AndroidTools extends Extension {
 			return Environment.getExternalStorageDirectory().toString();
 		}
 		return "";
-
 	}
-
-	public static boolean isFileExists(String _filepath){
-		File file = new File(sdrootpath + _filepath);
-		if (file.exists())
-			return true;
-		else 
-			return false;
-	}
-	
-	public static void createFileOnSD(String _folder, String _filepath){
-		File file = new File(sdrootpath + _folder + _filepath);
-		File fileFolder = new File(sdrootpath + _folder);
-		
-		if (!fileFolder.exists())
-			fileFolder.mkdirs();
-		try {
-			file.createNewFile();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public static void createFoldersOnSD(String _folders){
-		File filefoder = new File(sdrootpath + _folders);
-		if (!filefoder.exists()){
-			filefoder.mkdirs();
-		}
-	}
-
-	public static void deleteFileOnSD(String _filepath){
-		File file = new File(sdrootpath + _filepath);
-		file.delete();
-		
-	}
-
-	public final static String sdrootpath = Environment.getExternalStorageDirectory() + File.separator;
 	
 	/**
 	 * Called when an activity you launched exits, giving you the requestCode 
