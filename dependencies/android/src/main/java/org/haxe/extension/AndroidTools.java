@@ -139,14 +139,14 @@ public class AndroidTools extends Extension {
 	}
 
 	public static boolean isHasSD(){
-		if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED))
+		if (Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED))
 			return true;
 		else 
 			return false;
 	}
 
 	public static boolean isFileExists(String _filepath){
-		File file = new File(Fileconfig.sdrootpath + _filepath);
+		File file = new File(sdrootpath + _filepath);
 		if (file.exists())
 			return true;
 		else 
@@ -154,8 +154,8 @@ public class AndroidTools extends Extension {
 	}
 	
 	public static void createFileOnSD(String _folder, String _filepath){
-		File file = new File(Fileconfig.sdrootpath + _folder + _filepath);
-		File fileFolder = new File(Fileconfig.sdrootpath + _folder);
+		File file = new File(sdrootpath + _folder + _filepath);
+		File fileFolder = new File(sdrootpath + _folder);
 		
 		if (!fileFolder.exists())
 			fileFolder.mkdirs();
@@ -168,17 +168,19 @@ public class AndroidTools extends Extension {
 	}
 	
 	public static void createFoldersOnSD(String _folders){
-		File filefoder = new File(Fileconfig.sdrootpath + _folders);
+		File filefoder = new File(sdrootpath + _folders);
 		if (!filefoder.exists()){
 			filefoder.mkdirs();
 		}
 	}
 
 	public static void deleteFileOnSD(String _filepath){
-		File file = new File(Fileconfig.sdrootpath + _filepath);
+		File file = new File(sdrootpath + _filepath);
 		file.delete();
 		
 	}
+
+	public final static String sdrootpath = Environment.getExternalStorageDirectory() + File.separator;
 	
 	/**
 	 * Called when an activity you launched exits, giving you the requestCode 
@@ -188,7 +190,6 @@ public class AndroidTools extends Extension {
 	public boolean onActivityResult (int requestCode, int resultCode, Intent data) {
 		callback.call("onActivityResult", new Object[] {requestCode, resultCode, data});
 		return true;
-		
 	}
 
 	/**
@@ -197,6 +198,5 @@ public class AndroidTools extends Extension {
 	public boolean onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
 		callback.call("onRequestPermissionsResult", new Object[] {requestCode, permissions, grantResults});
 		return true;
-
 	}
 }
