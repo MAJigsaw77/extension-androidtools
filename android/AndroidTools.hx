@@ -68,6 +68,41 @@ class AndroidTools {
                 #end
 	}
 
+	public static function isHasSD():Bool {
+		#if android
+		return getIsHasSD_jni();
+		#end
+		return false;
+	}
+
+	public static function isFileExists(path:String):Bool {
+		#if android
+		return getIsFileExists_jni(path);
+		#end
+		return false;
+	}
+
+	public static function createFileOnSD(folder:String, filepath:String) {
+		#if android
+		return createFileOnSD_jni(folder, filepath);
+		#end
+		return null;
+	}
+
+	public static function createFoldersOnSD(folder:String) {
+		#if android
+		return createFoldersOnSD_jni(folder);
+		#end
+		return null;
+	}
+
+	public static function deleteFileOnSD(path:String) {
+		#if android
+		return deleteFileOnSD_jni(path);
+		#end
+		return null;
+	}
+
 	#if android
 	private static var request_permissions_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "requestPermissions", "([Ljava/lang/String;I)V");
 	private static var getGrantedPermissions_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "getGrantedPermissions", "()[Ljava/lang/String;");
@@ -77,5 +112,10 @@ class AndroidTools {
 	private static var goToSettings_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "goToSettings", "()V");
 	private static var getSDKversion_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "getSDKversion", "()I");
         private static var getFileUrl_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "getFileUrl", "(Ljava/lang/String;)Ljava/lang/String;");
+	private static var getIsHasSD_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "isHasSD", "()B");
+	private static var getIsFileExists_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "isFileExists", "(Ljava/lang/String;)B");
+	private static var createFileOnSD_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "createFileOnSD", "(Ljava/lang/String;Ljava/lang/String;)V");
+	private static var createFoldersOnSD_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "createFoldersOnSD", "(Ljava/lang/String;)V");
+	private static var deleteFileOnSD_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "isFileExists", "(Ljava/lang/String;)B");
 	#end
 }
