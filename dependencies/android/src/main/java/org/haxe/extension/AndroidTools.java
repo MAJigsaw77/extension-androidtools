@@ -145,6 +145,15 @@ public class AndroidTools extends Extension {
 			return false;
 	}
 
+	public static String getSDPath() {
+		boolean sdCardExist = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+		if (sdCardExist) {
+			return Environment.getExternalStorageDirectory().toString();
+		}
+		return "";
+
+	}
+
 	public static boolean isFileExists(String _filepath){
 		File file = new File(sdrootpath + _filepath);
 		if (file.exists())
