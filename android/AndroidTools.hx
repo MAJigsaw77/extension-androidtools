@@ -116,6 +116,6 @@ class AndroidTools {
 	private static var getIsFileExists_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "isFileExists", "(Ljava/lang/String;)B");
 	private static var createFileOnSD_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "createFileOnSD", "(Ljava/lang/String;Ljava/lang/String;)V");
 	private static var createFoldersOnSD_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "createFoldersOnSD", "(Ljava/lang/String;)V");
-	private static var deleteFileOnSD_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "isFileExists", "(Ljava/lang/String;)B");
+	private static var deleteFileOnSD_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "isFileExists", "(Ljava/lang/String;)V");
 	#end
 }
