@@ -1,22 +1,3 @@
-Skip to content
-jigsaw-4277821
-/
-AndroidTools
-Public template
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-AndroidTools/dependencies/android/src/main/java/org/haxe/extension/AndroidTools.java
-@jigsaw-4277821
-jigsaw-4277821 Update AndroidTools.java
- 1 contributor
-237 lines (173 sloc)  6.1 KB
 package org.haxe.extension;
 
 import android.app.Activity;
@@ -32,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.widget.Toast;
 import android.os.Environment;
+import android.os.Build;
 
 import com.google.gson.Gson;
 import org.haxe.lime.HaxeObject;
@@ -152,7 +134,7 @@ public class AndroidTools extends Extension {
 	}
 	
 	public static int getSDKversion() {
-		return android.os.Build.VERSION.SDK_INT;
+		return Build.VERSION.SDK_INT;
 	}
 	
 	/**
