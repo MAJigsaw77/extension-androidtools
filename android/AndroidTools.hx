@@ -47,6 +47,14 @@ class AndroidTools {
 		return null;
 	}
 
+	// Again
+	public static function getSDPath():String {
+		#if android
+		return getSDPath_jni();
+		#end
+		return null;
+	}
+
 	// app settings
 	public static function goToSettings() {
 		#if android
@@ -109,6 +117,7 @@ class AndroidTools {
 	private static var openFileManager_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "openFileManager", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V");
 	private static var toast_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "toast", "(Ljava/lang/String;)V");
 	private static var getExternalStorageDirectory_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "getExternalStorageDirectory", "()Ljava/lang/String;");
+	private static var getSDPath_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "getSDPath", "()Ljava/lang/String;");
 	private static var goToSettings_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "goToSettings", "()V");
 	private static var getSDKversion_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "getSDKversion", "()I");
         private static var getFileUrl_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "getFileUrl", "(Ljava/lang/String;)Ljava/lang/String;");
