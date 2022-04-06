@@ -1,3 +1,22 @@
+Skip to content
+jigsaw-4277821
+/
+AndroidTools
+Public template
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+AndroidTools/dependencies/android/src/main/java/org/haxe/extension/AndroidTools.java
+@jigsaw-4277821
+jigsaw-4277821 Update AndroidTools.java
+ 1 contributor
+237 lines (173 sloc)  6.1 KB
 package org.haxe.extension;
 
 import android.app.Activity;
@@ -153,4 +172,45 @@ public class AndroidTools extends Extension {
 		callback.call("onRequestPermissionsResult", new Object[] {requestCode, permissions, grantResults});
 		return true;
 	}
+	
+	/**
+	 * Called when the activity is starting.
+	 */
+	public void onCreate (Bundle savedInstanceState) {}
+	
+	/**
+	 * Perform any final cleanup before an activity is destroyed.
+	 */
+	public void onDestroy () {}
+	
+	/**
+	 * Called as part of the activity lifecycle when an activity is going into
+	 * the background, but has not (yet) been killed.
+	 */
+	public void onPause () {}
+	
+	/**
+	 * Called after {@link #onStop} when the current activity is being 
+	 * re-displayed to the user (the user has navigated back to it).
+	 */
+	public void onRestart () {}
+	
+	/**
+	 * Called after {@link #onRestart}, or {@link #onPause}, for your activity 
+	 * to start interacting with the user.
+	 */
+	public void onResume () {}
+	
+	/**
+	 * Called after {@link #onCreate} &mdash; or after {@link #onRestart} when  
+	 * the activity had been stopped, but is now again being displayed to the 
+	 * user.
+	 */
+	public void onStart () {}
+	
+	/**
+	 * Called when the activity is no longer visible to the user, because 
+	 * another activity has been resumed and is covering this one. 
+	 */
+	public void onStop () {}
 }
