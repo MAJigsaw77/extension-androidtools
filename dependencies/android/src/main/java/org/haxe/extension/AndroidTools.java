@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.lang.Object;
 import java.io.File;
-import java.io.IOException;
 
 /* 
 	You can use the Android Extension class in order to hook
@@ -135,21 +134,6 @@ public class AndroidTools extends Extension {
 	
 	public static int getSDKversion() {
 		return android.os.Build.VERSION.SDK_INT;
-	}
-
-	public static boolean isHasSD(){
-		if (Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED))
-			return true;
-		else 
-			return false;
-	}
-
-	public static String getSDPath() {
-		boolean sdCardExist = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
-		if (sdCardExist) {
-			return Environment.getExternalStorageDirectory().toString();
-		}
-		return "";
 	}
 	
 	/**
