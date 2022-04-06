@@ -30,3 +30,5 @@ AndroidTools.goToSettings();
 AndroidTools.toast("Loool");
 
 ```
+
+Look in AndroidTools.hx for more :)
