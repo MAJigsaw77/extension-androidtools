@@ -32,7 +32,7 @@ class AndroidTools {
 		return null;
 	}
 
-	public static function toast(text:String) {
+	public static function makeToast(text:String) {
 		#if android
 		return toast_jni(text);
 		#end
