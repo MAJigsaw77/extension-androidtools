@@ -27,7 +27,7 @@ AndroidTools.getExternalStorageDirectory();
 AndroidTools.goToSettings();
 
 // Will make a text, to appear on your screen
-AndroidTools.toast("Loool");
+AndroidTools.makeToast("Loool");
 
 ```
 
