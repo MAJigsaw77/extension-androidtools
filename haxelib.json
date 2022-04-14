@@ -1,5 +1,5 @@
 {
-  "name": "AndroidTools",
+  "name": "extension-androidtools",
   "url": "",
   "license": "MIT",
   "tags": [],
@@ -7,7 +7,5 @@
   "version": "1.0.0",
   "releasenote": "",
   "contributors": [""],
-  "dependencies": {
-
-  }
+  "dependencies": {}
 }
