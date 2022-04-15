@@ -11,7 +11,6 @@ import android.util.Log;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.widget.Toast;
 import android.os.Environment;
 import android.os.Build;
 
@@ -52,9 +51,11 @@ import java.io.File;
 public class AndroidTools extends Extension {
 	public static Gson gson = new Gson();
 
-	public static void requestPermissions (String p[], int reqcode) {
+	public static HaxeObject callback;
+
+	public static void requestPermissions(String per[], int reqcode){
 		try {
-			Extension.mainActivity.requestPermissions(p, reqcode);
+			Extension.mainActivity.requestPermissions(per, reqcode);
 		} catch (Exception e){
 			Log.e("AndroidTools", e.toString());
 		}
@@ -68,15 +69,7 @@ public class AndroidTools extends Extension {
 		return Uri.fromFile(new File(path)).toString();
 	}
 
-	public static void goToSettings() {
-		Intent myAppSettings = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + Extension.packageName));
-		myAppSettings.addCategory(Intent.CATEGORY_DEFAULT);
-		myAppSettings.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		Extension.mainActivity.startActivityForResult(myAppSettings, 168);
-	}
-
-	// source https://stackoverflow.com/questions/37294242/how-to-get-all-granted-permissions-of-a-app
-	public static String[] getGrantedPermissions() {
+	public static String[] getGrantedPermissions(){
 		List<String> granted = new ArrayList<String>();
 		try {
 			PackageInfo pi = Extension.mainContext.getPackageManager().getPackageInfo(Extension.mainContext.getPackageName(), PackageManager.GET_PERMISSIONS);
@@ -91,35 +84,23 @@ public class AndroidTools extends Extension {
 		return granted.toArray(new String[granted.size()]);
 	}
 
+	public static void appSettings(String settings, int reqcode){
+		try {
+			Intent appSettings = new Intent(settings, Uri.parse("package:" + Extension.packageName));
+			Extension.mainActivity.startActivityForResult(appSettings, reqcode);
+		}catch (Exception e){
+			Log.e("AndroidTools", e.toString());
+		}
+	}
+
 	public static void openFileManager(String action, String dir, String type, String title, int reqcode){
 		try {
 			Intent intent = new Intent(action);
-			Uri uri = Uri.parse(dir);
-			intent.setDataAndType(uri, type);
+			intent.setDataAndType(getFileUrl(dir), type);
 			Extension.mainActivity.startActivityForResult(Intent.createChooser(intent, title), reqcode);
 		}catch (Exception e){
 			Log.e("AndroidTools", e.toString());
 		}
-	}
-
-	public static void toast(String text){
-		try {
-                        Toast.makeText(Extension.mainContext, text, Toast.LENGTH_SHORT).show();  
-		}catch (Exception e){
-			Log.e("AndroidTools", e.toString());
-		}
-	}
-
-	public static HaxeObject callback;
-
-	public static void setCallback(final HaxeObject _callback) {
-		callback = _callback;
-	}
-	
-	public static int sampleMethod (int inputValue) {
-		
-		return inputValue * 100;
-		
 	}
 
 	public static String objectToJson(Object obj){
@@ -131,8 +112,16 @@ public class AndroidTools extends Extension {
 		}
 	}
 	
-	public static int getSDKversion() {
+	public static int getSDKversion(){
 		return Build.VERSION.SDK_INT;
+	}
+
+	public static void setCallback(final HaxeObject _callback){
+		callback = _callback;
+	}
+	
+	public static int sampleMethod(int inputValue){
+		return inputValue * 100;
 	}
 	
 	/**
@@ -140,7 +129,7 @@ public class AndroidTools extends Extension {
 	 * you started it with, the resultCode it returned, and any additional data 
 	 * from it.
 	 */
-	public boolean onActivityResult (int requestCode, int resultCode, Intent data) {
+	public boolean onActivityResult(int requestCode, int resultCode, Intent data){
 		callback.call("onActivityResult", new Object[] {requestCode, resultCode, data});
 		return true;
 	}
@@ -148,7 +137,7 @@ public class AndroidTools extends Extension {
 	/**
 	 * Called when the activity receives th results for permission requests.
 	 */
-	public boolean onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+	public boolean onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults){
 		callback.call("onRequestPermissionsResult", new Object[] {requestCode, permissions, grantResults});
 		return true;
 	}
@@ -156,41 +145,41 @@ public class AndroidTools extends Extension {
 	/**
 	 * Called when the activity is starting.
 	 */
-	public void onCreate (Bundle savedInstanceState) {}
+	public void onCreate(Bundle savedInstanceState) {}
 	
 	/**
 	 * Perform any final cleanup before an activity is destroyed.
 	 */
-	public void onDestroy () {}
+	public void onDestroy() {}
 	
 	/**
 	 * Called as part of the activity lifecycle when an activity is going into
 	 * the background, but has not (yet) been killed.
 	 */
-	public void onPause () {}
+	public void onPause() {}
 	
 	/**
 	 * Called after {@link #onStop} when the current activity is being 
 	 * re-displayed to the user (the user has navigated back to it).
 	 */
-	public void onRestart () {}
+	public void onRestart() {}
 	
 	/**
 	 * Called after {@link #onRestart}, or {@link #onPause}, for your activity 
 	 * to start interacting with the user.
 	 */
-	public void onResume () {}
+	public void onResume() {}
 	
 	/**
 	 * Called after {@link #onCreate} &mdash; or after {@link #onRestart} when  
 	 * the activity had been stopped, but is now again being displayed to the 
 	 * user.
 	 */
-	public void onStart () {}
+	public void onStart() {}
 	
 	/**
 	 * Called when the activity is no longer visible to the user, because 
 	 * another activity has been resumed and is covering this one. 
 	 */
-	public void onStop () {}
+	public void onStop() {}
 }

@@ -1,4 +1,4 @@
-# AndroidTools
+# extension-androidtools
 
 Extension For Haxe Android Only
 
@@ -22,12 +22,6 @@ AndroidTools.getSDKversion();
 
 // To get the internal android storage directory
 AndroidTools.getExternalStorageDirectory();
-
-// To go in app settings from the app
-AndroidTools.goToSettings();
-
-// Will make a text, to appear on your screen
-AndroidTools.makeToast("Loool");
 
 ```
 

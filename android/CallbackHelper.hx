@@ -9,9 +9,6 @@ class CallbackHelper {
     
     public function new() {
         listener = new Map();
-        // for (event in Reflect.fields(ExtensionEvent)){ // fu
-        //     listener.set(event, new Array());
-        // }
         listener.set(ExtensionEvent.onActivityResult, new Array());
         listener.set(ExtensionEvent.onRequestPermissionsResult, new Array());
 
@@ -20,25 +17,22 @@ class CallbackHelper {
         #end
     }
 
-    // dont touch these func
-    public function onActivityResult(requestCode:Int, resultCode:Int, ?data:Dynamic) {
+    public function onActivityResult(requestCode:Int, resultCode:Int, ?data:Dynamic){
         for (func in listener.get(ExtensionEvent.onActivityResult)){
             func(requestCode, resultCode, new JavaObject(data));
         }
     }
-    public function onRequestPermissionsResult(requestCode:Int, permissions:Array<Permissions>, grantResults:Array<Int>) {
+    public function onRequestPermissionsResult(requestCode:Int, permissions:Array<Permissions>, grantResults:Array<Int>){
         for (func in listener.get(ExtensionEvent.onRequestPermissionsResult)){
             func(requestCode, permissions, grantResults);
         }
     }
-    /////////////////////////
 
-
-    public function addEventListener(event:ExtensionEvent, func: Function) {
+    public function addEventListener(event:ExtensionEvent, func:Function){
         listener.get(event).push(func);
     }
 
-    public function removeEventListener(event:ExtensionEvent, func: Function) {
+    public function removeEventListener(event:ExtensionEvent, func:Function){
         listener.get(event).remove(func);
     }
 
@@ -52,14 +46,14 @@ class JavaObject {
     @:noCompletion public var jobject:Dynamic;
     public var data:Dynamic;
 
-    public function new(obj:Dynamic) {
+    public function new(obj:Dynamic){
         jobject = obj;
         #if android
         data = Json.parse(objectToJson_jni(obj)); // dont working for now
         #end
     }
 
-    public function compare(jobj:Dynamic) {
+    public function compare(jobj:Dynamic){
         if (Std.isOfType(jobj, JavaObject))
             return untyped this.jobject == untyped jobj.jobject;
         return untyped this.jobject == untyped jobj;

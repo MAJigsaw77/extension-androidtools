@@ -1,4 +1,4 @@
-package android;
+package android.stuff;
 
 abstract Intent(String) to String from String {
     // pick a file

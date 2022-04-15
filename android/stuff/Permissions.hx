@@ -1,5 +1,5 @@
-package android;
-// same as Manifest.permission in java
+package android.stuff;
+
 abstract Permissions(String) to String from String {
     inline public static var ACCEPT_HANDOVER = "android.permission.ACCEPT_HANDOVER";
     inline public static var ACCESS_CHECKIN_PROPERTIES = "android.permission.ACCESS_CHECKIN_PROPERTIES";
@@ -16,8 +16,6 @@ abstract Permissions(String) to String from String {
     inline public static var BIND_ACCESSIBILITY_SERVICE = "android.permission.BIND_ACCESSIBILITY_SERVICE";
     inline public static var BIND_APPWIDGET = "android.permission.BIND_APPWIDGET";
     inline public static var BIND_AUTOFILL_SERVICE = "android.permission.BIND_AUTOFILL_SERVICE";
-    
-    /** @/deprecated */
     inline public static var BIND_CARRIER_MESSAGING_SERVICE = "android.permission.BIND_CARRIER_MESSAGING_SERVICE";
     inline public static var BIND_CARRIER_SERVICES = "android.permission.BIND_CARRIER_SERVICES";
     inline public static var BIND_CHOOSER_TARGET_SERVICE = "android.permission.BIND_CHOOSER_TARGET_SERVICE";
@@ -73,8 +71,6 @@ abstract Permissions(String) to String from String {
     inline public static var GET_ACCOUNTS = "android.permission.GET_ACCOUNTS";
     inline public static var GET_ACCOUNTS_PRIVILEGED = "android.permission.GET_ACCOUNTS_PRIVILEGED";
     inline public static var GET_PACKAGE_SIZE = "android.permission.GET_PACKAGE_SIZE";
-    
-    /** @/deprecated */
     inline public static var GET_TASKS = "android.permission.GET_TASKS";
     inline public static var GLOBAL_SEARCH = "android.permission.GLOBAL_SEARCH";
     inline public static var INSTALL_LOCATION_PROVIDER = "android.permission.INSTALL_LOCATION_PROVIDER";
@@ -96,8 +92,6 @@ abstract Permissions(String) to String from String {
     inline public static var NFC = "android.permission.NFC";
     inline public static var NFC_TRANSACTION_EVENT = "android.permission.NFC_TRANSACTION_EVENT";
     inline public static var PACKAGE_USAGE_STATS = "android.permission.PACKAGE_USAGE_STATS";
-    
-    /** @/deprecated */
     inline public static var PERSISTENT_ACTIVITY = "android.permission.PERSISTENT_ACTIVITY";
     inline public static var PROCESS_OUTGOING_CALLS = "android.permission.PROCESS_OUTGOING_CALLS";
     inline public static var READ_CALENDAR = "android.permission.READ_CALENDAR";
@@ -105,8 +99,6 @@ abstract Permissions(String) to String from String {
     inline public static var READ_CONTACTS = "android.permission.READ_CONTACTS";
     inline public static var READ_EXTERNAL_STORAGE = "android.permission.READ_EXTERNAL_STORAGE";
     inline public static var READ_FRAME_BUFFER = "android.permission.READ_FRAME_BUFFER";
-    
-    /** @/deprecated */
     inline public static var READ_INPUT_STATE = "android.permission.READ_INPUT_STATE";
     inline public static var READ_LOGS = "android.permission.READ_LOGS";
     inline public static var READ_PHONE_NUMBERS = "android.permission.READ_PHONE_NUMBERS";
@@ -127,8 +119,6 @@ abstract Permissions(String) to String from String {
     inline public static var REQUEST_DELETE_PACKAGES = "android.permission.REQUEST_DELETE_PACKAGES";
     inline public static var REQUEST_IGNORE_BATTERY_OPTIMIZATIONS = "android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS";
     inline public static var REQUEST_INSTALL_PACKAGES = "android.permission.REQUEST_INSTALL_PACKAGES";
-    
-    /** @/deprecated */
     inline public static var RESTART_PACKAGES = "android.permission.RESTART_PACKAGES";
     inline public static var SEND_RESPOND_VIA_MESSAGE = "android.permission.SEND_RESPOND_VIA_MESSAGE";
     inline public static var SEND_SMS = "android.permission.SEND_SMS";
@@ -136,8 +126,6 @@ abstract Permissions(String) to String from String {
     inline public static var SET_ALWAYS_FINISH = "android.permission.SET_ALWAYS_FINISH";
     inline public static var SET_ANIMATION_SCALE = "android.permission.SET_ANIMATION_SCALE";
     inline public static var SET_DEBUG_APP = "android.permission.SET_DEBUG_APP";
-   
-    /** @/deprecated */
     inline public static var SET_PREFERRED_APPLICATIONS = "android.permission.SET_PREFERRED_APPLICATIONS";
     inline public static var SET_PROCESS_LIMIT = "android.permission.SET_PROCESS_LIMIT";
     inline public static var SET_TIME = "android.permission.SET_TIME";
@@ -151,8 +139,6 @@ abstract Permissions(String) to String from String {
     inline public static var UNINSTALL_SHORTCUT = "com.android.launcher.permission.UNINSTALL_SHORTCUT";
     inline public static var UPDATE_DEVICE_STATS = "android.permission.UPDATE_DEVICE_STATS";
     inline public static var USE_BIOMETRIC = "android.permission.USE_BIOMETRIC";
-    
-    /** @/deprecated */
     inline public static var USE_FINGERPRINT = "android.permission.USE_FINGERPRINT";
     inline public static var USE_SIP = "android.permission.USE_SIP";
     inline public static var VIBRATE = "android.permission.VIBRATE";
