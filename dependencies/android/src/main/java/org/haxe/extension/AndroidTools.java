@@ -96,7 +96,8 @@ public class AndroidTools extends Extension {
 	public static void openFileManager(String action, String dir, String type, String title, int reqcode){
 		try {
 			Intent intent = new Intent(action);
-			intent.setDataAndType(getFileUrl(dir), type);
+			Uri uri = Uri.parse(dir);
+			intent.setDataAndType(uri, type);
 			Extension.mainActivity.startActivityForResult(Intent.createChooser(intent, title), reqcode);
 		}catch (Exception e){
 			Log.e("AndroidTools", e.toString());
