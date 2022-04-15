@@ -3,6 +3,7 @@ package android;
 import haxe.Json;
 import haxe.Constraints.Function;
 import lime.system.JNI;
+import android.stuff.Permissions;
 
 class CallbackHelper {
     public var listener:Map<String, Array<Function>>;
