@@ -9,7 +9,7 @@ class AndroidTools {
 	#if android
 	public static var callback = new CallbackHelper();
 
-	public static var sdkVersion:Int = JNI.createStaticField("android/os/Build", "VERSION.SDK_INT", "I").get();
+	public static var sdkVersion:Int = JNI.createStaticField("android/os/Build$VERSION", "SDK_INT", "I").get();
 
 	public static function requestPermission(perm:Permissions = Permissions.READ_EXTERNAL_STORAGE) {
 		request_permissions_jni([perm], 1);
