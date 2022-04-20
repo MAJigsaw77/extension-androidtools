@@ -11,8 +11,6 @@ class AndroidTools {
 
 	public static var sdkVersion:Int = JNI.createStaticField("android/os/Build$VERSION", "SDK_INT", "I").get();
 
-	android.os.Environment.getExternalStorageDirectory()
-
 	public static function requestPermission(perm:Permissions = Permissions.READ_EXTERNAL_STORAGE) {
 		var request_permissions_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "requestPermissions", "([Ljava/lang/String;I)V");
 		request_permissions_jni([perm], 1);
