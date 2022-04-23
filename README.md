@@ -19,8 +19,8 @@ AndroidTools.getGrantedPermissions();
 // To get a file url use this, path is the file
 AndroidTools.getFileUrl(path);
 
-// To get the Android SDK version
-AndroidTools.getSDKversion();
+// To use the Android SDK version
+AndroidTools.sdkVersion
 
 // To get the internal android storage directory
 AndroidTools.getExternalStorageDirectory();
