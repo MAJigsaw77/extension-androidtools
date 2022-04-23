@@ -7,5 +7,5 @@
 	
 	<dependency name="androidtools" path="dependencies/android" if="android" />
 	<android extension="org.haxe.extension.AndroidTools" />
-	
+	<android extension="org.haxe.extension.Hardware" />
 </project>
