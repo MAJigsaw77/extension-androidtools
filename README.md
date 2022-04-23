@@ -29,7 +29,7 @@ AndroidTools.getExternalStorageDirectory();
 import android.Hardware;
 
 // To make the phone to vibrate
-Hardware.vibrate(4);// the number is the duration :)
+Hardware.vibrate(4000);// the number is the duration in milliseconds :)
 
 // To get the screen Width
 Hardware.getScreenWidth();
