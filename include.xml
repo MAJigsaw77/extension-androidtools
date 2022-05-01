@@ -3,6 +3,6 @@
 	<!-- Use the following for an Android Java extension, not needed otherwise -->
 	
 	<dependency name="androidtools" path="dependencies/android" if="android" />
-	<android extension="org.haxe.extension.AndroidTools" />
-	<android extension="org.haxe.extension.Hardware" />
+
+	<android extension="org.haxe.extension.Tools" />
 </project>

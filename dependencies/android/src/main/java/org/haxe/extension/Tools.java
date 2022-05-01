@@ -1,26 +1,34 @@
 package org.haxe.extension;
 
-import android.app.Activity;
-import android.content.res.AssetManager;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.provider.Settings;
-import android.util.Log;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.net.Uri;
+import android.os.Vibrator;
 import android.os.Environment;
 import android.os.Build;
-
-import com.google.gson.Gson;
-import org.haxe.lime.HaxeObject;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
+import android.os.Bundle;
+import android.os.Handler;
+import android.graphics.Point;
+import android.view.Display;
+import android.content.res.AssetManager;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.Context;
+import android.content.Intent;
+import android.app.Activity;
+import android.app.KeyguardManager;
+import android.app.KeyguardManager.KeyguardLock;
+import android.provider.Settings;
+import android.util.Log;
+import android.net.Uri;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.Object;
 import java.io.File;
+
+import com.google.gson.Gson;
+import org.haxe.lime.HaxeObject;
 
 /* 
 	You can use the Android Extension class in order to hook
@@ -48,16 +56,20 @@ import java.io.File;
 	function for performing a single task, like returning a value
 	back to Haxe from Java.
 */
-public class AndroidTools extends Extension {
+public class Tools extends Extension {
 	public static Gson gson = new Gson();
 
 	public static HaxeObject callback;
+
+	public static Point size;
+
+	private static KeyguardLock keyguardLock=null;
 
 	public static void requestPermissions(String per[], int reqcode){
 		try {
 			Extension.mainActivity.requestPermissions(per, reqcode);
 		} catch (Exception e){
-			Log.e("AndroidTools", e.toString());
+			Log.e("Tools", e.toString());
 		}
 	}
 
@@ -65,7 +77,7 @@ public class AndroidTools extends Extension {
 		try {
 			return Environment.getExternalStorageDirectory().getPath();
 		}catch (Exception e){
-			Log.d("AndroidTools", e.toString());
+			Log.d("Tools", e.toString());
 			return "";
 		}
 	}
@@ -74,7 +86,7 @@ public class AndroidTools extends Extension {
 		try {		
 			return Uri.fromFile(new File(path)).toString();
 		}catch (Exception e){
-			Log.d("AndroidTools", e.toString());
+			Log.d("Tools", e.toString());
 			return "";
 		}
 	}
@@ -89,7 +101,7 @@ public class AndroidTools extends Extension {
 				}
 			}
 		} catch (Exception e) {
-			Log.e("AndroidTools", e.toString());
+			Log.e("Tools", e.toString());
 		}
 		return granted.toArray(new String[granted.size()]);
 	}
@@ -99,7 +111,7 @@ public class AndroidTools extends Extension {
 			Intent appSettings = new Intent(settings, Uri.parse("package:" + Extension.packageName));
 			Extension.mainActivity.startActivityForResult(appSettings, reqcode);
 		}catch (Exception e){
-			Log.e("AndroidTools", e.toString());
+			Log.e("Tools", e.toString());
 		}
 	}
 
@@ -110,7 +122,7 @@ public class AndroidTools extends Extension {
 			intent.setDataAndType(uri, type);
 			Extension.mainActivity.startActivityForResult(Intent.createChooser(intent, title), reqcode);
 		}catch (Exception e){
-			Log.e("AndroidTools", e.toString());
+			Log.e("Tools", e.toString());
 		}
 	}
 
@@ -118,9 +130,38 @@ public class AndroidTools extends Extension {
 		try {
 			return gson.toJson(obj);
 		}catch (Exception e){
-			Log.d("AndroidTools", e.toString());
+			Log.d("Tools", e.toString());
 			return "{}";
 		}
+	}
+
+	public static void vibrate(int duration){
+		((Vibrator) mainContext.getSystemService(Context.VIBRATOR_SERVICE)).vibrate(duration);
+	}
+
+	public static void wakeUp(){
+		PowerManager pm = (PowerManager) mainContext.getSystemService(Context.POWER_SERVICE);
+		WakeLock wakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK |
+		PowerManager.ACQUIRE_CAUSES_WAKEUP, "Hardware.class");
+		wakeLock.acquire();
+		wakeLock.release();
+		wakeLock = null;
+
+		KeyguardManager keyguardManager = (KeyguardManager) mainActivity.getSystemService(Activity.KEYGUARD_SERVICE); 
+		if(keyguardLock == null){
+			keyguardLock = keyguardManager.newKeyguardLock(Activity.KEYGUARD_SERVICE); 
+		}
+		keyguardLock.disableKeyguard();
+	}
+
+	public static int getScreenHeight()
+	{
+		return size.y;
+	}
+
+	public static int getScreenWidth()
+	{
+		return size.x;
 	}
 
 	public static void setCallback(final HaxeObject _callback){
@@ -153,13 +194,24 @@ public class AndroidTools extends Extension {
 	/**
 	 * Perform any final cleanup before an activity is destroyed.
 	 */
-	public void onDestroy() {}
+	public void onDestroy() {
+		if(keyguardLock != null)
+		{
+			keyguardLock.reenableKeyguard();
+			keyguardLock = null;
+		}
+	}
 	
 	/**
 	 * Called as part of the activity lifecycle when an activity is going into
 	 * the background, but has not (yet) been killed.
 	 */
-	public void onPause() {}
+	public void onPause() {
+		if(keyguardLock != null)
+		{
+			keyguardLock.reenableKeyguard();
+		}
+	}
 	
 	/**
 	 * Called after {@link #onStop} when the current activity is being 
@@ -178,7 +230,11 @@ public class AndroidTools extends Extension {
 	 * the activity had been stopped, but is now again being displayed to the 
 	 * user.
 	 */
-	public void onStart() {}
+	public void onStart() {
+		Display display = mainActivity.getWindowManager().getDefaultDisplay();
+		size = new Point();
+		display.getSize(size);
+	}
 	
 	/**
 	 * Called when the activity is no longer visible to the user, because 

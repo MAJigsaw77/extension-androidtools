@@ -38,7 +38,7 @@ class CallbackHelper {
     }
 
     #if android
-    private static var setCallback_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "setCallback", "(Lorg/haxe/lime/HaxeObject;)V");
+    private static var setCallback_jni = JNI.createStaticMethod("org.haxe.extension.Tools", "setCallback", "(Lorg/haxe/lime/HaxeObject;)V");
     #end
 }
 
@@ -61,7 +61,7 @@ class JavaObject {
     }
 
     #if android
-    private static var objectToJson_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "objectToJson", "(Ljava/lang/Object;)Ljava/lang/String;");
+    private static var objectToJson_jni = JNI.createStaticMethod("org.haxe.extension.Tools", "objectToJson", "(Ljava/lang/Object;)Ljava/lang/String;");
     #end
 }
 
