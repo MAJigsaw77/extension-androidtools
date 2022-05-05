@@ -73,15 +73,6 @@ public class Tools extends Extension {
 		}
 	}
 
-	public static String getExternalStorageDirectory(){
-		try {
-			return Environment.getExternalStorageDirectory().getPath();
-		}catch (Exception e){
-			Log.d("Tools", e.toString());
-			return "";
-		}
-	}
-
 	public static String getFileUrl(String path){
 		try {		
 			return Uri.fromFile(new File(path)).toString();
