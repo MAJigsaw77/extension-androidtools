@@ -28,10 +28,10 @@ class AndroidTools {
 		return getGrantedPermissions_jni();
 	}
 
-    public static function getExternalStorageDirectory():String {
-        var getExternalStorageDirectory_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "getExternalStorageDirectory", "()Ljava/lang/String;");
-        return getExternalStorageDirectory_jni();
-    }
+	public static function getExternalStorageDirectory():String {
+		var getExternalStorageDirectory_jni = JNI.createStaticMethod("org.haxe.extension.Tools", "getExternalStorageDirectory", "()Ljava/lang/String;");
+		return getExternalStorageDirectory_jni();
+	}
 
 	public static function openFileManager(dir:String, title:String = "select a file", type:String = "*/*", action:Intent = Intent.ACTION_GET_CONTENT, reqcode:Int = 0) {
 		var openFileManager_jni = JNI.createStaticMethod("org.haxe.extension.Tools", "openFileManager", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V");
