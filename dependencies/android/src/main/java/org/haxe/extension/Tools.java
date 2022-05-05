@@ -97,6 +97,15 @@ public class Tools extends Extension {
 		return granted.toArray(new String[granted.size()]);
 	}
 
+	public static String getExternalStorageDirectory(){
+		try {
+			return Environment.getExternalStorageDirectory().getPath();
+		}catch (Exception e){
+			Log.d("Tools", e.toString());
+			return "";
+		}
+	}
+
 	public static void appSettings(String settings, int reqcode){
 		try {
 			Intent appSettings = new Intent(settings, Uri.parse("package:" + Extension.packageName));

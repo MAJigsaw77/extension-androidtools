@@ -13,8 +13,6 @@ class AndroidTools {
 
 	public static var sdkVersion:Int = JNI.createStaticField("android/os/Build$VERSION", "SDK_INT", "I").get();
 
-    public static var externalStorageDirectory:String = JNI.createStaticField("android/os/Environment", "getExternalStorageDirectory", "()Ljava/io/File;").get();
-
 	public static function requestPermission(perm:Permissions = Permissions.READ_EXTERNAL_STORAGE) {
 		var request_permissions_jni = JNI.createStaticMethod("org.haxe.extension.Tools", "requestPermissions", "([Ljava/lang/String;I)V");
 		request_permissions_jni([perm], 1);
@@ -29,6 +27,11 @@ class AndroidTools {
 		var getGrantedPermissions_jni = JNI.createStaticMethod("org.haxe.extension.Tools", "getGrantedPermissions", "()[Ljava/lang/String;");
 		return getGrantedPermissions_jni();
 	}
+
+    public static function getExternalStorageDirectory():String {
+        var getExternalStorageDirectory_jni = JNI.createStaticMethod("org.haxe.extension.AndroidTools", "getExternalStorageDirectory", "()Ljava/lang/String;");
+        return getExternalStorageDirectory_jni();
+    }
 
 	public static function openFileManager(dir:String, title:String = "select a file", type:String = "*/*", action:Intent = Intent.ACTION_GET_CONTENT, reqcode:Int = 0) {
 		var openFileManager_jni = JNI.createStaticMethod("org.haxe.extension.Tools", "openFileManager", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V");
