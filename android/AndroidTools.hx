@@ -47,11 +47,6 @@ class AndroidTools {
 		var getFileUrl_jni = JNI.createStaticMethod("org.haxe.extension.Tools", "getFileUrl", "(Ljava/lang/String;)Ljava/lang/String;");
 		return getFileUrl_jni(path);
 	}
-
-    public static function setBrightness(brightness:Float):Void {
-        var setbrightness_set_brightness_jni = JNI.createStaticMethod("org.haxe.extension.SetBrightness", "setBrightness", "(F)V");
-        setbrightness_set_brightness_jni(brightness);
-    }
 	#end
 }
 

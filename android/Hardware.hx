@@ -16,6 +16,11 @@ class Hardware {
 		wakeUp_jni();
 	}
 
+	public static function setBrightness(brightness:Float):Void {
+		var setbrightness_set_brightness_jni = JNI.createStaticMethod("org.haxe.extension.Tools", "setBrightness", "(F)V");
+		setbrightness_set_brightness_jni(brightness);
+	}
+
 	public static function getScreenWidth():Int {
 		var get_screen_width_jni = JNI.createStaticMethod ("org.haxe.extension.Tools", "getScreenWidth", "()I");
 		return get_screen_width_jni();

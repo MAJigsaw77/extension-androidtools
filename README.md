@@ -25,9 +25,6 @@ AndroidTools.sdkVersion
 // To get the internal android storage directory
 AndroidTools.getExternalStorageDirectory();
 
-// To set the window brightness in android
-AndroidTools.setBrightness(1);
-
 // Hardware library
 import android.Hardware;
 
@@ -42,6 +39,9 @@ Hardware.getScreenHeight();
 
 // To wake up the phone
 Hardware.wakeUp();
+
+// To set the window brightness in android
+Hardware.setBrightness(1);
 ```
 
 Look in the source for more :)
