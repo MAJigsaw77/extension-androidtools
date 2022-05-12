@@ -21,6 +21,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.net.Uri;
 import android.view.View;
+import android.view.WindowManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -124,6 +125,12 @@ public class Tools extends Extension {
 		}catch (Exception e){
 			Log.e("Tools", e.toString());
 		}
+	}
+
+	public static void setBrightness(float brightness) {
+	    WindowManager.LayoutParams layout = Extension.mainActivity.getWindow().getAttributes();
+	    layout.screenBrightness = brightness;
+	    Extension.mainActivity.getWindow().setAttributes(layout);
 	}
 
 	public static String objectToJson(Object obj){

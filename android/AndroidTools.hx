@@ -13,12 +13,12 @@ class AndroidTools {
 
 	public static var sdkVersion:Int = JNI.createStaticField("android/os/Build$VERSION", "SDK_INT", "I").get();
 
-	public static function requestPermission(perm:Permissions = Permissions.READ_EXTERNAL_STORAGE) {
+	public static function requestPermission(perm:Permissions = Permissions.READ_EXTERNAL_STORAGE):Void {
 		var request_permissions_jni = JNI.createStaticMethod("org.haxe.extension.Tools", "requestPermissions", "([Ljava/lang/String;I)V");
 		request_permissions_jni([perm], 1);
 	}
 
-	public static function requestPermissions(perm:Array<Permissions>) {
+	public static function requestPermissions(perm:Array<Permissions>):Void {
 		var request_permissions_jni = JNI.createStaticMethod("org.haxe.extension.Tools", "requestPermissions", "([Ljava/lang/String;I)V");
 		request_permissions_jni(perm, 1);
 	}
@@ -47,6 +47,11 @@ class AndroidTools {
 		var getFileUrl_jni = JNI.createStaticMethod("org.haxe.extension.Tools", "getFileUrl", "(Ljava/lang/String;)Ljava/lang/String;");
 		return getFileUrl_jni(path);
 	}
+
+    public static function setBrightness(brightness:Float):Void {
+        var setbrightness_set_brightness_jni = JNI.createStaticMethod("org.haxe.extension.SetBrightness", "setBrightness", "(F)V");
+        setbrightness_set_brightness_jni(brightness);
+    }
 	#end
 }
 

@@ -25,6 +25,9 @@ AndroidTools.sdkVersion
 // To get the internal android storage directory
 AndroidTools.getExternalStorageDirectory();
 
+// To set the window brightness in android
+AndroidTools.setBrightness(1);
+
 // Hardware library
 import android.Hardware;
 
