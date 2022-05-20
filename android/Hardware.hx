@@ -6,6 +6,10 @@ import lime.system.JNI;
 
 class Hardware {
 	#if android
+	public static inline var ORIENTATION_UNSPECIFIED:Int = 0;
+	public static inline var ORIENTATION_PORTRAIT:Int = 1;
+	public static inline var ORIENTATION_LANDSCAPE:Int = 2;
+
 	public static function vibrate(inputValue:Int) {
 		var vibrate_jni = JNI.createStaticMethod ("org.haxe.extension.Tools", "vibrate", "(I)V");
 		vibrate_jni(inputValue);
@@ -19,6 +23,11 @@ class Hardware {
 	public static function setBrightness(brightness:Float):Void {
 		var setbrightness_set_brightness_jni = JNI.createStaticMethod("org.haxe.extension.Tools", "setBrightness", "(F)V");
 		setbrightness_set_brightness_jni(brightness);
+	}
+
+	public static function setScreenOrientation(screenOrientation:Int):Void {
+		var setRequestedOrientationNative = JNI.createStaticMethod("org.haxe.extension.Tools","setRequestedOrientation","(I)V");
+		setRequestedOrientationNative(screenOrientation);
 	}
 
 	public static function getScreenWidth():Int {

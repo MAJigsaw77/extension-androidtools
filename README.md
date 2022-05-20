@@ -42,6 +42,11 @@ Hardware.wakeUp();
 
 // To set the window brightness in android
 Hardware.setBrightness(1);
+
+// To set the window orientation in android
+Hardware.setScreenOrientation(Hardware.ORIENTATION_PORTRAIT);
+Hardware.setScreenOrientation(Hardware.ORIENTATION_LANDSCAPE);
+Hardware.setScreenOrientation(Hardware.ORIENTATION_UNSPECIFIED);
 ```
 
 Look in the source for more :)
