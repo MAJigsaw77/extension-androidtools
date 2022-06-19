@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	<!-- Use the following for an Android Java extension, not needed otherwise -->
-	
 	<dependency name="androidtools" path="dependencies/android" if="android" />
 
+	<android extension="org.haxe.extension.Hardware" />
+	<android extension="org.haxe.extension.Permissions" />
 	<android extension="org.haxe.extension.Tools" />
+
+	<source path="src" />
 </project>

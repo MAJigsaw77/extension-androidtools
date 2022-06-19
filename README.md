@@ -5,16 +5,8 @@ Extension For Haxe Android Only
 Some Code Example
 
 ```haxe
-import android.AndroidTools;
-
-// To request permission
-AndroidTools.requestPermission(Permissions.READ_EXTERNAL_STORAGE);
-
-// To request multiple permissions
-AndroidTools.requestPermissions([Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE]);
-
-// To get granted permissions(string) array use this
-AndroidTools.getGrantedPermissions();
+// Tools library
+import android.Tools;
 
 // To get a file url use this, path is the file
 AndroidTools.getFileUrl(path);
@@ -50,3 +42,12 @@ Hardware.setScreenOrientation(Hardware.ORIENTATION_UNSPECIFIED);
 ```
 
 Look in the source for more :)
+
+Credits:
+
+## Credits
+
+- [Saw (M.A. Jigsaw)](https://github.com/jigsaw-4277821) - Coder of the library.
+- [Lucky dog 7](https://github.com/luckydog7) - Creator of the original library.
+- [Player-03](https://github.com/jigsaw-4277821) - Code's From his library (thanks for the ideas =3 btw).
+- The contributors (if are).
