@@ -9,13 +9,13 @@ Some Code Example
 import android.Tools;
 
 // To get a file url use this, path is the file
-AndroidTools.getFileUrl(path);
+Tools.getFileUrl(path);
 
 // To use the Android SDK version
-AndroidTools.sdkVersion
+Tools.sdkVersion
 
 // To get the internal android storage directory
-AndroidTools.getExternalStorageDirectory();
+Tools.getExternalStorageDirectory();
 
 // Hardware library
 import android.Hardware;
