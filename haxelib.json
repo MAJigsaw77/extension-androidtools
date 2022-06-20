@@ -1,10 +1,10 @@
 {
   "name": "extension-androidtools",
-  "url": "",
+  "url": "https://github.com/jigsaw-4277821/extension-androidtools/",
   "license": "MIT",
-  "tags": [],
+  "tags": ['android', 'lime'],
   "description": "",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "releasenote": "",
   "contributors": [""],
   "dependencies": {}
