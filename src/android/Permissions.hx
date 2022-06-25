@@ -6,9 +6,9 @@ import android.PermissionsList;
 
 class Permissions
 {
+	public static var onPermissionsGranted = new Event< Array<String> -> Void>();
+	public static var onPermissionsDenied = new Event< Array<String> -> Void>();
 	public static var onRequestPermissionsResult:Int -> Array<String> -> Array<Int> -> Void;
-	public static var onPermissionsGranted = new Event<Array<String>->Void>();
-	public static var onPermissionsDenied = new Event<Array<String>->Void>();
 
 	/**
 	 * Initialize the callbacks if aren't already.

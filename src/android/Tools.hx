@@ -5,17 +5,13 @@ import lime.system.JNI;
 class Tools
 {
 	/**
-	 * The SDK Version.
-	 */
-	public static var sdkVersion:Int = #if android JNI.createStaticField("android/os/Build$VERSION", "SDK_INT", "I").get() #else 0 #end;
-
-	/**
 	 * Return's the external storage directory (/storage/emulated/0/).
 	 */
 	public static function getExternalStorageDirectory():String
 	{
-		var getExternalStorageDirectory_jni = JNI.createStaticMethod("org/haxe/extension/Tools", "getExternalStorageDirectory", "()Ljava/lang/String;");
-		return getExternalStorageDirectory_jni();
+		var getExternalStorageDirectory_jni = JNI.createStaticMethod("android/os/Environment", "getExternalStorageDirectory", "()Ljava/io/File;");
+		var getAbsolutePath_jni = JNI.createMemberMethod("java/io/File", "getAbsolutePath", "()Ljava/lang/String;");
+		return getAbsolutePath_jni(getExternalStorageDirectory_jni());
 	}
 
 	/**

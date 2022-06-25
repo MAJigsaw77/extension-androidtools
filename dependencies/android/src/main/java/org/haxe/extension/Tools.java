@@ -36,9 +36,4 @@ public class Tools extends Extension
 	{
 		return Uri.fromFile(new File(path)).toString();
 	}
-
-	public static String getExternalStorageDirectory()
-	{
-		return Environment.getExternalStorageDirectory().getPath();
-	}
 }
