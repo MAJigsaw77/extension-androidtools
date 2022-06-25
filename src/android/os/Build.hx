@@ -170,12 +170,12 @@ class VERSION {
 	/**
 	 * The media performance class of the device or 0 if none.
 	 */
-	public static var MEDIA_PERFORMANCE_CLASS:Int = JNI.createStaticField("android/os/Build$VERSION", "MEDIA_PERFORMANCE_CLASS", "Ljava/lang/String;").get();
+	public static var MEDIA_PERFORMANCE_CLASS:Int = JNI.createStaticField("android/os/Build$VERSION", "MEDIA_PERFORMANCE_CLASS", "I").get();
 
 	/**
 	 * The developer preview revision of a prerelease SDK.
 	 */
-	public static var PREVIEW_SDK_INT:Int = JNI.createStaticField("android/os/Build$VERSION", "PREVIEW_SDK_INT", "Ljava/lang/String;").get();
+	public static var PREVIEW_SDK_INT:Int = JNI.createStaticField("android/os/Build$VERSION", "PREVIEW_SDK_INT", "I").get();
 
 	/**
 	 * The user-visible version string.
