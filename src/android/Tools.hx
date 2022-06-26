@@ -4,7 +4,7 @@ import lime.system.JNI;
 
 class Tools {
 	/**
-	 * Return's the external storage directory (/storage/emulated/0/).
+	 * Return's the external storage directory (/storage/emulated/0).
 	 */
 	public static function getExternalStorageDirectory():String
 	{
