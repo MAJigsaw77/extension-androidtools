@@ -384,5 +384,5 @@ class Partition {
 	/**
 	 * The name identifying the system partition.
 	 */
-	public static var PARTITION_NAME_SYSTEM:String = JNI.createStaticField("android/os/Build$VERSION", "PARTITION_NAME_SYSTEM", "Ljava/lang/String;").get();
+	public static var PARTITION_NAME_SYSTEM:String = JNI.createStaticField("android/os/Build$Partition", "PARTITION_NAME_SYSTEM", "Ljava/lang/String;").get();
 }
