@@ -33,7 +33,7 @@ import java.io.File;
 public class Tools extends Extension {
 	public static String getExternalStorageDirectory()
 	{
-		Environment.getExternalStorageDirectory().getAbsolutePath();
+		return Environment.getExternalStorageDirectory().getAbsolutePath();
 	}
 
 	public static String getFileUrl(String path)
