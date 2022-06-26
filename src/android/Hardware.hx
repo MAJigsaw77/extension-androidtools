@@ -2,8 +2,7 @@ package android;
 
 import lime.system.JNI;
 
-class Hardware
-{
+class Hardware {
 	/**
 	 * Base Orientation of the phone.
 	 */

@@ -4,8 +4,7 @@ import lime.app.Event;
 import lime.system.JNI;
 import android.PermissionsList;
 
-class Permissions
-{
+class Permissions {
 	public static var onPermissionsGranted = new Event< Array<String> -> Void>();
 	public static var onPermissionsDenied = new Event< Array<String> -> Void>();
 	public static var onRequestPermissionsResult:Int -> Array<String> -> Array<Int> -> Void;

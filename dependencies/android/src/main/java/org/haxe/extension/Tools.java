@@ -4,7 +4,7 @@ import android.os.Environment;
 import android.net.Uri;
 import java.io.File;
 
-/* 
+/*
 	You can use the Android Extension class in order to hook
 	into the Android activity lifecycle. This is not required
 	for standard Java code, this is designed for when you need
@@ -30,8 +30,12 @@ import java.io.File;
 	function for performing a single task, like returning a value
 	back to Haxe from Java.
 */
-public class Tools extends Extension
-{
+public class Tools extends Extension {
+	public static String getExternalStorageDirectory()
+	{
+		Environment.getExternalStorageDirectory().getAbsolutePath();
+	}
+
 	public static String getFileUrl(String path)
 	{
 		return Uri.fromFile(new File(path)).toString();

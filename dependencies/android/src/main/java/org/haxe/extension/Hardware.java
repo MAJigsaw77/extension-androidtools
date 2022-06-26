@@ -99,6 +99,7 @@ public class Hardware extends Extension
 		KeyguardManager keyguardManager = (KeyguardManager) mainActivity.getSystemService(Activity.KEYGUARD_SERVICE); 
 		if(keyguardLock == null)
 			keyguardLock = keyguardManager.newKeyguardLock(Activity.KEYGUARD_SERVICE); 
+
 		keyguardLock.disableKeyguard();
 	}
 
