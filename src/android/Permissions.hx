@@ -33,9 +33,7 @@ class Permissions {
 	}
 
 	/**
-	 * Displays a dialog requesting the given permission. This dialog will
-	 * be displayed even if the user already granted the permission,
-	 * allowing them to disable it if they like.
+	 * Displays a dialog requesting the given permission. This dialog will be displayed even if the user already granted the permission, allowing them to disable it if they like.
 	 */
 	public static function requestPermission(permission:String, requestCode:Int = 1):Void
 	{
@@ -47,8 +45,7 @@ class Permissions {
 	
 	/**
 	 * Displays a dialog requesting all of the given permissions at once.
-	 * This dialog will be displayed even if the user already granted the
-	 * permissions, allowing them to disable them if they like.
+	 * This dialog will be displayed even if the user already granted the permissions, allowing them to disable them if they like.
 	 */
 	public static function requestPermissions(permissions:Array<String>, requestCode:Int = 1):Void
 	{
