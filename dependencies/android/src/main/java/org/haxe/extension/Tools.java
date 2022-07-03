@@ -1,6 +1,5 @@
 package org.haxe.extension;
 
-import android.os.Environment;
 import android.net.Uri;
 import java.io.File;
 
@@ -31,11 +30,6 @@ import java.io.File;
 	back to Haxe from Java.
 */
 public class Tools extends Extension {
-	public static String getExternalStorageDirectory()
-	{
-		return Environment.getExternalStorageDirectory().getAbsolutePath();
-	}
-
 	public static String getFileUrl(String path)
 	{
 		return Uri.fromFile(new File(path)).toString();
