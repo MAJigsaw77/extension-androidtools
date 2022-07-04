@@ -3,7 +3,8 @@ package android;
 /**
  * All Android Permissions (Almost all).
  */
-abstract PermissionsList(String) to String from String {
+abstract PermissionsList(String) to String from String
+{
 	public static var ACCEPT_HANDOVER = "android.permission.ACCEPT_HANDOVER";
 	public static var ACCESS_BACKGROUND_LOCATION = "android.permission.ACCESS_BACKGROUND_LOCATION";
 	public static var ACCESS_BLOBS_ACROSS_USERS = "android.permission.ACCESS_BLOBS_ACROSS_USERS";

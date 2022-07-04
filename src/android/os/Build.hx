@@ -2,7 +2,24 @@ package android.os;
 
 import lime.system.JNI;
 
-class Build {
+/**
+ * Some functions (not all) ported from java to haxe using jni
+ *
+ * @see 	https://developer.android.com/reference/android/os/Build
+ * @author 	Saw (M.A. Jigsaw)
+ */
+class Build
+{
+	/**
+	 * The consumer-visible brand with which the product/hardware will be associated, if any.
+	 */
+	public static var BRAND:String = JNI.createStaticField("android/os/Build", "BRAND", "Ljava/lang/String;").get();
+
+	/**
+	 * The name of the industrial design.
+	 */
+	public static var DEVICE:String = JNI.createStaticField("android/os/Build", "DEVICE", "Ljava/lang/String;").get();
+
 	/**
 	 * The manufacturer of the product/hardware.
 	 */

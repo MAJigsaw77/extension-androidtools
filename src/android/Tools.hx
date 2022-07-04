@@ -2,17 +2,13 @@ package android;
 
 import lime.system.JNI;
 
-class Tools {
-	/**
-	 * Return's the external storage directory (/storage/emulated/0).
-	 */
-	public static function getExternalStorageDirectory():String
-	{
-		var getExternalStorageDirectory_jni = JNI.createStaticMethod("android/os/Environment", "getExternalStorageDirectory", "()Ljava/io/File;");
-		var getAbsolutePath_jni = JNI.createMemberMethod("java/io/File",  "getAbsolutePath", "()Ljava/lang/String;");
-		return getAbsolutePath_jni(getExternalStorageDirectory_jni());
-	}
-
+/**
+ * Some functions (not all) ported from a java class to haxe using jni
+ *
+ * @author 	Saw (M.A. Jigsaw)
+ */
+class Tools
+{
 	/**
 	 * Return's the file you put as a file with url like from this (/storage/emulated/0/Documents/file.txt) to (file:///storage/emulated/0/Documents/file.txt).
 	 */

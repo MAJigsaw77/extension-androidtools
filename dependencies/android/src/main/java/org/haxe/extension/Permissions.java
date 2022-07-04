@@ -72,9 +72,8 @@ public class Permissions extends Extension
 	}
 
 	@Override
-	public boolean onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
 	{
 		callback.call("onRequestPermissionsResult", new Object[] {requestCode, permissions, grantResults});
-		return true;
 	}
 }
