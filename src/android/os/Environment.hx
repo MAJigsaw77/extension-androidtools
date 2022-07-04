@@ -1,4 +1,4 @@
-package;
+package android.os;
 
 import lime.system.JNI;
 
@@ -49,11 +49,6 @@ class Environment
 	 * Standard directory in which to place any audio files that should be in the list of notifications that the user can select (not as regular music).
 	 */
 	public static var DIRECTORY_NOTIFICATIONS:String = JNI.createStaticField("android/os/Environment", "DIRECTORY_NOTIFICATIONS", "Ljava/lang/String;").get();
-
-	/**
-	 * Standard directory in which to place pictures that are available to the user.
-	 */
-	public static var DIRECTORY_PICTURES:String = JNI.createStaticField("android/os/Environment", "DIRECTORY_PICTURES", "Ljava/lang/String;").get();
 
 	/**
 	 * Standard directory in which to place pictures that are available to the user.
