@@ -1,10 +1,8 @@
-# extension-androidtools
+## extension-androidtools
 
 Extension For Haxe Android Only
 
 Look in the source to find functions
-
-Credits:
 
 ## Credits
 
