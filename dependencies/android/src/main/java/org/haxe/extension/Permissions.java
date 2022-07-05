@@ -5,10 +5,8 @@ import android.content.pm.PackageManager;
 import android.util.Log;
 import org.haxe.extension.Extension;
 import org.haxe.lime.HaxeObject;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.lang.Object;
 
 /*
 	You can use the Android Extension class in order to hook
@@ -72,8 +70,9 @@ public class Permissions extends Extension
 	}
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+	public boolean onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
 	{
-		callback.call("onRequestPermissionsResult", new Object[] {requestCode, permissions, grantResults});
+		callback.call2("onRequestPermissionsResult", requestCode, permissions, grantResults);
+		return true;
 	}
 }
