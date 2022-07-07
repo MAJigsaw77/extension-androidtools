@@ -10,6 +10,8 @@ class Environment
 {
 	/**
 	 * Return the primary shared/external storage directory.
+	 * 
+	 * Added in API level 1.
 	 */
 	public static function getExternalStorageDirectory():String
 	{

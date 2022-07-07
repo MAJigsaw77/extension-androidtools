@@ -1,6 +1,5 @@
 package android;
 
-import lime.app.Event;
 import lime.system.JNI;
 import android.PermissionsList;
 
