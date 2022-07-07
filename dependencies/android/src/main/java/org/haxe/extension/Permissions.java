@@ -36,13 +36,6 @@ import java.util.List;
 */
 public class Permissions extends Extension
 {
-	private static HaxeObject callback;
-	
-	public static void init(HaxeObject _callback)
-	{
-		callback = _callback;
-	}
-
 	public static String[] getGrantedPermissions()
 	{
 		List<String> granted = new ArrayList<String>();
@@ -67,12 +60,5 @@ public class Permissions extends Extension
 	public static void requestPermissions(String[] permissions, int requestCode)
 	{
 		Extension.mainActivity.requestPermissions(permissions, requestCode);
-	}
-
-	@Override
-	public boolean onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
-	{
-		callback.call("onRequestPermissionsResult", new Object[] {requestCode, permissions, grantResults});
-		return true;
 	}
 }
