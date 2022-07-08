@@ -86,14 +86,6 @@ class VERSION
 	/**
 	 * The SDK version of the software currently running on this hardware device.
 	 * 
-	 * Added in API level 1
-	 * Deprecated in API level 15
-	 */
-	public static var SDK:Int = JNI.createStaticField("android/os/Build$VERSION", "SDK", "I").get();
-
-	/**
-	 * The SDK version of the software currently running on this hardware device.
-	 * 
 	 * Added in API level 4
 	 */
 	public static var SDK_INT:Int = JNI.createStaticField("android/os/Build$VERSION", "SDK_INT", "I").get();
