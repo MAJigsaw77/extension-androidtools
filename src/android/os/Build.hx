@@ -77,13 +77,6 @@ class Build
 class VERSION
 {
 	/**
-	 * The internal value used by the underlying source control to represent this build. E.g., a perforce changelist number or a git hash.
-	 * 
-	 * Added in API level 1
-	 */
-	public static var INCREMENTAL:String = JNI.createStaticField("android/os/Build$VERSION", "INCREMENTAL", "Ljava/lang/String;").get();
-
-	/**
 	 * The user-visible version string.
 	 * 
 	 * Added in API level 1
