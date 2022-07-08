@@ -14,66 +14,37 @@ import android.app.Activity;
 import android.app.KeyguardManager;
 import android.app.KeyguardManager.KeyguardLock;
 import android.view.WindowManager;
-
 import org.haxe.lime.HaxeObject;
-
 import java.io.File;
 
-/* 
-	You can use the Android Extension class in order to hook
-	into the Android activity lifecycle. This is not required
-	for standard Java code, this is designed for when you need
-	deeper integration.
-	
-	You can access additional references from the Extension class,
-	depending on your needs:
-	
-	- Extension.assetManager (android.content.res.AssetManager)
-	- Extension.callbackHandler (android.os.Handler)
-	- Extension.mainActivity (android.app.Activity)
-	- Extension.mainContext (android.content.Context)
-	- Extension.mainView (android.view.View)
-	
-	You can also make references to static or instance methods
-	and properties on Java classes. These classes can be included 
-	as single files using <java path="to/File.java" /> within your
-	project, or use the full Android Library Project format (such
-	as this example) in order to include your own AndroidManifest
-	data, additional dependencies, etc.
-	
-	These are also optional, though this example shows a static
-	function for performing a single task, like returning a value
-	back to Haxe from Java.
-*/
 public class Hardware extends Extension
 {
 	public static Point size;
 
+	private static KeyguardLock keyguardLock = null;
+
 	public static final int ORIENTATION_UNSPECIFIED = 0;
 	public static final int ORIENTATION_PORTRAIT = 1;
 	public static final int ORIENTATION_LANDSCAPE = 2;
-
-	private static KeyguardLock keyguardLock = null;
-	private static int fixedOrientation = 0;
+	private static int resumeOrientation = 0;
 
 	public static void setRequestedOrientation(int SCREEN_ORIENTATION)
 	{
-		int requestedOrientation;
-
 		switch (SCREEN_ORIENTATION)
 		{
 			case ORIENTATION_PORTRAIT:
-				requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+				Extension.mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+				resumeOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
 				break;
 			case ORIENTATION_LANDSCAPE:
-				requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
+				Extension.mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+				resumeOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
 				break;
 			default:
-				requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
+				Extension.mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+				resumeOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
+				break;
 		}
-
-		Extension.mainActivity.setRequestedOrientation(requestedOrientation);
-		fixedOrientation = requestedOrientation;
 	}
 
 	public static void setBrightness(float brightness)
@@ -133,8 +104,8 @@ public class Hardware extends Extension
 	@Override
 	public void onResume()
 	{
-		if (fixedOrientation != 0)
-			Extension.mainActivity.setRequestedOrientation(fixedOrientation);
+		if (resumeOrientation != 0)
+			Extension.mainActivity.setRequestedOrientation(resumeOrientation);
 	}
 
 	@Override
