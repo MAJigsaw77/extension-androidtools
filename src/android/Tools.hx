@@ -15,4 +15,13 @@ class Tools
 		var getFileUrl_jni = JNI.createStaticMethod("org/haxe/extension/Tools", "getFileUrl", "(Ljava/lang/String;)Ljava/lang/String;");
 		return getFileUrl_jni(path);
 	}
+
+	/**
+	 * Loads the system library specified by the libname argument.
+	 */
+	public static function loadLibrary(libname:String):Void
+	{
+		var loadLibrary_jni = JNI.createStaticMethod("java/lang/System", "loadLibrary", "(Ljava/lang/String;)V");
+		return loadLibrary_jni(libname);
+	}
 }
