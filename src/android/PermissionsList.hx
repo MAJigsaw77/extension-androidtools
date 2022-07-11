@@ -1,7 +1,7 @@
 package android;
 
 /**
- * All Android Permissions (Almost all).
+ * Almost all Android Permissions.
  */
 abstract PermissionsList(String) to String from String
 {

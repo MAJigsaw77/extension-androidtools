@@ -8,7 +8,7 @@ import lime.system.JNI;
 class Tools
 {
 	/**
-	 * Return's the file you put as a file with url like from this (/storage/emulated/0/Documents/file.txt) to (file:///storage/emulated/0/Documents/file.txt).
+	 * Return's the file path you gave it but with a url like this (/storage/emulated/0/Documents/file.txt) to this (file:///storage/emulated/0/Documents/file.txt).
 	 */
 	public static function getFileUrl(path:String):String
 	{
