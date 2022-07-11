@@ -59,6 +59,12 @@ class Build
 class VERSION
 {
 	/**
+	 * The internal value used by the underlying source control to represent this build.
+	 * E.g., a perforce changelist number or a git hash.
+	 */
+	public static var INCREMENTAL:String = JNI.createStaticField("android/os/Build$VERSION", "INCREMENTAL", "Ljava/lang/String;").get();
+
+	/**
 	 * The user-visible version string.
 	 */
 	public static var RELEASE:String = JNI.createStaticField("android/os/Build$VERSION", "RELEASE", "Ljava/lang/String;").get();
@@ -66,7 +72,7 @@ class VERSION
 	/**
 	 * The user-visible SDK version of the framework in its raw String representation.
 	 */
-	@:deprecated("Use Build.VERSION.SDK_INT instead")
+	@:deprecated("Use SDK_INT instead")
 	public static var SDK:String = JNI.createStaticField("android/os/Build$VERSION", "SDK", "Ljava/lang/String;").get();
 
 	/**
