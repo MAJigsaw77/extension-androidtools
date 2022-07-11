@@ -22,6 +22,6 @@ class Tools
 	public static function loadLibrary(libname:String):Void
 	{
 		var loadLibrary_jni = JNI.createStaticMethod("java/lang/System", "loadLibrary", "(Ljava/lang/String;)V");
-		return loadLibrary_jni(libname);
+		loadLibrary_jni(libname);
 	}
 }
