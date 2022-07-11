@@ -5,8 +5,8 @@
   "tags": ["android", "lime", "jni", "haxe"],
   "description": "",
   "version": "1.0.0",
-  "releasenote": "",
-  "contributors": [""],
+  "releasenote": "First release of the library ",
+  "contributors": ["MAJigsaw77"],
   "dependencies": {
     "lime": ""
   }
