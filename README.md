@@ -3,7 +3,7 @@ extension-androidtools
 
 A extension that uses OpenFL Lime JNI to work and add's some function from java to haxe.
 
-Instructions to install it
+Installation instructions
 =======
 
 1. Install the Haxelib
