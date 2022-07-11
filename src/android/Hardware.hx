@@ -14,7 +14,7 @@ class Hardware
 	public static inline var ORIENTATION_LANDSCAPE:Int = 2;
 
 	/**
-	 * Makes the Phone to vibrate, the time is in miliseconds btw.
+	 * Makes the Phone vibrate, the time is in miliseconds btw.
 	 */
 	public static function vibrate(inputValue:Int):Void
 	{
@@ -23,7 +23,7 @@ class Hardware
 	}
 
 	/**
-	 * The Name of the function says all.
+	 * The Name of the function says what it does.
 	 */
 	public static function wakeUp():Void
 	{
@@ -41,7 +41,7 @@ class Hardware
 	}
 
 	/**
-	 * The Name of the function says all.
+	 * The Name of the function says what it does.
 	 */
 	public static function setScreenOrientation(screenOrientation:Int):Void
 	{
