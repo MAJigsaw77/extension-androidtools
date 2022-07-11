@@ -18,4 +18,6 @@ android {
 
 dependencies {
 	api project(':deps:extension-api')
+	implementation "androidx.activity:activity:1.2.+"
+	implementation "androidx.fragment:fragment:1.3.+"
 }
