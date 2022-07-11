@@ -1,12 +1,28 @@
-## extension-androidtools
+extension-androidtools
+=======
 
-Extension For Haxe Android Only
+A extension that uses OpenFL Lime JNI to work and add's some function from java to haxe.
 
-Look in the source to find functions
+Instructions to install it
+=======
 
-## Credits
+1. Install the Haxelib
 
-- [Saw (M.A. Jigsaw)](https://github.com/jigsaw-4277821) - Coder of the library.
-- [Lucky dog 7](https://github.com/luckydog7) - Creator of the original library.
-- [Player-03](https://github.com/jigsaw-4277821) - Code's From his library (thanks for the ideas =3 btw).
-- The contributors (if are).
+Open the terminal and type:
+```
+haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools.git
+```
+
+2. Add this code in `Project.xml`
+```xml
+<haxelib name="extension-androidtools" if="android" />
+```
+
+All done!
+
+Credits
+=======
+
+- [M.A. Jigsaw](https://github.com/MAJigsaw77) - Creator of this extension.
+- [Lucky dog 7](https://github.com/luckydog7) - Functions from his old extension.
+- The contributors.
