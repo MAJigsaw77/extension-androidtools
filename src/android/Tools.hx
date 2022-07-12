@@ -12,7 +12,7 @@ class Tools
 	 */
 	public static function getFileUrl(path:String):String
 	{
-		var getFileUrl_jni = JNI.createStaticMethod("org/haxe/extension/Tools", "getFileUrl", "(Ljava/lang/String;)Ljava/lang/String;");
+		var getFileUrl_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Tools", "getFileUrl", "(Ljava/lang/String;)Ljava/lang/String;");
 		return getFileUrl_jni(path);
 	}
 
@@ -21,7 +21,7 @@ class Tools
 	 */
 	public static function loadLibrary(libname:String):Void
 	{
-		var loadLibrary_jni = JNI.createStaticMethod("java/lang/System", "loadLibrary", "(Ljava/lang/String;)V");
+		var loadLibrary_jni:Dynamic = JNI.createStaticMethod("java/lang/System", "loadLibrary", "(Ljava/lang/String;)V");
 		loadLibrary_jni(libname);
 	}
 }
