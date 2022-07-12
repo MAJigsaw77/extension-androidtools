@@ -9,9 +9,9 @@ import lime.system.JNI;
  */
 class Hardware
 {
-	public static final var ORIENTATION_UNSPECIFIED:Int = 0;
-	public static final var ORIENTATION_PORTRAIT:Int = 1;
-	public static final var ORIENTATION_LANDSCAPE:Int = 2;
+	public static final ORIENTATION_UNSPECIFIED:Int = 0;
+	public static final ORIENTATION_PORTRAIT:Int = 1;
+	public static final ORIENTATION_LANDSCAPE:Int = 2;
 
 	/**
 	 * Makes the Phone vibrate, the time is in miliseconds btw.
