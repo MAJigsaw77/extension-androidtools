@@ -45,8 +45,8 @@ class Environment
 	 */
 	public static function isExternalStorageEmulated():Bool
 	{
-		var getExternalStorageDirectory_jni:Dynamic = JNI.createStaticMethod("android/os/Environment", "isExternalStorageEmulated", "()Z");
-		return getAbsolutePath_jni();
+		var isExternalStorageEmulated_jni:Dynamic = JNI.createStaticMethod("android/os/Environment", "isExternalStorageEmulated", "()Z");
+		return isExternalStorageEmulated_jni();
 	}
 
 	/**
@@ -54,7 +54,7 @@ class Environment
 	 */
 	public static function isExternalStorageRemovable():Bool
 	{
-		var getExternalStorageDirectory_jni:Dynamic = JNI.createStaticMethod("android/os/Environment", "isExternalStorageRemovable", "()Z");
-		return getAbsolutePath_jni();
+		var isExternalStorageRemovable_jni:Dynamic = JNI.createStaticMethod("android/os/Environment", "isExternalStorageRemovable", "()Z");
+		return isExternalStorageRemovable_jni();
 	}
 }
