@@ -5,6 +5,7 @@
 	"tags":[
 		"android",
 		"lime",
+		"openfl",
 		"jni",
 		"haxe"
 	],
@@ -15,6 +16,7 @@
 		"MAJigsaw77"
 	],
 	"dependencies":{
-		"lime":""
+		"lime":"",
+		"openfl":""
 	}
 }

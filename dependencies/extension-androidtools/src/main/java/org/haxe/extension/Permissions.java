@@ -30,7 +30,7 @@ public class Permissions extends Extension
 
 		return granted.toArray(new String[granted.size()]);
 	}
-	
+
 	public static void requestPermissions(String[] permissions, int requestCode)
 	{
 		Extension.mainActivity.requestPermissions(permissions, requestCode);

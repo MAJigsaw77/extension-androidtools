@@ -1,98 +1,109 @@
 package android;
 
-import flixel.util.FlxColor;
 import haxe.crypto.Base64;
-import haxe.io.Bytes;
 import lime.app.Event;
 import lime.system.JNI;
 import openfl.display.BitmapData;
 import openfl.display.PNGEncoderOptions;
 
+/**
+ * ...
+ * @author 	luckydog7
+ */
 class AlertDialog
 {
-	var builder:Dynamic;
+	private var builder:Dynamic;
 
 	public function new()
 	{
-		builder = createBuilder_jni();
+		builder = JNI.createStaticMethod("org/haxe/extension/Dialog", "createBuilder", "()Ljava/lang/Object;");
 	}
 
-	public function setIcon(bitmap:BitmapData)
-	{
-		var bytes = bitmap.encode(bitmap.rect, new PNGEncoderOptions());
-		bytes.position = 0;
-		var drawable = getDrawable_jni(Base64.encode(bytes));
-		JNI.callMember(getMemberMethod("setIcon", "(Landroid/graphics/drawable/Drawable;)Landroid/app/AlertDialog$Builder;"), builder, [drawable]);
-		bytes.clear();
-		return this;
-	}
-
-	// not working
-	public function setView(view:Dynamic)
+	/**
+	 * Not working for now.
+	 */
+	public function setView(view:Dynamic):Dynamic
 	{
 		JNI.callMember(getMemberMethod("setView", "(Landroid/view/View;)Landroid/app/AlertDialog$Builder;"), builder, [view]);
-		return this;
 	}
 
-	public function setCancelable(b:Bool)
+	public function setCancelable(value:Bool = true):Dynamic
 	{
-		JNI.callMember(getMemberMethod("setCancelable", "(Z)Landroid/app/AlertDialog$Builder;"), builder, [b]);
-		return this;
+		JNI.callMember(getMemberMethod("setCancelable", "(Z)Landroid/app/AlertDialog$Builder;"), builder, [value]);
 	}
 
-	public function setTitle(str:String)
+	public function setTitle(value:String):Dynamic
 	{
-		JNI.callMember(getMemberMethod("setTitle", "(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;"), builder, [str]);
-		return this;
+		JNI.callMember(getMemberMethod("setTitle", "(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;"), builder, [value]);
 	}
 
-	public function setMessage(str:String)
+	public function setMessage(value:String):Dynamic
 	{
-		JNI.callMember(getMemberMethod("setMessage", "(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;"), builder, [str]);
-		return this;
+		JNI.callMember(getMemberMethod("setMessage", "(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;"), builder, [value]);
 	}
 
-	public function setPositiveButton(name:String, callback:Void->Void)
+	public function setIcon(bitmap:BitmapData):Dynamic
 	{
+		var bytes:BitmapData = bitmap.encode(bitmap.rect, new PNGEncoderOptions());
+		bytes.position = 0;
+
+		var getDrawable_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Dialog", "getDrawable",
+			"(Ljava/lang/String;)Landroid/graphics/drawable/Drawable;");
+		JNI.callMember(getMemberMethod("setIcon", "(Landroid/graphics/drawable/Drawable;)Landroid/app/AlertDialog$Builder;"), builder,
+			[getDrawable_jni(Base64.encode(bytes))]);
+		bytes.clear();
+	}
+
+	public function setPositiveButton(name:String, callback:Void->Void):Void
+	{
+		var setButton_jni = JNI.createStaticMethod("org/haxe/extension/Dialog", "setButton",
+			"(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V");
 		setButton_jni(builder, new ClickEventListener(callback), name, true);
-		return this;
 	}
 
-	public function setNegativeButton(name:String, callback:Void->Void)
+	public function setNegativeButton(name:String, callback:Void->Void):Void
 	{
+		var setButton_jni = JNI.createStaticMethod("org/haxe/extension/Dialog", "setButton",
+			"(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V");
 		setButton_jni(builder, new ClickEventListener(callback), name, false);
-		return this;
 	}
 
-	public function show()
+	public function show():Void
 	{
+		var showDialog_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Dialog", "showDialog", "(Ljava/lang/Object;)V");
 		showDialog_jni(builder);
 	}
 
-	public function createEditText()
+	public function createEditText():Dynamic
 	{
-		return createEditText_jni();
+		return JNI.createStaticMethod("org/haxe/extension/Dialog", "createEditText", "()Landroid/widget/EditText;");
 	}
 
-	function getMemberMethod(name:String, sig:String)
+	private function getMemberMethod(name:String, sig:String):Dynamic
 	{
 		return JNI.createMemberMethod("android/app/AlertDialog$Builder", name, sig);
 	}
+}
 
-	static var createEditText_jni = JNI.createStaticMethod("org/haxe/extension/Dialog", "createEditText", "()Landroid/widget/EditText;");
-	static var getDrawable_jni = JNI.createStaticMethod("org/haxe/extension/Dialog", "getDrawable",
-		"(Ljava/lang/String;)Landroid/graphics/drawable/Drawable;");
+class EditText
+{
+	/**
+	 * Should work for now??
+	 */
+	public function getText():String
+	{
+		return JNI.callMember(getMemberMethod("getText", "()Ljava/lang/String;"), this, []);
+	}
 
-	static var setButton_jni = JNI.createStaticMethod("org/haxe/extension/Dialog", "setButton",
-		"(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V");
-
-	static var createBuilder_jni = JNI.createStaticMethod("org/haxe/extension/Dialog", "createBuilder", "()Ljava/lang/Object;");
-	static var showDialog_jni = JNI.createStaticMethod("org/haxe/extension/Dialog", "showDialog", "(Ljava/lang/Object;)V");
+	private function getMemberMethod(name:String, sig:String)
+	{
+		return JNI.createMemberMethod("android/widget/EditText", name, sig);
+	}
 }
 
 class ClickEventListener
 {
-	public function new(cb)
+	public function new(cb:Dynamic)
 	{
 		onClickButton.add(cb);
 	}
@@ -102,20 +113,5 @@ class ClickEventListener
 	public function onClick(dialog:Dynamic, whichButton:Int)
 	{
 		onClickButton.dispatch();
-	}
-}
-
-abstract EditText(Dynamic) from Dynamic to Dynamic
-{
-	// should work??
-	public function getText():String
-	{
-		var editable = JNI.callMember(getMemberMethod("getText", "()Ljava/lang/String;"), this, []);
-		return editable;
-	}
-
-	function getMemberMethod(name:String, sig:String)
-	{
-		return JNI.createMemberMethod("android/widget/EditText", name, sig);
 	}
 }

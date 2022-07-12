@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	<dependency name="androidtools" path="dependencies/android" if="android" />
-
-	<android extension="org.haxe.extension.Hardware" />
-	<android extension="org.haxe.extension.Permissions" />
-	<android extension="org.haxe.extension.Tools" />
+	<dependency name="extension-androidtools" path="dependencies/android" if="android" />
 
 	<source path="src" />
 </project>
