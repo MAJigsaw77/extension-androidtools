@@ -1,4 +1,4 @@
-Lpackage;
+package;
 
 import lime.system.JNI;
 
