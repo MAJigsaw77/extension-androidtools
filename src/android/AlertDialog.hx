@@ -8,7 +8,6 @@ import openfl.display.PNGEncoderOptions;
 import openfl.utils.ByteArray;
 
 /**
- * ...
  * @author luckydog7
  */
 class AlertDialog

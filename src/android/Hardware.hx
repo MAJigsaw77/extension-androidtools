@@ -3,8 +3,6 @@ package android;
 import lime.system.JNI;
 
 /**
- * Some functions (not all) ported from a java class to haxe using jni
- *
  * @author Saw (M.A. Jigsaw)
  */
 class Hardware
