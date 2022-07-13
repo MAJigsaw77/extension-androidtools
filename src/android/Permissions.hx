@@ -6,7 +6,7 @@ import android.PermissionsList;
 /**
  * Some functions (not all) ported from a java class to haxe using jni
  *
- * @author 	Saw (M.A. Jigsaw)
+ * @author Saw (M.A. Jigsaw)
  */
 class Permissions
 {

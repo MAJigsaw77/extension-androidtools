@@ -5,7 +5,7 @@ import java.io.File;
 
 public class Tools extends Extension
 {
-	public static String getFileUrl(String path)
+	public static String fromFile(String path)
 	{
 		return Uri.fromFile(new File(path)).toString();
 	}

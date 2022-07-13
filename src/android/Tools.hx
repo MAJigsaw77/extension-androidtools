@@ -8,20 +8,11 @@ import lime.system.JNI;
 class Tools
 {
 	/**
-	 * Return's the file path you gave it but with a url like this (/storage/emulated/0/Documents/file.txt) to this (file:///storage/emulated/0/Documents/file.txt).
-	 */
-	public static function getFileUrl(path:String):String
-	{
-		var getFileUrl_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Tools", "getFileUrl", "(Ljava/lang/String;)Ljava/lang/String;");
-		return getFileUrl_jni(path);
-	}
-
-	/**
 	 * Gets the value of the specified environment variable.
 	 * 
-	 * @param name the name of the environment variable
+	 * @param name the name of the environment variable.
 	 */
-	public static function getenv(name:String):String
+	public static function getEnv(name:String):String
 	{
 		var getenv_jni:Dynamic = JNI.createStaticMethod("java/lang/System", "getenv", "(Ljava/lang/String;)Ljava/lang/String;");
 		return getenv_jni(name);
