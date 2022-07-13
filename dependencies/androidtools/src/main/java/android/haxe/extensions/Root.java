@@ -6,7 +6,7 @@ import org.haxe.extension.Extension;
 
 public class Root extends Extension
 {
-	public static Void requestRootPerms()
+	public static void requestRootPerms()
 	{
 		Process request = Runtime.getRuntime().exec("su");
 	}
