@@ -1,6 +1,6 @@
 package android.haxe.extensions;
 
-import android.os.Process;
+import java.lang.Process;
 import java.lang.Runtime;
 import org.haxe.extension.Extension;
 
