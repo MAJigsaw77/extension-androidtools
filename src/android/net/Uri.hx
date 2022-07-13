@@ -3,9 +3,8 @@ package android.net;
 import lime.system.JNI;
 
 /**
- * Some functions (not all) ported from java to haxe using jni
- *
  * @see https://developer.android.com/reference/android/net/Uri
+ * 
  * @author Saw (M.A. Jigsaw)
  */
 class Uri
