@@ -15,7 +15,7 @@ haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-andro
 
 2. Add this in `Project.xml`
 ```xml
-<haxelib name="extension-androidtools" if="android" />
+<haxelib name='extension-androidtools' if='android' />
 ```
 
 All done!

@@ -40,7 +40,7 @@ public class Dialog extends Extension
         {
             public void onClick(DialogInterface dialog, int whichButton)
             {
-                hobj.call("onClick", new Object[]{ dialog, whichButton });
+                hobj.call("onClick", new Object[]{dialog, whichButton});
             }
         };
 

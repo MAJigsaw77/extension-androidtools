@@ -14,7 +14,7 @@ class Tools
 	 */
 	public static function getEnv(name:String):String
 	{
-		var getenv_jni:Dynamic = JNI.createStaticMethod("java/lang/System", "getenv", "(Ljava/lang/String;)Ljava/lang/String;");
+		var getenv_jni:Dynamic = JNI.createStaticMethod('java/lang/System', 'getenv', '(Ljava/lang/String;)Ljava/lang/String;');
 		return getenv_jni(name);
 	}
 
@@ -25,7 +25,7 @@ class Tools
 	 */
 	public static function loadLibrary(libname:String):Void
 	{
-		var loadLibrary_jni:Dynamic = JNI.createStaticMethod("java/lang/System", "loadLibrary", "(Ljava/lang/String;)V");
+		var loadLibrary_jni:Dynamic = JNI.createStaticMethod('java/lang/System', 'loadLibrary', '(Ljava/lang/String;)V');
 		loadLibrary_jni(libname);
 	}
 }

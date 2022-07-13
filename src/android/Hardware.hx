@@ -18,7 +18,7 @@ class Hardware
 	 */
 	public static function vibrate(inputValue:Int):Void
 	{
-		var vibrate_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Hardware", "vibrate", "(I)V");
+		var vibrate_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'vibrate', '(I)V');
 		vibrate_jni(inputValue);
 	}
 
@@ -27,7 +27,7 @@ class Hardware
 	 */
 	public static function wakeUp():Void
 	{
-		var wakeUp_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Hardware", "wakeUp", "()V");
+		var wakeUp_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'wakeUp', '()V');
 		wakeUp_jni();
 	}
 
@@ -36,7 +36,7 @@ class Hardware
 	 */
 	public static function setBrightness(brightness:Float):Void
 	{
-		var setbrightness_set_brightness_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Hardware", "setBrightness", "(F)V");
+		var setbrightness_set_brightness_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'setBrightness', '(F)V');
 		setbrightness_set_brightness_jni(brightness);
 	}
 
@@ -45,7 +45,7 @@ class Hardware
 	 */
 	public static function setScreenOrientation(screenOrientation:Int):Void
 	{
-		var setRequestedOrientationNative:Dynamic = JNI.createStaticMethod("org/haxe/extension/Hardware", "setRequestedOrientation", "(I)V");
+		var setRequestedOrientationNative:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'setRequestedOrientation', '(I)V');
 		setRequestedOrientationNative(screenOrientation);
 	}
 
@@ -54,7 +54,7 @@ class Hardware
 	 */
 	public static function getScreenWidth():Int
 	{
-		var get_screen_width_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Hardware", "getScreenWidth", "()I");
+		var get_screen_width_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'getScreenWidth', '()I');
 		return get_screen_width_jni();
 	}
 
@@ -63,7 +63,7 @@ class Hardware
 	 */
 	public static function getScreenHeight():Int
 	{
-		var get_screen_height_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Hardware", "getScreenHeight", "()I");
+		var get_screen_height_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'getScreenHeight', '()I');
 		return get_screen_height_jni();
 	}
 }

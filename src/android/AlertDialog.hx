@@ -16,7 +16,7 @@ class AlertDialog
 
 	public function new()
 	{
-		builder = JNI.createStaticMethod("org/haxe/extension/Dialog", "createBuilder", "()Ljava/lang/Object;");
+		builder = JNI.createStaticMethod('org/haxe/extension/Dialog', 'createBuilder', '()Ljava/lang/Object;');
 	}
 
 	/**
@@ -24,22 +24,22 @@ class AlertDialog
 	 */
 	public function setView(view:Dynamic):Dynamic
 	{
-		JNI.callMember(getMemberMethod("setView", "(Landroid/view/View;)Landroid/app/AlertDialog$Builder;"), builder, [view]);
+		JNI.callMember(getMemberMethod('setView', '(Landroid/view/View;)Landroid/app/AlertDialog$Builder;'), builder, [view]);
 	}
 
 	public function setCancelable(value:Bool = true):Dynamic
 	{
-		JNI.callMember(getMemberMethod("setCancelable", "(Z)Landroid/app/AlertDialog$Builder;"), builder, [value]);
+		JNI.callMember(getMemberMethod('setCancelable', '(Z)Landroid/app/AlertDialog$Builder;'), builder, [value]);
 	}
 
 	public function setTitle(value:String):Dynamic
 	{
-		JNI.callMember(getMemberMethod("setTitle", "(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;"), builder, [value]);
+		JNI.callMember(getMemberMethod('setTitle', '(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;'), builder, [value]);
 	}
 
 	public function setMessage(value:String):Dynamic
 	{
-		JNI.callMember(getMemberMethod("setMessage", "(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;"), builder, [value]);
+		JNI.callMember(getMemberMethod('setMessage', '(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;'), builder, [value]);
 	}
 
 	public function setIcon(bitmap:BitmapData):Dynamic
@@ -47,41 +47,41 @@ class AlertDialog
 		var bytes:BitmapData = bitmap.encode(bitmap.rect, new PNGEncoderOptions());
 		bytes.position = 0;
 
-		var getDrawable_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Dialog", "getDrawable",
-			"(Ljava/lang/String;)Landroid/graphics/drawable/Drawable;");
-		JNI.callMember(getMemberMethod("setIcon", "(Landroid/graphics/drawable/Drawable;)Landroid/app/AlertDialog$Builder;"), builder,
+		var getDrawable_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Dialog', 'getDrawable',
+			'(Ljava/lang/String;)Landroid/graphics/drawable/Drawable;');
+		JNI.callMember(getMemberMethod('setIcon', '(Landroid/graphics/drawable/Drawable;)Landroid/app/AlertDialog$Builder;'), builder,
 			[getDrawable_jni(Base64.encode(bytes))]);
 		bytes.clear();
 	}
 
 	public function setPositiveButton(name:String, callback:Void->Void):Void
 	{
-		var setButton_jni = JNI.createStaticMethod("org/haxe/extension/Dialog", "setButton",
-			"(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V");
+		var setButton_jni = JNI.createStaticMethod('org/haxe/extension/Dialog', 'setButton',
+			'(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V');
 		setButton_jni(builder, new ClickEventListener(callback), name, true);
 	}
 
 	public function setNegativeButton(name:String, callback:Void->Void):Void
 	{
-		var setButton_jni = JNI.createStaticMethod("org/haxe/extension/Dialog", "setButton",
-			"(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V");
+		var setButton_jni = JNI.createStaticMethod('org/haxe/extension/Dialog', 'setButton',
+			'(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V');
 		setButton_jni(builder, new ClickEventListener(callback), name, false);
 	}
 
 	public function show():Void
 	{
-		var showDialog_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Dialog", "showDialog", "(Ljava/lang/Object;)V");
+		var showDialog_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Dialog', 'showDialog', '(Ljava/lang/Object;)V');
 		showDialog_jni(builder);
 	}
 
 	public function createEditText():Dynamic
 	{
-		return JNI.createStaticMethod("org/haxe/extension/Dialog", "createEditText", "()Landroid/widget/EditText;");
+		return JNI.createStaticMethod('org/haxe/extension/Dialog', 'createEditText', '()Landroid/widget/EditText;');
 	}
 
 	private function getMemberMethod(name:String, sig:String):Dynamic
 	{
-		return JNI.createMemberMethod("android/app/AlertDialog$Builder", name, sig);
+		return JNI.createMemberMethod('android/app/AlertDialog$Builder', name, sig);
 	}
 }
 
@@ -92,12 +92,12 @@ class EditText
 	 */
 	public function getText():String
 	{
-		return JNI.callMember(getMemberMethod("getText", "()Ljava/lang/String;"), this, []);
+		return JNI.callMember(getMemberMethod('getText', '()Ljava/lang/String;'), this, []);
 	}
 
 	private function getMemberMethod(name:String, sig:String)
 	{
-		return JNI.createMemberMethod("android/widget/EditText", name, sig);
+		return JNI.createMemberMethod('android/widget/EditText', name, sig);
 	}
 }
 
