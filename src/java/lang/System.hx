@@ -1,12 +1,30 @@
-package android;
+package;
 
 import lime.system.JNI;
 
 /**
  * @author Saw (M.A. Jigsaw)
  */
-class Tools
+class System
 {
+	/**
+	 * Runs the garbage collector.
+	 */
+	public static function exit(status:Int):Void
+	{
+		var gc_jni:Dynamic = JNI.createStaticMethod('java/lang/System', 'gc', '(I)V');
+		return gc_jni(status);
+	}
+
+	/**
+	 * Runs the garbage collector.
+	 */
+	public static function gc():Void
+	{
+		var gc_jni:Dynamic = JNI.createStaticMethod('java/lang/System', 'gc', '()V');
+		return gc_jni();
+	}
+
 	/**
 	 * Gets the value of the specified environment variable.
 	 * 
