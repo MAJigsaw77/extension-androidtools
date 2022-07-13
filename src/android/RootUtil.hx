@@ -12,7 +12,7 @@ class RootUtil
 	*/
 	public static function requestRootPerms():Void
 	{
-		var requestRootPerms_jni:Dynamic = JNI.createStaticMethod('android/haxe/extensions/RootUtil', 'requestRootPerms', '(V)V');
+		var requestRootPerms_jni:Dynamic = JNI.createStaticMethod('android/haxe/extensions/RootUtil', 'requestRootPerms', '()V');
 		requestRootPerms_jni();
 	}
 }
