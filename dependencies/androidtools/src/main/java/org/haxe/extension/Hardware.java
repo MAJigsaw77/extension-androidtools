@@ -24,17 +24,17 @@ public class Hardware extends Extension
     {
         switch (SCREEN_ORIENTATION)
         {
-            case ORIENTATION_PORTRAIT:
+            case 0:
+                Extension.mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+                resumeOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
+                break;
+            case 1:
                 Extension.mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 resumeOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
                 break;
-            case ORIENTATION_LANDSCAPE:
+            case 2:
                 Extension.mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
                 resumeOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
-                break;
-            default:
-                Extension.mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-                resumeOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
                 break;
         }
     }
