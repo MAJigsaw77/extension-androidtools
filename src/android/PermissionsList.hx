@@ -2,6 +2,8 @@ package android;
 
 /**
  * Almost all Android Permissions.
+ * 
+ * @author Saw (M.A. Jigsaw)
  */
 abstract PermissionsList(String) to String from String
 {

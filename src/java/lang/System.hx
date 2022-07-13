@@ -3,12 +3,17 @@ package;
 import lime.system.JNI;
 
 /**
+ * @see https://docs.oracle.com/javase/7/docs/api/java/lang/System.html
+ * 
  * @author Saw (M.A. Jigsaw)
  */
 class System
 {
 	/**
-	 * Exits the system.
+	 * Terminates the currently running Java Virtual Machine.
+	 * The argument serves as a status code; by convention, a nonzero status code indicates abnormal termination.
+	 * 
+	 * @param status exit status.
 	 */
 	public static function exit(status:Int):Void
 	{
