@@ -3,7 +3,7 @@ package android;
 import lime.system.JNI;
 
 /**
- * @author 	Saw (M.A. Jigsaw)
+ * @author Saw (M.A. Jigsaw)
  */
 class Tools
 {
@@ -14,6 +14,17 @@ class Tools
 	{
 		var getFileUrl_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Tools", "getFileUrl", "(Ljava/lang/String;)Ljava/lang/String;");
 		return getFileUrl_jni(path);
+	}
+
+	/**
+	 * Gets the value of the specified environment variable.
+	 * 
+	 * @param name the name of the environment variable
+	 */
+	public static function getenv(name:String):String
+	{
+		var getenv_jni:Dynamic = JNI.createStaticMethod("java/lang/System", "getenv", "(Ljava/lang/String;)Ljava/lang/String;");
+		return getenv_jni(name);
 	}
 
 	/**
