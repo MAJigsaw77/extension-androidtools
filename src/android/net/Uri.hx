@@ -5,8 +5,8 @@ import lime.system.JNI;
 /**
  * Some functions (not all) ported from java to haxe using jni
  *
- * @see 	https://developer.android.com/reference/android/net/Uri
- * @author 	Saw (M.A. Jigsaw)
+ * @see https://developer.android.com/reference/android/net/Uri
+ * @author Saw (M.A. Jigsaw)
  */
 class Uri
 {
@@ -43,7 +43,7 @@ class Uri
 	 */
 	public static function fromFile(path:String):String
 	{
-		var fromFile_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'fromFile', '(Ljava/lang/String;)Ljava/lang/String;');
+		var fromFile_jni:Dynamic = JNI.createStaticMethod('android/haxe/extensions/Tools', 'fromFile', '(Ljava/lang/String;)Ljava/lang/String;');
 		return fromFile_jni(path);
 	}
 }

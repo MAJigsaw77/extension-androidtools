@@ -1,4 +1,4 @@
-package org.haxe.extension;
+package android.haxe.extensions;
 
 import android.net.Uri;
 import java.io.File;

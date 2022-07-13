@@ -1,4 +1,4 @@
-package org.haxe.extension;
+package android.haxe.extensions;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

@@ -1,4 +1,4 @@
-package org.haxe.extension;
+package android.haxe.extensions;
 
 import android.os.Vibrator;
 import android.os.PowerManager;
