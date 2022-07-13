@@ -11,6 +11,7 @@ import android.util.Log;
 import android.widget.EditText;
 
 import org.haxe.lime.HaxeObject;
+import org.haxe.extension.Extension;
 
 import java.util.ArrayList;
 import java.util.List;

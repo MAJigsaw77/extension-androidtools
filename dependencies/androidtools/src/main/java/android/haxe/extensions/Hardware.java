@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.app.KeyguardManager;
 import android.app.KeyguardManager.KeyguardLock;
 import android.view.WindowManager;
+import org.haxe.extension.Extension;
 
 public class Hardware extends Extension
 {

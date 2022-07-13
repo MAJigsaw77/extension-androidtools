@@ -8,7 +8,7 @@ import lime.system.JNI;
 class RootUtil
 {
 	/**
-	* requests root access, if not rooted then nothing would happen when calling this
+	* Requests root access, if not rooted then nothing would happen when calling this
 	*/
 	public static function requestRootPerms():Void
 	{

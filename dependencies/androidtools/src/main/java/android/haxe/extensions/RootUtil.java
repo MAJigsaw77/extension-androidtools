@@ -1,7 +1,8 @@
 package android.haxe.extensions;
 
-import java.lang.Runtime;
 import android.os.Process;
+import java.lang.Runtime;
+import org.haxe.extension.Extension;
 
 public class RootUtil extends Extension
 {
