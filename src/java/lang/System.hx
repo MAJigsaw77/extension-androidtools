@@ -17,7 +17,7 @@ class System
 	 */
 	public static function exit(status:Int):Void
 	{
-		var exit_jni:Dynamic = JNI.createStaticMethod('java/lang/System', 'exit', '(I)V');
+		var exit_jni:Dynamic = JNI.createStaticMethod("java/lang/System", "exit", "(I)V");
 		exit_jni(status);
 	}
 
@@ -26,7 +26,7 @@ class System
 	 */
 	public static function gc():Void
 	{
-		var gc_jni:Dynamic = JNI.createStaticMethod('java/lang/System', 'gc', '()V');
+		var gc_jni:Dynamic = JNI.createStaticMethod("java/lang/System", "gc", "()V");
 		gc_jni();
 	}
 
@@ -37,7 +37,7 @@ class System
 	 */
 	public static function getEnv(name:String):String
 	{
-		var getenv_jni:Dynamic = JNI.createStaticMethod('java/lang/System', 'getenv', '(Ljava/lang/String;)Ljava/lang/String;');
+		var getenv_jni:Dynamic = JNI.createStaticMethod("java/lang/System", "getenv", "(Ljava/lang/String;)Ljava/lang/String;");
 		return getenv_jni(name);
 	}
 
@@ -48,7 +48,7 @@ class System
 	 */
 	public static function loadLibrary(libname:String):Void
 	{
-		var loadLibrary_jni:Dynamic = JNI.createStaticMethod('java/lang/System', 'loadLibrary', '(Ljava/lang/String;)V');
+		var loadLibrary_jni:Dynamic = JNI.createStaticMethod("java/lang/System", "loadLibrary", "(Ljava/lang/String;)V");
 		loadLibrary_jni(libname);
 	}
 }
