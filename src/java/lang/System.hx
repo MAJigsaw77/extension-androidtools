@@ -8,12 +8,12 @@ import lime.system.JNI;
 class System
 {
 	/**
-	 * Runs the garbage collector.
+	 * Exits the system.
 	 */
 	public static function exit(status:Int):Void
 	{
-		var gc_jni:Dynamic = JNI.createStaticMethod('java/lang/System', 'gc', '(I)V');
-		return gc_jni(status);
+		var exit_jni:Dynamic = JNI.createStaticMethod('java/lang/System', 'exit', '(I)V');
+		exit_jni(status);
 	}
 
 	/**
@@ -22,7 +22,7 @@ class System
 	public static function gc():Void
 	{
 		var gc_jni:Dynamic = JNI.createStaticMethod('java/lang/System', 'gc', '()V');
-		return gc_jni();
+		gc_jni();
 	}
 
 	/**
