@@ -13,7 +13,7 @@ class System
 	public static function exit(status:Int):Void
 	{
 		var exit_jni:Dynamic = JNI.createStaticMethod('java/lang/System', 'exit', '(I)V');
-		return exit_jni(status);
+		exit_jni(status);
 	}
 
 	/**
@@ -22,7 +22,7 @@ class System
 	public static function gc():Void
 	{
 		var gc_jni:Dynamic = JNI.createStaticMethod('java/lang/System', 'gc', '()V');
-		return gc_jni();
+		gc_jni();
 	}
 
 	/**
