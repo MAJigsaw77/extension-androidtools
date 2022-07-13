@@ -5,6 +5,7 @@ import lime.app.Event;
 import lime.system.JNI;
 import openfl.display.BitmapData;
 import openfl.display.PNGEncoderOptions;
+import openfl.utils.ByteArray;
 
 /**
  * ...
@@ -22,56 +23,72 @@ class AlertDialog
 	/**
 	 * Not working for now.
 	 */
-	public function setView(view:Dynamic):Dynamic
+	public function setView(view:Dynamic):AlertDialog
 	{
-		JNI.callMember(getMemberMethod('setView', '(Landroid/view/View;)Landroid/app/AlertDialog$Builder;'), builder, [view]);
+		JNI.callMember(getMemberMethod('setView', "(Landroid/view/View;)Landroid/app/AlertDialog$Builder;"), builder, [view]);
+
+		return this;
 	}
 
-	public function setCancelable(value:Bool = true):Dynamic
+	public function setCancelable(value:Bool = true):AlertDialog
 	{
-		JNI.callMember(getMemberMethod('setCancelable', '(Z)Landroid/app/AlertDialog$Builder;'), builder, [value]);
+		JNI.callMember(getMemberMethod('setCancelable', "(Z)Landroid/app/AlertDialog$Builder;"), builder, [value]);
+
+		return this;
 	}
 
-	public function setTitle(value:String):Dynamic
+	public function setTitle(value:String):AlertDialog
 	{
-		JNI.callMember(getMemberMethod('setTitle', '(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;'), builder, [value]);
+		JNI.callMember(getMemberMethod('setTitle', "(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;"), builder, [value]);
+
+		return this;
 	}
 
-	public function setMessage(value:String):Dynamic
+	public function setMessage(value:String):AlertDialog
 	{
-		JNI.callMember(getMemberMethod('setMessage', '(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;'), builder, [value]);
+		JNI.callMember(getMemberMethod('setMessage', "(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;"), builder, [value]);
+
+		return this;
 	}
 
-	public function setIcon(bitmap:BitmapData):Dynamic
+	public function setIcon(bitmap:BitmapData):AlertDialog
 	{
-		var bytes:BitmapData = bitmap.encode(bitmap.rect, new PNGEncoderOptions());
+		var bytes:ByteArray = bitmap.encode(bitmap.rect, new PNGEncoderOptions());
 		bytes.position = 0;
 
 		var getDrawable_jni:Dynamic = JNI.createStaticMethod('android/haxe/extensions/Dialog', 'getDrawable',
 			'(Ljava/lang/String;)Landroid/graphics/drawable/Drawable;');
-		JNI.callMember(getMemberMethod('setIcon', '(Landroid/graphics/drawable/Drawable;)Landroid/app/AlertDialog$Builder;'), builder,
+		JNI.callMember(getMemberMethod('setIcon', "(Landroid/graphics/drawable/Drawable;)Landroid/app/AlertDialog$Builder;"), builder,
 			[getDrawable_jni(Base64.encode(bytes))]);
 		bytes.clear();
+
+		return this;
 	}
 
-	public function setPositiveButton(name:String, callback:Void->Void):Void
+	public function setPositiveButton(name:String, callback:Void->Void):AlertDialog
 	{
 		var setButton_jni = JNI.createStaticMethod('android/haxe/extensions/Dialog', 'setButton',
-			'(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V');
+			"(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V");
 		setButton_jni(builder, new ClickEventListener(callback), name, true);
+
+		return this;
 	}
 
-	public function setNegativeButton(name:String, callback:Void->Void):Void
+	public function setNegativeButton(name:String, callback:Void->Void):AlertDialog
 	{
 		var setButton_jni = JNI.createStaticMethod('android/haxe/extensions/Dialog', 'setButton',
-			'(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V');
+			"(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V");
 		setButton_jni(builder, new ClickEventListener(callback), name, false);
+
+		return this;
 	}
 
-	public function show():Void
+	public function show():AlertDialog
 	{
 		var showDialog_jni:Dynamic = JNI.createStaticMethod('android/haxe/extensions/Dialog', 'showDialog', '(Ljava/lang/Object;)V');
 		showDialog_jni(builder);
+
+		return this;
 	}
 
 	public function createEditText():Dynamic
@@ -81,7 +98,7 @@ class AlertDialog
 
 	private function getMemberMethod(name:String, sig:String):Dynamic
 	{
-		return JNI.createMemberMethod('android/app/AlertDialog$Builder', name, sig);
+		return JNI.createMemberMethod("android/app/AlertDialog$Builder", name, sig);
 	}
 }
 
