@@ -8,7 +8,7 @@ import openfl.display.PNGEncoderOptions;
 
 /**
  * ...
- * @author 	luckydog7
+ * @author luckydog7
  */
 class AlertDialog
 {

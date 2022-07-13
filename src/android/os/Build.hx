@@ -5,8 +5,8 @@ import lime.system.JNI;
 /**
  * Some functions (not all) ported from java to haxe using jni
  *
- * @see 	https://developer.android.com/reference/android/os/Build
- * @author 	Saw (M.A. Jigsaw)
+ * @see https://developer.android.com/reference/android/os/Build
+ * @author Saw (M.A. Jigsaw)
  */
 class Build
 {
