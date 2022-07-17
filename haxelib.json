@@ -10,8 +10,8 @@
 		"haxe"
 	],
 	"description":"A extension that uses OpenFL Lime JNI to work that add's some functions from java to haxe.",
-	"version":"1.0.0",
-	"releasenote":"First release of the library ",
+	"version":"1.1.0",
+	"releasenote":"New functions added and bugs fixes",
 	"contributors":[
 		"MAJigsaw77"
 	],
