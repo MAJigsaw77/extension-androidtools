@@ -14,7 +14,6 @@
 	"releasenote":"Readme fixes and haxelib changes",
 	"contributors":[
 		"MAJigsaw77",
-		"luckydog7",
 		"Sirox228"
 	],
 	"dependencies":{
