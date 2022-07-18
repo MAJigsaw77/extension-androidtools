@@ -13,8 +13,7 @@
 	"version":"1.2.0",
 	"releasenote":"Readme fixes and haxelib changes",
 	"contributors":[
-		"MAJigsaw77",
-		"Sirox228"
+		"MAJigsaw77"
 	],
 	"dependencies":{
 		"lime":"",
