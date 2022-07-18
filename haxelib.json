@@ -11,7 +11,7 @@
 	],
 	"description":"A extension that uses OpenFL Lime JNI to work that add's some functions from java to haxe.",
 	"version":"1.1.0",
-	"releasenote":"New functions added and bugs fixes",
+	"releasenote":"Readme fixes and haxelib changes",
 	"contributors":[
 		"MAJigsaw77",
 		"luckydog7",
