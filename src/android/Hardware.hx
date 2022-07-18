@@ -16,7 +16,7 @@ class Hardware
 	 */
 	public static function vibrate(inputValue:Int):Void
 	{
-		var vibrate_jni:Dynamic = getStaticMethod("vibrate", "(I)V");
+		var vibrate_jni:Dynamic = JNI.createStaticMethod("android/haxe/extensions/Hardware", "vibrate", "(I)V");
 		vibrate_jni(inputValue);
 	}
 
@@ -25,7 +25,7 @@ class Hardware
 	 */
 	public static function wakeUp():Void
 	{
-		var wakeUp_jni:Dynamic = getStaticMethod("wakeUp", "()V");
+		var wakeUp_jni:Dynamic = JNI.createStaticMethod("android/haxe/extensions/Hardware", "wakeUp", "()V");
 		wakeUp_jni();
 	}
 
@@ -34,7 +34,7 @@ class Hardware
 	 */
 	public static function setBrightness(brightness:Float):Void
 	{
-		var setbrightness_set_brightness_jni:Dynamic = getStaticMethod("setBrightness", "(F)V");
+		var setbrightness_set_brightness_jni:Dynamic = JNI.createStaticMethod("android/haxe/extensions/Hardware", "setBrightness", "(F)V");
 		setbrightness_set_brightness_jni(brightness);
 	}
 
@@ -43,7 +43,7 @@ class Hardware
 	 */
 	public static function setScreenOrientation(screenOrientation:Int):Void
 	{
-		var setRequestedOrientationNative:Dynamic = getStaticMethod("setRequestedOrientation", "(I)V");
+		var setRequestedOrientationNative:Dynamic = JNI.createStaticMethod("android/haxe/extensions/Hardware", "setRequestedOrientation", "(I)V");
 		setRequestedOrientationNative(screenOrientation);
 	}
 
@@ -52,7 +52,7 @@ class Hardware
 	 */
 	public static function getScreenWidth():Int
 	{
-		var get_screen_width_jni:Dynamic = getStaticMethod("getScreenWidth", "()I");
+		var get_screen_width_jni:Dynamic = JNI.createStaticMethod("android/haxe/extensions/Hardware", "getScreenWidth", "()I");
 		return get_screen_width_jni();
 	}
 
@@ -61,21 +61,7 @@ class Hardware
 	 */
 	public static function getScreenHeight():Int
 	{
-		var get_screen_height_jni:Dynamic = getStaticMethod("getScreenHeight", "()I");
+		var get_screen_height_jni:Dynamic = JNI.createStaticMethod("android/haxe/extensions/Hardware", "getScreenHeight", "()I");
 		return get_screen_height_jni();
-	}
-
-	private function getStaticMethod(memberName:String, signature:String):Dynamic
-	{
-		try
-		{
-			return JNI.createStaticMethod("android/haxe/extensions/Hardware", memberName, signature);
-		}
-		catch(e:Dynamic)
-		{
-			Application.current.window.alert("JNI Return Error: " + e, "Hardware from extension-androitools");
-		}
-
-		return null;
 	}
 }
