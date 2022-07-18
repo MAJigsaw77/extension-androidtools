@@ -8,7 +8,12 @@ Installation instructions
 
 1. Install the Haxelib
 
-Open the terminal and type:
+You can install it through haxelib:
+```
+haxelib install extension-androidtools
+```
+
+You can also install it through Git for the latest updates:
 ```
 haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools.git
 ```
@@ -17,8 +22,6 @@ haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-andro
 ```xml
 <haxelib name='extension-androidtools' if='android' />
 ```
-
-All done!
 
 Credits
 =======
