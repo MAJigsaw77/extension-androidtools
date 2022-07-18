@@ -75,7 +75,7 @@ class VERSION
 	 * The internal value used by the underlying source control to represent this build.
 	 * E.g., a perforce changelist number or a git hash.
 	 */
-	public static final INCREMENTAL:String = getStaticField"INCREMENTAL", "Ljava/lang/String;");
+	public static final INCREMENTAL:String = getStaticField("INCREMENTAL", "Ljava/lang/String;");
 
 	/**
 	 * The user-visible version string.
