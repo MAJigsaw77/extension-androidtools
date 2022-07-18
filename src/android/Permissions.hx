@@ -14,7 +14,7 @@ class Permissions
 	 */
 	public static function getGrantedPermissions():Array<PermissionsList>
 	{
-		var getGrantedPermissionsJNI:Dynamic = JNI.createStaticMethod("android/haxe/extensions/Permissions", "getGrantedPermissions", "()[Ljava/lang/String;");
+		var getGrantedPermissionsJNI:Dynamic = getStaticMethod("getGrantedPermissions", "()[Ljava/lang/String;");
 		return getGrantedPermissionsJNI();
 	}
 
@@ -27,7 +27,21 @@ class Permissions
 	 */
 	public static function requestPermissions(permissions:Array<String>, requestCode:Int = 1):Void
 	{
-		var requestPermissionsJNI:Dynamic = JNI.createStaticMethod("android/haxe/extensions/Permissions", "requestPermissions", "([Ljava/lang/String;I)V");
+		var requestPermissionsJNI:Dynamic = getStaticMethod("requestPermissions", "([Ljava/lang/String;I)V");
 		requestPermissionsJNI(permissions, requestCode);
+	}
+
+	private function getStaticMethod(memberName:String, signature:String):Dynamic
+	{
+		try
+		{
+			return JNI.createStaticMethod("android/haxe/extensions/Permissions", memberName, signature);
+		}
+		catch(e:Dynamic)
+		{
+			Application.current.window.alert("JNI Return Error: " + e, "Permissions from extension-androitools");
+		}
+
+		return null;
 	}
 }

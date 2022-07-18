@@ -17,7 +17,7 @@ class Uri
 	 */
 	public static function decode(s:String):String
 	{
-		var decode_jni:Dynamic = JNI.createStaticMethod("android/net/Uri", "decode", "(Ljava/lang/String;)Ljava/lang/String;");
+		var decode_jni:Dynamic = getStaticMethod("decode", "(Ljava/lang/String;)Ljava/lang/String;");
 		return decode_jni(s);
 	}
 
@@ -30,7 +30,7 @@ class Uri
 	 */
 	public static function encode(s:String):String
 	{
-		var encode_jni:Dynamic = JNI.createStaticMethod("android/net/Uri", "encode", "(Ljava/lang/String;)Ljava/lang/String;");
+		var encode_jni:Dynamic = getStaticMethod("encode", "(Ljava/lang/String;)Ljava/lang/String;");
 		return encode_jni(s);
 	}
 
@@ -44,5 +44,19 @@ class Uri
 	{
 		var fromFile_jni:Dynamic = JNI.createStaticMethod("android/haxe/extensions/Tools", "fromFile", "(Ljava/lang/String;)Ljava/lang/String;");
 		return fromFile_jni(path);
+	}
+
+	private function getStaticMethod(memberName:String, signature:String):Dynamic
+	{
+		try
+		{
+			return JNI.createStaticMethod("android/net/Uri", memberName, signature);
+		}
+		catch(e:Dynamic)
+		{
+			Application.current.window.alert("JNI Return Error: " + e, "Uri from extension-androitools");
+		}
+
+		return null;
 	}
 }
