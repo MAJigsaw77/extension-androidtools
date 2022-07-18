@@ -42,6 +42,18 @@ class System
 	}
 
 	/**
+	 * Loads a code file with the specified filename from the local file system as a dynamic library.
+	 * The filename argument must be a complete path name.
+	 * 
+	 * @param filename the name of the library.
+	 */
+	public static function load(libname:String):Void
+	{
+		var load_jni:Dynamic = JNI.createStaticMethod("java/lang/System", "load", "(Ljava/lang/String;)V");
+		load_jni(filename);
+	}
+
+	/**
 	 * Loads the system library specified by the libname argument.
 	 * 
 	 * @param libname the name of the library.
