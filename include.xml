@@ -1,12 +1,10 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <extension>
-	<dependency name='androidtools' path='dependencies/androidtools' if='android' />
-
-	<source path='src' />
-
+	<dependency name="androidtools" path="dependencies/androidtools" if="android" />
+	<source path="src" />
 	<android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<android permission="android.permission.READ_EXTERNAL_STORAGE" />
-	<android permission='android.permission.VIBRATE' />
-	<android permission='android.permission.WAKE_LOCK' />
-	<android permission='android.permission.DISABLE_KEYGUARD' />
+	<android permission="android.permission.VIBRATE" />
+	<android permission="android.permission.WAKE_LOCK" />
+	<android permission="android.permission.DISABLE_KEYGUARD" />
 </extension>

@@ -1,5 +1,8 @@
 package android.os;
 
+#if (android && lime_cffi && !macro)
+#error "extension-androidtools is not supported on your current platform"
+#end
 import lime.system.JNI;
 
 /**

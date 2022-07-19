@@ -9,41 +9,35 @@ import android.graphics.drawable.Drawable;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.EditText;
-
-import org.haxe.lime.HaxeObject;
-import org.haxe.extension.Extension;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.haxe.extension.Extension;
+import org.haxe.lime.HaxeObject;
 
-public class Dialog extends Extension
-{
-    public static Drawable getDrawable(String bmpData)
-    {
+public class Dialog extends Extension {
+    public static Drawable getDrawable(String bmpData) {
         int result = bmpData.length();
-        byte[] bmpByteArray = android.util.Base64.decode(bmpData, Base64.DEFAULT);
+        byte[] bmpByteArray =
+            android.util.Base64.decode(bmpData, Base64.DEFAULT);
         result = bmpByteArray.length;
 
-        try
-        {
-            return new BitmapDrawable(BitmapFactory.decodeByteArray(bmpByteArray, 0, bmpByteArray.length));
-        }
-        catch (IllegalArgumentException e)
-        {
+        try {
+            return new BitmapDrawable(BitmapFactory.decodeByteArray(
+                bmpByteArray, 0, bmpByteArray.length));
+        } catch (IllegalArgumentException e) {
             Log.e("Dialog", e.toString());
             return null;
         }
     }
 
-    public static void setButton(AlertDialog.Builder builder, final HaxeObject hobj, String text, boolean ispositive)
-    {
-        DialogInterface.OnClickListener cb = new DialogInterface.OnClickListener()
-        {
-            public void onClick(DialogInterface dialog, int whichButton)
-            {
-                hobj.call("onClick", new Object[]{dialog, whichButton});
-            }
-        };
+    public static void setButton(AlertDialog.Builder builder,
+        final HaxeObject hobj, String text, boolean ispositive) {
+        DialogInterface.OnClickListener cb =
+            new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    hobj.call("onClick", new Object[] {dialog, whichButton});
+                }
+            };
 
         if (ispositive)
             builder.setPositiveButton(text, cb);
@@ -51,23 +45,18 @@ public class Dialog extends Extension
             builder.setNegativeButton(text, cb);
     }
 
-    public static Object createBuilder()
-    {
+    public static Object createBuilder() {
         return new AlertDialog.Builder(Extension.mainContext);
     }
 
-    public static EditText createEditText()
-    {
+    public static EditText createEditText() {
         return new EditText(Extension.mainContext);
     }
 
-    public static void showDialog(final Object obj)
-    {
-        Extension.mainActivity.runOnUiThread(new Runnable()
-        {
-            public void run()
-            {
-                ((AlertDialog.Builder)obj).show();
+    public static void showDialog(final Object obj) {
+        Extension.mainActivity.runOnUiThread(new Runnable() {
+            public void run() {
+                ((AlertDialog.Builder) obj).show();
             }
         });
     }

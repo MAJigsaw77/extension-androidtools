@@ -1,5 +1,9 @@
 package android;
 
+#if (android && lime_cffi && !macro)
+#error "extension-androidtools is not supported on your current platform"
+#end
+
 /**
  * Almost all Android Permissions.
  * 
