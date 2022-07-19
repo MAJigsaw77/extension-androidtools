@@ -15,12 +15,12 @@ class Build
 	/**
 	 * The name of the underlying board, like "goldfish".
 	 */
-	public static var BOARD:String = JNI.createStaticField("android/os/Build$VERSION", "BOARD", "Ljava/lang/String;").get();
+	public static var BOARD:String = JNI.createStaticField("android/os/Build", "BOARD", "Ljava/lang/String;").get();
 
 	/**
 	 * The consumer-visible brand with which the product/hardware will be associated, if any.
 	 */
-	public static var BRAND:String = JNI.createStaticField("android/os/Build$VERSION", "BRAND", "Ljava/lang/String;").get();
+	public static var BRAND:String = JNI.createStaticField("android/os/Build", "BRAND", "Ljava/lang/String;").get();
 
 	/**
 	 * The name of the industrial design.
