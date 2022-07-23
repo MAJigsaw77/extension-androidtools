@@ -3,7 +3,12 @@ package android.net;
 #if (!android && !native && macro)
 #error "extension-androidtools is not supported on your current platform"
 #end
+
+#if (openfl < "4.0.0")
+import openfl.utils.JNI;
+#else
 import lime.system.JNI;
+#end
 
 /**
  * @see https://developer.android.com/reference/android/net/Uri
