@@ -5,7 +5,11 @@ package android;
 #end
 import haxe.crypto.Base64;
 import lime.app.Event;
+#if (openfl < "4.0.0")
+import openfl.utils.JNI;
+#else
 import lime.system.JNI;
+#end
 import openfl.display.BitmapData;
 import openfl.display.PNGEncoderOptions;
 import openfl.utils.ByteArray;
