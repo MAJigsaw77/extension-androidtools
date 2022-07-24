@@ -58,7 +58,7 @@ class Hardware
 	/**
 	 * Makes a toast text.
 	 */
-	public static function toast(text:String, duration:ToastDuration):Void {
+	public static function toast(text:String, duration:Int):Void {
 		var toast_jni = JNI.createStaticMethod("android/haxe/extensions/Hardware", "toast", "(Ljava/lang/String;I)V");
 		toast_jni(text, duration);
 	}
