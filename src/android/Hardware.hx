@@ -56,6 +56,38 @@ class Hardware
 	}
 
 	/**
+	 * Makes a toast text.
+	 */
+	public static function toast(text:String, duration:ToastDuration):Void {
+		var toast_jni = JNI.createStaticMethod("android/haxe/extensions/Hardware", "toast", "(Ljava/lang/String;I)V");
+		toast_jni(text, duration);
+	}
+
+	/**
+	 * Shares a text.
+	 */
+	public static function shareText(subject:String, text:String):Void {
+		var intent_jni = JNI.createStaticMethod("android/haxe/extensions/Hardware", "runIntent", "(Ljava/lang/String;Ljava/lang/String;I)V");
+		intent_jni(subject, text, 0);
+	}
+
+	/**
+	 * Launches a apk.
+	 */
+	public static function launchAPK(packageName:String):Void {
+		var intent_jni = JNI.createStaticMethod("android/haxe/extensions/Hardware", "runIntent", "(Ljava/lang/String;Ljava/lang/String;I)V");
+		intent_jni(packageName, "", 1);
+	}
+
+	/**
+	 * Runs a intent action.
+	 */
+	public static function runIntent(action:String, url:String = null):Void {
+		var intent_jni = JNI.createStaticMethod("android/haxe/extensions/Hardware", "runIntent", "(Ljava/lang/String;Ljava/lang/String;I)V");
+		intent_jni(action, url, 2);
+	}
+
+	/**
 	 * Returns the full screen width.
 	 */
 	public static function getScreenWidth():Int

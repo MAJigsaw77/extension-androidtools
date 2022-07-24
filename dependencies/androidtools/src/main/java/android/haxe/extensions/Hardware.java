@@ -4,15 +4,19 @@ import android.app.Activity;
 import android.app.KeyguardManager;
 import android.app.KeyguardManager.KeyguardLock;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.Vibrator;
 import android.view.Display;
 import android.view.WindowManager;
+import android.widget.Toast;
+import java.io.File;
 import org.haxe.extension.Extension;
 
 public class Hardware extends Extension {
@@ -39,6 +43,49 @@ public class Hardware extends Extension {
                     ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
                 break;
         }
+    }
+
+    public static String fromFile(String path) {
+        return Uri.fromFile(new File(path)).toString();
+    }
+
+    public static void toast(String message, int duration) {
+        Extension.mainActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                switch (duration) {
+                    case 1:
+                        Toast.makeText(Extension.mainContext, message, Toast.LENGTH_SHORT).show();
+                    case 2:
+                        Toast.makeText(Extension.mainContext, message, Toast.LENGTH_LONG).show();
+                    default:
+                        Toast.makeText(Extension.mainContext, message, duration).show();
+                }
+            }
+        });
+    }
+
+    public static void runIntent(String subject, String data, int type) {
+        Intent intent = null;
+
+        switch (type) {
+            case 0: // share
+                intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+                intent.putExtra(Intent.EXTRA_TEXT, data);
+                break;
+            case 1: // open app
+                intent = Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(subject);
+                break;
+            case 2: // default
+                intent = new Intent(subject);
+                if (data != null)
+                    intent.setData(Uri.parse(data));
+                break;
+        }
+
+        Extension.mainActivity.startActivity(intent);
     }
 
     public static void setBrightness(float brightness) {
