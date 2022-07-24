@@ -72,9 +72,9 @@ class Hardware
 	}
 
 	/**
-	 * Launches a apk.
+	 * Launches a app.
 	 */
-	public static function launchAPK(packageName:String):Void {
+	public static function launchApp(packageName:String):Void {
 		var intent_jni = JNI.createStaticMethod("android/haxe/extensions/Hardware", "runIntent", "(Ljava/lang/String;Ljava/lang/String;I)V");
 		intent_jni(packageName, "", 1);
 	}
