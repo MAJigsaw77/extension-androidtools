@@ -49,7 +49,7 @@ public class Hardware extends Extension {
         return Uri.fromFile(new File(path)).toString();
     }
 
-    public static void toast(String message, int duration) {
+    public static void toast(final String message, final int duration) {
         Extension.mainActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
