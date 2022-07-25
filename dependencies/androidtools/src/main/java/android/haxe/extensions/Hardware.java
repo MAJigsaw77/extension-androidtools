@@ -65,7 +65,7 @@ public class Hardware extends Extension {
         });
     }
 
-    public static void runIntent(String subject, String data, int type) {
+    public static void runIntent(final String subject, final String data, final int type) {
         Intent intent = null;
 
         switch (type) {
