@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension>
-	<dependency name="androidtools" path="dependencies/androidtools" if="android" />
+	<dependency name="extension_androidtools" path="dependencies/android" if="android" />
 
 	<source path="src" />
 
