@@ -23,7 +23,7 @@ class AlertDialog
 
 	public function new()
 	{
-		builder = JNI.createStaticMethod("android/haxe/androidtools/Dialog", "createBuilder", "()Ljava/lang/Object;");
+		builder = JNI.createStaticMethod("org/haxe/extension/Dialog", "createBuilder", "()Ljava/lang/Object;");
 	}
 
 	/**
@@ -62,7 +62,7 @@ class AlertDialog
 		var bytes:ByteArray = bitmap.encode(bitmap.rect, new PNGEncoderOptions());
 		bytes.position = 0;
 
-		var getDrawable_jni:Dynamic = JNI.createStaticMethod("android/haxe/androidtools/Dialog", "getDrawable",
+		var getDrawable_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Dialog", "getDrawable",
 			"(Ljava/lang/String;)Landroid/graphics/drawable/Drawable;");
 		JNI.callMember(getMemberMethod("setIcon", "(Landroid/graphics/drawable/Drawable;)Landroid/app/AlertDialog$Builder;"), builder,
 			[getDrawable_jni(Base64.encode(bytes))]);
@@ -73,7 +73,7 @@ class AlertDialog
 
 	public function setPositiveButton(name:String, callback:Void->Void):AlertDialog
 	{
-		var setButton_jni = JNI.createStaticMethod("android/haxe/androidtools/Dialog", "setButton",
+		var setButton_jni = JNI.createStaticMethod("org/haxe/extension/Dialog", "setButton",
 			"(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V");
 		setButton_jni(builder, new ClickEventListener(callback), name, true);
 
@@ -82,7 +82,7 @@ class AlertDialog
 
 	public function setNegativeButton(name:String, callback:Void->Void):AlertDialog
 	{
-		var setButton_jni = JNI.createStaticMethod("android/haxe/androidtools/Dialog", "setButton",
+		var setButton_jni = JNI.createStaticMethod("org/haxe/extension/Dialog", "setButton",
 			"(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V");
 		setButton_jni(builder, new ClickEventListener(callback), name, false);
 
@@ -91,7 +91,7 @@ class AlertDialog
 
 	public function show():AlertDialog
 	{
-		var showDialog_jni:Dynamic = JNI.createStaticMethod("android/haxe/androidtools/Dialog", "showDialog", "(Ljava/lang/Object;)V");
+		var showDialog_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Dialog", "showDialog", "(Ljava/lang/Object;)V");
 		showDialog_jni(builder);
 
 		return this;
@@ -99,7 +99,7 @@ class AlertDialog
 
 	public function createEditText():Dynamic
 	{
-		return JNI.createStaticMethod("android/haxe/androidtools/Dialog", "createEditText", "()Landroid/widget/EditText;");
+		return JNI.createStaticMethod("org/haxe/extension/Dialog", "createEditText", "()Landroid/widget/EditText;");
 	}
 
 	private function getMemberMethod(name:String, sig:String):Dynamic
