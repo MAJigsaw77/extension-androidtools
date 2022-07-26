@@ -34,4 +34,8 @@ public class Permissions extends Extension {
         String[] permissions, int requestCode) {
         Extension.mainActivity.requestPermissions(permissions, requestCode);
     }
+
+    public boolean onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        return true;
+    }
 }

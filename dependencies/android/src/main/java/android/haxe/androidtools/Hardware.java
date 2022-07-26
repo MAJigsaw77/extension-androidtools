@@ -128,6 +128,10 @@ public class Hardware extends Extension {
         return size.x;
     }
 
+    public boolean onActivityResult (int requestCode, int resultCode, Intent data) {
+        return true;
+    }
+
     @Override
     public void onDestroy() {
         if (keyguardLock != null) {
