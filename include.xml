@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension>
-	<dependency name="extension_androidtools" path="dependencies/android" if="android" />
+	<dependency name="androidtools" path="dependencies/android" if="android" />
 
 	<android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<android permission="android.permission.READ_EXTERNAL_STORAGE" />
