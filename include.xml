@@ -2,8 +2,6 @@
 <extension>
 	<dependency name="extension_androidtools" path="dependencies/android" if="android" />
 
-	<source path="src" />
-
 	<android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<android permission="android.permission.READ_EXTERNAL_STORAGE" />
 	<android permission="android.permission.VIBRATE" />
