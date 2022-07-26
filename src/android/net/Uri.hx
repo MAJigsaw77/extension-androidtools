@@ -50,7 +50,7 @@ class Uri
 	 */
 	public static function fromFile(path:String):String
 	{
-		var fromFile_jni:Dynamic = JNI.createStaticMethod("android/haxe/extensions/Hardware", "fromFile", "(Ljava/lang/String;)Ljava/lang/String;");
+		var fromFile_jni:Dynamic = JNI.createStaticMethod("android/haxe/androidtools/Hardware", "fromFile", "(Ljava/lang/String;)Ljava/lang/String;");
 		return fromFile_jni(path);
 	}
 }

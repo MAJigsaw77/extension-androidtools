@@ -1,4 +1,4 @@
-package android.haxe.extensions;
+package android.haxe.androidtools;
 
 import android.app.Activity;
 import android.app.KeyguardManager;

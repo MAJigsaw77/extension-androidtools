@@ -1,4 +1,4 @@
-package android.haxe.extensions;
+package android.haxe.androidtools;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
