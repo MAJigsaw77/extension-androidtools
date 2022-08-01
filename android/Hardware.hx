@@ -58,7 +58,10 @@ class Hardware
 	/**
 	 * Makes a toast text.
 	 */
-	public static function toast(text:String, duration:Int):Void {
+	public static function toast(text:String, duration:ToastType):Void {
+		if (duration != 1 && duration != 2)
+			duration = 1;
+
 		var toast_jni = JNI.createStaticMethod('org/haxe/extension/Hardware', 'toast', '(Ljava/lang/String;I)V');
 		toast_jni(text, duration);
 	}
@@ -104,4 +107,10 @@ class Hardware
 		var get_screen_height_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'getScreenHeight', '()I');
 		return get_screen_height_jni();
 	}
+}
+
+abstract ToastType(Int) to Int from Int
+{
+	public static final LENGTH_SHORT = 1;
+	public static final LENGTH_LONG = 2;
 }

@@ -58,8 +58,6 @@ public class Hardware extends Extension {
                         Toast.makeText(Extension.mainContext, message, Toast.LENGTH_SHORT).show();
                     case 2:
                         Toast.makeText(Extension.mainContext, message, Toast.LENGTH_LONG).show();
-                    default:
-                        Toast.makeText(Extension.mainContext, message, duration).show();
                 }
             }
         });
