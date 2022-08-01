@@ -48,6 +48,17 @@ class Environment
 	}
 
 	/**
+	 * Return root of the "system" partition holding the core Android OS.
+	 * Always present and mounted read-only.
+	 */
+	public static function getRootDirectory():String
+	{
+		var getDataDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getRootDirectory', '()Ljava/io/File;');
+		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
+		return getAbsolutePath_jni(getDataDirectory_jni());
+	}
+
+	/**
 	 * Returns whether the primary shared/external storage media is emulated.
 	 */
 	public static function isExternalStorageEmulated():Bool
