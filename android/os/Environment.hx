@@ -1,10 +1,10 @@
 package android.os;
 
 #if (!android && !native && macro)
-#error 'extension-androidtools is not supported on your current platform'
+#error "extension-androidtools is not supported on your current platform"
 #end
 
-#if (openfl < '4.0.0')
+#if (openfl < "4.0.0")
 import openfl.utils.JNI;
 #else
 import lime.system.JNI;
@@ -22,8 +22,8 @@ class Environment
 	 */
 	public static function getDataDirectory():String
 	{
-		var getDataDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getDataDirectory', '()Ljava/io/File;');
-		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
+		var getDataDirectory_jni:Dynamic = JNI.createStaticMethod("android/os/Environment", "getDataDirectory", "()Ljava/io/File;");
+		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod("java/io/File", "getAbsolutePath", "()Ljava/lang/String;");
 		return getAbsolutePath_jni(getDataDirectory_jni());
 	}
 
@@ -32,8 +32,8 @@ class Environment
 	 */
 	public static function getDownloadCacheDirectory():String
 	{
-		var getDownloadCacheDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getDownloadCacheDirectory', '()Ljava/io/File;');
-		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
+		var getDownloadCacheDirectory_jni:Dynamic = JNI.createStaticMethod("android/os/Environment", "getDownloadCacheDirectory", "()Ljava/io/File;");
+		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod("java/io/File", "getAbsolutePath", "()Ljava/lang/String;");
 		return getAbsolutePath_jni(getDownloadCacheDirectory_jni());
 	}
 
@@ -42,8 +42,8 @@ class Environment
 	 */
 	public static function getExternalStorageDirectory():String
 	{
-		var getExternalStorageDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getExternalStorageDirectory', '()Ljava/io/File;');
-		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
+		var getExternalStorageDirectory_jni:Dynamic = JNI.createStaticMethod("android/os/Environment", "getExternalStorageDirectory", "()Ljava/io/File;");
+		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod("java/io/File", "getAbsolutePath", "()Ljava/lang/String;");
 		return getAbsolutePath_jni(getExternalStorageDirectory_jni());
 	}
 
@@ -53,8 +53,8 @@ class Environment
 	 */
 	public static function getRootDirectory():String
 	{
-		var getDataDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getRootDirectory', '()Ljava/io/File;');
-		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
+		var getDataDirectory_jni:Dynamic = JNI.createStaticMethod("android/os/Environment", "getRootDirectory", "()Ljava/io/File;");
+		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod("java/io/File", "getAbsolutePath", "()Ljava/lang/String;");
 		return getAbsolutePath_jni(getDataDirectory_jni());
 	}
 
@@ -63,7 +63,7 @@ class Environment
 	 */
 	public static function isExternalStorageEmulated():Bool
 	{
-		var isExternalStorageEmulated_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'isExternalStorageEmulated', '()Z');
+		var isExternalStorageEmulated_jni:Dynamic = JNI.createStaticMethod("android/os/Environment", "isExternalStorageEmulated", "()Z");
 		return isExternalStorageEmulated_jni();
 	}
 
@@ -72,7 +72,7 @@ class Environment
 	 */
 	public static function isExternalStorageRemovable():Bool
 	{
-		var isExternalStorageRemovable_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'isExternalStorageRemovable', '()Z');
+		var isExternalStorageRemovable_jni:Dynamic = JNI.createStaticMethod("android/os/Environment", "isExternalStorageRemovable", "()Z");
 		return isExternalStorageRemovable_jni();
 	}
 }

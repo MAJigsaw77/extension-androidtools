@@ -1,10 +1,10 @@
 package android;
 
 #if (!android && !native && macro)
-#error 'extension-androidtools is not supported on your current platform'
+#error "extension-androidtools is not supported on your current platform"
 #end
 
-#if (openfl < '4.0.0')
+#if (openfl < "4.0.0")
 import openfl.utils.JNI;
 #else
 import lime.system.JNI;
@@ -24,7 +24,7 @@ class Hardware
 	 */
 	public static function vibrate(inputValue:Int):Void
 	{
-		var vibrate_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'vibrate', '(I)V');
+		var vibrate_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Hardware", "vibrate", "(I)V");
 		vibrate_jni(inputValue);
 	}
 
@@ -33,7 +33,7 @@ class Hardware
 	 */
 	public static function wakeUp():Void
 	{
-		var wakeUp_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'wakeUp', '()V');
+		var wakeUp_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Hardware", "wakeUp", "()V");
 		wakeUp_jni();
 	}
 
@@ -42,7 +42,7 @@ class Hardware
 	 */
 	public static function setBrightness(brightness:Float):Void
 	{
-		var setbrightness_set_brightness_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'setBrightness', '(F)V');
+		var setbrightness_set_brightness_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Hardware", "setBrightness", "(F)V");
 		setbrightness_set_brightness_jni(brightness);
 	}
 
@@ -51,7 +51,7 @@ class Hardware
 	 */
 	public static function setScreenOrientation(screenOrientation:Int):Void
 	{
-		var setRequestedOrientationNative:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'setRequestedOrientation', '(I)V');
+		var setRequestedOrientationNative:Dynamic = JNI.createStaticMethod("org/haxe/extension/Hardware", "setRequestedOrientation", "(I)V");
 		setRequestedOrientationNative(screenOrientation);
 	}
 
@@ -62,7 +62,7 @@ class Hardware
 		if (duration != 1 && duration != 2)
 			duration = 1;
 
-		var toast_jni = JNI.createStaticMethod('org/haxe/extension/Hardware', 'toast', '(Ljava/lang/String;I)V');
+		var toast_jni = JNI.createStaticMethod("org/haxe/extension/Hardware", "toast", "(Ljava/lang/String;I)V");
 		toast_jni(text, duration);
 	}
 
@@ -70,7 +70,7 @@ class Hardware
 	 * Shares a text.
 	 */
 	public static function shareText(subject:String, text:String):Void {
-		var intent_jni = JNI.createStaticMethod('org/haxe/extension/Hardware', 'runIntent', '(Ljava/lang/String;Ljava/lang/String;I)V');
+		var intent_jni = JNI.createStaticMethod("org/haxe/extension/Hardware", "runIntent", "(Ljava/lang/String;Ljava/lang/String;I)V");
 		intent_jni(subject, text, 0);
 	}
 
@@ -78,15 +78,15 @@ class Hardware
 	 * Launches a app.
 	 */
 	public static function launchApp(packageName:String):Void {
-		var intent_jni = JNI.createStaticMethod('org/haxe/extension/Hardware', 'runIntent', '(Ljava/lang/String;Ljava/lang/String;I)V');
-		intent_jni(packageName, '', 1);
+		var intent_jni = JNI.createStaticMethod("org/haxe/extension/Hardware", "runIntent", "(Ljava/lang/String;Ljava/lang/String;I)V");
+		intent_jni(packageName, "", 1);
 	}
 
 	/**
 	 * Runs a intent action.
 	 */
 	public static function runIntent(action:String, url:String = null):Void {
-		var intent_jni = JNI.createStaticMethod('org/haxe/extension/Hardware', 'runIntent', '(Ljava/lang/String;Ljava/lang/String;I)V');
+		var intent_jni = JNI.createStaticMethod("org/haxe/extension/Hardware", "runIntent", "(Ljava/lang/String;Ljava/lang/String;I)V");
 		intent_jni(action, url, 2);
 	}
 
@@ -95,7 +95,7 @@ class Hardware
 	 */
 	public static function getScreenWidth():Int
 	{
-		var get_screen_width_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'getScreenWidth', '()I');
+		var get_screen_width_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Hardware", "getScreenWidth", "()I");
 		return get_screen_width_jni();
 	}
 
@@ -104,7 +104,7 @@ class Hardware
 	 */
 	public static function getScreenHeight():Int
 	{
-		var get_screen_height_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'getScreenHeight', '()I');
+		var get_screen_height_jni:Dynamic = JNI.createStaticMethod("org/haxe/extension/Hardware", "getScreenHeight", "()I");
 		return get_screen_height_jni();
 	}
 }

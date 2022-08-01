@@ -1,10 +1,10 @@
 package android;
 
 #if (!android && !native && macro)
-#error 'extension-androidtools is not supported on your current platform'
+#error "extension-androidtools is not supported on your current platform"
 #end
 
-#if (openfl < '4.0.0')
+#if (openfl < "4.0.0")
 import openfl.utils.JNI;
 #else
 import lime.system.JNI;
@@ -22,7 +22,7 @@ class Permissions
 	 */
 	public static function getGrantedPermissions():Array<PermissionsList>
 	{
-		var getGrantedPermissionsJNI:Dynamic = JNI.createStaticMethod('org/haxe/extension/Permissions', 'getGrantedPermissions', '()[Ljava/lang/String;');
+		var getGrantedPermissionsJNI:Dynamic = JNI.createStaticMethod("org/haxe/extension/Permissions", "getGrantedPermissions", "()[Ljava/lang/String;");
 		return getGrantedPermissionsJNI();
 	}
 
@@ -35,7 +35,7 @@ class Permissions
 	 */
 	public static function requestPermissions(permissions:Array<String>, requestCode:Int = 1):Void
 	{
-		var requestPermissionsJNI:Dynamic = JNI.createStaticMethod('org/haxe/extension/Permissions', 'requestPermissions', '([Ljava/lang/String;I)V');
+		var requestPermissionsJNI:Dynamic = JNI.createStaticMethod("org/haxe/extension/Permissions", "requestPermissions", "([Ljava/lang/String;I)V");
 		requestPermissionsJNI(permissions, requestCode);
 	}
 }
