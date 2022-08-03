@@ -17,6 +17,7 @@ import openfl.utils.ByteArray;
 /**
  * @author luckydog7
  */
+@:access(lime.system.JNI)
 class AlertDialog
 {
 	private var builder:Dynamic;

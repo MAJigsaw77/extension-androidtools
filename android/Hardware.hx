@@ -13,6 +13,7 @@ import lime.system.JNI;
 /**
  * @author Saw (M.A. Jigsaw)
  */
+@:access(lime.system.JNI)
 class Hardware
 {
 	/**
