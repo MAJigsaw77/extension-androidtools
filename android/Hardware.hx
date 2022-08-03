@@ -15,10 +15,6 @@ import lime.system.JNI;
  */
 class Hardware
 {
-	public static final ORIENTATION_UNSPECIFIED:Int = 0;
-	public static final ORIENTATION_PORTRAIT:Int = 1;
-	public static final ORIENTATION_LANDSCAPE:Int = 2;
-
 	/**
 	 * Makes the Phone vibrate, the time is in miliseconds btw.
 	 */
@@ -49,8 +45,11 @@ class Hardware
 	/**
 	 * The Name of the function says what it does.
 	 */
-	public static function setScreenOrientation(screenOrientation:Int):Void
+	public static function setScreenOrientation(screenOrientation:OrientationType):Void
 	{
+		if (screenOrientation != 0 && screenOrientation != 1 && screenOrientation != 1)
+			screenOrientation = 0;
+
 		var setRequestedOrientationNative:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'setRequestedOrientation', '(I)V');
 		setRequestedOrientationNative(screenOrientation);
 	}
@@ -113,4 +112,11 @@ abstract ToastType(Int) to Int from Int
 {
 	public static final LENGTH_SHORT = 1;
 	public static final LENGTH_LONG = 2;
+}
+
+abstract OrientationType(Int) to Int from Int
+{
+	public static final UNSPECIFIED = 0;
+	public static final PORTRAIT = 1;
+	public static final LANDSCAPE = 2;
 }
