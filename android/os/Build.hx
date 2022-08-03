@@ -15,7 +15,11 @@ import lime.system.JNI;
  * 
  * @author Saw (M.A. Jigsaw)
  */
+#if (openfl < '4.0.0')
+@:access(openfl.utils.JNI)
+#else
 @:access(lime.system.JNI)
+#end
 class Build
 {
 	/**

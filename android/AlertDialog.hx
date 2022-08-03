@@ -17,7 +17,11 @@ import openfl.utils.ByteArray;
 /**
  * @author luckydog7
  */
+#if (openfl < '4.0.0')
+@:access(openfl.utils.JNI)
+#else
 @:access(lime.system.JNI)
+#end
 class AlertDialog
 {
 	private var builder:Dynamic;
