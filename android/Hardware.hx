@@ -21,33 +21,6 @@ import lime.system.JNI;
 class Hardware
 {
 	/**
-	 * Makes the Phone vibrate, the time is in miliseconds btw.
-	 */
-	public static function vibrate(inputValue:Int):Void
-	{
-		var vibrate_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'vibrate', '(I)V');
-		vibrate_jni(inputValue);
-	}
-
-	/**
-	 * The Name of the function says what it does.
-	 */
-	public static function wakeUp():Void
-	{
-		var wakeUp_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'wakeUp', '()V');
-		wakeUp_jni();
-	}
-
-	/**
-	 * Sets the phone brightness, max is 1 and min is 0.
-	 */
-	public static function setBrightness(brightness:Float):Void
-	{
-		var setbrightness_set_brightness_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'setBrightness', '(F)V');
-		setbrightness_set_brightness_jni(brightness);
-	}
-
-	/**
 	 * The Name of the function says what it does.
 	 */
 	public static function setScreenOrientation(screenOrientation:OrientationType):Void
@@ -92,6 +65,33 @@ class Hardware
 	public static function runIntent(action:String, url:String):Void {
 		var runIntent_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'runIntent', '(Ljava/lang/String;Ljava/lang/String;)V');
 		runIntent_jni(action, url);
+	}
+
+	/**
+	 * Sets the phone brightness, max is 1 and min is 0.
+	 */
+	public static function setBrightness(brightness:Float):Void
+	{
+		var setbrightness_set_brightness_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'setBrightness', '(F)V');
+		setbrightness_set_brightness_jni(brightness);
+	}
+
+	/**
+	 * Makes the Phone vibrate, the time is in miliseconds btw.
+	 */
+	public static function vibrate(inputValue:Int):Void
+	{
+		var vibrate_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'vibrate', '(I)V');
+		vibrate_jni(inputValue);
+	}
+
+	/**
+	 * The Name of the function says what it does.
+	 */
+	public static function wakeUp():Void
+	{
+		var wakeUp_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'wakeUp', '()V');
+		wakeUp_jni();
 	}
 
 	/**
