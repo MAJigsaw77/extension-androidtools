@@ -13,6 +13,10 @@ import lime.system.JNI;
 /**
  * @author Saw (M.A. Jigsaw)
  */
+#if !debug
+@:fileXml('tags="haxe,release"')
+@:noDebug
+#end
 #if (openfl < '4.0.0')
 @:access(openfl.utils.JNI)
 #else

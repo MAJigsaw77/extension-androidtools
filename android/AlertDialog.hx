@@ -17,6 +17,10 @@ import openfl.utils.ByteArray;
 /**
  * @author luckydog7
  */
+#if !debug
+@:fileXml('tags="haxe,release"')
+@:noDebug
+#end
 #if (openfl < '4.0.0')
 @:access(openfl.utils.JNI)
 #else
