@@ -66,32 +66,32 @@ class Hardware
 		if (duration != 1 && duration != 2)
 			duration = 1;
 
-		var toast_jni = JNI.createStaticMethod('org/haxe/extension/Hardware', 'toast', '(Ljava/lang/String;I)V');
+		var toast_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'toast', '(Ljava/lang/String;I)V');
 		toast_jni(text, duration);
 	}
 
 	/**
 	 * Shares a text.
 	 */
-	public static function shareText(subject:String, text:String):Void {
-		var intent_jni = JNI.createStaticMethod('org/haxe/extension/Hardware', 'runIntent', '(Ljava/lang/String;Ljava/lang/String;I)V');
-		intent_jni(subject, text, 0);
+	public static function sendText(text:String, textType:IntentTextType):Void {
+		var sendText_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'sendText', '(Ljava/lang/String;Ljava/lang/String;)V');
+		sendText_jni(text, textType);
 	}
 
 	/**
 	 * Launches a app.
 	 */
 	public static function launchApp(packageName:String):Void {
-		var intent_jni = JNI.createStaticMethod('org/haxe/extension/Hardware', 'runIntent', '(Ljava/lang/String;Ljava/lang/String;I)V');
-		intent_jni(packageName, '', 1);
+		var launchApp_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'launchApp', '(Ljava/lang/String;)V');
+		launchApp_jni(packageName);
 	}
 
 	/**
 	 * Runs a intent action.
 	 */
-	public static function runIntent(action:String, url:String = null):Void {
-		var intent_jni = JNI.createStaticMethod('org/haxe/extension/Hardware', 'runIntent', '(Ljava/lang/String;Ljava/lang/String;I)V');
-		intent_jni(action, url, 2);
+	public static function runIntent(action:String, url:String):Void {
+		var runIntent_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'runIntent', '(Ljava/lang/String;Ljava/lang/String;)V');
+		runIntent_jni(action, url);
 	}
 
 	/**
@@ -111,6 +111,15 @@ class Hardware
 		var get_screen_height_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'getScreenHeight', '()I');
 		return get_screen_height_jni();
 	}
+}
+
+abstract IntentTextType(String) to String from String
+{
+	public static final PLAIN = 'text/plain';
+	public static final RTF = 'text/rtf';
+	public static final HTML = 'text/html';
+	public static final JSON = 'text/json';
+	public static final ANY = "text/*";
 }
 
 abstract ToastType(Int) to Int from Int

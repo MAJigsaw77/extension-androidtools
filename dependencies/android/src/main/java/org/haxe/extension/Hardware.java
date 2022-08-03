@@ -63,25 +63,23 @@ public class Hardware extends Extension {
         });
     }
 
-    public static void runIntent(final String subject, final String data, final int type) {
-        Intent intent = null;
+    public static void sendText(final String data, final String textType) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, data);
+        sendIntent.setType(textType);
 
-        switch (type) {
-            case 0: // share
-                intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-                intent.putExtra(Intent.EXTRA_TEXT, data);
-                break;
-            case 1: // open app
-                intent = Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(subject);
-                break;
-            case 2: // default
-                intent = new Intent(subject);
-                if (data != null)
-                    intent.setData(Uri.parse(data));
-                break;
-        }
+        Extension.mainActivity.startActivity(Intent.createChooser(sendIntent, null));
+    }
+
+    public static void launchApp(final String packageName) {
+        Extension.mainActivity.startActivity(Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName));
+    }
+
+    public static void runIntent(final String action, final String uri) {
+        Intent intent = new Intent(action);
+        if (uri != null)
+            intent.setData(Uri.parse(uri));
 
         Extension.mainActivity.startActivity(intent);
     }
