@@ -28,7 +28,7 @@ Step 2. Add this in `Project.xml`.
 
 Step 3. Done.
 
-Read the source code to find the cool things, I can't write all of them here lol.
+Read the source code to find cool things, I can't write all of them here lol.
 
 Credits
 =======
