@@ -6,7 +6,7 @@ A extension that uses OpenFL and Lime JNI to work that add's some functions from
 Installation instructions
 =======
 
-1. Install the Haxelib
+Step 1. Install the Haxelib.
 
 You can install it through haxelib:
 
@@ -20,13 +20,13 @@ You can also install it through Git for the latest updates:
 haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools.git
 ```
 
-2. Add this in `Project.xml`
+Step 2. Add this in `Project.xml`.
 
 ```xml
 <haxelib name='extension-androidtools' if='android' />
 ```
 
-Done.
+Step 3. Done.
 
 Credits
 =======
