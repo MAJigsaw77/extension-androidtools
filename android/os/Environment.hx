@@ -57,6 +57,15 @@ class Environment
 	}
 
 	/**
+	 * Returns the current state of the primary shared/external storage media.
+	 */
+	public static function getExternalStorageState():String
+	{
+		var getExternalStorageState_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getExternalStorageState', '()Ljava/lang/String;');
+		return getExternalStorageState_jni();
+	}
+
+	/**
 	 * Return root of the 'system' partition holding the core Android OS.
 	 * Always present and mounted read-only.
 	 */
@@ -84,4 +93,17 @@ class Environment
 		var isExternalStorageRemovable_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'isExternalStorageRemovable', '()Z');
 		return isExternalStorageRemovable_jni();
 	}
+}
+
+abstract MediaType(String) to String from String
+{
+	public static final BAD_REMOVAL = 'bad_removal';
+	public static final CHECKING = 'checking';
+	public static final MOUNTED = 'mounted';
+	public static final MOUNTED_READ_ONLY = 'mounted_ro';
+	public static final NOFS = 'nofs';
+	public static final REMOVED = 'removed';
+	public static final SHARED = 'shared';
+	public static final UNMOUNTABLE = 'unmountable';
+	public static final UNMOUNTED = 'unmounted';
 }
