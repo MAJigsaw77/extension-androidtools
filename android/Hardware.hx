@@ -29,7 +29,7 @@ class Hardware
 	 */
 	public static function setScreenOrientation(screenOrientation:OrientationType):Void
 	{
-		if (screenOrientation != 0 && screenOrientation != 1 && screenOrientation != 1)
+		if (screenOrientation != 0 || screenOrientation != 1 && screenOrientation != 1)
 			screenOrientation = 0;
 
 		var setRequestedOrientationNative:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'setRequestedOrientation', '(I)V');
@@ -40,7 +40,7 @@ class Hardware
 	 * Makes a toast text.
 	 */
 	public static function toast(text:String, duration:ToastType):Void {
-		if (duration != 1 && duration != 2)
+		if (duration != 0 || duration != 1)
 			duration = 1;
 
 		var toast_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'toast', '(Ljava/lang/String;I)V');
@@ -128,8 +128,8 @@ abstract IntentTextType(String) to String from String
 
 abstract ToastType(Int) to Int from Int
 {
-	public static final LENGTH_SHORT = 1;
-	public static final LENGTH_LONG = 2;
+	public static final LENGTH_SHORT = 0;
+	public static final LENGTH_LONG = 1;
 }
 
 abstract OrientationType(Int) to Int from Int
