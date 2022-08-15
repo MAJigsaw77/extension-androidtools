@@ -10,9 +10,9 @@ import openfl.utils.JNI;
 #else
 import lime.system.JNI;
 #end
-import openfl.display.BitmapData;
-import openfl.display.PNGEncoderOptions;
-import openfl.utils.ByteArray;
+import flash.display.BitmapData;
+import flash.display.PNGEncoderOptions;
+import flash.utils.ByteArray;
 
 /**
  * @author luckydog7
