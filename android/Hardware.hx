@@ -4,11 +4,7 @@ package android;
 #error 'extension-androidtools is not supported on your current platform'
 #end
 
-#if (openfl < '4.0.0')
-import openfl.utils.JNI;
-#else
 import lime.system.JNI;
-#end
 
 /**
  * @author Saw (M.A. Jigsaw)
@@ -17,11 +13,7 @@ import lime.system.JNI;
 @:fileXml('tags="haxe,release"')
 @:noDebug
 #end
-#if (openfl < '4.0.0')
-@:access(openfl.utils.JNI)
-#else
 @:access(lime.system.JNI)
-#end
 class Hardware
 {
 	/**
