@@ -33,28 +33,28 @@ class AlertDialog
 	 */
 	public function setView(view:Dynamic):AlertDialog
 	{
-		JNI.callMember(getMemberMethod('setView', '(Landroid/view/View;)Landroid/app/AlertDialog$Builder;'), builder, [view]);
+		JNI.callMember(getMemberMethod('setView', "(Landroid/view/View;)Landroid/app/AlertDialog$Builder;"), builder, [view]);
 
 		return this;
 	}
 
 	public function setCancelable(value:Bool = true):AlertDialog
 	{
-		JNI.callMember(getMemberMethod('setCancelable', '(Z)Landroid/app/AlertDialog$Builder;'), builder, [value]);
+		JNI.callMember(getMemberMethod('setCancelable', "(Z)Landroid/app/AlertDialog$Builder;"), builder, [value]);
 
 		return this;
 	}
 
 	public function setTitle(value:String):AlertDialog
 	{
-		JNI.callMember(getMemberMethod('setTitle', '(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;'), builder, [value]);
+		JNI.callMember(getMemberMethod('setTitle', "(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;"), builder, [value]);
 
 		return this;
 	}
 
 	public function setMessage(value:String):AlertDialog
 	{
-		JNI.callMember(getMemberMethod('setMessage', '(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;'), builder, [value]);
+		JNI.callMember(getMemberMethod('setMessage', "(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;"), builder, [value]);
 
 		return this;
 	}
@@ -66,7 +66,7 @@ class AlertDialog
 
 		var getDrawable_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Dialog', 'getDrawable',
 			'(Ljava/lang/String;)Landroid/graphics/drawable/Drawable;');
-		JNI.callMember(getMemberMethod('setIcon', '(Landroid/graphics/drawable/Drawable;)Landroid/app/AlertDialog$Builder;'), builder,
+		JNI.callMember(getMemberMethod('setIcon', "(Landroid/graphics/drawable/Drawable;)Landroid/app/AlertDialog$Builder;"), builder,
 			[getDrawable_jni(Base64.encode(bytes))]);
 		bytes.clear();
 
@@ -76,7 +76,7 @@ class AlertDialog
 	public function setPositiveButton(name:String, callback:Void->Void):AlertDialog
 	{
 		var setButton_jni = JNI.createStaticMethod('org/haxe/extension/Dialog', 'setButton',
-			'(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V');
+			"(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V");
 		setButton_jni(builder, new ClickEventListener(callback), name, true);
 
 		return this;
@@ -85,7 +85,7 @@ class AlertDialog
 	public function setNegativeButton(name:String, callback:Void->Void):AlertDialog
 	{
 		var setButton_jni = JNI.createStaticMethod('org/haxe/extension/Dialog', 'setButton',
-			'(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V');
+			"(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V");
 		setButton_jni(builder, new ClickEventListener(callback), name, false);
 
 		return this;
