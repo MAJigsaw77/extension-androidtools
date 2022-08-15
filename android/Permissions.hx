@@ -33,7 +33,7 @@ class Permissions
 	 * @param permissions the array of permissions.
 	 * @param requestCode the code that should be requested.
 	 */
-	public static function requestPermissions(permissions:Array<String>, requestCode:Int = 1):Void
+	public static function requestPermissions(permissions:Array<PermissionsList>, requestCode:Int = 1):Void
 	{
 		var requestPermissionsJNI:Dynamic = JNI.createStaticMethod('org/haxe/extension/Permissions', 'requestPermissions', '([Ljava/lang/String;I)V');
 		requestPermissionsJNI(permissions, requestCode);
