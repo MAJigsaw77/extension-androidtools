@@ -3,16 +3,13 @@ package android;
 #if (!android && !native && macro)
 #error 'extension-androidtools is not supported on your current platform'
 #end
-import haxe.crypto.Base64;
-import lime.app.Event;
-#if (openfl < '4.0.0')
-import openfl.utils.JNI;
-#else
-import lime.system.JNI;
-#end
+
 import flash.display.BitmapData;
 import flash.display.PNGEncoderOptions;
 import flash.utils.ByteArray;
+import haxe.crypto.Base64;
+import lime.app.Event;
+import lime.system.JNI;
 
 /**
  * @author luckydog7
@@ -21,11 +18,7 @@ import flash.utils.ByteArray;
 @:fileXml('tags="haxe,release"')
 @:noDebug
 #end
-#if (openfl < '4.0.0')
-@:access(openfl.utils.JNI)
-#else
 @:access(lime.system.JNI)
-#end
 class AlertDialog
 {
 	private var builder:Dynamic;
