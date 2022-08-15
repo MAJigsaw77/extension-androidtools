@@ -106,7 +106,7 @@ class AlertDialog
 
 	private function getMemberMethod(name:String, sig:String):Dynamic
 	{
-		return JNI.createMemberMethod('android/app/AlertDialog$Builder', name, sig);
+		return JNI.createMemberMethod("android/app/AlertDialog$Builder", name, sig);
 	}
 }
 
