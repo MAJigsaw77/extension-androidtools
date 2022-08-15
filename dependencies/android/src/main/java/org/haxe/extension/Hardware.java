@@ -54,9 +54,9 @@ public class Hardware extends Extension {
             @Override
             public void run() {
                 switch (duration) {
-                    case 1:
+                    case 0:
                         Toast.makeText(Extension.mainContext, message, Toast.LENGTH_SHORT).show();
-                    case 2:
+                    case 1:
                         Toast.makeText(Extension.mainContext, message, Toast.LENGTH_LONG).show();
                 }
             }
