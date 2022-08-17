@@ -8,7 +8,7 @@
 		"jni",
 		"haxe"
 	],
-	"description":"A extension that uses OpenFL and Lime JNI to work that add's some functions from java to haxe.",
+	"description":"A extension that uses Lime JNI to work that add's some functions from java to haxe.",
 	"version":"1.4.0",
 	"releasenote":"Crash fix",
 	"contributors":[
