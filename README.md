@@ -1,7 +1,7 @@
 extension-androidtools
 =======
 
-A extension that uses OpenFL and Lime JNI to work that add's some functions from java to haxe.
+A extension that uses Lime JNI to work that add's some functions from java to haxe.
 
 Installation instructions
 =======
