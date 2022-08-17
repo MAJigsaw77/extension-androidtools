@@ -28,19 +28,19 @@ public class Hardware extends Extension {
         switch (SCREEN_ORIENTATION) {
             case 0:
                 Extension.mainActivity.setRequestedOrientation(
-                    ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-                resumeOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
-                break;
-            case 1:
-                Extension.mainActivity.setRequestedOrientation(
                     ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 resumeOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
                 break;
-            case 2:
+            case 1:
                 Extension.mainActivity.setRequestedOrientation(
                     ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
                 resumeOrientation =
                     ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
+                break;
+            default:
+                Extension.mainActivity.setRequestedOrientation(
+                    ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+                resumeOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
                 break;
         }
     }
@@ -56,7 +56,7 @@ public class Hardware extends Extension {
                 switch (duration) {
                     case 0:
                         Toast.makeText(Extension.mainContext, message, Toast.LENGTH_SHORT).show();
-                    case 1:
+                    default:
                         Toast.makeText(Extension.mainContext, message, Toast.LENGTH_LONG).show();
                 }
             }

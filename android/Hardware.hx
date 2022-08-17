@@ -19,11 +19,8 @@ class Hardware
 	/**
 	 * The Name of the function says what it does.
 	 */
-	public static function setScreenOrientation(screenOrientation:OrientationType):Void
+	public static function setScreenOrientation(screenOrientation:Int):Void
 	{
-		if (screenOrientation != 0 || screenOrientation != 1 && screenOrientation != 1)
-			screenOrientation = 0;
-
 		var setRequestedOrientationNative:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'setRequestedOrientation', '(I)V');
 		setRequestedOrientationNative(screenOrientation);
 	}
@@ -31,10 +28,7 @@ class Hardware
 	/**
 	 * Makes a toast text.
 	 */
-	public static function toast(text:String, duration:ToastType):Void {
-		if (duration != 0 || duration != 1)
-			duration = 1;
-
+	public static function toast(text:String, duration:Int):Void {
 		var toast_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'toast', '(Ljava/lang/String;I)V');
 		toast_jni(text, duration);
 	}
@@ -42,7 +36,7 @@ class Hardware
 	/**
 	 * Shares a text.
 	 */
-	public static function sendText(text:String, textType:IntentTextType):Void {
+	public static function sendText(text:String, textType:String):Void {
 		var sendText_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'sendText', '(Ljava/lang/String;Ljava/lang/String;)V');
 		sendText_jni(text, textType);
 	}
@@ -126,7 +120,7 @@ abstract ToastType(Int) to Int from Int
 
 abstract OrientationType(Int) to Int from Int
 {
-	public static final UNSPECIFIED = 0;
-	public static final PORTRAIT = 1;
-	public static final LANDSCAPE = 2;
+	public static final PORTRAIT = 0;
+	public static final LANDSCAPE = 1;
+	public static final UNSPECIFIED = 2;
 }
