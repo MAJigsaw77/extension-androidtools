@@ -20,7 +20,7 @@ class Permissions
 	 * Checks whether the app already has the given permission.
 	 * Returns the granted permissions.
 	 */
-	public static function getGrantedPermissions():Array<String>
+	public static function getGrantedPermissions():Array<PermissionsList>
 	{
 		var getGrantedPermissionsJNI:Dynamic = JNI.createStaticMethod('org/haxe/extension/Permissions', 'getGrantedPermissions', '()[Ljava/lang/String;');
 		return getGrantedPermissionsJNI();
@@ -33,7 +33,7 @@ class Permissions
 	 * @param permissions the array of permissions.
 	 * @param requestCode the code that should be requested.
 	 */
-	public static function requestPermissions(permissions:Array<String>, requestCode:Int = 1):Void
+	public static function requestPermissions(permissions:Array<PermissionsList>, requestCode:Int = 1):Void
 	{
 		var requestPermissionsJNI:Dynamic = JNI.createStaticMethod('org/haxe/extension/Permissions', 'requestPermissions', '([Ljava/lang/String;I)V');
 		requestPermissionsJNI(permissions, requestCode);
@@ -43,7 +43,7 @@ class Permissions
 /**
  * Almost all Android Permissions.
  */
-abstract PermissionsList(String) to String from String
+enum abstract PermissionsList(String) to String from String
 {
 	public static final ACCEPT_HANDOVER = 'android.permission.ACCEPT_HANDOVER';
 	public static final ACCESS_BACKGROUND_LOCATION = 'android.permission.ACCESS_BACKGROUND_LOCATION';

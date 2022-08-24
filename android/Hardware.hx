@@ -19,7 +19,7 @@ class Hardware
 	/**
 	 * The Name of the function says what it does.
 	 */
-	public static function setScreenOrientation(screenOrientation:Int):Void
+	public static function setScreenOrientation(screenOrientation:OrientationType):Void
 	{
 		var setRequestedOrientationNative:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'setRequestedOrientation', '(I)V');
 		setRequestedOrientationNative(screenOrientation);
@@ -28,7 +28,7 @@ class Hardware
 	/**
 	 * Makes a toast text.
 	 */
-	public static function toast(text:String, duration:Int):Void {
+	public static function toast(text:String, duration:ToastType):Void {
 		var toast_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'toast', '(Ljava/lang/String;I)V');
 		toast_jni(text, duration);
 	}
@@ -36,7 +36,7 @@ class Hardware
 	/**
 	 * Shares a text.
 	 */
-	public static function sendText(text:String, textType:String):Void {
+	public static function sendText(text:String, textType:IntentTextType):Void {
 		var sendText_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'sendText', '(Ljava/lang/String;Ljava/lang/String;)V');
 		sendText_jni(text, textType);
 	}
@@ -103,7 +103,7 @@ class Hardware
 	}
 }
 
-abstract IntentTextType(String) to String from String
+enum abstract IntentTextType(String) to String from String
 {
 	public static final PLAIN = 'text/plain';
 	public static final RTF = 'text/rtf';
@@ -112,13 +112,13 @@ abstract IntentTextType(String) to String from String
 	public static final ANY = "text/*";
 }
 
-abstract ToastType(Int) to Int from Int
+enum abstract ToastType(Int) to Int from Int
 {
 	public static final LENGTH_SHORT = 0;
 	public static final LENGTH_LONG = 1;
 }
 
-abstract OrientationType(Int) to Int from Int
+enum abstract OrientationType(Int) to Int from Int
 {
 	public static final PORTRAIT = 0;
 	public static final LANDSCAPE = 1;

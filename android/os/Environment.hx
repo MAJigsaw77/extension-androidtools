@@ -87,7 +87,7 @@ class Environment
 	}
 }
 
-abstract MediaType(String) to String from String
+enum abstract MediaType(String) to String from String
 {
 	public static final BAD_REMOVAL = 'bad_removal';
 	public static final CHECKING = 'checking';

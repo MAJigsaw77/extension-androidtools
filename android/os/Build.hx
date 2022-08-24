@@ -93,7 +93,7 @@ class VERSION
 	public static final SDK_INT:Int = JNI.createStaticField("android/os/Build$VERSION", 'SDK_INT', 'I').get();
 }
 
-abstract VERSION_CODES(Int) to Int from Int
+enum abstract VERSION_CODES(Int) to Int from Int
 {
 	public static final BASE = 1;
 	public static final BASE_1_1 = 2;
