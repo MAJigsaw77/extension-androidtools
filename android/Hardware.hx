@@ -19,7 +19,7 @@ class Hardware
 	/**
 	 * The Name of the function says what it does.
 	 */
-	public static function setScreenOrientation(screenOrientation:OrientationType):Void
+	public static function setScreenOrientation(screenOrientation:Int):Void
 	{
 		var setRequestedOrientationNative:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'setRequestedOrientation', '(I)V');
 		setRequestedOrientationNative(screenOrientation);
@@ -28,7 +28,7 @@ class Hardware
 	/**
 	 * Makes a toast text.
 	 */
-	public static function toast(text:String, duration:ToastType):Void {
+	public static function toast(text:String, duration:Int):Void {
 		var toast_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'toast', '(Ljava/lang/String;I)V');
 		toast_jni(text, duration);
 	}
@@ -36,7 +36,7 @@ class Hardware
 	/**
 	 * Shares a text.
 	 */
-	public static function sendText(text:String, textType:IntentTextType):Void {
+	public static function sendText(text:String, textType:String):Void {
 		var sendText_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'sendText', '(Ljava/lang/String;Ljava/lang/String;)V');
 		sendText_jni(text, textType);
 	}
