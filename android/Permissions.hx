@@ -7,7 +7,7 @@ package android;
 import lime.system.JNI;
 
 /**
- * @author Saw (M.A. Jigsaw)
+ * @author Mihai Alexandru (M.A. Jigsaw)
  */
 #if !debug
 @:fileXml('tags="haxe,release"')

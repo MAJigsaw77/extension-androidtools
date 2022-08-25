@@ -9,7 +9,7 @@ import lime.system.JNI;
 /**
  * @see https://developer.android.com/reference/android/net/Uri
  * 
- * @author Saw (M.A. Jigsaw)
+ * @author Mihai Alexandru (M.A. Jigsaw)
  */
 #if !debug
 @:fileXml('tags="haxe,release"')
