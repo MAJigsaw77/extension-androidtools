@@ -2,9 +2,9 @@
 <extension>
 	<dependency name="androidtools" path="dependencies/android" if="android" />
 
-	<android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<android permission="android.permission.READ_EXTERNAL_STORAGE" />
-	<android permission="android.permission.VIBRATE" />
-	<android permission="android.permission.WAKE_LOCK" />
-	<android permission="android.permission.DISABLE_KEYGUARD" />
+	<config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<config:android permission="android.permission.READ_EXTERNAL_STORAGE" />
+	<config:android permission="android.permission.VIBRATE" />
+	<config:android permission="android.permission.WAKE_LOCK" />
+	<config:android permission="android.permission.DISABLE_KEYGUARD" />
 </extension>
