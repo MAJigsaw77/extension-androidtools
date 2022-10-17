@@ -18,6 +18,16 @@ import lime.system.JNI;
 @:access(lime.system.JNI)
 class Environment
 {
+	public static final BAD_REMOVAL:String = 'bad_removal';
+	public static final CHECKING:String = 'checking';
+	public static final MOUNTED:String = 'mounted';
+	public static final MOUNTED_READ_ONLY:String = 'mounted_ro';
+	public static final NOFS:String = 'nofs';
+	public static final REMOVED:String = 'removed';
+	public static final SHARED:String = 'shared';
+	public static final UNMOUNTABLE:String = 'unmountable';
+	public static final UNMOUNTED:String = 'unmounted';
+
 	/**
 	 * Return the user data directory.
 	 */
@@ -85,17 +95,4 @@ class Environment
 		var isExternalStorageRemovable_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'isExternalStorageRemovable', '()Z');
 		return isExternalStorageRemovable_jni();
 	}
-}
-
-enum abstract MediaType(String) to String from String
-{
-	public static final BAD_REMOVAL = 'bad_removal';
-	public static final CHECKING = 'checking';
-	public static final MOUNTED = 'mounted';
-	public static final MOUNTED_READ_ONLY = 'mounted_ro';
-	public static final NOFS = 'nofs';
-	public static final REMOVED = 'removed';
-	public static final SHARED = 'shared';
-	public static final UNMOUNTABLE = 'unmountable';
-	public static final UNMOUNTED = 'unmounted';
 }

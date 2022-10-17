@@ -3,7 +3,6 @@ package android;
 #if (!android && !native && macro)
 #error 'extension-androidtools is not supported on your current platform'
 #end
-
 import flash.display.BitmapData;
 import flash.display.PNGEncoderOptions;
 import flash.utils.ByteArray;
