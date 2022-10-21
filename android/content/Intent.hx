@@ -26,7 +26,7 @@ class Intent
 	 */
 	public static function sendText(text:String, textType:String):Void
 	{
-		var sendText_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'sendText', '(Ljava/lang/String;Ljava/lang/String;)V');
+		var sendText_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'sendText', '(Ljava/lang/String;Ljava/lang/String;)V');
 		sendText_jni(text, textType);
 	}
 
@@ -35,7 +35,7 @@ class Intent
 	 */
 	public static function launchApp(packageName:String):Void
 	{
-		var launchApp_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'launchApp', '(Ljava/lang/String;)V');
+		var launchApp_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchApp', '(Ljava/lang/String;)V');
 		launchApp_jni(packageName);
 	}
 
@@ -44,7 +44,7 @@ class Intent
 	 */
 	public static function runIntent(action:String, url:String):Void
 	{
-		var runIntent_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Hardware', 'runIntent', '(Ljava/lang/String;Ljava/lang/String;)V');
+		var runIntent_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'runIntent', '(Ljava/lang/String;Ljava/lang/String;)V');
 		runIntent_jni(action, url);
 	}
 }

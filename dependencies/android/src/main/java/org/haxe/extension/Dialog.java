@@ -17,8 +17,7 @@ import org.haxe.lime.HaxeObject;
 public class Dialog extends Extension {
     public static Drawable getDrawable(String bmpData) {
         int result = bmpData.length();
-        byte[] bmpByteArray =
-            android.util.Base64.decode(bmpData, Base64.DEFAULT);
+        byte[] bmpByteArray = Base64.decode(bmpData, Base64.DEFAULT);
         result = bmpByteArray.length;
 
         try {

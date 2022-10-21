@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.util.Log;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.PowerManager;
@@ -16,13 +17,44 @@ import android.os.Vibrator;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.Toast;
-import java.io.File;
-import org.haxe.extension.Extension;
 
-public class Hardware extends Extension {
+import org.haxe.extension.Extension;
+import org.haxe.lime.HaxeObject;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Tools extends Extension
+{
     private static KeyguardLock keyguardLock = null;
-    private static Point size;
     private static int resumeOrientation = 0;
+
+    public static String[] getGrantedPermissions() {
+        List<String> granted = new ArrayList<String>();
+
+        try {
+            PackageInfo packInfo =
+                Extension.mainContext.getPackageManager().getPackageInfo(
+                    Extension.mainContext.getPackageName(),
+                    PackageManager.GET_PERMISSIONS);
+            for (int i = 0; i < packInfo.requestedPermissions.length; i++) {
+                if ((packInfo.requestedPermissionsFlags[i]
+                        & PackageInfo.REQUESTED_PERMISSION_GRANTED)
+                    != 0)
+                    granted.add(packInfo.requestedPermissions[i]);
+            }
+        } catch (Exception e) {
+            Log.e("Tools", e.toString());
+        }
+
+        return granted.toArray(new String[granted.size()]);
+    }
+
+    public static void requestPermissions(
+        String[] permissions, int requestCode) {
+        Extension.mainActivity.requestPermissions(permissions, requestCode);
+    }
 
     public static void setRequestedOrientation(int SCREEN_ORIENTATION) {
         switch (SCREEN_ORIENTATION) {
@@ -96,7 +128,7 @@ public class Hardware extends Extension {
             (PowerManager) mainContext.getSystemService(Context.POWER_SERVICE);
         WakeLock wakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK
                 | PowerManager.ACQUIRE_CAUSES_WAKEUP,
-            "Hardware.class");
+            "Tools.class");
         wakeLock.acquire();
         wakeLock.release();
         wakeLock = null;
@@ -109,18 +141,6 @@ public class Hardware extends Extension {
                 keyguardManager.newKeyguardLock(Activity.KEYGUARD_SERVICE);
 
         keyguardLock.disableKeyguard();
-    }
-
-    public static int getScreenHeight() {
-        return size.y;
-    }
-
-    public static int getScreenWidth() {
-        return size.x;
-    }
-
-    public boolean onActivityResult (int requestCode, int resultCode, Intent data) {
-        return true;
     }
 
     @Override
@@ -141,12 +161,5 @@ public class Hardware extends Extension {
     public void onResume() {
         if (resumeOrientation != 0)
             Extension.mainActivity.setRequestedOrientation(resumeOrientation);
-    }
-
-    @Override
-    public void onStart() {
-        size = new Point();
-        Display display = mainActivity.getWindowManager().getDefaultDisplay();
-        display.getSize(size);
     }
 }
