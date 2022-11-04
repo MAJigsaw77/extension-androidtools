@@ -15,9 +15,6 @@ import lime.system.JNI;
 @:access(lime.system.JNI)
 class Context
 {
-	/**
-	 * Return the primary shared/external storage directory.
-	 */
 	public static function getFilesDir():String
 	{
 		var getFilesDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getContextFilesDir', '()Ljava/io/File;');
