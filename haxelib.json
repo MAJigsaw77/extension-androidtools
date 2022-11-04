@@ -13,8 +13,5 @@
 	"releasenote":"Crash fix",
 	"contributors":[
 		"MAJigsaw77"
-	],
-	"dependencies":{
-		"lime":""
-	}
+	]
 }
