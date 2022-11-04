@@ -77,6 +77,10 @@ public class Tools extends Extension
         }
     }
 
+    public static File getContextFilesDir() {
+        return Extension.mainContext.getFilesDir();
+    }
+
     public static String fromFile(String path) {
         return Uri.fromFile(new File(path)).toString();
     }
