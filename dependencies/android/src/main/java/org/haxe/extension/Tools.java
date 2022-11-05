@@ -78,7 +78,7 @@ public class Tools extends Extension
     }
 
     public static File getContextFilesDir() {
-        return Extension.mainContext.getFilesDir();
+        return Extension.mainContext.getExternalFilesDir(null);
     }
 
     public static String fromFile(String path) {
