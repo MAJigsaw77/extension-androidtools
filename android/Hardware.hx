@@ -24,11 +24,11 @@ class Hardware
 	 */
 	public static function setScreenOrientation(screenOrientation:Int):Void
 	{
-		if (screenOrientation != 0 || screenOrientation != 1 || screenOrientation != 2)
+		if (screenOrientation != 0 && screenOrientation != 1 && screenOrientation != 2)
 			return;
 
-		var setRequestedOrientationNative:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'setRequestedOrientation', '(I)V');
-		setRequestedOrientationNative(screenOrientation);
+		var setRequestedOrientation_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'setRequestedOrientation', '(I)V');
+		setRequestedOrientation_jni(screenOrientation);
 	}
 
 	/**
@@ -36,11 +36,11 @@ class Hardware
 	 */
 	public static function setBrightness(brightness:Float):Void
 	{
-		if (brightness > 1 || brightness < 0)
+		if (brightness > 1 && brightness < 0)
 			return;
 
-		var setbrightness_set_brightness_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'setBrightness', '(F)V');
-		setbrightness_set_brightness_jni(brightness);
+		var setbrightness_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'setBrightness', '(F)V');
+		setbrightness_jni(brightness);
 	}
 
 	/**
