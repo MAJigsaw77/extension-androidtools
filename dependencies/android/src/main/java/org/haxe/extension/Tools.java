@@ -15,6 +15,7 @@ import android.os.Vibrator;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.Toast;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -23,6 +24,7 @@ import android.util.Base64;
 import org.haxe.extension.Extension;
 import org.haxe.lime.HaxeObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,11 +56,34 @@ public class Tools extends Extension {
 
         try {
             return new BitmapDrawable(BitmapFactory.decodeByteArray(
-                bytesArray, 0, bytesArray.length);
+                bytesArray, 0, bytesArray.length));
         } catch (IllegalArgumentException e) {
             Log.e("Tools", e.toString());
             return null;
         }
+    }
+
+    public static Bitmap getBitmap(String bytes) {
+        byte[] bytesArray = Base64.decode(bytes, Base64.DEFAULT);
+
+        try {
+            return new BitmapFactory.decodeByteArray(bytesArray, 0, bytesArray.length);
+        } catch (IllegalArgumentException e) {
+            Log.e("Tools", e.toString());
+            return null;
+        }
+    }
+
+    public static Drawable getDrawableToBase64(Drawable drawable) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        drawable.getBitmap().compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+        return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
+    }
+
+    public static String getBitmapToBase64(Bitmap bitmap) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+        return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
     }
 
     public static File getFilesDir() {
@@ -71,6 +96,23 @@ public class Tools extends Extension {
 
     public static String fromFile(String path) {
         return Uri.fromFile(new File(path)).toString();
+    }
+
+    public static String setWallpaper(Bitmap bitmap) {
+        try {
+            Extension.mainContext.setWallpaper(bitmap);
+        } catch (Exception e) {
+            Log.e("Tools", e.toString());
+        }
+    }
+
+    public static Bitmap getWallpaper() {
+        BitmapDrawable daDrawable = (BitmapDrawable) Extension.mainContext.getWallpaper();
+
+        if (bitmapDrawable.getBitmap() != null)
+            return bitmapDrawable.getBitmap();
+
+        return null;
     }
 
     public static void toast(final String message, final int duration) {
@@ -96,7 +138,8 @@ public class Tools extends Extension {
 
     public static void runIntent(final String action, final String uri) {
         Intent intent = new Intent(action);
-        if (uri != null) intent.setData(Uri.parse(uri));
+        if (uri != null)
+            intent.setData(Uri.parse(uri));
         Extension.mainActivity.startActivity(intent);
     }
 
