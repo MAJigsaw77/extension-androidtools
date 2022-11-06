@@ -15,6 +15,10 @@ import android.os.Vibrator;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.Toast;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.util.Base64;
 
 import org.haxe.extension.Extension;
 import org.haxe.lime.HaxeObject;
@@ -43,6 +47,18 @@ public class Tools extends Extension {
     public static void requestPermissions(
         String[] permissions, int requestCode) {
         Extension.mainActivity.requestPermissions(permissions, requestCode);
+    }
+
+    public static Drawable getDrawable(String bytes) {
+        byte[] bytesArray = Base64.decode(bytes, Base64.DEFAULT);
+
+        try {
+            return new BitmapDrawable(BitmapFactory.decodeByteArray(
+                bytesArray, 0, bytesArray.length);
+        } catch (IllegalArgumentException e) {
+            Log.e("Tools", e.toString());
+            return null;
+        }
     }
 
     public static File getFilesDir() {
