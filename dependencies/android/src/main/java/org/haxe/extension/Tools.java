@@ -1,8 +1,6 @@
 package org.haxe.extension;
 
 import android.app.Activity;
-import android.app.KeyguardManager;
-import android.app.KeyguardManager.KeyguardLock;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -27,9 +25,6 @@ import java.util.List;
 
 public class Tools extends Extension
 {
-    private static KeyguardLock keyguardLock = null;
-    private static int resumeOrientation = 0;
-
     public static String[] getGrantedPermissions() {
         List<String> granted = new ArrayList<String>();
 
@@ -54,27 +49,6 @@ public class Tools extends Extension
     public static void requestPermissions(
         String[] permissions, int requestCode) {
         Extension.mainActivity.requestPermissions(permissions, requestCode);
-    }
-
-    public static void setRequestedOrientation(int SCREEN_ORIENTATION) {
-        switch (SCREEN_ORIENTATION) {
-            case 0:
-                Extension.mainActivity.setRequestedOrientation(
-                    ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                resumeOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
-                break;
-            case 1:
-                Extension.mainActivity.setRequestedOrientation(
-                    ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
-                resumeOrientation =
-                    ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
-                break;
-            default:
-                Extension.mainActivity.setRequestedOrientation(
-                    ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-                resumeOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
-                break;
-        }
     }
 
     public static File getFilesDir() {
@@ -126,48 +100,21 @@ public class Tools extends Extension
         Extension.mainActivity.getWindow().setAttributes(layout);
     }
 
-    public static void vibrate(int duration) {
-        ((Vibrator) mainContext.getSystemService(Context.VIBRATOR_SERVICE))
-            .vibrate(duration);
-    }
+    public static void vibrate(int duration, int period) {
+        Vibrator vibrator = (Vibrator) mainContext.getSystemService(Context.VIBRATOR_SERVICE);
 
-    public static void wakeUp() {
-        PowerManager pm =
-            (PowerManager) mainContext.getSystemService(Context.POWER_SERVICE);
-        WakeLock wakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK
-                | PowerManager.ACQUIRE_CAUSES_WAKEUP,
-            "Tools.class");
-        wakeLock.acquire();
-        wakeLock.release();
-        wakeLock = null;
+        if (period == 0) {
+		vibrator.vibrate(duration);
+	} else {
+		int periodMS = (int) Math.ceil(period / 2);
+		int count = (int) Math.ceil((duration / period) * 2);
+		long[] pattern = new long[count];
 
-        KeyguardManager keyguardManager =
-            (KeyguardManager) mainActivity.getSystemService(
-                Activity.KEYGUARD_SERVICE);
-        if (keyguardLock == null)
-            keyguardLock =
-                keyguardManager.newKeyguardLock(Activity.KEYGUARD_SERVICE);
+		for (int i = 0; i < count; i++) {
+			pattern[i] = periodMS;
+		}
 
-        keyguardLock.disableKeyguard();
-    }
-
-    @Override
-    public void onDestroy() {
-        if (keyguardLock != null) {
-            keyguardLock.reenableKeyguard();
-            keyguardLock = null;
-        }
-    }
-
-    @Override
-    public void onPause() {
-        if (keyguardLock != null)
-            keyguardLock.reenableKeyguard();
-    }
-
-    @Override
-    public void onResume() {
-        if (resumeOrientation != 0)
-            Extension.mainActivity.setRequestedOrientation(resumeOrientation);
+		vibrator.vibrate(pattern, -1);
+	}
     }
 }
