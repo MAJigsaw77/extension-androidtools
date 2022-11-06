@@ -22,7 +22,7 @@ class Hardware
 	 * LANDSCAPE = 1;
 	 * UNSPECIFIED = 2;
 	 */
-	public static function setScreenOrientation(screenOrientation:Int = 0):Void
+	public static function setScreenOrientation(screenOrientation:Int):Void
 	{
 		if (screenOrientation != 0 || screenOrientation != 1 || screenOrientation != 2)
 			return;
