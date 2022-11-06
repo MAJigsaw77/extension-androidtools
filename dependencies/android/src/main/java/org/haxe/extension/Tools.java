@@ -67,7 +67,8 @@ public class Tools extends Extension {
         byte[] bytesArray = Base64.decode(bytes, Base64.DEFAULT);
 
         try {
-            return new BitmapFactory.decodeByteArray(bytesArray, 0, bytesArray.length);
+            return new BitmapDrawable(BitmapFactory.decodeByteArray(
+                bytesArray, 0, bytesArray.length)).getBitmap();
         } catch (IllegalArgumentException e) {
             Log.e("Tools", e.toString());
             return null;
