@@ -17,8 +17,15 @@ class Context
 {
 	public static function getFilesDir():String
 	{
-		var getFilesDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getContextFilesDir', '()Ljava/io/File;');
+		var getFilesDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getFilesDir', '()Ljava/io/File;');
 		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
 		return getAbsolutePath_jni(getFilesDir_jni());
+	}
+
+	public static function getExternalFilesDir(type:String):String
+	{
+		var getExternalFilesDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getExternalFilesDir', '(Ljava/lang/String;)Ljava/io/File;');
+		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
+		return getAbsolutePath_jni(getExternalFilesDir_jni(type));
 	}
 }
