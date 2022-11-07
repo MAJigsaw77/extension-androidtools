@@ -35,12 +35,14 @@ class Context
 
 	public static function setWallpaper(bitmap:BitmapData):Void
 	{
+		var getBitmap_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getBitmap', '(Ljava/lang/String;)Landroid.graphics.Bitmap;');
+		var setWallpaper_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'setWallpaper', '(Landroid.graphics.Bitmap;)V');
+
 		var bytes:ByteArray = bitmap.encode(bitmap.rect, new PNGEncoderOptions());
 		bytes.position = 0;
 
-		var getBitmap_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getBitmap', '(Ljava/lang/String;)Landroid.graphics.Bitmap;');
-		var setWallpaper_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'setWallpaper', '(Landroid.graphics.Bitmap;)V');
 		setWallpaper_jni(getBitmap(Base64.encode(bytes)));
+		bytes.clear();
 	}
 
 	public static function getWallpaper():BitmapData
