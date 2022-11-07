@@ -79,13 +79,17 @@ public class Tools extends Extension {
         BitmapDrawable daDrawable = (BitmapDrawable) drawable;
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         daDrawable.getBitmap().compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-        return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
+
+        byte[] bytesArray = outputStream.toByteArray();
+        return Base64.encodeToString(bytesArray, Base64.DEFAULT);
     }
 
     public static String getBitmapToBase64(Bitmap bitmap) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-        return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
+
+        byte[] bytesArray = outputStream.toByteArray();
+        return Base64.encodeToString(bytesArray, Base64.DEFAULT);
     }
 
     public static File getFilesDir() {
