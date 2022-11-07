@@ -49,6 +49,6 @@ class Context
 	{
 		var getBitmapToBase64_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getBitmapToBase64', '(Landroid.graphics.Bitmap;)Ljava/lang/String;');
 		var getWallpaper_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getWallpaper', '()Landroid.graphics.Bitmap;');
-		return BitmapData.fromBase64(getBitmapToBase64_jni(getWallpaper_jni()));
+		return BitmapData.fromBase64(getBitmapToBase64_jni(getWallpaper_jni()), 'image/png');
 	}
 }
