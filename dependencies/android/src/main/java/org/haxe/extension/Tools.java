@@ -76,8 +76,9 @@ public class Tools extends Extension {
     }
 
     public static Drawable getDrawableToBase64(Drawable drawable) {
+        BitmapDrawable daDrawable = (BitmapDrawable) drawable;
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        drawable.getBitmap().compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+        daDrawable.getBitmap().compress(Bitmap.CompressFormat.PNG, 100, outputStream);
         return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
     }
 
@@ -110,8 +111,8 @@ public class Tools extends Extension {
     public static Bitmap getWallpaper() {
         BitmapDrawable daDrawable = (BitmapDrawable) Extension.mainContext.getWallpaper();
 
-        if (bitmapDrawable.getBitmap() != null)
-            return bitmapDrawable.getBitmap();
+        if (daDrawable.getBitmap() != null)
+            return daDrawable.getBitmap();
 
         return null;
     }
