@@ -104,7 +104,7 @@ public class Tools extends Extension {
         return Uri.fromFile(new File(path)).toString();
     }
 
-    public static String setWallpaper(Bitmap bitmap) {
+    public static void setWallpaper(Bitmap bitmap) {
         try {
             Extension.mainContext.setWallpaper(bitmap);
         } catch (Exception e) {
