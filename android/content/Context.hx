@@ -41,7 +41,7 @@ class Context
 		var bytes:ByteArray = bitmap.encode(bitmap.rect, new PNGEncoderOptions());
 		bytes.position = 0;
 
-		setWallpaper_jni(getBitmap(Base64.encode(bytes)));
+		setWallpaper_jni(getBitmap_jni(Base64.encode(bytes)));
 		bytes.clear();
 	}
 
@@ -49,6 +49,6 @@ class Context
 	{
 		var getBitmapToBase64_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getBitmapToBase64', '(Landroid.graphics.Bitmap;)Ljava/lang/String;');
 		var getWallpaper_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getWallpaper', '()Landroid.graphics.Bitmap;');
-		return BitmapData.fromBase64(getBitmapToBase64(getWallpaper()));
+		return BitmapData.fromBase64(getBitmapToBase64_jni(getWallpaper_jni()));
 	}
 }
