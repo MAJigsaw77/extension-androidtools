@@ -75,7 +75,7 @@ public class Tools extends Extension {
         }
     }
 
-    public static Drawable getDrawableToBase64(Drawable drawable) {
+    public static String getDrawableToBase64(Drawable drawable) {
         BitmapDrawable daDrawable = (BitmapDrawable) drawable;
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         daDrawable.getBitmap().compress(Bitmap.CompressFormat.PNG, 100, outputStream);
