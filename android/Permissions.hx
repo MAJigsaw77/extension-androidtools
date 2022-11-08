@@ -231,7 +231,7 @@ class Permissions
 		if (permissions == null)
 			return false;
 
-		var mainContext_jni:Dynamic = JNI.createStaticField('org/haxe/extension/Extension', 'mainContext', 'Landroid/content/Context;').get();
+		var mainContext:Dynamic = JNI.createStaticField('org/haxe/extension/Extension', 'mainContext', 'Landroid/content/Context;').get();
 		var checkSelfPermission_jni:Dynamic = JNI.createStaticMethod('androidx/core/content/ContextCompat', 'checkSelfPermission', '(Landroid/content/Context;Ljava/lang/String;)I');
 		return checkSelfPermission_jni(mainContext, permission) == 1;
 	}
@@ -248,8 +248,8 @@ class Permissions
 		if (permissions == [] && permissions.length <= 0)
 			return;
 
-		var mainContext_jni:Dynamic = JNI.createStaticField('org/haxe/extension/Extension', 'mainContext', 'Landroid/content/Context;').get();
+		var mainContext:Dynamic = JNI.createStaticField('org/haxe/extension/Extension', 'mainContext', 'Landroid/content/Context;').get();
 		var requestPermissions_jni:Dynamic = JNI.createStaticMethod('androidx/core/app/ActivityCompat', 'requestPermissions', '(Landroid/content/Context;[Ljava/lang/String;I)V');
-		requestPermissions_jni(mainContext, permission, requestCode);
+		requestPermissions_jni(mainContext, permissions, requestCode);
 	}
 }
