@@ -223,13 +223,17 @@ class Permissions
 	public static final WRITE_VOICEMAIL:String = 'android.permission.WRITE_VOICEMAIL';
 
 	/**
-	 * Checks whether the app already has the given permission.
-	 * Returns the granted permissions.
+	 * Checks whether the app has the given permission.
+	 * Returns `true` if is granted, anotherwise `false`.
 	 */
-	public static function getGrantedPermissions():Array<String>
+	public static function checkSelfPermission(permission:String):Bool
 	{
-		var getGrantedPermissions_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getGrantedPermissions', '()[Ljava/lang/String;');
-		return getGrantedPermissions_jni();
+		if (permissions == null)
+			return false;
+
+		var mainContext_jni:Dynamic = JNI.createStaticField('org/haxe/extension/Extension', 'mainContext', 'Landroid/content/Context;').get();
+		var checkSelfPermission_jni:Dynamic = JNI.createStaticMethod('androidx/core/content/ContextCompat', 'checkSelfPermission', '(Landroid/content/Context;Ljava/lang/String;)I');
+		return checkSelfPermission_jni(mainContext, permission) == 1;
 	}
 
 	/**
@@ -244,7 +248,8 @@ class Permissions
 		if (permissions == [] && permissions.length <= 0)
 			return;
 
-		var requestPermissions_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'requestPermissions', '([Ljava/lang/String;I)V');
-		requestPermissions_jni(permissions, requestCode);
+		var mainContext_jni:Dynamic = JNI.createStaticField('org/haxe/extension/Extension', 'mainContext', 'Landroid/content/Context;').get();
+		var requestPermissions_jni:Dynamic = JNI.createStaticMethod('androidx/core/app/ActivityCompat', 'requestPermissions', '(Landroid/content/Context;[Ljava/lang/String;I)V');
+		requestPermissions_jni(mainContext, permission, requestCode);
 	}
 }
