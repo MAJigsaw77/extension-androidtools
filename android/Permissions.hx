@@ -228,7 +228,7 @@ class Permissions
 	 */
 	public static function checkSelfPermission(permission:String):Bool
 	{
-		if (permissions == null)
+		if (permission == null)
 			return false;
 
 		var mainContext:Dynamic = JNI.createStaticField('org/haxe/extension/Extension', 'mainContext', 'Landroid/content/Context;').get();
