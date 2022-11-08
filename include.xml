@@ -2,7 +2,5 @@
 <extension>
 	<dependency name="androidtools" path="dependencies/android" if="android" />
 
-	<config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<config:android permission="android.permission.READ_EXTERNAL_STORAGE" />
 	<config:android permission="android.permission.VIBRATE" />
 </extension>
