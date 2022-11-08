@@ -30,24 +30,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tools extends Extension {
+    public static String[] getGrantedPermissions() {
+        List<String> granted = new ArrayList<String>();
+
+        try {
+            PackageInfo packInfo = Extension.mainContext.getPackageManager().getPackageInfo(
+                Extension.mainContext.getPackageName(), PackageManager.GET_PERMISSIONS);
+            for (int i = 0; i < packInfo.requestedPermissions.length; i++) {
+                if ((packInfo.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0) granted.add(packInfo.requestedPermissions[i]);
+            }
+        } catch (Exception e) {
+            Log.e("Tools", e.toString());
+        }
+
+        return granted.toArray(new String[granted.size()]);
+    }
+
+    public static void requestPermissions(
+        String[] permissions, int requestCode) {
+        Extension.mainActivity.requestPermissions(permissions, requestCode);
+    }
+
     public static Drawable getDrawable(String bytes) {
         byte[] bytesArray = Base64.decode(bytes, Base64.DEFAULT);
 
         try {
             return new BitmapDrawable(BitmapFactory.decodeByteArray(
                 bytesArray, 0, bytesArray.length));
-        } catch (IllegalArgumentException e) {
-            Log.e("Tools", e.toString());
-            return null;
-        }
-    }
-
-    public static Bitmap getBitmap(String bytes) {
-        byte[] bytesArray = Base64.decode(bytes, Base64.DEFAULT);
-
-        try {
-            return new BitmapDrawable(BitmapFactory.decodeByteArray(
-                bytesArray, 0, bytesArray.length)).getBitmap();
         } catch (IllegalArgumentException e) {
             Log.e("Tools", e.toString());
             return null;
@@ -63,14 +72,6 @@ public class Tools extends Extension {
         return Base64.encodeToString(bytesArray, Base64.DEFAULT);
     }
 
-    public static String getBitmapToBase64(Bitmap bitmap) {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-
-        byte[] bytesArray = outputStream.toByteArray();
-        return Base64.encodeToString(bytesArray, Base64.DEFAULT);
-    }
-
     public static File getFilesDir() {
         return Extension.mainContext.getFilesDir();
     }
@@ -81,23 +82,6 @@ public class Tools extends Extension {
 
     public static String fromFile(String path) {
         return Uri.fromFile(new File(path)).toString();
-    }
-
-    public static void setWallpaper(Bitmap bitmap) {
-        try {
-            Extension.mainContext.setWallpaper(bitmap);
-        } catch (Exception e) {
-            Log.e("Tools", e.toString());
-        }
-    }
-
-    public static Bitmap getWallpaper() {
-        BitmapDrawable daDrawable = (BitmapDrawable) Extension.mainContext.getWallpaper();
-
-        if (daDrawable.getBitmap() != null)
-            return daDrawable.getBitmap();
-
-        return null;
     }
 
     public static void toast(final String message, final int duration) {
