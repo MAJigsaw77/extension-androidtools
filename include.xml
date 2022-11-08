@@ -5,6 +5,4 @@
 	<config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<config:android permission="android.permission.READ_EXTERNAL_STORAGE" />
 	<config:android permission="android.permission.VIBRATE" />
-	<config:android permission="android.permission.WAKE_LOCK" />
-	<config:android permission="android.permission.DISABLE_KEYGUARD" />
 </extension>
