@@ -35,11 +35,12 @@ class Uri
 	 * Encodes all other characters.
 	 * 
 	 * @param s string to encode
+	 * @param allow set of additional characters to allow in the encoded form, null if no characters should be skipped
 	 */
-	public static function encode(s:String):String
+	public static function encode(s:String, allow:String):String
 	{
-		var encode_jni:Dynamic = JNI.createStaticMethod('android/net/Uri', 'encode', '(Ljava/lang/String;)Ljava/lang/String;');
-		return encode_jni(s);
+		var encode_jni:Dynamic = JNI.createStaticMethod('android/net/Uri', 'encode', '(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;');
+		return encode_jni(s, allow);
 	}
 
 	/**
@@ -50,7 +51,8 @@ class Uri
 	 */
 	public static function fromFile(path:String):String
 	{
-		var fromFile_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'fromFile', '(Ljava/lang/String;)Ljava/lang/String;');
-		return fromFile_jni(path);
+		var file_jni:Dynamic = JNI.createStaticMethod('java/io/File', '<init>', '(Ljava/lang/String;)V');
+		var fromFile_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'fromFile', '(Ljava/io/File;)Ljava/lang/String;');
+		return fromFile_jni(file_jni(path));
 	}
 }
