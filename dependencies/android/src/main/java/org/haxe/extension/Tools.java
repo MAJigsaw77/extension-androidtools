@@ -80,6 +80,22 @@ public class Tools extends Extension {
         return Extension.mainContext.getExternalFilesDir(type);
     }
 
+    public static File getCacheDir() {
+        return Extension.mainContext.getCacheDir();
+    }
+
+    public static File getExternalCacheDir() {
+        return Extension.mainContext.getExternalCacheDir();
+    }
+
+    public static File getObbDir() {
+        return Extension.mainContext.getCacheDir();
+    }
+
+    public static File getNoBackupFilesDir() {
+        return Extension.mainContext.getNoBackupFilesDir();
+    }
+
     public static String fromFile(String path) {
         return Uri.fromFile(new File(path)).toString();
     }
