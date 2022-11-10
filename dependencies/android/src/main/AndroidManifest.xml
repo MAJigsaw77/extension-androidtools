@@ -1,2 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<manifest xmlns:android='http://schemas.android.com/apk/res/android' package='android.haxe.androidtools' />
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="org.haxe.extension.androidtools">
+	<application android:debuggable="::DEBUG::" android:hardwareAccelerated="true" />
+</manifest>
