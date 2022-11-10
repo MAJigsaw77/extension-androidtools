@@ -89,7 +89,7 @@ public class Tools extends Extension {
     }
 
     public static File getObbDir() {
-        return Extension.mainContext.getCacheDir();
+        return Extension.mainContext.getObbDir();
     }
 
     public static File getNoBackupFilesDir() {
