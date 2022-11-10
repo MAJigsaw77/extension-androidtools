@@ -28,4 +28,32 @@ class Context
 		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
 		return getAbsolutePath_jni(getExternalFilesDir_jni(type));
 	}
+
+	public static function getCacheDir():String
+	{
+		var getCacheDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getCacheDir', '()Ljava/io/File;');
+		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
+		return getAbsolutePath_jni(getCacheDir_jni());
+	}
+
+	public static function getExternalCacheDir():String
+	{
+		var getExternalCacheDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getExternalCacheDir', '()Ljava/io/File;');
+		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
+		return getAbsolutePath_jni(getExternalCacheDir_jni());
+	}
+
+	public static function getObbDir():String
+	{
+		var getObbDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getObbDir', '()Ljava/io/File;');
+		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
+		return getAbsolutePath_jni(getObbDir_jni());
+	}
+
+	public static function getNoBackupFilesDir():String
+	{
+		var getNoBackupFilesDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getNoBackupFilesDir', '()Ljava/io/File;');
+		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
+		return getAbsolutePath_jni(getNoBackupFilesDir_jni());
+	}
 }
