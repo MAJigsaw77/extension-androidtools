@@ -10,34 +10,39 @@ import org.haxe.extension.Extension;
 import org.haxe.lime.HaxeObject;
 
 public class Dialog extends Extension {
-    public static void setButton(AlertDialog.Builder builder,
-        final HaxeObject hobj, String text, boolean ispositive) {
-        DialogInterface.OnClickListener cb =
-            new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    hobj.call("onClick", new Object[] {dialog, whichButton});
-                }
-            };
 
-        if (ispositive)
-            builder.setPositiveButton(text, cb);
-        else
-            builder.setNegativeButton(text, cb);
-    }
+	public static void setButton(AlertDialog.Builder builder,
+		final HaxeObject hobj, String text, boolean ispositive) {
+		DialogInterface.OnClickListener cb =
+			new DialogInterface.OnClickListener() {
 
-    public static Object createBuilder() {
-        return new AlertDialog.Builder(Extension.mainContext);
-    }
+				public void onClick(DialogInterface dialog, int whichButton) {
+					hobj.call("onClick", new Object[] {
+						dialog, whichButton
+					});
+				}
+			};
 
-    public static EditText createEditText() {
-        return new EditText(Extension.mainContext);
-    }
+		if (ispositive)
+			builder.setPositiveButton(text, cb);
+		else
+			builder.setNegativeButton(text, cb);
+	}
 
-    public static void showDialog(final Object obj) {
-        Extension.mainActivity.runOnUiThread(new Runnable() {
-            public void run() {
-                ((AlertDialog.Builder) obj).show();
-            }
-        });
-    }
+	public static Object createBuilder() {
+		return new AlertDialog.Builder(Extension.mainContext);
+	}
+
+	public static EditText createEditText() {
+		return new EditText(Extension.mainContext);
+	}
+
+	public static void showDialog(final Object obj) {
+		Extension.mainActivity.runOnUiThread(new Runnable() {
+
+			public void run() {
+				((AlertDialog.Builder) obj).show();
+			}
+		});
+	}
 }
