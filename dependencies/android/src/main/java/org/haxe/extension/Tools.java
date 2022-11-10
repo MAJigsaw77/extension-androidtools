@@ -96,8 +96,8 @@ public class Tools extends Extension {
         return Extension.mainContext.getNoBackupFilesDir();
     }
 
-    public static String fromFile(String path) {
-        return Uri.fromFile(new File(path)).toString();
+    public static String fromFile(File path) {
+        return Uri.fromFile(path).toString();
     }
 
     public static void toast(final String message, final int duration) {
