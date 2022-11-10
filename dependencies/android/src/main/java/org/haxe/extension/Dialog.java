@@ -39,7 +39,7 @@ public class Dialog extends Extension {
 
 	public static void showDialog(final Object obj) {
 		Extension.mainActivity.runOnUiThread(new Runnable() {
-
+			@Override
 			public void run() {
 				((AlertDialog.Builder) obj).show();
 			}
