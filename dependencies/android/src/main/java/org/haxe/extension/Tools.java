@@ -30,125 +30,128 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tools extends Extension {
-    public static String[] getGrantedPermissions() {
-        List<String> granted = new ArrayList<String>();
 
-        try {
-            PackageInfo packInfo = Extension.mainContext.getPackageManager().getPackageInfo(
-                Extension.mainContext.getPackageName(), PackageManager.GET_PERMISSIONS);
-            for (int i = 0; i < packInfo.requestedPermissions.length; i++) {
-                if ((packInfo.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0) granted.add(packInfo.requestedPermissions[i]);
-            }
-        } catch (Exception e) {
-            Log.e("Tools", e.toString());
-        }
+	public static String[] getGrantedPermissions() {
+		List<String> granted = new ArrayList<String>();
 
-        return granted.toArray(new String[granted.size()]);
-    }
+		try {
+			PackageInfo packInfo = Extension.mainContext.getPackageManager().getPackageInfo(
+				Extension.mainContext.getPackageName(), PackageManager.GET_PERMISSIONS);
 
-    public static void requestPermissions(
-        String[] permissions, int requestCode) {
-        Extension.mainActivity.requestPermissions(permissions, requestCode);
-    }
+			for (int i = 0; i < packInfo.requestedPermissions.length; i++) {
+				if ((packInfo.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0) granted.add(packInfo.requestedPermissions[i]);
+			}
+		} catch (Exception e) {
+			Log.e("Tools", e.toString());
+		}
 
-    public static Drawable getDrawable(String bytes) {
-        byte[] bytesArray = Base64.decode(bytes, Base64.DEFAULT);
+		return granted.toArray(new String[granted.size()]);
+	}
 
-        try {
-            return new BitmapDrawable(BitmapFactory.decodeByteArray(
-                bytesArray, 0, bytesArray.length));
-        } catch (IllegalArgumentException e) {
-            Log.e("Tools", e.toString());
-            return null;
-        }
-    }
+	public static void requestPermissions(
+		String[] permissions, int requestCode) {
+		Extension.mainActivity.requestPermissions(permissions, requestCode);
+	}
 
-    public static String getDrawableToBase64(Drawable drawable) {
-        BitmapDrawable daDrawable = (BitmapDrawable) drawable;
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        daDrawable.getBitmap().compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+	public static Drawable getDrawable(String bytes) {
+		byte[] bytesArray = Base64.decode(bytes, Base64.DEFAULT);
 
-        byte[] bytesArray = outputStream.toByteArray();
-        return Base64.encodeToString(bytesArray, Base64.DEFAULT);
-    }
+		try {
+			return new BitmapDrawable(BitmapFactory.decodeByteArray(
+				bytesArray, 0, bytesArray.length));
+		} catch (IllegalArgumentException e) {
+			Log.e("Tools", e.toString());
+			return null;
+		}
+	}
 
-    public static File getFilesDir() {
-        return Extension.mainContext.getFilesDir();
-    }
+	public static String getDrawableToBase64(Drawable drawable) {
+		BitmapDrawable daDrawable = (BitmapDrawable) drawable;
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		daDrawable.getBitmap().compress(Bitmap.CompressFormat.PNG, 100, outputStream);
 
-    public static File getExternalFilesDir(String type) {
-        return Extension.mainContext.getExternalFilesDir(type);
-    }
+		byte[] bytesArray = outputStream.toByteArray();
+		return Base64.encodeToString(bytesArray, Base64.DEFAULT);
+	}
 
-    public static File getCacheDir() {
-        return Extension.mainContext.getCacheDir();
-    }
+	public static File getFilesDir() {
+		return Extension.mainContext.getFilesDir();
+	}
 
-    public static File getExternalCacheDir() {
-        return Extension.mainContext.getExternalCacheDir();
-    }
+	public static File getExternalFilesDir(String type) {
+		return Extension.mainContext.getExternalFilesDir(type);
+	}
 
-    public static File getObbDir() {
-        return Extension.mainContext.getObbDir();
-    }
+	public static File getCacheDir() {
+		return Extension.mainContext.getCacheDir();
+	}
 
-    public static File getNoBackupFilesDir() {
-        return Extension.mainContext.getNoBackupFilesDir();
-    }
+	public static File getExternalCacheDir() {
+		return Extension.mainContext.getExternalCacheDir();
+	}
 
-    public static String fromFile(File file) {
-        return Uri.fromFile(file).toString();
-    }
+	public static File getObbDir() {
+		return Extension.mainContext.getObbDir();
+	}
 
-    public static void toast(final String message, final int duration) {
-        Extension.mainActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(Extension.mainContext, message, duration).show();
-            }
-        });
-    }
+	public static File getNoBackupFilesDir() {
+		return Extension.mainContext.getNoBackupFilesDir();
+	}
 
-    public static void sendText(final String data, final String textType) {
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, data);
-        sendIntent.setType(textType);
-        Extension.mainActivity.startActivity(Intent.createChooser(sendIntent, null));
-    }
+	public static String fromFile(File file) {
+		return Uri.fromFile(file).toString();
+	}
 
-    public static void launchApp(final String packageName) {
-        Extension.mainActivity.startActivity(Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName));
-    }
+	public static void toast(final String message, final int duration) {
+		Extension.mainActivity.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				Toast.makeText(Extension.mainContext, message, duration).show();
+			}
+		});
+	}
 
-    public static void runIntent(final String action, final String uri) {
-        Intent intent = new Intent(action);
-        if (uri != null)
-            intent.setData(Uri.parse(uri));
-        Extension.mainActivity.startActivity(intent);
-    }
+	public static void sendText(final String data, final String textType) {
+		Intent sendIntent = new Intent();
+		sendIntent.setAction(Intent.ACTION_SEND);
+		sendIntent.putExtra(Intent.EXTRA_TEXT, data);
+		sendIntent.setType(textType);
+		Extension.mainActivity.startActivity(Intent.createChooser(sendIntent, null));
+	}
 
-    public static void setBrightness(float brightness) {
-        WindowManager.LayoutParams layout = Extension.mainActivity.getWindow().getAttributes();
-        layout.screenBrightness = brightness;
-        Extension.mainActivity.getWindow().setAttributes(layout);
-    }
+	public static void launchApp(final String packageName) {
+		Extension.mainActivity.startActivity(Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName));
+	}
 
-    public static void vibrate(int duration, int period) {
-        Vibrator vibrator = (Vibrator) mainContext.getSystemService(Context.VIBRATOR_SERVICE);
+	public static void runIntent(final String action, final String uri) {
+		Intent intent = new Intent(action);
 
-        if (period == 0) {
-            vibrator.vibrate(duration);
-        } else {
-            int periodMS = (int) Math.ceil(period / 2);
-            int count = (int) Math.ceil((duration / period) * 2);
-            long[] pattern = new long[count];
+		if (uri != null)
+			intent.setData(Uri.parse(uri));
+		Extension.mainActivity.startActivity(intent);
+	}
 
-            for (int i = 0; i < count; i++) {
-                pattern[i] = periodMS;
-            }
+	public static void setBrightness(float brightness) {
+		WindowManager.LayoutParams layout = Extension.mainActivity.getWindow().getAttributes();
+		layout.screenBrightness = brightness;
+		Extension.mainActivity.getWindow().setAttributes(layout);
+	}
 
-            vibrator.vibrate(pattern, -1);
-        }
-    }
+	public static void vibrate(int duration, int period) {
+		Vibrator vibrator = (Vibrator) mainContext.getSystemService(Context.VIBRATOR_SERVICE);
+
+		if (period == 0) {
+			vibrator.vibrate(duration);
+		} else {
+			int periodMS = (int) Math.ceil(period / 2);
+			int count = (int) Math.ceil((duration / period) * 2);
+			long[] pattern = new long[count];
+
+			for (int i = 0; i < count; i++) {
+				pattern[i] = periodMS;
+			}
+
+			vibrator.vibrate(pattern, -1);
+		}
+	}
 }
