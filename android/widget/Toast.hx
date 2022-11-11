@@ -25,7 +25,7 @@ class Toast
 	 */
 	public static function makeText(text:String, duration:Int):Void
 	{
-		var toast_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'toast', '(Ljava/lang/String;I)V');
-		toast_jni(text, duration);
+		var makeText_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'makeText', '(Ljava/lang/String;I)V');
+		makeText_jni(text, duration);
 	}
 }
