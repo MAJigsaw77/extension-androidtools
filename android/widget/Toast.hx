@@ -20,7 +20,7 @@ class Toast
 	public static final LENGTH_SHORT:Int = 0;
 	public static final LENGTH_LONG:Int = 1;
 
-	private var constructor:Dynamic;
+	private static var constructor:Dynamic;
 
 	public function new():Void
 	{
