@@ -69,7 +69,6 @@ public class Tools extends Extension {
 	public static void makeText(final String message, final int duration) {
 		Extension.mainActivity.runOnUiThread(new Runnable() {
 			@Override
-
 			public void run() {
 				Toast.makeText(Extension.mainContext, message, duration).show();
 			}
