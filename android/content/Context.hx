@@ -6,6 +6,8 @@ package android.content;
 import lime.system.JNI;
 
 /**
+ * @see https://developer.android.com/reference/android/content/Context
+ *
  * @author Mihai Alexandru (M.A. Jigsaw)
  */
 #if !debug
