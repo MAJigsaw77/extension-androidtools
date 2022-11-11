@@ -49,11 +49,4 @@ class Context
 		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
 		return getAbsolutePath_jni(getObbDir_jni());
 	}
-
-	public static function getNoBackupFilesDir():String
-	{
-		var getNoBackupFilesDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getNoBackupFilesDir', '()Ljava/io/File;');
-		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
-		return getAbsolutePath_jni(getNoBackupFilesDir_jni());
-	}
 }
