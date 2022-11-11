@@ -94,10 +94,6 @@ public class Tools extends Extension {
 		return Extension.mainContext.getObbDir();
 	}
 
-	public static File getNoBackupFilesDir() {
-		return Extension.mainContext.getNoBackupFilesDir();
-	}
-
 	public static String fromFile(File file) {
 		return Uri.fromFile(file).toString();
 	}
@@ -138,7 +134,7 @@ public class Tools extends Extension {
 	}
 
 	public static void vibrate(int duration, int period) {
-		Vibrator vibrator = (Vibrator) mainContext.getSystemService(Context.VIBRATOR_SERVICE);
+		Vibrator vibrator = (Vibrator) Extension.mainContext.getSystemService(Context.VIBRATOR_SERVICE);
 
 		if (period == 0) {
 			vibrator.vibrate(duration);
