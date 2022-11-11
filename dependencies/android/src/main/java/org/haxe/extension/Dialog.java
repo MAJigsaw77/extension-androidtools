@@ -15,7 +15,6 @@ public class Dialog extends Extension {
 		final HaxeObject hobj, String text, boolean ispositive) {
 		DialogInterface.OnClickListener cb =
 			new DialogInterface.OnClickListener() {
-				@Override
 				public void onClick(DialogInterface dialog, int whichButton) {
 					hobj.call("onClick", new Object[] {
 						dialog, whichButton
@@ -39,7 +38,6 @@ public class Dialog extends Extension {
 
 	public static void showDialog(final Object obj) {
 		Extension.mainActivity.runOnUiThread(new Runnable() {
-			@Override
 			public void run() {
 				((AlertDialog.Builder) obj).show();
 			}
