@@ -27,15 +27,6 @@ class AlertDialog
 		builder = JNI.createStaticMethod('org/haxe/extension/Dialog', 'createBuilder', '()Ljava/lang/Object;');
 	}
 
-	/**
-	 * Not working for now.
-	 */
-	public function setView(view:Dynamic):AlertDialog
-	{
-		JNI.callMember(getMemberMethod('setView', "(Landroid/view/View;)Landroid/app/AlertDialog$Builder;"), builder, [view]);
-		return this;
-	}
-
 	public function setCancelable(value:Bool = true):AlertDialog
 	{
 		JNI.callMember(getMemberMethod('setCancelable', "(Z)Landroid/app/AlertDialog$Builder;"), builder, [value]);
@@ -63,8 +54,8 @@ class AlertDialog
 			'(Ljava/lang/String;)Landroid/graphics/drawable/Drawable;');
 		JNI.callMember(getMemberMethod('setIcon', "(Landroid/graphics/drawable/Drawable;)Landroid/app/AlertDialog$Builder;"), builder,
 			[getDrawable_jni(Base64.encode(bytes))]);
-		bytes.clear();
 
+		bytes.clear();
 		return this;
 	}
 
@@ -73,7 +64,6 @@ class AlertDialog
 		var setButton_jni = JNI.createStaticMethod('org/haxe/extension/Dialog', 'setButton',
 			"(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V");
 		setButton_jni(builder, new ClickEventListener(callback), name, true);
-
 		return this;
 	}
 
@@ -82,7 +72,6 @@ class AlertDialog
 		var setButton_jni = JNI.createStaticMethod('org/haxe/extension/Dialog', 'setButton',
 			"(Landroid/app/AlertDialog$Builder;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Z)V");
 		setButton_jni(builder, new ClickEventListener(callback), name, false);
-
 		return this;
 	}
 
@@ -90,7 +79,6 @@ class AlertDialog
 	{
 		var showDialog_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Dialog', 'showDialog', '(Ljava/lang/Object;)V');
 		showDialog_jni(builder);
-
 		return this;
 	}
 
