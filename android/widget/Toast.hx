@@ -49,7 +49,7 @@ class Toast
 
 	public static function makeText(text:String, duration:Int):Toast
 	{
-		var toast_jni:Dynamic = JNI.createStaticMethod('android/widget/Toast', 'makeText', '(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;');
+		var makeText_jni:Dynamic = JNI.createStaticMethod('android/widget/Toast', 'makeText', '(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;');
 		var mainContext:Dynamic = JNI.createStaticField('org/haxe/extension/Extension', 'mainContext', 'Landroid/content/Context;').get();
 
 		constructor = makeText_jni(mainContext, text, duration);
