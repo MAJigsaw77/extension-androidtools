@@ -25,12 +25,9 @@ class Toast
 	public function new():Void
 	{
 		var constructor_jni:Dynamic = JNI.createStaticMethod('android/widget/Toast', '<init>', '(Landroid/content/Context;)V');
-		var mainContext:Dynamic = JNI.createStaticField('org/haxe/extension/Extension', 'mainContext', 'Landroid/content/Context;');
-		constructor = constructor_jni(mainContext.get());
+		var mainContext:Dynamic = JNI.createStaticField('org/haxe/extension/Extension', 'mainContext', 'Landroid/content/Context;').get();
+		constructor = constructor_jni(mainContext);
 	}
-
-	public function cancel():Void
-		JNI.callMember(JNI.createMemberMethod('android/widget/Toast', 'cancel', '()V'), constructor, []);
 
 	public function getDuration():Int
 		return JNI.callMember(JNI.createMemberMethod('android/widget/Toast', 'getDuration', '()I'), constructor, []);
@@ -52,10 +49,10 @@ class Toast
 
 	public static function makeText(text:String, duration:Int):Toast
 	{
-		var toast_jni:Dynamic = JNI.createStaticMethod('android/widget/Toast', 'makeText', '(Landroid/content/Context;Ljava/lang/String;I)V');
-		var mainContext:Dynamic = JNI.createStaticField('org/haxe/extension/Extension', 'mainContext', 'Landroid/content/Context;');
+		var toast_jni:Dynamic = JNI.createStaticMethod('android/widget/Toast', 'makeText', '(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;');
+		var mainContext:Dynamic = JNI.createStaticField('org/haxe/extension/Extension', 'mainContext', 'Landroid/content/Context;').get();
 
-		constructor = makeText_jni(mainContext.get(), text, duration);
+		constructor = makeText_jni(mainContext, text, duration);
 		return this;
 	}
 
@@ -76,7 +73,4 @@ class Toast
 
 	public function cancel():Void
 		JNI.callMember(JNI.createMemberMethod('android/widget/Toast', 'cancel', '()V'), constructor, []);
-
-	private function getMemberMethod(name:String, sig:String):Dynamic
-		return JNI.createMemberMethod('android/widget/Toast', name, sig);
 }
