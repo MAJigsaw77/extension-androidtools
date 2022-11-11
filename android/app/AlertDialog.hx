@@ -1,4 +1,4 @@
-package android;
+package android.app;
 
 #if (!android && !native && macro)
 #error 'extension-androidtools is not supported on your current platform'
