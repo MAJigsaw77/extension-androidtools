@@ -75,13 +75,13 @@ class Toast
 
 	public function show():Void
 	{
-		var show_jni:Dynamic = JNI.createStaticMethod('android/widget/Toast', 'makeText', '(Landroid/widget/Toast;)V');
+		var show_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'showToast', '(Landroid/widget/Toast;)V');
 		show_jni(constructor);
 	}
 
 	public function cancel():Void
 	{
-		var cancel_jni:Dynamic = JNI.createStaticMethod('android/widget/Toast', 'makeText', '(Landroid/widget/Toast;)V');
+		var cancel_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'cancelToast', '(Landroid/widget/Toast;)V');
 		cancel_jni(constructor);
 	}
 }
