@@ -17,8 +17,8 @@ import lime.system.JNI;
 @:access(lime.system.JNI)
 class Toast
 {
-	public static final LENGTH_SHORT = 0;
-	public static final LENGTH_LONG = 1;
+	public static final LENGTH_SHORT:Int = 0;
+	public static final LENGTH_LONG:Int = 1;
 
 	/**
 	 * Makes a toast text.
