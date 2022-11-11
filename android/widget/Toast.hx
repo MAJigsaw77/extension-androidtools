@@ -69,8 +69,14 @@ class Toast
 		JNI.callMember(JNI.createMemberMethod('android/widget/Toast', 'setText', '(Ljava/lang/CharSequence;)V'), constructor, [s]);
 
 	public function show():Void
-		JNI.callMember(JNI.createMemberMethod('android/widget/Toast', 'show', '()V'), constructor, []);
+	{
+		var show_jni:Dynamic = JNI.createStaticMethod('android/widget/Toast', 'makeText', '(Landroid/widget/Toast;)V');
+		show_jni(constructor);
+	}
 
 	public function cancel():Void
-		JNI.callMember(JNI.createMemberMethod('android/widget/Toast', 'cancel', '()V'), constructor, []);
+	{
+		var cancel_jni:Dynamic = JNI.createStaticMethod('android/widget/Toast', 'makeText', '(Landroid/widget/Toast;)V');
+		cancel_jni(constructor);
+	}
 }
