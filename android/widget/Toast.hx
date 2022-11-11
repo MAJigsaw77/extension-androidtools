@@ -22,8 +22,14 @@ class Toast
 
 	private static var constructor:Dynamic;
 
-	public function new():Void
+	public function new(?newCostructor:Dynamic):Void
 	{
+		if (newCostructor != null)
+		{
+			constructor = newCostructor;
+			return;
+		}
+
 		var constructor_jni:Dynamic = JNI.createStaticMethod('android/widget/Toast', '<init>', '(Landroid/content/Context;)V');
 		var mainContext:Dynamic = JNI.createStaticField('org/haxe/extension/Extension', 'mainContext', 'Landroid/content/Context;').get();
 		constructor = constructor_jni(mainContext);
@@ -52,8 +58,7 @@ class Toast
 		var makeText_jni:Dynamic = JNI.createStaticMethod('android/widget/Toast', 'makeText', '(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;');
 		var mainContext:Dynamic = JNI.createStaticField('org/haxe/extension/Extension', 'mainContext', 'Landroid/content/Context;').get();
 
-		constructor = makeText_jni(mainContext, text, duration);
-		return this;
+		return new Toast(makeText_jni(mainContext, text, duration)); // i could use `this` but apparently it isn't working on static function.
 	}
 
 	public function setDuration(duration:Int):Void
