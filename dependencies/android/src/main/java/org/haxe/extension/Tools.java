@@ -1,33 +1,20 @@
 package org.haxe.extension;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.util.Log;
-import android.graphics.Point;
 import android.net.Uri;
-import android.os.PowerManager;
-import android.os.PowerManager.WakeLock;
 import android.os.Vibrator;
-import android.view.Display;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.util.Base64;
 
-import org.haxe.extension.Extension;
-import org.haxe.lime.HaxeObject;
-
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.haxe.extension.Extension;
 
 /* 
 	You can use the Android Extension class in order to hook
@@ -55,7 +42,6 @@ import java.util.List;
 	function for performing a single task, like returning a value
 	back to Haxe from Java.
 */
-
 public class Tools extends Extension {
 
 	public static String[] getGrantedPermissions() {
@@ -78,30 +64,6 @@ public class Tools extends Extension {
 	public static void requestPermissions(
 		String[] permissions, int requestCode) {
 		Extension.mainActivity.requestPermissions(permissions, requestCode);
-	}
-
-	public static File getFilesDir() {
-		return Extension.mainContext.getFilesDir();
-	}
-
-	public static File getExternalFilesDir(String type) {
-		return Extension.mainContext.getExternalFilesDir(type);
-	}
-
-	public static File getCacheDir() {
-		return Extension.mainContext.getCacheDir();
-	}
-
-	public static File getExternalCacheDir() {
-		return Extension.mainContext.getExternalCacheDir();
-	}
-
-	public static File getObbDir() {
-		return Extension.mainContext.getObbDir();
-	}
-
-	public static String fromFile(File file) {
-		return Uri.fromFile(file).toString();
 	}
 
 	public static void makeText(final String message, final int duration) {
@@ -148,6 +110,30 @@ public class Tools extends Extension {
 
 			vibrator.vibrate(pattern, -1);
 		}
+	}
+
+	public static File getFilesDir() {
+		return Extension.mainContext.getFilesDir();
+	}
+
+	public static File getExternalFilesDir(String type) {
+		return Extension.mainContext.getExternalFilesDir(type);
+	}
+
+	public static File getCacheDir() {
+		return Extension.mainContext.getCacheDir();
+	}
+
+	public static File getExternalCacheDir() {
+		return Extension.mainContext.getExternalCacheDir();
+	}
+
+	public static File getObbDir() {
+		return Extension.mainContext.getObbDir();
+	}
+
+	public static String fromFile(File file) {
+		return Uri.fromFile(file).toString();
 	}
 
 	/**
