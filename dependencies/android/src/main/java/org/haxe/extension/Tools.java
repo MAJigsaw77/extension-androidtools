@@ -77,11 +77,20 @@ public class Tools extends Extension {
 		return Uri.fromFile(file).toString();
 	}
 
-	public static void toast(final String message, final int duration) {
+	public static void showToast(Toast toast) {
 		Extension.mainActivity.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				Toast.makeText(Extension.mainContext, message, duration).show();
+				toast.show();
+			}
+		});
+	}
+
+	public static void cancelToast(Toast toast) {
+		Extension.mainActivity.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				toast.cancel();
 			}
 		});
 	}
