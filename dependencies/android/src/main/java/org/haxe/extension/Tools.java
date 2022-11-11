@@ -53,27 +53,6 @@ public class Tools extends Extension {
 		Extension.mainActivity.requestPermissions(permissions, requestCode);
 	}
 
-	public static Drawable getDrawable(String bytes) {
-		byte[] bytesArray = Base64.decode(bytes, Base64.DEFAULT);
-
-		try {
-			return new BitmapDrawable(BitmapFactory.decodeByteArray(
-				bytesArray, 0, bytesArray.length));
-		} catch (IllegalArgumentException e) {
-			Log.e("Tools", e.toString());
-			return null;
-		}
-	}
-
-	public static String getDrawableToBase64(Drawable drawable) {
-		BitmapDrawable daDrawable = (BitmapDrawable) drawable;
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		daDrawable.getBitmap().compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-
-		byte[] bytesArray = outputStream.toByteArray();
-		return Base64.encodeToString(bytesArray, Base64.DEFAULT);
-	}
-
 	public static File getFilesDir() {
 		return Extension.mainContext.getFilesDir();
 	}
