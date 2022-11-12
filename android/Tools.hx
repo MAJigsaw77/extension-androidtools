@@ -30,7 +30,7 @@ class Tools
 	public static function launchPackage(packageName:String):Void
 	{
 		var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;)V');
-		launchPackagep_jni(packageName);
+		launchPackage_jni(packageName);
 	}
 
 	/**
@@ -43,8 +43,8 @@ class Tools
 		else if (brightness < 0)
 			brightness = 0;
 
-		var setbrightness_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'setBrightness', '(F)V');
-		setbrightness_jni(brightness);
+		var setBrightness_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'setBrightness', '(F)V');
+		setBrightness_jni(brightness);
 	}
 
 	/**
