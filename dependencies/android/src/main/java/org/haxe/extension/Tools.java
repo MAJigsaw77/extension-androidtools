@@ -97,7 +97,7 @@ public class Tools extends Extension {
 		Extension.mainActivity.startActivity(Intent.createChooser(sendIntent, null));
 	}
 
-	public static void launchApp(final String packageName) {
+	public static void launchPackage(final String packageName) {
 		Extension.mainActivity.startActivity(Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName));
 	}
 
