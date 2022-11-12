@@ -52,7 +52,25 @@ class Uri
 	public static function fromFile(path:String):String
 	{
 		var file_jni:Dynamic = JNI.createStaticMethod('java/io/File', '<init>', '(Ljava/lang/String;)V');
-		var fromFile_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'fromFile', '(Ljava/io/File;)Ljava/lang/String;');
-		return fromFile_jni(file_jni(path));
+		var fromFile_jni:Dynamic = JNI.createStaticMethod('android/net/Uri', 'fromFile', '(Ljava/io/File;)Landroid/net/Uri;');
+
+		var toString_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'uriToString', '(Landroid/net/Uri;)Ljava/lang/String;');
+		return toString_jni(fromFile_jni(file_jni(path)));
+	}
+
+	/**
+	 * Creates an opaque Uri from the given components.
+	 * Encodes the ssp which means this method cannot be used to create hierarchical URIs.
+	 *
+	 * @param scheme
+	 * @param ssp
+	 * @param fragment
+	 */
+	public static function fromParts(scheme:String, ssp:String, fragment:String):String
+	{
+		var fromParts_jni:Dynamic = JNI.createStaticMethod('android/net/Uri', 'fromParts', '(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/net/Uri;');
+
+		var toString_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'uriToString', '(Landroid/net/Uri;)Ljava/lang/String;');
+		return toString_jni(fromParts_jni(scheme, ssp, fragment));
 	}
 }
