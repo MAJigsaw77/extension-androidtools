@@ -34,6 +34,16 @@ class Tools
 	}
 
 	/**
+	 * Returns `true` If the device have root.
+	 * Returns `false` If the device doesn't have root or there`s a error while the process is runned.
+	 */
+	public static function isRooted():Bool
+	{
+		var isRooted_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z');
+		return isRooted_jni();
+	}
+
+	/**
 	 * Sets the phone brightness, max is 1 and min is 0.
 	 */
 	public static function setBrightness(brightness:Float):Void
