@@ -67,7 +67,9 @@ public class Tools extends Extension {
 				Extension.mainContext.getPackageName(), PackageManager.GET_PERMISSIONS);
 
 			for (int i = 0; i < packInfo.requestedPermissions.length; i++) {
-				if ((packInfo.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0) granted.add(packInfo.requestedPermissions[i]);
+				if ((packInfo.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0) {
+					granted.add(packInfo.requestedPermissions[i]);
+				}
 			}
 		} catch (Exception e) {
 			Log.e("Tools", e.toString());
@@ -99,6 +101,26 @@ public class Tools extends Extension {
 
 	public static void launchPackage(final String packageName) {
 		Extension.mainActivity.startActivity(Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName));
+	}
+
+	public static boolean isRooted() {
+		try {
+			// Preform su to get root privledges  
+			Process process = Runtime.getRuntime().exec('su');
+
+			try {
+				process.waitFor();
+				if (process.exitValue() != 255) {
+					return true;
+				}
+			} catch (InterruptedException e) {
+				Log.e("Tools", e.toString());
+			}
+		} catch (IOException e) {
+			Log.e("Tools", e.toString());
+		}
+
+		return false;
 	}
 
 	public static void setBrightness(float brightness) {
