@@ -1,12 +1,15 @@
 package org.haxe.extension;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -43,6 +46,18 @@ import org.haxe.extension.Extension;
 	back to Haxe from Java.
 */
 public class Tools extends Extension {
+
+	public static Activity getMainActivity() {
+		return Extension.mainActivity;
+	}
+
+	public static Context getMainContext() {
+		return Extension.mainContext;
+	}
+
+	public static View getMainView() {
+		return Extension.mainView;
+	}
 
 	public static String[] getGrantedPermissions() {
 		List<String> granted = new ArrayList<String>();
@@ -131,8 +146,8 @@ public class Tools extends Extension {
 		return Extension.mainContext.getObbDir();
 	}
 
-	public static String fromFile(File file) {
-		return Uri.fromFile(file).toString();
+	public static String uriToString(Uri uri) {
+		return uri.toString(); // this is abstract, I can't call this in jni.
 	}
 
 	/**
