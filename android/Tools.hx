@@ -25,12 +25,12 @@ class Tools
 	}
 
 	/**
-	 * Launches a app.
+	 * Launches a app by the `packageName`.
 	 */
-	public static function launchApp(packageName:String):Void
+	public static function launchPackage(packageName:String):Void
 	{
-		var launchApp_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchApp', '(Ljava/lang/String;)V');
-		launchApp_jni(packageName);
+		var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;)V');
+		launchPackagep_jni(packageName);
 	}
 
 	/**
