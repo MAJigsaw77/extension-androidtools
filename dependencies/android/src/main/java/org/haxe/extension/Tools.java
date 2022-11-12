@@ -106,7 +106,7 @@ public class Tools extends Extension {
 	public static boolean isRooted() {
 		try {
 			// Preform su to get root privledges  
-			Process process = Runtime.getRuntime().exec('su');
+			Process process = Runtime.getRuntime().exec("su");
 
 			try {
 				process.waitFor();
