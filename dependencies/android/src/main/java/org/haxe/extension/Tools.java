@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
@@ -108,44 +109,48 @@ public class Tools extends Extension {
 		try {
 			// Preform su to get root privledges  
 			Process process = Runtime.getRuntime().exec("su");
-
-			try {
-				process.waitFor();
-				if (process.exitValue() != 255) {
-					return true;
-				}
-			} catch (InterruptedException e) {
-				Log.e("Tools", e.toString());
+			process.waitFor();
+			if (process.exitValue() != 255) {
+				return true;
 			}
 		} catch (IOException e) {
+			Log.e("Tools", e.toString());
+		} catch (InterruptedException e) {
 			Log.e("Tools", e.toString());
 		}
 
 		return false;
 	}
 
-	public static void setBrightness(float brightness) {
-		WindowManager.LayoutParams layout = Extension.mainActivity.getWindow().getAttributes();
-		layout.screenBrightness = brightness;
+	public static void setBrightness(float screenBrightness) {
+		WindowManager.LayoutParams attributes = Extension.mainActivity.getWindow().getAttributes();
+		attributes.screenBrightness = screenBrightness;
 		Extension.mainActivity.getWindow().setAttributes(layout);
 	}
 
 	public static void vibrate(int duration, int period) {
-		Vibrator vibrator = (Vibrator) Extension.mainContext.getSystemService(Context.VIBRATOR_SERVICE);
+		Vibrator contextVibrator = (Vibrator) Extension.mainContext.getSystemService(Context.VIBRATOR_SERVICE);
 
-		if (period == 0) {
-			vibrator.vibrate(duration);
-		} else {
-			int periodMS = (int) Math.ceil(period / 2);
-			int count = (int) Math.ceil((duration / period) * 2);
-			long[] pattern = new long[count];
+		// maybe some devices doesn't have a vibrator idk.
+		if (contextVibrator.hasVibrator) {
+			if (period == 0) {
+				contextVibrator.vibrate(duration);
+			} else {
+				int periodMS = (int) Math.ceil(period / 2);
+				int count = (int) Math.ceil((duration / period) * 2);
+				long[] pattern = new long[count];
 
-			for (int i = 0; i < count; i++) {
-				pattern[i] = periodMS;
+				for (int i = 0; i < count; i++) {
+					pattern[i] = periodMS;
+				}
+
+				contextVibrator.vibrate(pattern, -1);
 			}
-
-			vibrator.vibrate(pattern, -1);
 		}
+	}
+
+	public static String getStringFromUri(Uri uri) {
+		return uri.toString(); // this is abstract, I can't call this in jni.
 	}
 
 	public static File getFilesDir() {
@@ -166,10 +171,6 @@ public class Tools extends Extension {
 
 	public static File getObbDir() {
 		return Extension.mainContext.getObbDir();
-	}
-
-	public static String uriToString(Uri uri) {
-		return uri.toString(); // this is abstract, I can't call this in jni.
 	}
 
 	/**
