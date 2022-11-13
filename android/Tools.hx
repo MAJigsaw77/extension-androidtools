@@ -44,17 +44,26 @@ class Tools
 	}
 
 	/**
-	 * Sets the phone brightness, max is 1 and min is 0.
+	 * Sets brightness of the main window, max is 1 and min is 0.
 	 */
-	public static function setBrightness(brightness:Float):Void
+	public static function setBrightness(screenBrightness:Float):Void
 	{
-		if (brightness > 1)
-			brightness = 1;
-		else if (brightness < 0)
-			brightness = 0;
+		if (screenBrightness > 1)
+			screenBrightness = 1;
+		else if (screenBrightness < 0)
+			screenBrightness = 0;
 
 		var setBrightness_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'setBrightness', '(F)V');
-		setBrightness_jni(brightness);
+		setBrightness_jni(screenBrightness);
+	}
+
+	/**
+	 * Return the brightness of the main window.
+	 */
+	public static function getBrightness():Float
+	{
+		var getBrightness_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getBrightness', '()F');
+		return getBrightness_jni();
 	}
 
 	/**
