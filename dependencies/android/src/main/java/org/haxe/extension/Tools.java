@@ -128,6 +128,11 @@ public class Tools extends Extension {
 		Extension.mainActivity.getWindow().setAttributes(layout);
 	}
 
+	public static float getBrightness() {
+		WindowManager.LayoutParams attributes = Extension.mainActivity.getWindow().getAttributes();
+		return attributes.screenBrightness;
+	}
+
 	public static void vibrate(int duration, int period) {
 		Vibrator contextVibrator = (Vibrator) Extension.mainContext.getSystemService(Context.VIBRATOR_SERVICE);
 
