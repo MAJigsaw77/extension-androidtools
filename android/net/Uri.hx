@@ -54,8 +54,8 @@ class Uri
 		var file_jni:Dynamic = JNI.createStaticMethod('java/io/File', '<init>', '(Ljava/lang/String;)V');
 		var fromFile_jni:Dynamic = JNI.createStaticMethod('android/net/Uri', 'fromFile', '(Ljava/io/File;)Landroid/net/Uri;');
 
-		var toString_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'uriToString', '(Landroid/net/Uri;)Ljava/lang/String;');
-		return toString_jni(fromFile_jni(file_jni(path)));
+		var getStringFromUri_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getStringFromUri', '(Landroid/net/Uri;)Ljava/lang/String;');
+		return getStringFromUri_jni(fromFile_jni(file_jni(path)));
 	}
 
 	/**
@@ -70,7 +70,7 @@ class Uri
 	{
 		var fromParts_jni:Dynamic = JNI.createStaticMethod('android/net/Uri', 'fromParts', '(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/net/Uri;');
 
-		var toString_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'uriToString', '(Landroid/net/Uri;)Ljava/lang/String;');
-		return toString_jni(fromParts_jni(scheme, ssp, fragment));
+		var getStringFromUri_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getStringFromUri', '(Landroid/net/Uri;)Ljava/lang/String;');
+		return getStringFromUri_jni(fromParts_jni(scheme, ssp, fragment));
 	}
 }
