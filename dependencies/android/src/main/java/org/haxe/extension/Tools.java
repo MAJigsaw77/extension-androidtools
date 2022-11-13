@@ -49,18 +49,6 @@ import org.haxe.extension.Extension;
 */
 public class Tools extends Extension {
 
-	public static Activity getMainActivity() {
-		return Extension.mainActivity;
-	}
-
-	public static Context getMainContext() {
-		return Extension.mainContext;
-	}
-
-	public static View getMainView() {
-		return Extension.mainView;
-	}
-
 	public static String[] getGrantedPermissions() {
 		List<String> granted = new ArrayList<String>();
 
@@ -91,14 +79,6 @@ public class Tools extends Extension {
 				Toast.makeText(Extension.mainContext, message, duration).show();
 			}
 		});
-	}
-
-	public static void sendText(final String data, final String textType) {
-		Intent sendIntent = new Intent();
-		sendIntent.setAction(Intent.ACTION_SEND);
-		sendIntent.putExtra(Intent.EXTRA_TEXT, data);
-		sendIntent.setType(textType);
-		Extension.mainActivity.startActivity(Intent.createChooser(sendIntent, null));
 	}
 
 	public static void launchPackage(final String packageName) {
@@ -134,12 +114,12 @@ public class Tools extends Extension {
 	}
 
 	public static void vibrate(int duration, int period) {
-		Vibrator contextVibrator = (Vibrator) Extension.mainContext.getSystemService(Context.VIBRATOR_SERVICE);
+		Vibrator vibrator = (Vibrator) Extension.mainContext.getSystemService(Context.VIBRATOR_SERVICE);
 
 		// maybe some devices doesn't have a vibrator idk.
-		if (contextVibrator.hasVibrator) {
+		if (vibrator.hasVibrator()) {
 			if (period == 0) {
-				contextVibrator.vibrate(duration);
+				vibrator.vibrate(duration);
 			} else {
 				int periodMS = (int) Math.ceil(period / 2);
 				int count = (int) Math.ceil((duration / period) * 2);
@@ -149,7 +129,7 @@ public class Tools extends Extension {
 					pattern[i] = periodMS;
 				}
 
-				contextVibrator.vibrate(pattern, -1);
+				vibrator.vibrate(pattern, -1);
 			}
 		}
 	}
@@ -178,6 +158,18 @@ public class Tools extends Extension {
 		return Extension.mainContext.getObbDir();
 	}
 
+	public static Activity getMainActivity() {
+		return Extension.mainActivity;
+	}
+
+	public static Context getMainContext() {
+		return Extension.mainContext;
+	}
+
+	public static View getMainView() {
+		return Extension.mainView;
+	}
+
 	/**
 	 * Called when an activity you launched exits, giving you the requestCode 
 	 * you started it with, the resultCode it returned, and any additional data 
@@ -188,57 +180,9 @@ public class Tools extends Extension {
 	}
 
 	/**
-	 * Called when the activity is starting.
+	 * Callback for the result from requesting permissions.
 	 */
-	public void onCreate(Bundle savedInstanceState) {
-
-	}
-
-	/**
-	 * Perform any final cleanup before an activity is destroyed.
-	 */
-	public void onDestroy() {
-
-	}
-
-	/**
-	 * Called as part of the activity lifecycle when an activity is going into
-	 * the background, but has not (yet) been killed.
-	 */
-	public void onPause() {
-
-	}
-
-	/**
-	 * Called after {@link #onStop} when the current activity is being 
-	 * re-displayed to the user (the user has navigated back to it).
-	 */
-	public void onRestart() {
-
-	}
-
-	/**
-	 * Called after {@link #onRestart}, or {@link #onPause}, for your activity 
-	 * to start interacting with the user.
-	 */
-	public void onResume() {
-
-	}
-
-	/**
-	 * Called after {@link #onCreate} &mdash; or after {@link #onRestart} when  
-	 * the activity had been stopped, but is now again being displayed to the 
-	 * user.
-	 */
-	public void onStart() {
-
-	}
-
-	/**
-	 * Called when the activity is no longer visible to the user, because 
-	 * another activity has been resumed and is covering this one. 
-	 */
-	public void onStop() {
-
+	public boolean onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+		return true;
 	}
 }
