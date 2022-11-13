@@ -16,15 +16,6 @@ import lime.system.JNI;
 class Tools
 {
 	/**
-	 * Shares a text.
-	 */
-	public static function sendText(text:String, textType:String):Void
-	{
-		var sendText_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'sendText', '(Ljava/lang/String;Ljava/lang/String;)V');
-		sendText_jni(text, textType);
-	}
-
-	/**
 	 * Launches a app by the `packageName`.
 	 */
 	public static function launchPackage(packageName:String):Void
