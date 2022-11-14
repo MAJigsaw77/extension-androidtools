@@ -28,7 +28,7 @@ class CallBack
 		if (initialized)
 			return;
 
-		var initCallBack_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'initCallBack"/', '(Lorg/haxe/lime/HaxeObject;)V');
+		var initCallBack_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'initCallBack', '(Lorg/haxe/lime/HaxeObject;)V');
 		initCallBack_jni(new CallBackHandler());
 
 		initialized = true;
