@@ -187,7 +187,7 @@ public class Tools extends Extension {
 		return Extension.mainView;
 	}
 
-	public static void initCallback(final HaxeObject hclass) {
+	public static void initCallBack(final HaxeObject hclass) {
 		hobject = hclass;
 	}
 
