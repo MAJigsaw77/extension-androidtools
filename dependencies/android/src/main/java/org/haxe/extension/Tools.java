@@ -191,7 +191,7 @@ public class Tools extends Extension {
 		hobject = hclass;
 	}
 
-	private static void callOnHaxe(final String name, final Object[] objects) {
+	private void callOnHaxe(final String name, final Object[] objects) {
 		if (hobject != null) {
 			Extension.mainActivity.runOnUiThread(new Runnable() {
 				@Override
