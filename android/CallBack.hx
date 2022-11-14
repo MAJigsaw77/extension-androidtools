@@ -81,7 +81,7 @@ class CallBackEvent extends Event
 	}
 }
 
-private class CallBackHandler
+class CallBackHandler
 {
 	public function new() {}
 
