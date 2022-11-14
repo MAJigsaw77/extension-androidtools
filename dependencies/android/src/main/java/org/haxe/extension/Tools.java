@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.ArrayMap;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -19,7 +20,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import org.haxe.extension.Extension;
+import org.haxe.lime.HaxeObject;
 
 /* 
 	You can use the Android Extension class in order to hook
@@ -38,7 +43,7 @@ import org.haxe.extension.Extension;
 
 	You can also make references to static or instance methods
 	and properties on Java classes. These classes can be included 
-	as single files using < java path="to/File.java" /> within your
+	as single files using <java path="to/File.java" /> within your
 	project, or use the full Android Library Project format (such
 	as this example) in order to include your own AndroidManifest
 	data, additional dependencies, etc.
@@ -48,6 +53,10 @@ import org.haxe.extension.Extension;
 	back to Haxe from Java.
 */
 public class Tools extends Extension {
+
+	private static HaxeObject hobject;
+
+	private static Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
 
 	public static String[] getGrantedPermissions() {
 		List<String> granted = new ArrayList<String>();
@@ -68,7 +77,7 @@ public class Tools extends Extension {
 		return granted.toArray(new String[granted.size()]);
 	}
 
-	public static void requestPermissions(String[] permissions, int requestCode) {
+	public static void requestPermissions(final String[] permissions, final int requestCode) {
 		Extension.mainActivity.requestPermissions(permissions, requestCode);
 	}
 
@@ -109,7 +118,7 @@ public class Tools extends Extension {
 		return false;
 	}
 
-	public static void setBrightness(float screenBrightness) {
+	public static void setBrightness(final float screenBrightness) {
 		WindowManager.LayoutParams attributes = Extension.mainActivity.getWindow().getAttributes();
 		attributes.screenBrightness = screenBrightness;
 		Extension.mainActivity.getWindow().setAttributes(attributes);
@@ -120,7 +129,7 @@ public class Tools extends Extension {
 		return attributes.screenBrightness;
 	}
 
-	public static void vibrate(int duration, int period) {
+	public static void vibrate(final int duration, final int period) {
 		Vibrator vibrator = (Vibrator) Extension.mainContext.getSystemService(Context.VIBRATOR_SERVICE);
 
 		// maybe some devices doesn't have a vibrator idk.
@@ -141,7 +150,7 @@ public class Tools extends Extension {
 		}
 	}
 
-	public static String getStringFromUri(Uri uri) {
+	public static String getStringFromUri(final Uri uri) {
 		return uri.toString(); // this is abstract, I can't call this in jni.
 	}
 
@@ -177,12 +186,32 @@ public class Tools extends Extension {
 		return Extension.mainView;
 	}
 
+	public static void initCallback(final HaxeObject hclass) {
+		hobject = hclass;
+	}
+
+	private static void callOnHaxe(final String name, final Object[] objects) {
+		if (hobject != null) {
+			Extension.mainActivity.runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					hobject.call(name, objects);
+				}
+			});
+		}
+	}
+
 	/**
 	 * Called when an activity you launched exits, giving you the requestCode 
 	 * you started it with, the resultCode it returned, and any additional data 
 	 * from it.
 	 */
 	public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
+		ArrayMap<String, Object> intent = new ArrayMap<String, Object>();
+		intent.put("extras", data.getExtras().copy());
+		intent.put("data", data.getData().toString());
+
+		callOnHaxe("onActivityResult", [requestCode, resultCode, gson.toJson(intent)]);
 		return true;
 	}
 
