@@ -86,13 +86,13 @@ private class CallBackHandler
 
 	public function onActivityResult(content:String):Void
 	{
-		var daEvent:CallBackEvent = new CallBackEvent(CallBackEvent.PURCHASE_CONSUME_SUCCESS, Json.parse(content));		
+		var daEvent:CallBackEvent = new CallBackEvent(CallBackEvent.ACTIVITY_RESULT, Json.parse(content));		
 		CallBack.dispatchEvent(daEvent);
 	}
 
 	public function onRequestPermissionsResult(content:String):Void
 	{
-		var daEvent:CallBackEvent = new CallBackEvent(CallBackEvent.PURCHASE_CONSUME_SUCCESS, Json.parse(content));		
+		var daEvent:CallBackEvent = new CallBackEvent(CallBackEvent.REQUEST_PERMISSIONS_RESULT, Json.parse(content));		
 		CallBack.dispatchEvent(daEvent);
 	}
 }
