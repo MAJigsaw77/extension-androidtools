@@ -209,7 +209,7 @@ public class Tools extends Extension {
 	 */
 	public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
 		ArrayMap<String, Object> intent = new ArrayMap<String, Object>();
-		intent.put("extras", data.getExtras().copy());
+		intent.put("extras", data.getExtras().clone());
 		intent.put("uri", data.getData().toString());
 
 		ArrayMap<String, Object> content = new ArrayMap<String, Object>();
