@@ -90,15 +90,15 @@ public class Tools extends Extension {
 		});
 	}
 
-	public static void launchPackage(final String packageName) {
-		Extension.mainActivity.startActivity(Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName));
+	public static void launchPackage(final String packageName, final int requestCode) {
+		Extension.mainActivity.startActivityForResult(Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName), requestCode);
 	}
 
-	public static void browseFiles() {
+	public static void browseFiles(final int requestCode) {
 		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 		intent.setType("*/*");
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
-		Extension.mainActivity.startActivity(Intent.createChooser(intent, "Select a File to Upload"));
+		Extension.mainActivity.startActivityForResult(Intent.createChooser(intent, null), requestCode);
 	}
 
 	public static boolean isRooted() {
