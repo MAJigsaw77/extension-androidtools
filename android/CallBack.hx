@@ -52,7 +52,8 @@ class CallBack
 	public static function removeEventListener(type:String, listener:Dynamic, capture:Bool = false):Void
 		dispatcher.removeEventListener(type, listener, capture);
 
-	public static function dispatchEvent(event:Event):Bool {
+	public static function dispatchEvent(event:Event):Bool
+	{
 		Timer.delay(function()
 		{
 			dispatcher.dispatchEvent(event);
@@ -62,7 +63,7 @@ class CallBack
 	}
 
 	public static function hasEventListener(type:String):Bool
-		return dispatcher.hasEventListener (type);
+		return dispatcher.hasEventListener(type);
 }
 
 class CallBackEvent extends Event
