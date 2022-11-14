@@ -20,7 +20,7 @@ import haxe.Timer;
 class CallBack
 {
 	private static var dispatcher:EventDispatcher = new EventDispatcher();
-	private static var cleanupJobs:Array<Dynamic> = [];
+	private static var cleanUpJobs:Array<Dynamic> = [];
 	private static var initialized:Bool = false;
 
 	public static function init():Void
@@ -34,19 +34,19 @@ class CallBack
 		initialized = true;
 	}
 
-	public static function cleanup():Void
+	public static function cleanUp():Void
 	{		
-		for (job in cleanupJobs)
+		for (job in cleanUpJobs)
 			Reflect.callMethod(null, job, []);
 
-		cleanupJobs = [];
+		cleanUpJobs = [];
 		initialized = false;
 	}
 
 	public static function addEventListener(type:String, listener:Dynamic, useCapture:Bool = false, priority:Int = 0, useWeakReference:Bool = false):Void
 	{
 		dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
-		cleanupJobs.push(dispatcher.removeEventListener.bind(type, listener, useCapture));
+		cleanUpJobs.push(dispatcher.removeEventListener.bind(type, listener, useCapture));
 	}
 
 	public static function removeEventListener(type:String, listener:Dynamic, capture:Bool = false):Void
