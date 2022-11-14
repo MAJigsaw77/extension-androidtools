@@ -234,7 +234,7 @@ public class Tools extends Extension {
 
 		callOnHaxe("onRequestPermissionsResult", new Object[] {
 			gson.toJson(content)
-		};
+		});
 		return true;
 	}
 }
