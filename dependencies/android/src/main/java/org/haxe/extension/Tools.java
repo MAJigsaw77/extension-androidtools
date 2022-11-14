@@ -85,6 +85,13 @@ public class Tools extends Extension {
 		Extension.mainActivity.startActivity(Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName));
 	}
 
+	public static void browseFiles() {
+		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+		intent.setType("*/*");
+		intent.addCategory(Intent.CATEGORY_OPENABLE);
+		Extension.mainActivity.startActivity(Intent.createChooser(intent, "Select a File to Upload"));
+	}
+
 	public static boolean isRooted() {
 		try {
 			// Preform su to get root privledges  
