@@ -217,7 +217,9 @@ public class Tools extends Extension {
 		content.put("resultCode", resultCode);
 		content.put("data", intent);
 
-		callOnHaxe("onActivityResult", [gson.toJson(content)]);
+		callOnHaxe("onActivityResult", new Object[] {
+			gson.toJson(content)
+		});
 		return true;
 	}
 
@@ -230,7 +232,9 @@ public class Tools extends Extension {
 		content.put("permissions", permissions);
 		content.put("grantResults", grantResults);
 
-		callOnHaxe("onRequestPermissionsResult", [gson.toJson(content)]);
+		callOnHaxe("onRequestPermissionsResult", new Object[] {
+			gson.toJson(content)
+		};
 		return true;
 	}
 }
