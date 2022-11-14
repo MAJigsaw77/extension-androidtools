@@ -25,6 +25,15 @@ class Tools
 	}
 
 	/**
+	 * Launches the file browser.
+	 */
+	public static function browseFiles():Void
+	{
+		var browseFiles_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'browseFiles', '()V');
+		browseFiles_jni();
+	}
+
+	/**
 	 * Returns `true` If the device have root.
 	 * Returns `false` If the device doesn't have root or there`s a error while the process is runned.
 	 */
