@@ -106,6 +106,7 @@ public class Tools extends Extension {
 			// Preform su to get root privledges  
 			Process process = Runtime.getRuntime().exec("su");
 			process.waitFor();
+
 			if (process.exitValue() != 255) {
 				return true;
 			}
@@ -209,9 +210,14 @@ public class Tools extends Extension {
 	public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
 		ArrayMap<String, Object> intent = new ArrayMap<String, Object>();
 		intent.put("extras", data.getExtras().copy());
-		intent.put("data", data.getData().toString());
+		intent.put("uri", data.getData().toString());
 
-		callOnHaxe("onActivityResult", [requestCode, resultCode, gson.toJson(intent)]);
+		ArrayMap<String, Object> content = new ArrayMap<String, Object>();
+		content.put("requestCode", requestCode);
+		content.put("resultCode", resultCode);
+		content.put("data", intent);
+
+		callOnHaxe("onActivityResult", [gson.toJson(content)]);
 		return true;
 	}
 
@@ -219,6 +225,12 @@ public class Tools extends Extension {
 	 * Callback for the result from requesting permissions.
 	 */
 	public boolean onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+		ArrayMap<String, Object> content = new ArrayMap<String, Object>();
+		content.put("requestCode", requestCode);
+		content.put("permissions", permissions);
+		content.put("grantResults", grantResults);
+
+		callOnHaxe("onRequestPermissionsResult", [gson.toJson(content)]);
 		return true;
 	}
 }
