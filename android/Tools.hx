@@ -18,19 +18,19 @@ class Tools
 	/**
 	 * Launches a app by the `packageName`.
 	 */
-	public static function launchPackage(packageName:String):Void
+	public static function launchPackage(packageName:String, requestCode:Int = 1):Void
 	{
-		var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;)V');
-		launchPackage_jni(packageName);
+		var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V');
+		launchPackage_jni(packageName, requestCode);
 	}
 
 	/**
 	 * Launches the file browser.
 	 */
-	public static function browseFiles():Void
+	public static function browseFiles(requestCode:Int = 1):Void
 	{
-		var browseFiles_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'browseFiles', '()V');
-		browseFiles_jni();
+		var browseFiles_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'browseFiles', '(I)V');
+		browseFiles_jni(requestCode);
 	}
 
 	/**
