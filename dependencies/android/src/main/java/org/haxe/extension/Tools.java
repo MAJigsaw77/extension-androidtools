@@ -207,6 +207,7 @@ public class Tools extends Extension {
 	 * you started it with, the resultCode it returned, and any additional data 
 	 * from it.
 	 */
+	@Override
 	public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
 		ArrayMap<String, Object> intent = new ArrayMap<String, Object>();
 		intent.put("extras", data.getExtras().clone());
@@ -226,7 +227,8 @@ public class Tools extends Extension {
 	/**
 	 * Callback for the result from requesting permissions.
 	 */
-	public boolean onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+	@Override
+	public boolean onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 		ArrayMap<String, Object> content = new ArrayMap<String, Object>();
 		content.put("requestCode", requestCode);
 		content.put("permissions", permissions);
