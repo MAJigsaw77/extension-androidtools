@@ -105,7 +105,7 @@ public class Tools extends Extension {
 	public static void setBrightness(float screenBrightness) {
 		WindowManager.LayoutParams attributes = Extension.mainActivity.getWindow().getAttributes();
 		attributes.screenBrightness = screenBrightness;
-		Extension.mainActivity.getWindow().setAttributes(layout);
+		Extension.mainActivity.getWindow().setAttributes(attributes);
 	}
 
 	public static float getBrightness() {
