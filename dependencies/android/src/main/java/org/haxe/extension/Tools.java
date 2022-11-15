@@ -151,7 +151,7 @@ public class Tools extends Extension {
 		}
 	}
 
-	public static String getStringFromUri(final Uri uri) {
+	public static String getStringFromUri(Uri uri) {
 		return uri.toString(); // this is abstract, I can't call this in jni.
 	}
 
@@ -159,7 +159,7 @@ public class Tools extends Extension {
 		return Extension.mainContext.getFilesDir();
 	}
 
-	public static File getExternalFilesDir(String type) {
+	public static File getExternalFilesDir(final String type) {
 		return Extension.mainContext.getExternalFilesDir(type);
 	}
 
@@ -187,7 +187,7 @@ public class Tools extends Extension {
 		return Extension.mainView;
 	}
 
-	public static void initCallBack(final HaxeObject hclass) {
+	public static void initCallBack(HaxeObject hclass) {
 		hobject = hclass;
 	}
 
