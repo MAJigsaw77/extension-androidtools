@@ -68,16 +68,12 @@ class CallBackHandler
 
 	public function onActivityResult(content:String):Void
 	{
-		Toast.makeText('onActivityResult: ' + content, Toast.LENGTH_LONG);
-
 		var daEvent:CallBackEvent = new CallBackEvent(CallBackEvent.ACTIVITY_RESULT, Json.parse(content));		
 		CallBack.dispatchEvent(daEvent);
 	}
 
 	public function onRequestPermissionsResult(content:String):Void
 	{
-		Toast.makeText('onRequestPermissionsResult: ' + content, Toast.LENGTH_LONG);
-
 		var daEvent:CallBackEvent = new CallBackEvent(CallBackEvent.REQUEST_PERMISSIONS_RESULT, Json.parse(content));		
 		CallBack.dispatchEvent(daEvent);
 	}
