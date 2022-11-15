@@ -39,7 +39,7 @@ class CallBack
 	public static function removeEventListener(type:String, listener:Dynamic, useCapture:Bool = false):Void
 		dispatcher.removeEventListener(type, listener, capture);
 
-	public static function dispatchEvent(event:Event):Void
+	public static function dispatchEvent(event:CallBackEvent):Void
 		dispatcher.dispatchEvent(event);
 
 	public static function hasEventListener(type:String):Bool
