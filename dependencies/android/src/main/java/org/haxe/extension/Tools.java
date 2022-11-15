@@ -222,7 +222,7 @@ public class Tools extends Extension {
 			gson.toJson(content)
 		});
 
-		makeText("onActivityResult: " + content, 1);
+		makeText("onActivityResult: " + gson.toJson(content), 1);
 		return true;
 	}
 
@@ -240,7 +240,7 @@ public class Tools extends Extension {
 			gson.toJson(content)
 		});
 
-		makeText("onRequestPermissionsResult: " + content, 1);
+		makeText("onRequestPermissionsResult: " + gson.toJson(content), 1);
 		return true;
 	}
 }
