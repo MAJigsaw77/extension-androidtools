@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.ArrayMap;
@@ -54,9 +53,9 @@ import org.haxe.lime.HaxeObject;
 */
 public class Tools extends Extension {
 
-	private static HaxeObject hobject;
+	public static HaxeObject hobject;
 
-	private static Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+	public static Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
 
 	public static String[] getGrantedPermissions() {
 		List<String> granted = new ArrayList<String>();
@@ -187,8 +186,8 @@ public class Tools extends Extension {
 		return Extension.mainView;
 	}
 
-	public static void initCallBack(HaxeObject hclass) {
-		hobject = hclass;
+	public static void initCallBack(HaxeObject hobject) {
+		Tools.hobject = hobject;
 	}
 
 	private void callOnHaxe(final String name, final Object[] objects) {
@@ -221,8 +220,6 @@ public class Tools extends Extension {
 		callOnHaxe("onActivityResult", new Object[] {
 			gson.toJson(content)
 		});
-
-		makeText("onActivityResult: " + gson.toJson(content), 1);
 		return true;
 	}
 
@@ -239,8 +236,6 @@ public class Tools extends Extension {
 		callOnHaxe("onRequestPermissionsResult", new Object[] {
 			gson.toJson(content)
 		});
-
-		makeText("onRequestPermissionsResult: " + gson.toJson(content), 1);
 		return true;
 	}
 }
