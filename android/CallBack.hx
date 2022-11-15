@@ -37,7 +37,7 @@ class CallBack
 		dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
 
 	public static function removeEventListener(type:String, listener:Dynamic, useCapture:Bool = false):Void
-		dispatcher.removeEventListener(type, listener, capture);
+		dispatcher.removeEventListener(type, listener, useCapture);
 
 	public static function dispatchEvent(event:CallBackEvent):Void
 		dispatcher.dispatchEvent(event);
