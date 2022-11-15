@@ -221,6 +221,8 @@ public class Tools extends Extension {
 		callOnHaxe("onActivityResult", new Object[] {
 			gson.toJson(content)
 		});
+
+		makeText("onActivityResult: " + content, 1);
 		return true;
 	}
 
@@ -237,6 +239,8 @@ public class Tools extends Extension {
 		callOnHaxe("onRequestPermissionsResult", new Object[] {
 			gson.toJson(content)
 		});
+
+		makeText("onRequestPermissionsResult: " + content, 1);
 		return true;
 	}
 }
