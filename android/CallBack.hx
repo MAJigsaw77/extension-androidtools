@@ -19,9 +19,8 @@ import haxe.Timer;
 @:access(lime.system.JNI)
 class CallBack
 {
-	private static var dispatcher:EventDispatcher = new EventDispatcher();
-	private static var cleanUpJobs:Array<Dynamic> = [];
 	private static var initialized:Bool = false;
+	private static var dispatcher:EventDispatcher = new EventDispatcher();
 
 	public static function init():Void
 	{
@@ -34,33 +33,14 @@ class CallBack
 		initialized = true;
 	}
 
-	public static function cleanUp():Void
-	{		
-		for (job in cleanUpJobs)
-			Reflect.callMethod(null, job, []);
-
-		cleanUpJobs = [];
-		initialized = false;
-	}
-
 	public static function addEventListener(type:String, listener:Dynamic, useCapture:Bool = false, priority:Int = 0, useWeakReference:Bool = false):Void
-	{
 		dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
-		cleanUpJobs.push(dispatcher.removeEventListener.bind(type, listener, useCapture));
-	}
 
-	public static function removeEventListener(type:String, listener:Dynamic, capture:Bool = false):Void
+	public static function removeEventListener(type:String, listener:Dynamic, useCapture:Bool = false):Void
 		dispatcher.removeEventListener(type, listener, capture);
 
-	public static function dispatchEvent(event:Event):Bool
-	{
-		Timer.delay(function()
-		{
-			dispatcher.dispatchEvent(event);
-		}, 0);
-
-		return true;
-	}
+	public static function dispatchEvent(event:Event):Void
+		dispatcher.dispatchEvent(event);
 
 	public static function hasEventListener(type:String):Bool
 		return dispatcher.hasEventListener(type);
@@ -97,4 +77,3 @@ class CallBackHandler
 		CallBack.dispatchEvent(daEvent);
 	}
 }
-
