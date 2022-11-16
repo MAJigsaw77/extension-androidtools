@@ -1,14 +1,13 @@
-package android;
+package android.callback;
 
 #if (!android && !native && macro)
 #error 'extension-androidtools is not supported on your current platform'
 #end
+import android.callback.CallBackEvent;
 import android.widget.Toast;
 import lime.system.JNI;
-import openfl.events.Event;
 import openfl.events.EventDispatcher;
 import haxe.Json;
-import haxe.Timer;
 
 /**
  * @author Mihai Alexandru (M.A. Jigsaw)
@@ -47,22 +46,7 @@ class CallBack
 		return dispatcher.hasEventListener(type);
 }
 
-class CallBackEvent extends Event
-{
-	public static inline var ACTIVITY_RESULT:String = 'activity_result';
-	public static inline var REQUEST_PERMISSIONS_RESULT:String = 'request_permissions_result';
-
-	public var content:Dynamic;
-
-	public function new(type:String, content:Dynamic)
-	{
-		super(type);
-
-		this.content = content;
-	}
-}
-
-class CallBackHandler
+private class CallBackHandler
 {
 	public function new() {}
 
