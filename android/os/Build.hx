@@ -17,9 +17,6 @@ import lime.system.JNI;
 @:access(lime.system.JNI)
 class Build
 {
-	/**
-	 * No Description.
-	 */
 	public static final TAG:String = 'Build';
 
 	/**
@@ -42,9 +39,6 @@ class Build
 	 */
 	public static final DEVICE:String = JNI.createStaticField('android/os/Build', 'DEVICE', 'Ljava/lang/String;').get();
 
-	/**
-	 * No Description.
-	 */
 	public static final HOST:String = JNI.createStaticField('android/os/Build', 'HOST', 'Ljava/lang/String;').get();
 
 	/**
@@ -67,14 +61,26 @@ class Build
 	 */
 	public static final MODEL:String = JNI.createStaticField('android/os/Build', 'MODEL', 'Ljava/lang/String;').get();
 
-	/**
-	 * No Description.
-	 */
 	public static final USER:String = JNI.createStaticField('android/os/Build', 'USER', 'Ljava/lang/String;').get();
+
+	/**
+	 * Returns the version string for the radio firmware.
+	 * May return null (if, for instance, the radio is not currently on).
+	 */
+	public static function getRadioVersion():String
+	{
+		var getRadioVersion_jni:Dynamic = JNI.createStaticMethod('android/os/Build', 'getRadioVersion', '()Ljava/lang/String;');
+		return getRadioVersion_jni();
+	}
 }
 
 class VERSION
 {
+	/**
+	 * The current development codename, or the string "REL" if this is a release build.
+	 */
+	public static final CODENAME:String = JNI.createStaticField("android/os/Build$VERSION", 'CODENAME', 'Ljava/lang/String;').get();
+
 	/**
 	 * The internal value used by the underlying source control to represent this build.
 	 * E.g., a perforce changelist number or a git hash.
@@ -87,45 +93,50 @@ class VERSION
 	public static final RELEASE:String = JNI.createStaticField("android/os/Build$VERSION", 'RELEASE', 'Ljava/lang/String;').get();
 
 	/**
+	 * The user-visible SDK version of the framework in its raw String representation; use SDK_INT instead.
+	 */
+	public static final SDK:String = JNI.createStaticField("android/os/Build$VERSION", 'SDK', 'Ljava/lang/String;').get();
+
+	/**
 	 * The SDK version of the software currently running on this hardware device.
 	 */
 	public static final SDK_INT:Int = JNI.createStaticField("android/os/Build$VERSION", 'SDK_INT', 'I').get();
 }
 
-enum abstract VERSION_CODES(Int) to Int from Int
+class VERSION_CODES
 {
-	public static final BASE = 1;
-	public static final BASE_1_1 = 2;
-	public static final CUPCAKE = 3;
-	public static final DONUT = 4;
-	public static final ECLAIR = 5;
-	public static final ECLAIR_0_1 = 6;
-	public static final ECLAIR_MR1 = 7;
-	public static final FROYO = 8;
-	public static final GINGERBREAD = 9;
-	public static final GINGERBREAD_MR1 = 10;
-	public static final HONEYCOMB = 11;
-	public static final HONEYCOMB_MR1 = 12;
-	public static final HONEYCOMB_MR2 = 13;
-	public static final ICE_CREAM_SANDWICH = 14;
-	public static final ICE_CREAM_SANDWICH_MR1 = 15;
-	public static final JELLY_BEAN = 16;
-	public static final JELLY_BEAN_MR1 = 17;
-	public static final JELLY_BEAN_MR2 = 18;
-	public static final KITKAT = 19;
-	public static final KITKAT_WATCH = 20;
-	public static final LOLLIPOP = 21;
-	public static final LOLLIPOP_MR1 = 22;
-	public static final M = 23;
-	public static final N = 24;
-	public static final N_MR1 = 25;
-	public static final O = 26;
-	public static final O_MR1 = 27;
-	public static final P = 28;
-	public static final Q = 29;
-	public static final R = 30;
-	public static final S = 31;
-	public static final S_V2 = 32;
-	public static final TIRAMISU = 10000;
-	public static final UPSIDE_DOWN_CAKE = 10000;
+	public static final BASE:Int = 1;
+	public static final BASE_1_1:Int = 2;
+	public static final CUPCAKE:Int = 3;
+	public static final DONUT:Int = 4;
+	public static final ECLAIR:Int = 5;
+	public static final ECLAIR_0_1:Int = 6;
+	public static final ECLAIR_MR1:Int = 7;
+	public static final FROYO:Int = 8;
+	public static final GINGERBREAD:Int = 9;
+	public static final GINGERBREAD_MR1:Int = 10;
+	public static final HONEYCOMB:Int = 11;
+	public static final HONEYCOMB_MR1:Int = 12;
+	public static final HONEYCOMB_MR2:Int = 13;
+	public static final ICE_CREAM_SANDWICH:Int = 14;
+	public static final ICE_CREAM_SANDWICH_MR1:Int = 15;
+	public static final JELLY_BEAN:Int = 16;
+	public static final JELLY_BEAN_MR1:Int = 17;
+	public static final JELLY_BEAN_MR2:Int = 18;
+	public static final KITKAT:Int = 19;
+	public static final KITKAT_WATCH:Int = 20;
+	public static final LOLLIPOP:Int = 21;
+	public static final LOLLIPOP_MR1:Int = 22;
+	public static final M:Int = 23;
+	public static final N:Int = 24;
+	public static final N_MR1:Int = 25;
+	public static final O:Int = 26;
+	public static final O_MR1:Int = 27;
+	public static final P:Int = 28;
+	public static final Q:Int = 29;
+	public static final R:Int = 30;
+	public static final S:Int = 31;
+	public static final S_V2:Int = 32;
+	public static final TIRAMISU:Int = 10000;
+	public static final UPSIDE_DOWN_CAKE:Int = 10000;
 }
