@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension>
+	<config:android extension="org.haxe.extension.Tools" />
+	<config:android permission="android.permission.VIBRATE" />
+
 	<dependency name="androidtools" path="dependencies/android" if="android" />
 
 	<haxelib name="lime" />
 	<haxelib name="openfl" />
-
-	<config:android extension="org.haxe.extension.Tools" />
-	<config:android permission="android.permission.VIBRATE" />
 </extension>
