@@ -187,8 +187,8 @@ public class Tools extends Extension {
 	}
 
 	public static void initCallBack(HaxeObject hobject) {
-+		makeText("initCallBack", 1);
-+
+		makeText("initCallBack", 1);
+
 		Tools.hobject = hobject;
 	}
 
