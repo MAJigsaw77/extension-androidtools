@@ -187,17 +187,16 @@ public class Tools extends Extension {
 	}
 
 	public static void initCallBack(HaxeObject hobject) {
++		makeText("initCallBack", 1);
++
 		Tools.hobject = hobject;
 	}
 
 	private void callOnHaxe(final String name, final Object[] objects) {
 		if (hobject != null) {
-			Extension.mainActivity.runOnUiThread(new Runnable() {
-				@Override
-				public void run() {
-					hobject.call(name, objects);
-				}
-			});
+			hobject.call(name, objects);
+		} else {
+			makeText("hobject is null", 1);
 		}
 	}
 
@@ -208,6 +207,8 @@ public class Tools extends Extension {
 	 */
 	@Override
 	public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
+		makeText("onActivityResult", 1);
+
 		ArrayMap<String, Object> intent = new ArrayMap<String, Object>();
 		intent.put("extras", data.getExtras().clone());
 		intent.put("uri", data.getData().toString());
@@ -228,6 +229,8 @@ public class Tools extends Extension {
 	 */
 	@Override
 	public boolean onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		makeText("onRequestPermissionsResult", 1);
+
 		ArrayMap<String, Object> content = new ArrayMap<String, Object>();
 		content.put("requestCode", requestCode);
 		content.put("permissions", permissions);
