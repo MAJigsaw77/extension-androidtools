@@ -203,10 +203,14 @@ public class Tools extends Extension {
 	 */
 	@Override
 	public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
+		ArrayMap<String, Object> uri = new ArrayMap<String, Object>();
+		uri.put("toString", data.getData().toString());
+		uri.put("getPath", data.getData().getPath());
+
 		ArrayMap<String, Object> content = new ArrayMap<String, Object>();
 		content.put("requestCode", requestCode);
 		content.put("resultCode", resultCode);
-		content.put("data", data.getData().toString());
+		content.put("data", uri);
 
 		callOnHaxe("onActivityResult", new Object[] {
 			gson.toJson(content)
