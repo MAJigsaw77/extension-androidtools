@@ -93,11 +93,19 @@ public class Tools extends Extension {
 		Extension.mainActivity.startActivityForResult(Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName), requestCode);
 	}
 
-	public static void browseFiles(final int requestCode) {
-		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-		intent.setType("*/*");
+	public static void openFileBrowser(final String action, final String location, final String type, final String title, final int requestCode) {
+		Intent intent = new Intent(action);
+
+		if (location != null & type != null) {
+			intent.setDataAndType(Uri.parse(location), type);
+		} else if (type != null) {
+			intent.setType(type);
+		} else {
+			intent.setType("*/*");
+		}
+
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
-		Extension.mainActivity.startActivityForResult(Intent.createChooser(intent, null), requestCode);
+		Extension.mainActivity.startActivityForResult(Intent.createChooser(intent, title), requestCode);
 	}
 
 	public static boolean isRooted() {
