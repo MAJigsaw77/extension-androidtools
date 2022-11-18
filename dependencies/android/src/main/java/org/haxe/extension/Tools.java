@@ -93,11 +93,11 @@ public class Tools extends Extension {
 		Extension.mainActivity.startActivityForResult(Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName), requestCode);
 	}
 
-	public static void openFileBrowser(final String action, final String location, final String title, final String type, final int requestCode) {
+	public static void openFileBrowser(final String action, final String type, final int requestCode) {
 		Intent intent = new Intent(action);
 		intent.setType(type != null ? type : "*/*");
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
-		Extension.mainActivity.startActivityForResult(Intent.createChooser(intent, title), requestCode);
+		Extension.mainActivity.startActivityForResult(Intent.createChooser(intent, null), requestCode);
 	}
 
 	public static boolean isRooted() {
@@ -109,9 +109,7 @@ public class Tools extends Extension {
 			if (process.exitValue() != 255) {
 				return true;
 			}
-		} catch (IOException e) {
-			Log.e("Tools", e.toString());
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
 			Log.e("Tools", e.toString());
 		}
 
