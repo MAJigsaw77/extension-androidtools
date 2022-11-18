@@ -21,12 +21,12 @@ class FileBrowser
 	/**
 	 * Open the file browser.
 	 */
-	public static function open(action:String, location:String, title:String, type:String = '*/*', requestCode:Int = 1):Void
+	public static function open(action:String, type:String = '*/*', requestCode:Int = 1):Void
 	{
 		if (action == null || (action != CREATE_DOCUMENT && action != GET_CONTENT))
 			return;
 
-		var openFileBrowser_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'openFileBrowser', '(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V');
-		openFileBrowser_jni(action, location, title, type, requestCode);
+		var openFileBrowser_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'openFileBrowser', '(Ljava/lang/String;Ljava/lang/String;I)V');
+		openFileBrowser_jni(action, type, requestCode);
 	}
 }
