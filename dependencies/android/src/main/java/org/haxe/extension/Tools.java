@@ -95,15 +95,7 @@ public class Tools extends Extension {
 
 	public static void openFileBrowser(final String action, final String location, final String title, final String type, final int requestCode) {
 		Intent intent = new Intent(action);
-
-		if (location != null & type != null) {
-			intent.setDataAndType(Uri.parse(location), type);
-		} else if (type != null) {
-			intent.setType(type);
-		} else {
-			intent.setType("*/*");
-		}
-
+		intent.setType(type != null ? type : "*/*");
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
 		Extension.mainActivity.startActivityForResult(Intent.createChooser(intent, title), requestCode);
 	}
@@ -180,18 +172,6 @@ public class Tools extends Extension {
 
 	public static File getObbDir() {
 		return Extension.mainContext.getObbDir();
-	}
-
-	public static Activity getMainActivity() {
-		return Extension.mainActivity;
-	}
-
-	public static Context getMainContext() {
-		return Extension.mainContext;
-	}
-
-	public static View getMainView() {
-		return Extension.mainView;
 	}
 
 	public static void initCallBack(HaxeObject hobject) {
