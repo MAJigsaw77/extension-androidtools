@@ -93,9 +93,14 @@ public class Tools extends Extension {
 		Extension.mainActivity.startActivityForResult(Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName), requestCode);
 	}
 
-	public static void openFileBrowser(final String action, final String type, final int requestCode) {
+	public static void openFileBrowser(final String action, final String location, final String type, final int requestCode) {
 		Intent intent = new Intent(action);
-		intent.setType(type != null ? type : "*/*");
+
+		if (location != null)
+			intent.setDataAndType(Uri.fromFile(new File(location)), type != null ? type : "*/*");
+		else
+			intent.setType(type != null ? type : "*/*");
+
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
 		Extension.mainActivity.startActivityForResult(Intent.createChooser(intent, null), requestCode);
 	}
