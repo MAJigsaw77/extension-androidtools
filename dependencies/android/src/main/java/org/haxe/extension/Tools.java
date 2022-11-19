@@ -53,7 +53,7 @@ import org.haxe.lime.HaxeObject;
 */
 public class Tools extends Extension {
 
-	public static String LOG_TAG = "Tools";
+	public static final String LOG_TAG = "Tools";
 
 	public static HaxeObject hobject;
 
