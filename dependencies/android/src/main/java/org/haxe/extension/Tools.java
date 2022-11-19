@@ -93,7 +93,7 @@ public class Tools extends Extension {
 		Extension.mainActivity.startActivityForResult(Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName), requestCode);
 	}
 
-	public static void openFileBrowser(final String action, final String location, final String type, final int requestCode) {
+	public static void openFileBrowser(final String action, String location, final String type, final int requestCode) {
 		Intent intent = new Intent(action);
 
 		if (location != null)
