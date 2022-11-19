@@ -203,18 +203,14 @@ public class Tools extends Extension {
 	 */
 	@Override
 	public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
-		ArrayMap<String, Object> uri = new ArrayMap<String, Object>();
-
-		if (data != null & data.getData() != null) {
-			uri.put("toString", data.getData().toString());
-			uri.put("getPath", data.getData().getPath());
-		}
-
 		ArrayMap<String, Object> content = new ArrayMap<String, Object>();
 		content.put("requestCode", requestCode);
 		content.put("resultCode", resultCode);
 
 		if (data != null & data.getData() != null) {
+			ArrayMap<String, Object> uri = new ArrayMap<String, Object>();
+			uri.put("toString", data.getData().toString());
+			uri.put("getPath", data.getData().getPath());
 			content.put("data", uri);
 		}
 
