@@ -101,16 +101,11 @@ public class Tools extends Extension {
 		}
 	}
 
-	public static void openFileBrowser(final String action, String location, final String type, final int requestCode) {
+	public static void openFileBrowser(final String action, final String type, final int requestCode) {
 		try {
 			Intent intent = new Intent(action);
-
-			if (location != null)
-				intent.setDataAndType(Uri.fromFile(new File(location)), type != null ? type : "*/*");
-			else
-				intent.setType(type != null ? type : "*/*");
-
 			intent.addCategory(Intent.CATEGORY_OPENABLE);
+			intent.setType(type != null ? type : "*/*");
 			Extension.mainActivity.startActivityForResult(Intent.createChooser(intent, null), requestCode);
 		} catch (Exception e) {
 			Log.e("Tools", e.toString());
@@ -207,13 +202,19 @@ public class Tools extends Extension {
 	@Override
 	public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
 		ArrayMap<String, Object> uri = new ArrayMap<String, Object>();
-		uri.put("toString", data.getData().toString());
-		uri.put("getPath", data.getData().getPath());
+
+		if (data != null & data.getData() != null) {
+			uri.put("toString", data.getData().toString());
+			uri.put("getPath", data.getData().getPath());
+		}
 
 		ArrayMap<String, Object> content = new ArrayMap<String, Object>();
 		content.put("requestCode", requestCode);
 		content.put("resultCode", resultCode);
-		content.put("data", uri);
+
+		if (data != null & data.getData() != null) {
+			content.put("data", uri);
+		}
 
 		callOnHaxe("onActivityResult", new Object[] {
 			gson.toJson(content)
