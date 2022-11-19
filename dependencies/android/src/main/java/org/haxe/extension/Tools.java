@@ -90,19 +90,27 @@ public class Tools extends Extension {
 	}
 
 	public static void launchPackage(final String packageName, final int requestCode) {
-		Extension.mainActivity.startActivityForResult(Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName), requestCode);
+		try {
+			Extension.mainActivity.startActivityForResult(Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName), requestCode);
+		} catch (Exception e) {
+			Log.e("Tools", e.toString());
+		}
 	}
 
 	public static void openFileBrowser(final String action, String location, final String type, final int requestCode) {
-		Intent intent = new Intent(action);
+		try {
+			Intent intent = new Intent(action);
 
-		if (location != null)
-			intent.setDataAndType(Uri.fromFile(new File(location)), type != null ? type : "*/*");
-		else
-			intent.setType(type != null ? type : "*/*");
+			if (location != null)
+				intent.setDataAndType(Uri.fromFile(new File(location)), type != null ? type : "*/*");
+			else
+				intent.setType(type != null ? type : "*/*");
 
-		intent.addCategory(Intent.CATEGORY_OPENABLE);
-		Extension.mainActivity.startActivityForResult(Intent.createChooser(intent, null), requestCode);
+			intent.addCategory(Intent.CATEGORY_OPENABLE);
+			Extension.mainActivity.startActivityForResult(Intent.createChooser(intent, null), requestCode);
+		} catch (Exception e) {
+			Log.e("Tools", e.toString());
+		}
 	}
 
 	public static boolean isRooted() {
@@ -153,10 +161,6 @@ public class Tools extends Extension {
 		}
 	}
 
-	public static String getStringFromUri(Uri uri) {
-		return uri.toString(); // this is abstract, I can't call this in jni.
-	}
-
 	public static File getFilesDir() {
 		return Extension.mainContext.getFilesDir();
 	}
@@ -175,6 +179,10 @@ public class Tools extends Extension {
 
 	public static File getObbDir() {
 		return Extension.mainContext.getObbDir();
+	}
+
+	public static String getStringFromUri(Uri uri) {
+		return uri.toString(); // this is abstract, I can't call this in jni.
 	}
 
 	public static void initCallBack(HaxeObject hobject) {
