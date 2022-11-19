@@ -77,7 +77,11 @@ public class Tools extends Extension {
 	}
 
 	public static void requestPermissions(final String[] permissions, final int requestCode) {
-		Extension.mainActivity.requestPermissions(permissions, requestCode);
+		try {
+			Extension.mainActivity.requestPermissions(permissions, requestCode);
+		} catch (Exception e) {
+			Log.e("Tools", e.toString());
+		}
 	}
 
 	public static void makeText(final String message, final int duration) {
