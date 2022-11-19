@@ -53,6 +53,8 @@ import org.haxe.lime.HaxeObject;
 */
 public class Tools extends Extension {
 
+	public static String LOG_TAG = "Tools";
+
 	public static HaxeObject hobject;
 
 	public static Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
@@ -70,7 +72,7 @@ public class Tools extends Extension {
 				}
 			}
 		} catch (Exception e) {
-			Log.e("Tools", e.toString());
+			Log.e(LOG_TAG, e.toString());
 		}
 
 		return granted.toArray(new String[granted.size()]);
@@ -80,7 +82,7 @@ public class Tools extends Extension {
 		try {
 			Extension.mainActivity.requestPermissions(permissions, requestCode);
 		} catch (Exception e) {
-			Log.e("Tools", e.toString());
+			Log.e(LOG_TAG, e.toString());
 		}
 	}
 
@@ -97,7 +99,7 @@ public class Tools extends Extension {
 		try {
 			Extension.mainActivity.startActivityForResult(Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName), requestCode);
 		} catch (Exception e) {
-			Log.e("Tools", e.toString());
+			Log.e(LOG_TAG, e.toString());
 		}
 	}
 
@@ -108,7 +110,7 @@ public class Tools extends Extension {
 			intent.setType(type != null ? type : "*/*");
 			Extension.mainActivity.startActivityForResult(Intent.createChooser(intent, null), requestCode);
 		} catch (Exception e) {
-			Log.e("Tools", e.toString());
+			Log.e(LOG_TAG, e.toString());
 		}
 	}
 
@@ -122,7 +124,7 @@ public class Tools extends Extension {
 				return true;
 			}
 		} catch (Exception e) {
-			Log.e("Tools", e.toString());
+			Log.e(LOG_TAG, e.toString());
 		}
 
 		return false;
