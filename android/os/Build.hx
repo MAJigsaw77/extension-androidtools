@@ -27,41 +27,41 @@ class Build
 	/**
 	 * The name of the underlying board, like 'goldfish'.
 	 */
-	public static final BOARD:String = getMember('BOARD', 'Ljava/lang/String;');
+	public static final BOARD:String = JNI.createStaticField('android/os/Build', 'BOARD', 'Ljava/lang/String;').get();
 
 	/**
 	 * The consumer-visible brand with which the product/hardware will be associated, if any.
 	 */
-	public static final BRAND:String = getMember('BRAND', 'Ljava/lang/String;');
+	public static final BRAND:String = JNI.createStaticField('android/os/Build', 'BRAND', 'Ljava/lang/String;').get();
 
 	/**
 	 * The name of the industrial design.
 	 */
-	public static final DEVICE:String = getMember('DEVICE', 'Ljava/lang/String;');
+	public static final DEVICE:String = JNI.createStaticField('android/os/Build', 'DEVICE', 'Ljava/lang/String;').get();
 
-	public static final HOST:String = getMember('HOST', 'Ljava/lang/String;');
+	public static final HOST:String = JNI.createStaticField('android/os/Build', 'HOST', 'Ljava/lang/String;').get();
 
 	/**
 	 * Either a changelist number, or a label like 'M4-rc20'.
 	 */
-	public static final ID:String = getMember('ID', 'Ljava/lang/String;');
+	public static final ID:String = JNI.createStaticField('android/os/Build', 'ID', 'Ljava/lang/String;').get();
 
 	/**
 	 * The name of the overall product.
 	 */
-	public static final PRODUCT:String = getMember('PRODUCT', 'Ljava/lang/String;');
+	public static final PRODUCT:String = JNI.createStaticField('android/os/Build', 'PRODUCT', 'Ljava/lang/String;').get();
 
 	/**
 	 * The manufacturer of the product/hardware.
 	 */
-	public static final MANUFACTURER:String = getMember('MANUFACTURER', 'Ljava/lang/String;');
+	public static final MANUFACTURER:String = JNI.createStaticField('android/os/Build', 'MANUFACTURER', 'Ljava/lang/String;').get();
 
 	/**
 	 * The end-user-visible name for the end product.
 	 */
-	public static final MODEL:String = getMember('MODEL', 'Ljava/lang/String;');
+	public static final MODEL:String = JNI.createStaticField('android/os/Build', 'MODEL', 'Ljava/lang/String;').get();
 
-	public static final USER:String = getMember('USER', 'Ljava/lang/String;');
+	public static final USER:String = JNI.createStaticField('android/os/Build', 'USER', 'Ljava/lang/String;').get();
 
 	/**
 	 * Returns the version string for the radio firmware.
@@ -72,12 +72,6 @@ class Build
 		var getRadioVersion_jni:Dynamic = JNI.createStaticMethod('android/os/Build', 'getRadioVersion', '()Ljava/lang/String;');
 		return getRadioVersion_jni();
 	}
-
-	private static function getMember(memberName:String, signature:String):Dynamic
-	{
-		var getMember_jni:JNIStaticField = JNI.createStaticField('android/os/Build', memberName, signature);
-		return getMember_jni.get();
-	}
 }
 
 class VERSION
@@ -85,34 +79,28 @@ class VERSION
 	/**
 	 * The current development codename, or the string "REL" if this is a release build.
 	 */
-	public static final CODENAME:String = getMember('CODENAME', 'Ljava/lang/String;');
+	public static final CODENAME:String = JNI.createStaticField("android/os/Build$VERSION", 'CODENAME', 'Ljava/lang/String;').get();
 
 	/**
 	 * The internal value used by the underlying source control to represent this build.
 	 * E.g., a perforce changelist number or a git hash.
 	 */
-	public static final INCREMENTAL:String = getMember('INCREMENTAL', 'Ljava/lang/String;');
+	public static final INCREMENTAL:String = JNI.createStaticField("android/os/Build$VERSION", 'INCREMENTAL', 'Ljava/lang/String;').get();
 
 	/**
 	 * The user-visible version string.
 	 */
-	public static final RELEASE:String = getMember('RELEASE', 'Ljava/lang/String;');
+	public static final RELEASE:String = JNI.createStaticField("android/os/Build$VERSION", 'RELEASE', 'Ljava/lang/String;').get();
 
 	/**
 	 * The user-visible SDK version of the framework in its raw String representation; use SDK_INT instead.
 	 */
-	public static final SDK:String = getMember('SDK', 'Ljava/lang/String;');
+	public static final SDK:String = JNI.createStaticField("android/os/Build$VERSION", 'SDK', 'Ljava/lang/String;').get();
 
 	/**
 	 * The SDK version of the software currently running on this hardware device.
 	 */
-	public static final SDK_INT:Int = getMember('SDK_INT', 'I');
-
-	private static function getMember(memberName:String, signature:String):Dynamic
-	{
-		var getMember_jni:JNIStaticField = JNI.createStaticField("android/os/Build$VERSION", memberName, signature);
-		return getMember_jni.get();
-	}
+	public static final SDK_INT:Int = JNI.createStaticField("android/os/Build$VERSION", 'SDK_INT', 'I').get();
 }
 
 class VERSION_CODES
