@@ -20,6 +20,7 @@ class Build
 	 */
 	public static final UNKNOWN:String = 'unknown';
 
+	#if !macro
 	/**
 	 * The name of the underlying board, like 'goldfish'.
 	 */
@@ -58,6 +59,7 @@ class Build
 	public static final HOST:String = JNI.createStaticField('android/os/Build', 'HOST', 'Ljava/lang/String;').get();
 
 	public static final USER:String = JNI.createStaticField('android/os/Build', 'USER', 'Ljava/lang/String;').get();
+	#end
 
 	/**
 	 * Returns the version string for the radio firmware.
