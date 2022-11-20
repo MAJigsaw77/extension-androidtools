@@ -20,7 +20,6 @@ class Build
 	 */
 	public static final UNKNOWN:String = 'unknown';
 
-	#if !macro
 	/**
 	 * The name of the underlying board, like 'goldfish'.
 	 */
@@ -59,7 +58,6 @@ class Build
 	public static final HOST:String = JNI.createStaticField('android/os/Build', 'HOST', 'Ljava/lang/String;').get();
 
 	public static final USER:String = JNI.createStaticField('android/os/Build', 'USER', 'Ljava/lang/String;').get();
-	#end
 
 	/**
 	 * Returns the version string for the radio firmware.
@@ -74,7 +72,6 @@ class Build
 
 class VERSION
 {
-	#if !macro
 	/**
 	 * The current development codename, or the string "REL" if this is a release build.
 	 */
@@ -100,7 +97,6 @@ class VERSION
 	 * The SDK version of the software currently running on this hardware device.
 	 */
 	public static final SDK_INT:Int = JNI.createStaticField("android/os/Build$VERSION", 'SDK_INT', 'I').get();
-	#end
 }
 
 class VERSION_CODES
