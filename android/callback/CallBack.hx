@@ -12,7 +12,7 @@ import haxe.Json;
 /**
  * @author Mihai Alexandru (M.A. Jigsaw)
  */
-@:access(lime.system.JNI)
+
 class CallBack
 {
 	private static var initialized:Bool = false;
