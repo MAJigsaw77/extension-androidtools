@@ -20,10 +20,12 @@ class Build
 	 */
 	public static final UNKNOWN:String = 'unknown';
 
+	#if !macro
 	/**
 	 * The name of the underlying board, like 'goldfish'.
 	 */
 	public static final BOARD:String = JNI.createStaticField('android/os/Build', 'BOARD', 'Ljava/lang/String;').get();
+	#end
 
 	/**
 	 * The consumer-visible brand with which the product/hardware will be associated, if any.
