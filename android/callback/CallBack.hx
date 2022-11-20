@@ -12,10 +12,6 @@ import haxe.Json;
 /**
  * @author Mihai Alexandru (M.A. Jigsaw)
  */
-#if !debug
-@:fileXml('tags="haxe,release"')
-@:noDebug
-#end
 @:access(lime.system.JNI)
 class CallBack
 {
