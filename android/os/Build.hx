@@ -74,6 +74,7 @@ class Build
 
 class VERSION
 {
+	#if !macro
 	/**
 	 * The current development codename, or the string "REL" if this is a release build.
 	 */
@@ -94,6 +95,7 @@ class VERSION
 	 * The user-visible SDK version of the framework in its raw String representation; use SDK_INT instead.
 	 */
 	public static final SDK:String = JNI.createStaticField("android/os/Build$VERSION", 'SDK', 'Ljava/lang/String;').get();
+	#end
 
 	/**
 	 * The SDK version of the software currently running on this hardware device.
