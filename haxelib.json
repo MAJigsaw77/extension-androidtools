@@ -9,8 +9,8 @@
 		"haxe"
 	],
 	"description":"A extension that uses Lime JNI to work that add's some functions from java to haxe.",
-	"version":"1.5.0",
-	"releasenote":"Added more futures and countless bugs fixes.",
+	"version":"1.6.0",
+	"releasenote":"Fixed some things.",
 	"contributors":[
 		"MAJigsaw77"
 	]
