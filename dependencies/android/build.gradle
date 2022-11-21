@@ -11,6 +11,6 @@ android {
 }
 
 dependencies {
-	implementation project(':deps:extension-api')
+	api project(':deps:extension-api')
 	implementation 'com.google.code.gson:gson:2.10'
 }
