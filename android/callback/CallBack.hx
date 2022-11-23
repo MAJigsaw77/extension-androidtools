@@ -42,11 +42,7 @@ class CallBack
 		return dispatcher.hasEventListener(type);
 }
 
-#if (lime >= "8.0.0")
-private class CallBackHandler implements JNISafety
-#else
-private class CallBackHandler
-#end
+private class CallBackHandler #if (lime >= "8.0.0") implements JNISafety #end
 {
 	public function new() {}
 
