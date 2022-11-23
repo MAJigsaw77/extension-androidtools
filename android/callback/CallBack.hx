@@ -42,16 +42,26 @@ class CallBack
 		return dispatcher.hasEventListener(type);
 }
 
+#if (lime >= "8.0.0")
+private class CallBackHandler implements JNISafety
+#else
 private class CallBackHandler
+#end
 {
 	public function new() {}
 
+	#if (lime >= "8.0.0")
+	@:runOnMainThread
+	#end
 	public function onActivityResult(content:String):Void
 	{
 		var daEvent:CallBackEvent = new CallBackEvent(CallBackEvent.ACTIVITY_RESULT, Json.parse(content));		
 		CallBack.dispatchEvent(daEvent);
 	}
 
+	#if (lime >= "8.0.0")
+	@:runOnMainThread
+	#end
 	public function onRequestPermissionsResult(content:String):Void
 	{
 		var daEvent:CallBackEvent = new CallBackEvent(CallBackEvent.REQUEST_PERMISSIONS_RESULT, Json.parse(content));		
