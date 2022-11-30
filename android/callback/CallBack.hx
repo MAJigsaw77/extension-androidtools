@@ -40,7 +40,7 @@ class CallBack
 		Timer.delay(function()
 		{
 			dispatcher.dispatchEvent(event);
-		}, 1);
+		}, 0);
 	}
 
 	public static function hasEventListener(type:String):Bool
