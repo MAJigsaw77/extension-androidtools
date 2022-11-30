@@ -7,7 +7,6 @@ import android.callback.CallBackEvent;
 import lime.system.JNI;
 import openfl.events.EventDispatcher;
 import haxe.Json;
-import haxe.Timer;
 
 /**
  * @author Mihai Alexandru (M.A. Jigsaw)
@@ -36,12 +35,7 @@ class CallBack
 		dispatcher.removeEventListener(type, listener, useCapture);
 
 	public static function dispatchEvent(event:CallBackEvent):Void
-	{
-		Timer.delay(function()
-		{
-			dispatcher.dispatchEvent(event);
-		}, 0);
-	}
+		dispatcher.dispatchEvent(event);
 
 	public static function hasEventListener(type:String):Bool
 		return dispatcher.hasEventListener(type);
