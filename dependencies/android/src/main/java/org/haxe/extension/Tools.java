@@ -56,23 +56,17 @@ public class Tools extends Extension {
 	public static final String LOG_TAG = "Tools";
 
 	public static HaxeObject hobject;
-
 	public static Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
 
 	public static String[] getGrantedPermissions() {
+		PackageInfo info = (PackageInfo) Extension.mainContext.getPackageManager().getPackageInfo(Extension.packageName, PackageManager.GET_PERMISSIONS);
+
 		List<String> granted = new ArrayList<String>();
 
-		try {
-			PackageInfo packInfo = Extension.mainContext.getPackageManager().getPackageInfo(
-				Extension.mainContext.getPackageName(), PackageManager.GET_PERMISSIONS);
-
-			for (int i = 0; i < packInfo.requestedPermissions.length; i++) {
-				if ((packInfo.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0) {
-					granted.add(packInfo.requestedPermissions[i]);
-				}
+		for (int i = 0; i < info.requestedPermissions.length; i++) {
+			if ((info.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0) {
+				granted.add(info.requestedPermissions[i]);
 			}
-		} catch (Exception e) {
-			Log.e(LOG_TAG, e.toString());
 		}
 
 		return granted.toArray(new String[granted.size()]);
@@ -97,7 +91,8 @@ public class Tools extends Extension {
 
 	public static void launchPackage(final String packageName, final int requestCode) {
 		try {
-			Extension.mainActivity.startActivityForResult(Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName), requestCode);
+			Intent intent = Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName);
+			Extension.mainActivity.startActivityForResult(intent, requestCode);
 		} catch (Exception e) {
 			Log.e(LOG_TAG, e.toString());
 		}
@@ -117,10 +112,10 @@ public class Tools extends Extension {
 	public static boolean isRooted() {
 		try {
 			// Preform su to get root privledges  
-			Process process = Runtime.getRuntime().exec("su");
-			process.waitFor();
+			Process execute = Runtime.getRuntime().exec("su");
+			execute.waitFor();
 
-			if (process.exitValue() != 255) {
+			if (execute.exitValue() != 255) {
 				return true;
 			}
 		} catch (Exception e) {
@@ -131,20 +126,19 @@ public class Tools extends Extension {
 	}
 
 	public static void setBrightness(final float screenBrightness) {
-		WindowManager.LayoutParams attributes = Extension.mainActivity.getWindow().getAttributes();
-		attributes.screenBrightness = screenBrightness;
-		Extension.mainActivity.getWindow().setAttributes(attributes);
+		WindowManager.LayoutParams layout = Extension.mainActivity.getWindow().getAttributes();
+		layout.screenBrightness = screenBrightness;
+		Extension.mainActivity.getWindow().setAttributes(layout);
 	}
 
 	public static float getBrightness() {
-		WindowManager.LayoutParams attributes = Extension.mainActivity.getWindow().getAttributes();
-		return attributes.screenBrightness;
+		WindowManager.LayoutParams layout = Extension.mainActivity.getWindow().getAttributes();
+		return layout.screenBrightness;
 	}
 
 	public static void vibrate(final int duration, final int period) {
 		Vibrator vibrator = (Vibrator) Extension.mainContext.getSystemService(Context.VIBRATOR_SERVICE);
 
-		// maybe some devices doesn't have a vibrator idk.
 		if (vibrator.hasVibrator()) {
 			if (period == 0) {
 				vibrator.vibrate(duration);
@@ -183,7 +177,7 @@ public class Tools extends Extension {
 	}
 
 	public static String getStringFromUri(Uri uri) {
-		return uri.toString(); // this is abstract, I can't call this in jni.
+		return uri.toString();
 	}
 
 	public static void initCallBack(HaxeObject hobject) {
@@ -207,7 +201,7 @@ public class Tools extends Extension {
 		content.put("requestCode", requestCode);
 		content.put("resultCode", resultCode);
 
-		if (data != null & data.getData() != null) {
+		if (data != null && data.getData() != null) {
 			ArrayMap<String, Object> uri = new ArrayMap<String, Object>();
 			uri.put("toString", data.getData().toString());
 			uri.put("getPath", data.getData().getPath());
