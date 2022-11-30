@@ -59,14 +59,16 @@ public class Tools extends Extension {
 	public static Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
 
 	public static String[] getGrantedPermissions() {
-		PackageInfo info = (PackageInfo) Extension.mainContext.getPackageManager().getPackageInfo(Extension.packageName, PackageManager.GET_PERMISSIONS);
-
 		List<String> granted = new ArrayList<String>();
 
-		for (int i = 0; i < info.requestedPermissions.length; i++) {
-			if ((info.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0) {
-				granted.add(info.requestedPermissions[i]);
+		try {
+			PackageInfo info = (PackageInfo) Extension.mainContext.getPackageManager().getPackageInfo(Extension.packageName, PackageManager.GET_PERMISSIONS);
+			for (int i = 0; i < info.requestedPermissions.length; i++) {
+				if ((info.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0) {
+					granted.add(info.requestedPermissions[i]);
 			}
+		} catch (Exception e) {
+			Log.e(LOG_TAG, e.toString());
 		}
 
 		return granted.toArray(new String[granted.size()]);
