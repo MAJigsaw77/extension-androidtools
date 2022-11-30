@@ -4,10 +4,10 @@ package android.callback;
 #error 'extension-androidtools is not supported on your current platform'
 #end
 import android.callback.CallBackEvent;
-import android.widget.Toast;
 import lime.system.JNI;
 import openfl.events.EventDispatcher;
 import haxe.Json;
+import have.Timer;
 
 /**
  * @author Mihai Alexandru (M.A. Jigsaw)
@@ -36,7 +36,12 @@ class CallBack
 		dispatcher.removeEventListener(type, listener, useCapture);
 
 	public static function dispatchEvent(event:CallBackEvent):Void
-		dispatcher.dispatchEvent(event);
+	{
+		Timer.delay(function()
+		{
+			dispatcher.dispatchEvent(event);
+		}, 1);
+	}
 
 	public static function hasEventListener(type:String):Bool
 		return dispatcher.hasEventListener(type);
