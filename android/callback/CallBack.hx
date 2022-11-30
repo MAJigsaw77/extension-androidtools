@@ -7,7 +7,7 @@ import android.callback.CallBackEvent;
 import lime.system.JNI;
 import openfl.events.EventDispatcher;
 import haxe.Json;
-import have.Timer;
+import haxe.Timer;
 
 /**
  * @author Mihai Alexandru (M.A. Jigsaw)
