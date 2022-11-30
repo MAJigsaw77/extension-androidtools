@@ -205,10 +205,10 @@ public class Tools extends Extension {
 		content.put("resultCode", resultCode);
 
 		if (data != null && data.getData() != null) {
-			ArrayMap<String, Object> uri = new ArrayMap<String, Object>();
-			uri.put("toString", data.getData().toString());
-			uri.put("getPath", data.getData().getPath());
-			content.put("data", uri);
+			ArrayMap<String, Object> d = new ArrayMap<String, Object>();
+			d.put("uri", data.getData().toString());
+			d.put("path", data.getData().getPath());
+			content.put("data", d);
 		}
 
 		callOnHaxe("onActivityResult", new Object[] {
