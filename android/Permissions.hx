@@ -237,7 +237,7 @@ class Permissions
 	 */
 	public static function requestPermissions(permissions:Array<String>, requestCode:Int = 1):Void
 	{
-		if (permissions == [] && permissions.length <= 0)
+		if (permissions.length <= 0)
 			return;
 
 		var requestPermissions_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'requestPermissions', '([Ljava/lang/String;I)V');
