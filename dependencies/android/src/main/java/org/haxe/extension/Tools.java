@@ -66,6 +66,7 @@ public class Tools extends Extension {
 			for (int i = 0; i < info.requestedPermissions.length; i++) {
 				if ((info.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0) {
 					granted.add(info.requestedPermissions[i]);
+				}
 			}
 		} catch (Exception e) {
 			Log.e(LOG_TAG, e.toString());
