@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 
 repositories {
 	google()
-	jcenter()
 }
 
 android {
@@ -13,4 +12,6 @@ android {
 dependencies {
 	implementation project(':deps:extension-api')
 	implementation 'com.google.code.gson:gson:2.10'
+	implementation 'androidx.activity:activity:1.2.4'
+	implementation 'androidx.fragment:fragment:1.5.4'
 }
