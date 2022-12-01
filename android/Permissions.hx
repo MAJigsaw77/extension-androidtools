@@ -234,9 +234,9 @@ class Permissions
 		requestPermissions_jni(permissions, requestCode);
 	}
 
-	public static function checkSelfPermission(permission:String):Bool
+	public static function hasPermissionGranted(permission:String):Bool
 	{
-		var checkSelfPermission_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'checkSelfPermission', '(Ljava/lang/String;)Z');
+		var checkSelfPermission_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'hasPermissionGranted', '(Ljava/lang/String;)Z');
 		return checkSelfPermission_jni(permission);
 	}
 
