@@ -234,12 +234,22 @@ class Permissions
 		requestPermissions_jni(permissions, requestCode);
 	}
 
+	/**
+	 * Checks whether the given permission has been granted.
+	 * 
+	 * @param permission the permission.
+	 */
 	public static function hasPermissionGranted(permission:String):Bool
 	{
 		var checkSelfPermission_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'hasPermissionGranted', '(Ljava/lang/String;)Z');
 		return checkSelfPermission_jni(permission);
 	}
 
+	/**
+	 * Gets whether you should show UI with rationale before requesting a permission.
+	 * 
+	 * @param permission the permission.
+	 */
 	public static function shouldShowRequestPermissionRationale(permission:String):Bool
 	{
 		var shouldShowRequestPermissionRationale_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'shouldShowRequestPermissionRationale', '(Ljava/lang/String;)Z');
