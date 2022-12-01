@@ -219,6 +219,16 @@ class Permissions
 	public static final WRITE_VOICEMAIL:String = 'android.permission.WRITE_VOICEMAIL';
 
 	/**
+	 * Checks whether the app already has the given permission.
+	 * Returns the granted permissions.
+	 */
+	public static function getGrantedPermissions():Array<String>
+	{
+		var getGrantedPermissions_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getGrantedPermissions', '()[Ljava/lang/String;');
+		return getGrantedPermissions_jni();
+	}
+
+	/**
 	 * Displays a dialog requesting all of the given permissions at once.
 	 * This dialog will be displayed even if the user already granted the permissions, allowing them to disable them if they like.
 	 * 
@@ -232,27 +242,5 @@ class Permissions
 
 		var requestPermissions_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'requestPermissions', '([Ljava/lang/String;I)V');
 		requestPermissions_jni(permissions, requestCode);
-	}
-
-	/**
-	 * Checks whether the given permission has been granted.
-	 * 
-	 * @param permission the permission.
-	 */
-	public static function hasPermissionGranted(permission:String):Bool
-	{
-		var checkSelfPermission_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'hasPermissionGranted', '(Ljava/lang/String;)Z');
-		return checkSelfPermission_jni(permission);
-	}
-
-	/**
-	 * Gets whether you should show UI with rationale before requesting a permission.
-	 * 
-	 * @param permission the permission.
-	 */
-	public static function shouldShowRequestPermissionRationale(permission:String):Bool
-	{
-		var shouldShowRequestPermissionRationale_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'shouldShowRequestPermissionRationale', '(Ljava/lang/String;)Z');
-		return shouldShowRequestPermissionRationale_jni(permission);
 	}
 }
