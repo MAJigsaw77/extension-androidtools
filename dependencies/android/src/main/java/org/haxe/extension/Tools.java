@@ -64,7 +64,7 @@ public class Tools extends Extension {
 		}
 	}
 
-	public static boolean checkSelfPermission(String permission) {
+	public static boolean hasPermissionGranted(String permission) {
 		try {
 			return ContextCompat.checkSelfPermission(Extension.mainContext, permission) == PackageManager.PERMISSION_GRANTED;
 		} catch (Exception e) {
