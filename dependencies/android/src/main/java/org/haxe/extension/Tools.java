@@ -1,9 +1,9 @@
 package org.haxe.extension;
 
-import android.app.Activity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -58,29 +56,32 @@ public class Tools extends Extension {
 	public static HaxeObject hobject;
 	public static Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
 
-	public static String[] getGrantedPermissions() {
-		List<String> granted = new ArrayList<String>();
-
-		try {
-			PackageInfo info = (PackageInfo) Extension.mainContext.getPackageManager().getPackageInfo(Extension.packageName, PackageManager.GET_PERMISSIONS);
-			for (int i = 0; i < info.requestedPermissions.length; i++) {
-				if ((info.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0) {
-					granted.add(info.requestedPermissions[i]);
-				}
-			}
-		} catch (Exception e) {
-			Log.e(LOG_TAG, e.toString());
-		}
-
-		return granted.toArray(new String[granted.size()]);
-	}
-
 	public static void requestPermissions(final String[] permissions, final int requestCode) {
 		try {
-			Extension.mainActivity.requestPermissions(permissions, requestCode);
+			ActivityCompat.requestPermissions(Extension.mainActivity, permissions, requestCode);
 		} catch (Exception e) {
 			Log.e(LOG_TAG, e.toString());
 		}
+	}
+
+	public static boolean checkSelfPermission(String permission) {
+		try {
+			return ContextCompat.checkSelfPermission(Extension.mainContext, permission) == PackageManager.PERMISSION_GRANTED;
+		} catch (Exception e) {
+			Log.e(LOG_TAG, e.toString());
+		}
+
+		return false;
+	}
+	
+	public static boolean shouldShowRequestPermissionRationale(String permission) {
+		try {
+			return ActivityCompat.shouldShowRequestPermissionRationale(Extension.mainActivity, permission);
+		} catch (Exception e) {
+			Log.e(LOG_TAG, e.toString());
+		}
+
+		return false;
 	}
 
 	public static void makeText(final String message, final int duration) {
