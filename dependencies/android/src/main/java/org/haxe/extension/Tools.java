@@ -57,6 +57,8 @@ public class Tools extends Extension {
 	public static HaxeObject hobject;
 	public static Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
 
+	//////////////////////////////////////////////////////
+
 	public static String[] getGrantedPermissions() {
 		List<String> granted = new ArrayList<String>();
 
@@ -82,6 +84,8 @@ public class Tools extends Extension {
 		}
 	}
 
+	//////////////////////////////////////////////////////
+
 	public static void makeText(final String message, final int duration) {
 		Extension.mainActivity.runOnUiThread(new Runnable() {
 			@Override
@@ -90,6 +94,8 @@ public class Tools extends Extension {
 			}
 		});
 	}
+
+	//////////////////////////////////////////////////////
 
 	public static void launchPackage(final String packageName, final int requestCode) {
 		try {
@@ -111,6 +117,8 @@ public class Tools extends Extension {
 		}
 	}
 
+	//////////////////////////////////////////////////////
+
 	public static boolean isRooted() {
 		try {
 			// Preform su to get root privledges  
@@ -127,6 +135,8 @@ public class Tools extends Extension {
 		return false;
 	}
 
+	//////////////////////////////////////////////////////
+
 	public static void setBrightness(final float screenBrightness) {
 		WindowManager.LayoutParams layout = Extension.mainActivity.getWindow().getAttributes();
 		layout.screenBrightness = screenBrightness;
@@ -137,6 +147,8 @@ public class Tools extends Extension {
 		WindowManager.LayoutParams layout = Extension.mainActivity.getWindow().getAttributes();
 		return layout.screenBrightness;
 	}
+
+	//////////////////////////////////////////////////////
 
 	public static void vibrate(final int duration, final int period) {
 		Vibrator vibrator = (Vibrator) Extension.mainContext.getSystemService(Context.VIBRATOR_SERVICE);
@@ -158,6 +170,8 @@ public class Tools extends Extension {
 		}
 	}
 
+	//////////////////////////////////////////////////////
+
 	public static File getFilesDir() {
 		return Extension.mainContext.getFilesDir();
 	}
@@ -178,9 +192,13 @@ public class Tools extends Extension {
 		return Extension.mainContext.getObbDir();
 	}
 
+	//////////////////////////////////////////////////////
+
 	public static String getStringFromUri(Uri uri) {
 		return uri.toString();
 	}
+
+	//////////////////////////////////////////////////////
 
 	public static void initCallBack(HaxeObject hobject) {
 		Tools.hobject = hobject;
@@ -191,6 +209,8 @@ public class Tools extends Extension {
 			hobject.call(name, objects);
 		}
 	}
+
+	//////////////////////////////////////////////////////
 
 	/**
 	 * Called when an activity you launched exits, giving you the requestCode 
@@ -231,4 +251,6 @@ public class Tools extends Extension {
 		});
 		return true;
 	}
+
+	//////////////////////////////////////////////////////
 }
