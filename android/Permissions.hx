@@ -8,7 +8,6 @@ import lime.system.JNI;
 /**
  * @author Mihai Alexandru (M.A. Jigsaw)
  */
-
 class Permissions
 {
 	public static final ACCEPT_HANDOVER:String = 'android.permission.ACCEPT_HANDOVER';

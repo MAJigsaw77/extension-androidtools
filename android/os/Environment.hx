@@ -11,7 +11,6 @@ import lime.system.JNI;
  * 
  * @author Mihai Alexandru (M.A. Jigsaw)
  */
-
 class Environment
 {
 	public static final BAD_REMOVAL:String = 'bad_removal';

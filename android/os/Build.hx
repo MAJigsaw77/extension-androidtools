@@ -10,7 +10,6 @@ import lime.system.JNI;
  * 
  * @author Mihai Alexandru (M.A. Jigsaw)
  */
-
 class Build
 {
 	public static final TAG:String = 'Build';

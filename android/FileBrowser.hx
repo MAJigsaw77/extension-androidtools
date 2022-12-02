@@ -8,7 +8,6 @@ import lime.system.JNI;
 /**
  * @author Mihai Alexandru (M.A. Jigsaw)
  */
-
 class FileBrowser
 {
 	public static final CREATE_DOCUMENT:String = 'android.intent.action.CREATE_DOCUMENT';

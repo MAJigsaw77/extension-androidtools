@@ -10,7 +10,6 @@ import lime.system.JNI;
  * 
  * @author Mihai Alexandru (M.A. Jigsaw)
  */
-
 class Toast
 {
 	public static final LENGTH_SHORT:Int = 0;

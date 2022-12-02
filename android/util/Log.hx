@@ -10,7 +10,6 @@ import lime.system.JNI;
  * 
  * @author Mihai Alexandru (M.A. Jigsaw)
  */
-
 class Log
 {
 	public static final ASSERT:Int = 8;
