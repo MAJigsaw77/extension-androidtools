@@ -85,8 +85,6 @@ class Log
 
 	/**
 	 * What a Terrible Failure: Report a condition that should never happen.
-	 * The error will always be logged at level ASSERT with the call stack.
-	 * Depending on system configuration, a report may be added to the `DropBoxManager` and/or the process may be terminated immediately with an error dialog.
 	 */
 	public static function wtf(tag:String, msg:String):Int
 	{
