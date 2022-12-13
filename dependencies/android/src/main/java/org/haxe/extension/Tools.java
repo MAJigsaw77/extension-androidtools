@@ -148,7 +148,7 @@ public class Tools extends Extension {
 	}
 
 	public static boolean isAndroidTV() {
-		UiModeManager uiModeManager = (UiModeManager) Extension.mainContext.getSystemService(UI_MODE_SERVICE);
+		UiModeManager uiModeManager = (UiModeManager) Extension.mainContext.getSystemService(Context.UI_MODE_SERVICE);
 
 		if (uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION) {
 			return true;
