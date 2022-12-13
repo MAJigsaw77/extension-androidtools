@@ -1,10 +1,12 @@
 package org.haxe.extension;
 
+import android.app.UiModeManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.ArrayMap;
@@ -66,6 +68,7 @@ public class Tools extends Extension {
 
 		try {
 			PackageInfo info = (PackageInfo) Extension.mainContext.getPackageManager().getPackageInfo(Extension.packageName, PackageManager.GET_PERMISSIONS);
+
 			for (int i = 0; i < info.requestedPermissions.length; i++) {
 				if ((info.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0) {
 					granted.add(info.requestedPermissions[i]);
@@ -93,9 +96,11 @@ public class Tools extends Extension {
 			@Override
 			public void run() {
 				Toast toast = Toast.makeText(Extension.mainContext, message, duration);
+
 				if (gravity >= 0) {
 					toast.setGravity(gravity, xOffset, yOffset);
-                        	}
+				}
+
 				toast.show();
 			}
 		});
@@ -139,6 +144,28 @@ public class Tools extends Extension {
 		}
 
 		return false;
+	}
+
+	public static boolean isAndroidTV() {
+		UiModeManager uiModeManager = (UiModeManager) Extension.mainContext.getSystemService(UI_MODE_SERVICE);
+
+		if (uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION) {
+			return true;
+		}
+
+		if (Build.MANUFACTURER.equals("MINIX") && Build.MODEL.equals("NEO-U1")) {
+			return true;
+		}
+
+		if (Build.MANUFACTURER.equals("Amlogic") && Build.MODEL.equals("X96-W")) {
+			return true;
+		}
+
+		return Build.MANUFACTURER.equals("Amlogic") && Build.MODEL.startsWith("TV");
+	}
+
+	public static boolean isChromeBook() {
+		return Extension.mainContext.getPackageManager().hasSystemFeature("org.chromium.arc.device_management");
 	}
 
 	//////////////////////////////////////////////////////
