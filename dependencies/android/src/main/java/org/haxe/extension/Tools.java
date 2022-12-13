@@ -88,11 +88,15 @@ public class Tools extends Extension {
 
 	//////////////////////////////////////////////////////
 
-	public static void makeText(final String message, final int duration) {
+	public static void makeToastText(final String message, final int duration, final int gravity, final int xOffset, final int yOffset) {
 		Extension.mainActivity.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				Toast.makeText(Extension.mainContext, message, duration).show();
+				Toast toast = Toast.makeText(Extension.mainContext, message, duration);
+				if (gravity >= 0) {
+					toast.setGravity(gravity, xOffset, yOffset);
+                        	}
+				toast.show();
 			}
 		});
 	}
