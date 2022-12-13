@@ -30,6 +30,24 @@ class Tools
 	}
 
 	/**
+	 * Returns whether the device is running Android TV.
+	 */
+	public static function isAndroidTV():Bool
+	{
+		var isAndroidTV_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isAndroidTV', '()Z');
+		return isAndroidTV_jni();
+	}
+
+	/**
+	 * Returns whether the device is a ChromeBook.
+	 */
+	public static function isChromeBook():Bool
+	{
+		var isChromeBook_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isChromeBook', '()Z');
+		return isChromeBook_jni();
+	}
+
+	/**
 	 * Sets brightness of the main window, max is 1 and min is 0.
 	 */
 	public static function setBrightness(screenBrightness:Float):Void
