@@ -4,6 +4,7 @@ package android;
 #error 'extension-androidtools is not supported on your current platform'
 #end
 import lime.system.JNI;
+import lime.util.Log;
 
 /**
  * @author Mihai Alexandru (M.A. Jigsaw)
@@ -76,6 +77,10 @@ class Tools
 	public static function vibrate(duration:Int, period:Int = 0):Void
 	{
 		var vibrate_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'vibrate', '(II)V');
-		vibrate_jni(duration, period);
+
+		if (Permissions.getGrantedPermissions().contains(Permissions.VIBRATE))
+			vibrate_jni(duration, period);
+		else
+			Log.warn("VIBRATE permission isn't granted, we can't vibrate the device.");
 	}
 }
