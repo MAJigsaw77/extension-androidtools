@@ -4,7 +4,7 @@ package android;
 #error 'extension-androidtools is not supported on your current platform'
 #end
 import lime.system.JNI;
-import lime.util.Log;
+import lime.utils.Log;
 
 /**
  * @author Mihai Alexandru (M.A. Jigsaw)
