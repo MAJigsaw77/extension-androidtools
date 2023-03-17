@@ -28,11 +28,4 @@ Step 2. Add this in `Project.xml`.
 
 Step 3. Done.
 
-Read the source code to find cool things, I can't write all of them here lol.
-
-Credits
-=======
-
-- [M.A. Jigsaw](https://github.com/MAJigsaw77) - Creator of this extension.
-- [Lucky dog 7](https://github.com/luckydog7) - Functions from his old extension.
-- The contributors.
+Read the code to find cool things, I can't write all of them here lol.
