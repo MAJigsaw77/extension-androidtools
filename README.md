@@ -1,31 +1,20 @@
-extension-androidtools
-=======
+## extension-androidtools
 
-A extension that uses Lime JNI to work that add's some functions from java to haxe.
+![](https://img.shields.io/github/repo-size/MAJigsaw77/extension-androidtools) ![](https://badgen.net/github/open-issues/MAJigsaw77/extension-androidtools) ![](https://badgen.net/badge/license/MIT/green)
 
-Installation instructions
-=======
+A extension that uses Lime JNI to work that add's some functions from Java to Haxe.
 
-Step 1. Install the Haxelib.
+### Installation
 
-You can install it through haxelib:
-
-```
+You can install it through `Haxelib`
+```bash
 haxelib install extension-androidtools
 ```
-
-You can also install it through Git for the latest updates:
-
-```
+Or through `Git`, if you want the latest updates
+```bash
 haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools.git
 ```
 
-Step 2. Add this in `Project.xml`.
+### Usage
 
-```xml
-<haxelib name="extension-androidtools" if="android" />
-```
-
-Step 3. Done.
-
-Read the code to find cool things, I can't write all of them here lol.
+Read code to find cool things, I can't write all of them here XD.
