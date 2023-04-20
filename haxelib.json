@@ -6,8 +6,7 @@
 		"android",
 		"java",
 		"haxe",
-		"jni",
-		"lime"
+		"jni"
 	],
 	"description":"A extension that uses Lime JNI to work that add's some functions from Java to Haxe.",
 	"version":"1.8.1",
