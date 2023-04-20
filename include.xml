@@ -2,7 +2,7 @@
 <extension>
 	<!-- Use the following for an Android Java extension, not needed otherwise -->
 
-	<dependency name="androidtools" path="dependencies/android" if="android" />
+	<dependency name="androidtools" path="project/androidtools" if="android" />
 
 	<config:android extension="org.haxe.extension.Tools" />
 </extension>
