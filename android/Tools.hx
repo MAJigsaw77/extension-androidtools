@@ -16,8 +16,7 @@ class Tools
 	 */
 	public static function launchPackage(packageName:String, requestCode:Int = 1):Void
 	{
-		var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V');
-		launchPackage_jni(packageName, requestCode);
+		JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V')(packageName, requestCode);
 	}
 
 	/**
@@ -26,8 +25,7 @@ class Tools
 	 */
 	public static function isRooted():Bool
 	{
-		var isRooted_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z');
-		return isRooted_jni();
+		return JNI.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z');
 	}
 
 	/**
@@ -35,8 +33,7 @@ class Tools
 	 */
 	public static function isAndroidTV():Bool
 	{
-		var isAndroidTV_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isAndroidTV', '()Z');
-		return isAndroidTV_jni();
+		return JNI.createStaticMethod('org/haxe/extension/Tools', 'isAndroidTV', '()Z');
 	}
 
 	/**
@@ -44,8 +41,7 @@ class Tools
 	 */
 	public static function isChromeBook():Bool
 	{
-		var isChromeBook_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isChromeBook', '()Z');
-		return isChromeBook_jni();
+		return JNI.createStaticMethod('org/haxe/extension/Tools', 'isChromeBook', '()Z');
 	}
 
 	/**
@@ -58,8 +54,7 @@ class Tools
 		else if (screenBrightness < 0)
 			screenBrightness = 0;
 
-		var setBrightness_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'setBrightness', '(F)V');
-		setBrightness_jni(screenBrightness);
+		JNI.createStaticMethod('org/haxe/extension/Tools', 'setBrightness', '(F)V')(screenBrightness);
 	}
 
 	/**
@@ -67,8 +62,7 @@ class Tools
 	 */
 	public static function getBrightness():Float
 	{
-		var getBrightness_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getBrightness', '()F');
-		return getBrightness_jni();
+		return JNI.createStaticMethod('org/haxe/extension/Tools', 'getBrightness', '()F');
 	}
 
 	/**
@@ -76,10 +70,8 @@ class Tools
 	 */
 	public static function vibrate(duration:Int, period:Int = 0):Void
 	{
-		var vibrate_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'vibrate', '(II)V');
-
 		if (Permissions.getGrantedPermissions().contains(Permissions.VIBRATE))
-			vibrate_jni(duration, period);
+			JNI.createStaticMethod('org/haxe/extension/Tools', 'vibrate', '(II)V')(duration, period);
 		else
 			Log.warn("VIBRATE permission isn't granted, we can't vibrate the device.");
 	}
