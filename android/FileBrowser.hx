@@ -21,7 +21,6 @@ class FileBrowser
 		if (action == null || (action != CREATE_DOCUMENT && action != GET_CONTENT))
 			return;
 
-		var openFileBrowser_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'openFileBrowser', '(Ljava/lang/String;Ljava/lang/String;I)V');
-		openFileBrowser_jni(action, type, requestCode);
+		JNI.createStaticMethod('org/haxe/extension/Tools', 'openFileBrowser', '(Ljava/lang/String;Ljava/lang/String;I)V')(action, type, requestCode);
 	}
 }
