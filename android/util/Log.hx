@@ -24,8 +24,7 @@ class Log
 	 */
 	public static function d(tag:String, msg:String):Int
 	{
-		var d_jni:Dynamic = JNI.createStaticMethod('android/util/Log', 'd', '(Ljava/lang/String;Ljava/lang/String;)I');
-		return d_jni(tag, msg);
+		return JNI.createStaticMethod('android/util/Log', 'd', '(Ljava/lang/String;Ljava/lang/String;)I')(tag, msg);
 	}
 
 	/**
@@ -33,8 +32,7 @@ class Log
 	 */
 	public static function e(tag:String, msg:String):Int
 	{
-		var e_jni:Dynamic = JNI.createStaticMethod('android/util/Log', 'e', '(Ljava/lang/String;Ljava/lang/String;)I');
-		return e_jni(tag, msg);
+		return JNI.createStaticMethod('android/util/Log', 'e', '(Ljava/lang/String;Ljava/lang/String;)I')(tag, msg);
 	}
 
 	/**
@@ -42,8 +40,7 @@ class Log
 	 */
 	public static function i(tag:String, msg:String):Int
 	{
-		var i_jni:Dynamic = JNI.createStaticMethod('android/util/Log', 'i', '(Ljava/lang/String;Ljava/lang/String;)I');
-		return i_jni(tag, msg);
+		return JNI.createStaticMethod('android/util/Log', 'i', '(Ljava/lang/String;Ljava/lang/String;)I')(tag, msg);
 	}
 
 	/**
@@ -51,8 +48,7 @@ class Log
 	 */
 	public static function isLoggable(tag:String, level:Int):Bool
 	{
-		var i_jni:Dynamic = JNI.createStaticMethod('android/util/Log', 'isLoggable', '(Ljava/lang/String;I)Z');
-		return i_jni(tag, level);
+		return JNI.createStaticMethod('android/util/Log', 'isLoggable', '(Ljava/lang/String;I)Z')(tag, level);
 	}
 
 	/**
@@ -60,8 +56,7 @@ class Log
 	 */
 	public static function println(priority:Int, tag:String, msg:String):Int
 	{
-		var println_jni:Dynamic = JNI.createStaticMethod('android/util/Log', 'println', '(ILjava/lang/String;Ljava/lang/String;)I');
-		return println_jni(priority, tag, msg);
+		return JNI.createStaticMethod('android/util/Log', 'println', '(ILjava/lang/String;Ljava/lang/String;)I')(priority, tag, msg);
 	}
 
 	/**
@@ -69,8 +64,7 @@ class Log
 	 */
 	public static function v(tag:String, msg:String):Int
 	{
-		var v_jni:Dynamic = JNI.createStaticMethod('android/util/Log', 'v', '(Ljava/lang/String;Ljava/lang/String;)I');
-		return v_jni(tag, msg);
+		return JNI.createStaticMethod('android/util/Log', 'v', '(Ljava/lang/String;Ljava/lang/String;)I')(tag, msg);
 	}
 
 	/**
@@ -78,8 +72,7 @@ class Log
 	 */
 	public static function w(tag:String, msg:String):Int
 	{
-		var w_jni:Dynamic = JNI.createStaticMethod('android/util/Log', 'w', '(Ljava/lang/String;Ljava/lang/String;)I');
-		return w_jni(tag, msg);
+		return JNI.createStaticMethod('android/util/Log', 'w', '(Ljava/lang/String;Ljava/lang/String;)I')(tag, msg);
 	}
 
 	/**
@@ -87,7 +80,6 @@ class Log
 	 */
 	public static function wtf(tag:String, msg:String):Int
 	{
-		var wtf_jni:Dynamic = JNI.createStaticMethod('android/util/Log', 'wtf', '(Ljava/lang/String;Ljava/lang/String;)I');
-		return wtf_jni(tag, msg);
+		return JNI.createStaticMethod('android/util/Log', 'wtf', '(Ljava/lang/String;Ljava/lang/String;)I')(tag, msg);
 	}
 }
