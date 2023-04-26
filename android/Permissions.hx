@@ -223,8 +223,7 @@ class Permissions
 	 */
 	public static function getGrantedPermissions():Array<String>
 	{
-		var getGrantedPermissions_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getGrantedPermissions', '()[Ljava/lang/String;');
-		return getGrantedPermissions_jni();
+		return JNI.createStaticMethod('org/haxe/extension/Tools', 'getGrantedPermissions', '()[Ljava/lang/String;');
 	}
 
 	/**
@@ -239,7 +238,6 @@ class Permissions
 		if (permissions.length <= 0)
 			return;
 
-		var requestPermissions_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'requestPermissions', '([Ljava/lang/String;I)V');
-		requestPermissions_jni(permissions, requestCode);
+		JNI.createStaticMethod('org/haxe/extension/Tools', 'requestPermissions', '([Ljava/lang/String;I)V')(permissions, requestCode);
 	}
 }
