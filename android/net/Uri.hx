@@ -20,8 +20,7 @@ class Uri
 	 */
 	public static function decode(s:String):String
 	{
-		var decode_jni:Dynamic = JNI.createStaticMethod('android/net/Uri', 'decode', '(Ljava/lang/String;)Ljava/lang/String;');
-		return decode_jni(s);
+		return JNI.createStaticMethod('android/net/Uri', 'decode', '(Ljava/lang/String;)Ljava/lang/String;')(s);
 	}
 
 	/**
@@ -34,8 +33,7 @@ class Uri
 	 */
 	public static function encode(s:String, allow:String):String
 	{
-		var encode_jni:Dynamic = JNI.createStaticMethod('android/net/Uri', 'encode', '(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;');
-		return encode_jni(s, allow);
+		return JNI.createStaticMethod('android/net/Uri', 'encode', '(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;')(s, allow);
 	}
 
 	/**
@@ -48,9 +46,7 @@ class Uri
 	{
 		var file_jni:Dynamic = JNI.createStaticMethod('java/io/File', '<init>', '(Ljava/lang/String;)V');
 		var fromFile_jni:Dynamic = JNI.createStaticMethod('android/net/Uri', 'fromFile', '(Ljava/io/File;)Landroid/net/Uri;');
-
-		var getStringFromUri_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getStringFromUri', '(Landroid/net/Uri;)Ljava/lang/String;');
-		return getStringFromUri_jni(fromFile_jni(file_jni(path)));
+		return JNI.createStaticMethod('org/haxe/extension/Tools', 'getStringFromUri', '(Landroid/net/Uri;)Ljava/lang/String;')(fromFile_jni(file_jni(path)));
 	}
 
 	/**
@@ -64,8 +60,6 @@ class Uri
 	public static function fromParts(scheme:String, ssp:String, fragment:String):String
 	{
 		var fromParts_jni:Dynamic = JNI.createStaticMethod('android/net/Uri', 'fromParts', '(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/net/Uri;');
-
-		var getStringFromUri_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getStringFromUri', '(Landroid/net/Uri;)Ljava/lang/String;');
-		return getStringFromUri_jni(fromParts_jni(scheme, ssp, fragment));
+		return JNI.createStaticMethod('org/haxe/extension/Tools', 'getStringFromUri', '(Landroid/net/Uri;)Ljava/lang/String;')(fromParts_jni(scheme, ssp, fragment));
 	}
 }
