@@ -15,15 +15,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import org.haxe.extension.Extension;
 import org.haxe.lime.HaxeObject;
 
@@ -55,14 +51,9 @@ import org.haxe.lime.HaxeObject;
 */
 public class Tools extends Extension {
 
-	//////////////////////////////////////////////////////
-
 	public static final String LOG_TAG = "Tools";
-
 	public static HaxeObject hobject;
 	public static Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
-
-	//////////////////////////////////////////////////////
 
 	public static String[] getGrantedPermissions() {
 		List<String> granted = new ArrayList<String>();
@@ -90,8 +81,6 @@ public class Tools extends Extension {
 		}
 	}
 
-	//////////////////////////////////////////////////////
-
 	public static void makeToastText(final String message, final int duration, final int gravity, final int xOffset, final int yOffset) {
 		Extension.mainActivity.runOnUiThread(new Runnable() {
 			@Override
@@ -106,8 +95,6 @@ public class Tools extends Extension {
 			}
 		});
 	}
-
-	//////////////////////////////////////////////////////
 
 	public static void launchPackage(final String packageName, final int requestCode) {
 		try {
@@ -129,11 +116,9 @@ public class Tools extends Extension {
 		}
 	}
 
-	//////////////////////////////////////////////////////
-
 	public static boolean isRooted() {
 		try {
-			// Preform su to get root privledges  
+			// Preform `su` to get root privledges...
 			Process execute = Runtime.getRuntime().exec("su");
 			execute.waitFor();
 
@@ -169,8 +154,6 @@ public class Tools extends Extension {
 		return Extension.mainContext.getPackageManager().hasSystemFeature("org.chromium.arc.device_management");
 	}
 
-	//////////////////////////////////////////////////////
-
 	public static void setBrightness(final float screenBrightness) {
 		WindowManager.LayoutParams layout = Extension.mainActivity.getWindow().getAttributes();
 		layout.screenBrightness = screenBrightness;
@@ -181,8 +164,6 @@ public class Tools extends Extension {
 		WindowManager.LayoutParams layout = Extension.mainActivity.getWindow().getAttributes();
 		return layout.screenBrightness;
 	}
-
-	//////////////////////////////////////////////////////
 
 	public static void vibrate(final int duration, final int period) {
 		Vibrator vibrator = (Vibrator) Extension.mainContext.getSystemService(Context.VIBRATOR_SERVICE);
@@ -204,8 +185,6 @@ public class Tools extends Extension {
 		}
 	}
 
-	//////////////////////////////////////////////////////
-
 	public static File getFilesDir() {
 		return Extension.mainContext.getFilesDir();
 	}
@@ -226,25 +205,13 @@ public class Tools extends Extension {
 		return Extension.mainContext.getObbDir();
 	}
 
-	//////////////////////////////////////////////////////
-
 	public static String getStringFromUri(Uri uri) {
 		return uri.toString();
 	}
 
-	//////////////////////////////////////////////////////
-
 	public static void initCallBack(HaxeObject hobject) {
 		Tools.hobject = hobject;
 	}
-
-	private void callOnHaxe(final String name, final Object[] objects) {
-		if (hobject != null) {
-			hobject.call(name, objects);
-		}
-	}
-
-	//////////////////////////////////////////////////////
 
 	/**
 	 * Called when an activity you launched exits, giving you the requestCode 
@@ -264,9 +231,12 @@ public class Tools extends Extension {
 			content.put("data", d);
 		}
 
-		callOnHaxe("onActivityResult", new Object[] {
-			gson.toJson(content)
-		});
+		if (hobject != null) {
+			hobject.call("onActivityResult", new Object[] {
+				gson.toJson(content)
+			});
+		}
+
 		return true;
 	}
 
@@ -280,11 +250,12 @@ public class Tools extends Extension {
 		content.put("permissions", permissions);
 		content.put("grantResults", grantResults);
 
-		callOnHaxe("onRequestPermissionsResult", new Object[] {
-			gson.toJson(content)
-		});
+		if (hobject != null) {
+			hobject.call("onRequestPermissionsResult", new Object[] {
+				gson.toJson(content)
+			});
+		}
+
 		return true;
 	}
-
-	//////////////////////////////////////////////////////
 }
