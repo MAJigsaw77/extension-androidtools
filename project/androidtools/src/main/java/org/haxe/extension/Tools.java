@@ -165,26 +165,6 @@ public class Tools extends Extension {
 		return layout.screenBrightness;
 	}
 
-	public static void vibrate(final int duration, final int period) {
-		Vibrator vibrator = (Vibrator) Extension.mainContext.getSystemService(Context.VIBRATOR_SERVICE);
-
-		if (vibrator.hasVibrator()) {
-			if (period == 0) {
-				vibrator.vibrate(duration);
-			} else {
-				int periodMS = (int) Math.ceil(period / 2);
-				int count = (int) Math.ceil((duration / period) * 2);
-				long[] pattern = new long[count];
-
-				for (int i = 0; i < count; i++) {
-					pattern[i] = periodMS;
-				}
-
-				vibrator.vibrate(pattern, -1);
-			}
-		}
-	}
-
 	public static File getFilesDir() {
 		return Extension.mainContext.getFilesDir();
 	}
