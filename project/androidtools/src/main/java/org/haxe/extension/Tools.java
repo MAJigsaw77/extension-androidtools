@@ -73,14 +73,6 @@ public class Tools extends Extension {
 		return granted.toArray(new String[granted.size()]);
 	}
 
-	public static void requestPermissions(final String[] permissions, final int requestCode) {
-		try {
-			Extension.mainActivity.requestPermissions(permissions, requestCode);
-		} catch (Exception e) {
-			Log.e(LOG_TAG, e.toString());
-		}
-	}
-
 	public static void makeToastText(final String message, final int duration, final int gravity, final int xOffset, final int yOffset) {
 		Extension.mainActivity.runOnUiThread(new Runnable() {
 			@Override
@@ -130,39 +122,6 @@ public class Tools extends Extension {
 		}
 
 		return false;
-	}
-
-	public static boolean isAndroidTV() {
-		UiModeManager uiModeManager = (UiModeManager) Extension.mainContext.getSystemService(Context.UI_MODE_SERVICE);
-
-		if (uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION) {
-			return true;
-		}
-
-		if (Build.MANUFACTURER.equals("MINIX") && Build.MODEL.equals("NEO-U1")) {
-			return true;
-		}
-
-		if (Build.MANUFACTURER.equals("Amlogic") && Build.MODEL.equals("X96-W")) {
-			return true;
-		}
-
-		return Build.MANUFACTURER.equals("Amlogic") && Build.MODEL.startsWith("TV");
-	}
-
-	public static boolean isChromeBook() {
-		return Extension.mainContext.getPackageManager().hasSystemFeature("org.chromium.arc.device_management");
-	}
-
-	public static void setBrightness(final float screenBrightness) {
-		WindowManager.LayoutParams layout = Extension.mainActivity.getWindow().getAttributes();
-		layout.screenBrightness = screenBrightness;
-		Extension.mainActivity.getWindow().setAttributes(layout);
-	}
-
-	public static float getBrightness() {
-		WindowManager.LayoutParams layout = Extension.mainActivity.getWindow().getAttributes();
-		return layout.screenBrightness;
 	}
 
 	public static File getFilesDir() {

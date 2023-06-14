@@ -33,7 +33,7 @@ class Tools
 	 */
 	public static function isAndroidTV():Bool
 	{
-		return JNI.createStaticMethod('org/haxe/extension/Tools', 'isAndroidTV', '()Z');
+		return JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isAndroidTV', '()Z');
 	}
 
 	/**
@@ -41,27 +41,6 @@ class Tools
 	 */
 	public static function isChromeBook():Bool
 	{
-		return JNI.createStaticMethod('org/haxe/extension/Tools', 'isChromeBook', '()Z');
-	}
-
-	/**
-	 * Sets brightness of the main window, max is 1 and min is 0.
-	 */
-	public static function setBrightness(screenBrightness:Float):Void
-	{
-		if (screenBrightness > 1)
-			screenBrightness = 1;
-		else if (screenBrightness < 0)
-			screenBrightness = 0;
-
-		JNI.createStaticMethod('org/haxe/extension/Tools', 'setBrightness', '(F)V')(screenBrightness);
-	}
-
-	/**
-	 * Return the brightness of the main window.
-	 */
-	public static function getBrightness():Float
-	{
-		return JNI.createStaticMethod('org/haxe/extension/Tools', 'getBrightness', '()F');
+		return JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isChromeBook', '()Z');
 	}
 }
