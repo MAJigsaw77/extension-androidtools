@@ -223,7 +223,7 @@ class Permissions
 	 */
 	public static function getGrantedPermissions():Array<String>
 	{
-		return JNI.createStaticMethod('org/haxe/extension/Tools', 'getGrantedPermissions', '()[Ljava/lang/String;');
+		return JNI.createStaticMethod('org/haxe/extension/Tools', 'getGrantedPermissions', '()[Ljava/lang/String;')();
 	}
 
 	/**
