@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension>
-	<!-- Use the following for an Android Java extension, not needed otherwise -->
+<extension xmlns="https://lime.openfl.org/project/1.0.4" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://lime.openfl.org/project/1.0.4 https://lime.openfl.org/xsd/project-1.0.4.xsd">
 
 	<dependency name="androidtools" path="project/androidtools" if="android" />
 
 	<config>
-		<!--Extension-->
 		<android extension="org.haxe.extension.Tools" />
 	</config>
 </extension>
