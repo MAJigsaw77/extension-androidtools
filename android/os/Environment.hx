@@ -28,8 +28,8 @@ class Environment
 	 */
 	public static function getDataDirectory():String
 	{
-		var getDataDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getDataDirectory', '()Ljava/io/File;')();
-		return JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;')(getDataDirectory_jni);
+		var getDataDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getDataDirectory', '()Ljava/io/File;');
+		return JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;')(getDataDirectory_jni());
 	}
 
 	/**
@@ -37,8 +37,8 @@ class Environment
 	 */
 	public static function getDownloadCacheDirectory():String
 	{
-		var getDownloadCacheDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getDownloadCacheDirectory', '()Ljava/io/File;')();
-		return JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;')(getDownloadCacheDirectory_jni);
+		var getDownloadCacheDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getDownloadCacheDirectory', '()Ljava/io/File;');
+		return JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;')(getDownloadCacheDirectory_jni());
 	}
 
 	/**
@@ -46,8 +46,8 @@ class Environment
 	 */
 	public static function getExternalStorageDirectory():String
 	{
-		var getExternalStorageDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getExternalStorageDirectory', '()Ljava/io/File;')();
-		return JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;')(getExternalStorageDirectory_jni);
+		var getExternalStorageDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getExternalStorageDirectory', '()Ljava/io/File;');
+		return JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;')(getExternalStorageDirectory_jni());
 	}
 
 	/**
@@ -64,8 +64,8 @@ class Environment
 	 */
 	public static function getRootDirectory():String
 	{
-		var getDataDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getRootDirectory', '()Ljava/io/File;')();
-		return JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;')(getDataDirectory_jni);
+		var getDataDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getRootDirectory', '()Ljava/io/File;');
+		return JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;')(getDataDirectory_jni());
 	}
 
 	/**
