@@ -3,6 +3,7 @@ package android;
 #if (!android && !native && macro)
 #error 'extension-androidtools is not supported on your current platform'
 #end
+import haxe.io.Mime;
 import lime.system.JNI;
 
 /**
@@ -16,7 +17,7 @@ class FileBrowser
 	/**
 	 * Open the file browser.
 	 */
-	public static function open(action:String, type:String = '*/*', requestCode:Int = 1):Void
+	public static function open(action:String, type:Mime, requestCode:Int = 1):Void
 	{
 		if (action == null || (action != CREATE_DOCUMENT && action != GET_CONTENT))
 			return;
