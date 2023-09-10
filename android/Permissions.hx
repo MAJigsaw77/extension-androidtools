@@ -232,7 +232,7 @@ class Permissions
 	 * @param permission the permission.
 	 * @param requestCode the code that should be requested.
 	 */
-	public static function requestPermissions(permission:String, requestCode:Int = 1):Void
+	public static function requestPermission(permission:String, requestCode:Int = 1):Void
 	{
 		JNI.createStaticMethod('org/haxe/lime/GameActivity', 'requestPermission', '(Ljava/lang/String;I)V')(permission, requestCode);
 	}
