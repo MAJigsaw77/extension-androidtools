@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/github/repo-size/MAJigsaw77/extension-androidtools) ![](https://badgen.net/github/open-issues/MAJigsaw77/extension-androidtools) ![](https://badgen.net/badge/license/MIT/green)
 
-A extension that uses Lime JNI to work that add's some functions from Java to Haxe.
+A Haxe/[Lime](https://lime.openfl.org) extension that add's some functions from Java to Haxe using [JNI](https://en.m.wikipedia.org/wiki/Java_Native_Interface).
 
 ### Installation
 
