@@ -16,6 +16,6 @@
 	],
 	"dependencies":{
 		"hxcpp":"",
-		"lime":"",
+		"lime":""
 	}
 }
