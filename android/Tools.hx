@@ -5,9 +5,6 @@ package android;
 #end
 import lime.system.JNI;
 
-/**
- * @author Mihai Alexandru (M.A. Jigsaw)
- */
 class Tools
 {
 	/**
@@ -19,8 +16,7 @@ class Tools
 	}
 
 	/**
-	 * Returns `true` If the device have root.
-	 * Returns `false` If the device doesn't have root or there`s a error while the process is runned.
+	 * @returns `true` If the device have root.
 	 */
 	public static function isRooted():Bool
 	{
@@ -44,7 +40,7 @@ class Tools
 	}
 
 	/**
-	 * Returns whether the device is running Android TV.
+	 * @returns whether the device is running Android TV.
 	 */
 	public static function isAndroidTV():Bool
 	{
@@ -52,7 +48,7 @@ class Tools
 	}
 
 	/**
-	 * Returns whether the device is a Tablet.
+	 * @returns whether the device is a Tablet.
 	 */
 	public static function isTablet():Bool
 	{
@@ -60,7 +56,7 @@ class Tools
 	}
 
 	/**
-	 * Returns whether the device is a ChromeBook.
+	 * @returns whether the device is a ChromeBook.
 	 */
 	public static function isChromeBook():Bool
 	{
@@ -68,7 +64,7 @@ class Tools
 	}
 
 	/**
-	 * Returns whether the device is running in Dex Mode.
+	 * @returns whether the device is running in Dex Mode.
 	 */
 	public static function isDeXMode():Bool
 	{
