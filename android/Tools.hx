@@ -12,7 +12,7 @@ class Tools
 	 */
 	public static function launchPackage(packageName:String, requestCode:Int = 1):Void
 	{
-		JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V')(packageName, requestCode);
+		launchPackage_jni(packageName, requestCode);
 	}
 
 	/**
@@ -20,7 +20,7 @@ class Tools
 	 */
 	public static function isRooted():Bool
 	{
-		return JNI.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z')();
+		return isRooted_jni();
 	}
 
 	/**
@@ -28,7 +28,7 @@ class Tools
 	 */
 	public static function setActivityTitle(title:String):Bool
 	{
-		return JNI.createStaticMethod('org/haxe/lime/GameActivity', 'setActivityTitle', '(Ljava/lang/String;)Z')(title);
+		return setActivityTitle_jni(title);
 	}
 
 	/**
@@ -36,7 +36,7 @@ class Tools
 	 */
 	public static function minimizeWindow():Void
 	{
-		JNI.createStaticMethod('org/haxe/lime/GameActivity', 'minimizeWindow', '()V')();
+		minimizeWindow_jni();
 	}
 
 	/**
@@ -71,6 +71,10 @@ class Tools
 		return isDexMode_jni();
 	}
 
+	private static var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V');
+	private static var isRooted_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z');
+	private static var setActivityTitle_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'setActivityTitle', '(Ljava/lang/String;)Z');
+	private static var minimizeWindow_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'minimizeWindow', '()V');
 	private static var isAndroidTV_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isAndroidTV', '()Z');
 	private static var isTablet_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isTablet', '()Z');
 	private static var isChromeBook_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isChromeBook', '()Z');
