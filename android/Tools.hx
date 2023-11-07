@@ -44,7 +44,7 @@ class Tools
 	 */
 	public static function isAndroidTV():Bool
 	{
-		return JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isAndroidTV', '()Z')();
+		return isAndroidTV_jni();
 	}
 
 	/**
@@ -52,7 +52,7 @@ class Tools
 	 */
 	public static function isTablet():Bool
 	{
-		return JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isTablet', '()Z')();
+		return isTablet_jni();
 	}
 
 	/**
@@ -60,7 +60,7 @@ class Tools
 	 */
 	public static function isChromeBook():Bool
 	{
-		return JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isChromeBook', '()Z')();
+		return isChromeBook_jni();
 	}
 
 	/**
@@ -68,6 +68,11 @@ class Tools
 	 */
 	public static function isDeXMode():Bool
 	{
-		return JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isDeXMode', '()Z')();
+		return isDexMode_jni();
 	}
+
+	private static var isAndroidTV_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isAndroidTV', '()Z');
+	private static var isTablet_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isTablet', '()Z');
+	private static var isChromeBook_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isChromeBook', '()Z');
+	private static var isDexMode_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isDeXMode', '()Z');
 }
