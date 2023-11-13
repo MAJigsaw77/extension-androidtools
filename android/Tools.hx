@@ -5,9 +5,6 @@ package android;
 #end
 import lime.system.JNI;
 
-/**
- * @author Mihai Alexandru (M.A. Jigsaw)
- */
 class Tools
 {
 	/**
@@ -15,16 +12,15 @@ class Tools
 	 */
 	public static function launchPackage(packageName:String, requestCode:Int = 1):Void
 	{
-		JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V')(packageName, requestCode);
+		launchPackage_jni(packageName, requestCode);
 	}
 
 	/**
-	 * Returns `true` If the device have root.
-	 * Returns `false` If the device doesn't have root or there`s a error while the process is runned.
+	 * @returns `true` If the device have root.
 	 */
 	public static function isRooted():Bool
 	{
-		return JNI.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z')();
+		return isRooted_jni();
 	}
 
 	/**
@@ -32,7 +28,7 @@ class Tools
 	 */
 	public static function setActivityTitle(title:String):Bool
 	{
-		return JNI.createStaticMethod('org/haxe/lime/GameActivity', 'setActivityTitle', '(Ljava/lang/String;)Z')(title);
+		return setActivityTitle_jni(title);
 	}
 
 	/**
@@ -40,38 +36,47 @@ class Tools
 	 */
 	public static function minimizeWindow():Void
 	{
-		JNI.createStaticMethod('org/haxe/lime/GameActivity', 'minimizeWindow', '()V')();
+		minimizeWindow_jni();
 	}
 
 	/**
-	 * Returns whether the device is running Android TV.
+	 * @returns whether the device is running Android TV.
 	 */
 	public static function isAndroidTV():Bool
 	{
-		return JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isAndroidTV', '()Z')();
+		return isAndroidTV_jni();
 	}
 
 	/**
-	 * Returns whether the device is a Tablet.
+	 * @returns whether the device is a Tablet.
 	 */
 	public static function isTablet():Bool
 	{
-		return JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isTablet', '()Z')();
+		return isTablet_jni();
 	}
 
 	/**
-	 * Returns whether the device is a ChromeBook.
+	 * @returns whether the device is a ChromeBook.
 	 */
 	public static function isChromeBook():Bool
 	{
-		return JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isChromeBook', '()Z')();
+		return isChromeBook_jni();
 	}
 
 	/**
-	 * Returns whether the device is running in Dex Mode.
+	 * @returns whether the device is running in Dex Mode.
 	 */
 	public static function isDeXMode():Bool
 	{
-		return JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isDeXMode', '()Z')();
+		return isDexMode_jni();
 	}
+
+	private static var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V');
+	private static var isRooted_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z');
+	private static var setActivityTitle_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'setActivityTitle', '(Ljava/lang/String;)Z');
+	private static var minimizeWindow_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'minimizeWindow', '()V');
+	private static var isAndroidTV_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isAndroidTV', '()Z');
+	private static var isTablet_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isTablet', '()Z');
+	private static var isChromeBook_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isChromeBook', '()Z');
+	private static var isDexMode_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isDeXMode', '()Z');
 }

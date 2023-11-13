@@ -5,11 +5,6 @@ package android.widget;
 #end
 import lime.system.JNI;
 
-/**
- * @see https://developer.android.com/reference/android/widget/Toast
- * 
- * @author Mihai Alexandru (M.A. Jigsaw)
- */
 class Toast
 {
 	public static final LENGTH_SHORT:Int = 0;
@@ -20,6 +15,8 @@ class Toast
 	 */
 	public static function makeText(text:String, duration:Int, ?gravity:Int = 0, ?xOffset:Int = 0, ?yOffset:Int = 0):Void
 	{
-		JNI.createStaticMethod('org/haxe/extension/Tools', 'makeToastText', '(Ljava/lang/String;IIII)V')(text, duration, gravity, xOffset, yOffset);
+		makeText_jni(text, duration, gravity, xOffset, yOffset);
 	}
+
+	private static var makeText_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'makeToastText', '(Ljava/lang/String;IIII)V');
 }

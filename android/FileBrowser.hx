@@ -6,9 +6,6 @@ package android;
 import haxe.io.Mime;
 import lime.system.JNI;
 
-/**
- * @author Mihai Alexandru (M.A. Jigsaw)
- */
 class FileBrowser
 {
 	public static final CREATE_DOCUMENT:String = 'android.intent.action.CREATE_DOCUMENT';
@@ -19,9 +16,11 @@ class FileBrowser
 	 */
 	public static function open(action:String, type:Mime, requestCode:Int = 1):Void
 	{
-		if (action == null || (action != CREATE_DOCUMENT && action != GET_CONTENT))
+		if (action != CREATE_DOCUMENT && action != GET_CONTENT)
 			return;
 
-		JNI.createStaticMethod('org/haxe/extension/Tools', 'openFileBrowser', '(Ljava/lang/String;Ljava/lang/String;I)V')(action, type, requestCode);
+		open_jni(action, type, requestCode);
 	}
+
+	private static var open_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'openFileBrowser', '(Ljava/lang/String;Ljava/lang/String;I)V');
 }

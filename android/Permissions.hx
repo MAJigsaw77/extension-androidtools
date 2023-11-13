@@ -5,9 +5,6 @@ package android;
 #end
 import lime.system.JNI;
 
-/**
- * @author Mihai Alexandru (M.A. Jigsaw)
- */
 class Permissions
 {
 	public static final ACCEPT_HANDOVER:String = 'android.permission.ACCEPT_HANDOVER';
@@ -223,7 +220,7 @@ class Permissions
 	 */
 	public static function getGrantedPermissions():Array<String>
 	{
-		return JNI.createStaticMethod('org/haxe/extension/Tools', 'getGrantedPermissions', '()[Ljava/lang/String;')();
+		return getGrantedPermissions_jni();
 	}
 
 	/**
@@ -234,6 +231,9 @@ class Permissions
 	 */
 	public static function requestPermission(permission:String, requestCode:Int = 1):Void
 	{
-		JNI.createStaticMethod('org/haxe/lime/GameActivity', 'requestPermission', '(Ljava/lang/String;I)V')(permission, requestCode);
+		requestPermission_jni(permission, requestCode);
 	}
+
+	private static var getGrantedPermissions_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getGrantedPermissions', '()[Ljava/lang/String;');
+	private static var requestPermission_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'requestPermission', '(Ljava/lang/String;I)V');
 }

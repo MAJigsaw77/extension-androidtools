@@ -5,11 +5,6 @@ package android.os;
 #end
 import lime.system.JNI;
 
-/**
- * @see https://developer.android.com/reference/android/os/Build
- * 
- * @author Mihai Alexandru (M.A. Jigsaw)
- */
 class Build
 {
 	public static final TAG:String = 'Build';

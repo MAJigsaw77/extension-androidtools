@@ -3,14 +3,8 @@ package android.os;
 #if (!android && !native && macro)
 #error 'extension-androidtools is not supported on your current platform'
 #end
-
 import lime.system.JNI;
 
-/**
- * @see https://developer.android.com/reference/android/os/Environment
- * 
- * @author Mihai Alexandru (M.A. Jigsaw)
- */
 class Environment
 {
 	public static final BAD_REMOVAL:String = 'bad_removal';
@@ -28,8 +22,6 @@ class Environment
 	 */
 	public static function getDataDirectory():String
 	{
-		var getDataDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getDataDirectory', '()Ljava/io/File;');
-		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
 		return getAbsolutePath_jni(getDataDirectory_jni());
 	}
 
@@ -38,8 +30,6 @@ class Environment
 	 */
 	public static function getDownloadCacheDirectory():String
 	{
-		var getDownloadCacheDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getDownloadCacheDirectory', '()Ljava/io/File;');
-		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
 		return getAbsolutePath_jni(getDownloadCacheDirectory_jni());
 	}
 
@@ -48,8 +38,6 @@ class Environment
 	 */
 	public static function getExternalStorageDirectory():String
 	{
-		var getExternalStorageDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getExternalStorageDirectory', '()Ljava/io/File;');
-		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
 		return getAbsolutePath_jni(getExternalStorageDirectory_jni());
 	}
 
@@ -58,7 +46,7 @@ class Environment
 	 */
 	public static function getExternalStorageState():String
 	{
-		return JNI.createStaticMethod('android/os/Environment', 'getExternalStorageState', '()Ljava/lang/String;')();
+		return getExternalStorageState_jni();
 	}
 
 	/**
@@ -67,24 +55,13 @@ class Environment
 	 */
 	public static function getRootDirectory():String
 	{
-		var getDataDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getRootDirectory', '()Ljava/io/File;');
-		var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
-		return getAbsolutePath_jni(getDataDirectory_jni());
+		return getAbsolutePath_jni(getRootDirectory_jni());
 	}
 
-	/**
-	 * Returns whether the primary shared/external storage media is emulated.
-	 */
-	public static function isExternalStorageEmulated():Bool
-	{
-		return JNI.createStaticMethod('android/os/Environment', 'isExternalStorageEmulated', '()Z')();
-	}
-
-	/**
-	 * Returns whether the primary shared/external storage media is physically removable.
-	 */
-	public static function isExternalStorageRemovable():Bool
-	{
-		return JNI.createStaticMethod('android/os/Environment', 'isExternalStorageRemovable', '()Z')();
-	}
+	private static var getDataDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getDataDirectory', '()Ljava/io/File;');
+	private static var getDownloadCacheDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getDownloadCacheDirectory', '()Ljava/io/File;');
+	private static var getExternalStorageDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getExternalStorageDirectory', '()Ljava/io/File;');
+	private static var getExternalStorageState_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getExternalStorageState', '()Ljava/lang/String;');
+	private static var getRootDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getRootDirectory', '()Ljava/io/File;');
+	private static var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
 }

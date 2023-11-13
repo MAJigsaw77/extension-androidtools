@@ -91,6 +91,7 @@ public class Tools extends Extension {
 	public static void launchPackage(final String packageName, final int requestCode) {
 		try {
 			Intent intent = Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName);
+
 			Extension.mainActivity.startActivityForResult(intent, requestCode);
 		} catch (Exception e) {
 			Log.e(LOG_TAG, e.toString());
@@ -112,6 +113,7 @@ public class Tools extends Extension {
 		try {
 			// Preform `su` to get root privledges...
 			Process execute = Runtime.getRuntime().exec("su");
+
 			execute.waitFor();
 
 			if (execute.exitValue() != 255) {
@@ -142,10 +144,6 @@ public class Tools extends Extension {
 
 	public static File getObbDir() {
 		return Extension.mainContext.getObbDir();
-	}
-
-	public static String getStringFromUri(Uri uri) {
-		return uri.toString();
 	}
 
 	public static void initCallBack(HaxeObject hobject) {
