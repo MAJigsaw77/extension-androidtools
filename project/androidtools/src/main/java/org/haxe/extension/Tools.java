@@ -88,6 +88,32 @@ public class Tools extends Extension {
 		});
 	}
 
+	public static void enableAppSecure() {
+		Extension.mainActivity.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Extension.mainActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);         		
+				} catch(Exception e) {
+					Log.e(LOG_TAG, e.toString());
+				}
+			}
+		});
+	}
+
+	public static void disableAppSecure() {
+		Extension.mainActivity.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Extension.mainActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);         		
+				} catch(Exception e) {
+					Log.e(LOG_TAG, e.toString());
+				}
+			}
+		});
+	}
+
 	public static void launchPackage(final String packageName, final int requestCode) {
 		try {
 			Intent intent = Extension.mainActivity.getPackageManager().getLaunchIntentForPackage(packageName);
