@@ -17,4 +17,4 @@ haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-andro
 
 ### Usage
 
-Read code to find cool things, I can't write all of them here XD.
+Read code to find cool things, I can't write all of them here :trollface:.
