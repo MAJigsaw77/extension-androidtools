@@ -8,6 +8,22 @@ import lime.system.JNI;
 class Tools
 {
 	/**
+	 * Adds the security flag to application's window.
+	 */
+	public static function enableAppSecure():Void
+	{
+		enableAppSecure_jni();
+	}
+
+	/**
+	 * Clears the security flag from application's window.
+	 */
+	public static function disableAppSecure():Void
+	{
+		disableAppSecure_jni();
+	}
+
+	/**
 	 * Launches a app by the `packageName`.
 	 */
 	public static function launchPackage(packageName:String, requestCode:Int = 1):Void
@@ -71,6 +87,8 @@ class Tools
 		return isDexMode_jni();
 	}
 
+	private static var enableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'enableAppSecure', '()V');
+	private static var disableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'disableAppSecure', '()V');
 	private static var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V');
 	private static var isRooted_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z');
 	private static var setActivityTitle_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'setActivityTitle', '(Ljava/lang/String;)Z');
