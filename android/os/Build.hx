@@ -126,6 +126,6 @@ class VERSION_CODES
 	public static final R:Int = 30;
 	public static final S:Int = 31;
 	public static final S_V2:Int = 32;
-	public static final TIRAMISU:Int = 10000;
-	public static final UPSIDE_DOWN_CAKE:Int = 10000;
+	public static final TIRAMISU:Int = 33;
+	public static final UPSIDE_DOWN_CAKE:Int = 34;
 }
