@@ -70,7 +70,9 @@ public class Tools extends Extension
 					granted.add(info.requestedPermissions[i]);
 		}
 		catch (Exception e)
+		{
 			Log.e(LOG_TAG, e.toString());
+		}
 
 		return granted.toArray(new String[granted.size()]);
 	}
@@ -104,7 +106,9 @@ public class Tools extends Extension
 					mainActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
 				}
 				catch (Exception e)
+				{
 					Log.e(LOG_TAG, e.toString());
+				}
 			}
 		});
 	}
@@ -121,7 +125,9 @@ public class Tools extends Extension
 					mainActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
 				}
 				catch (Exception e)
+				{
 					Log.e(LOG_TAG, e.toString());
+				}
 			}
 		});
 	}
@@ -133,7 +139,9 @@ public class Tools extends Extension
 			mainActivity.startActivityForResult(mainActivity.getPackageManager().getLaunchIntentForPackage(packageName), requestCode);
 		}
 		catch (Exception e)
+		{
 			Log.e(LOG_TAG, e.toString());
+		}
 	}
 
 	public static void openFileBrowser(final String action, final String type, final int requestCode)
@@ -147,7 +155,9 @@ public class Tools extends Extension
 			mainActivity.startActivityForResult(Intent.createChooser(intent, null), requestCode);
 		}
 		catch (Exception e)
+		{
 			Log.e(LOG_TAG, e.toString());
+		}
 	}
 
 	public static boolean isRooted()
@@ -163,7 +173,9 @@ public class Tools extends Extension
 				return true;
 		}
 		catch (Exception e)
+		{
 			Log.e(LOG_TAG, e.toString());
+		}
 
 		return false;
 	}
