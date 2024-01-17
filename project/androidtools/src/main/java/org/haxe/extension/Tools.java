@@ -1,19 +1,13 @@
 package org.haxe.extension;
 
-import android.app.UiModeManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Vibrator;
+import android.media.MediaCodecList;
+import android.media.MediaFormat;
 import android.util.ArrayMap;
 import android.util.Log;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -164,12 +158,30 @@ public class Tools extends Extension
 	{
 		try
 		{
-			// Preform `su` to get root privledges...
 			Process execute = Runtime.getRuntime().exec("su");
 
 			execute.waitFor();
 
 			if (execute.exitValue() != 255)
+				return true;
+		}
+		catch (Exception e)
+		{
+			Log.e(LOG_TAG, e.toString());
+		}
+
+		return false;
+	}
+
+	public static boolean isDolbyAtmos()
+	{
+		try
+		{
+			MediaFormat format = new MediaFormat();
+
+			format.setString(MediaFormat.KEY_MIME, "audio/eac3-joc"); // or "audio/ac4"
+
+			if (MediaCodecList.findDecoderForFormat(format) != null)
 				return true;
 		}
 		catch (Exception e)
