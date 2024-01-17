@@ -40,6 +40,14 @@ class Tools
 	}
 
 	/**
+	 * @returns `true` If the device has Dolby Atmos.
+	 */
+	public static function isDolbyAtmos():Bool
+	{
+		return isDolbyAtmos_jni();
+	}
+
+	/**
 	 * Sets Activity's Title by the `title`.
 	 */
 	public static function setActivityTitle(title:String):Bool
@@ -91,6 +99,7 @@ class Tools
 	private static var disableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'disableAppSecure', '()V');
 	private static var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V');
 	private static var isRooted_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z');
+	private static var isDolbyAtmos_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isDolbyAtmos', '()Z');
 	private static var setActivityTitle_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'setActivityTitle', '(Ljava/lang/String;)Z');
 	private static var minimizeWindow_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'minimizeWindow', '()V');
 	private static var isAndroidTV_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isAndroidTV', '()Z');
