@@ -8,6 +8,7 @@ import android.media.MediaCodecList;
 import android.media.MediaFormat;
 import android.util.ArrayMap;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -181,7 +182,9 @@ public class Tools extends Extension
 
 			format.setString(MediaFormat.KEY_MIME, "audio/eac3-joc"); // or "audio/ac4"
 
-			if (MediaCodecList.findDecoderForFormat(format) != null)
+			String decoderName = MediaCodecList.findDecoderForFormat(format);
+
+			if (decoderName != null)
 				return true;
 		}
 		catch (Exception e)
