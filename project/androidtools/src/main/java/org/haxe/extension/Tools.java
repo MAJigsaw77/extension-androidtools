@@ -182,9 +182,9 @@ public class Tools extends Extension
 
 			format.setString(MediaFormat.KEY_MIME, "audio/eac3-joc"); // or "audio/ac4"
 
-			String decoderName = MediaCodecList.findDecoderForFormat(format);
+			MediaCodecList codecList = new MediaCodecList(MediaCodecList.ALL_CODECS);
 
-			if (decoderName != null)
+			if (codecList.findDecoderForFormat(format) != null)
 				return true;
 		}
 		catch (Exception e)
