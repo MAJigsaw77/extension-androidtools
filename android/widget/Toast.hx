@@ -13,10 +13,10 @@ class Toast
 	/**
 	 * Makes a toast text.
 	 */
-	public static function makeText(text:String, duration:Int, ?gravity:Int = 0, ?xOffset:Int = 0, ?yOffset:Int = 0):Void
+	public static function makeText(text:String, duration:Int, ?gravity:Int = -1, ?xOffset:Int = 0, ?yOffset:Int = 0, ?bgColor:Int = 0xFF000000, ?txtColor:Int = 0xFFFFFFFF):Void
 	{
 		makeText_jni(text, duration, gravity, xOffset, yOffset);
 	}
 
-	private static var makeText_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'makeToastText', '(Ljava/lang/String;IIII)V');
+	private static var makeText_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'makeToastText', '(Ljava/lang/String;IIIIII)V');
 }
