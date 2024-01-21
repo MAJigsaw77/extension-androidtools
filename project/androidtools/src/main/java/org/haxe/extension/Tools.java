@@ -6,6 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.media.MediaCodecList;
 import android.media.MediaFormat;
+import android.os.BatteryManager;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.WindowManager;
@@ -218,6 +219,11 @@ public class Tools extends Extension
 	public static File getObbDir()
 	{
 		return mainContext.getObbDir();
+	}
+
+	public static BatteryManager getBatteryManager()
+	{
+		return (BatteryManager) Context.getSystemService(Context.BATTERY_SERVICE);
 	}
 
 	public static void initCallBack(HaxeObject hobject)
