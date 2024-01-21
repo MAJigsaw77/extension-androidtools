@@ -234,6 +234,6 @@ class Permissions
 		requestPermission_jni(permission, requestCode);
 	}
 
-	private static var getGrantedPermissions_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getGrantedPermissions', '()[Ljava/lang/String;');
-	private static var requestPermission_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'requestPermission', '(Ljava/lang/String;I)V');
+	@:noCompletion private static var getGrantedPermissions_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getGrantedPermissions', '()[Ljava/lang/String;');
+	@:noCompletion private static var requestPermission_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'requestPermission', '(Ljava/lang/String;I)V');
 }

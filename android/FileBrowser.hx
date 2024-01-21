@@ -22,5 +22,5 @@ class FileBrowser
 		open_jni(action, type, requestCode);
 	}
 
-	private static var open_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'openFileBrowser', '(Ljava/lang/String;Ljava/lang/String;I)V');
+	@:noCompletion private static var open_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'openFileBrowser', '(Ljava/lang/String;Ljava/lang/String;I)V');
 }

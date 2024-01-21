@@ -12,9 +12,9 @@ using StringTools;
 
 class CallBack
 {
-	private static var dispatcher:EventDispatcher = new EventDispatcher();
+	@:noCompletion private static var dispatcher:EventDispatcher = new EventDispatcher();
 
-	private static var initialized:Bool = false;
+	@:noCompletion private static var initialized:Bool = false;
 
 	public static function init():Void
 	{
@@ -47,7 +47,7 @@ class CallBack
 	}
 }
 
-private class CallBackHandler #if (lime >= "8.0.0") implements JNISafety #end
+@:noCompletion private class CallBackHandler #if (lime >= "8.0.0") implements JNISafety #end
 {
 	public function new():Void {}
 

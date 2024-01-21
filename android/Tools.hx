@@ -95,15 +95,15 @@ class Tools
 		return isDexMode_jni();
 	}
 
-	private static var enableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'enableAppSecure', '()V');
-	private static var disableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'disableAppSecure', '()V');
-	private static var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V');
-	private static var isRooted_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z');
-	private static var isDolbyAtmos_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isDolbyAtmos', '()Z');
-	private static var setActivityTitle_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'setActivityTitle', '(Ljava/lang/String;)Z');
-	private static var minimizeWindow_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'minimizeWindow', '()V');
-	private static var isAndroidTV_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isAndroidTV', '()Z');
-	private static var isTablet_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isTablet', '()Z');
-	private static var isChromeBook_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isChromeBook', '()Z');
-	private static var isDexMode_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isDeXMode', '()Z');
+	@:noCompletion private static var enableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'enableAppSecure', '()V');
+	@:noCompletion private static var disableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'disableAppSecure', '()V');
+	@:noCompletion private static var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V');
+	@:noCompletion private static var isRooted_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z');
+	@:noCompletion private static var isDolbyAtmos_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isDolbyAtmos', '()Z');
+	@:noCompletion private static var setActivityTitle_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'setActivityTitle', '(Ljava/lang/String;)Z');
+	@:noCompletion private static var minimizeWindow_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'minimizeWindow', '()V');
+	@:noCompletion private static var isAndroidTV_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isAndroidTV', '()Z');
+	@:noCompletion private static var isTablet_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isTablet', '()Z');
+	@:noCompletion private static var isChromeBook_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isChromeBook', '()Z');
+	@:noCompletion private static var isDexMode_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isDeXMode', '()Z');
 }

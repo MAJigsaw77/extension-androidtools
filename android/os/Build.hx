@@ -62,7 +62,7 @@ class Build
 		return getRadioVersion_jni();
 	}
 
-	private static var getRadioVersion_jni:Dynamic = JNI.createStaticMethod('android/os/Build', 'getRadioVersion', '()Ljava/lang/String;');
+	@:noCompletion private static var getRadioVersion_jni:Dynamic = JNI.createStaticMethod('android/os/Build', 'getRadioVersion', '()Ljava/lang/String;');
 }
 
 class VERSION

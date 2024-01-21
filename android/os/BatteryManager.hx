@@ -13,7 +13,7 @@ class BatteryManager
 	public static final BATTERY_PROPERTY_CAPACITY:Int = 4;
 	public static final BATTERY_PROPERTY_ENERGY_COUNTER:Int = 5;
 
-	@:noCompletion private var constructor:Dynamic;
+	@:noCompletion @:noCompletion private var constructor:Dynamic;
 
 	public function new():Void
 	{
@@ -30,5 +30,5 @@ class BatteryManager
 		return JNI.callMember(JNI.createMemberMethod('android/os/BatteryManager', 'getIntProperty', '(I)I'), constructor, [id]);
 	}
 
-	private static var getBatteryManager_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getBatteryManager', '()Landroid/os/BatteryManager;');
+	@:noCompletion private static var getBatteryManager_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getBatteryManager', '()Landroid/os/BatteryManager;');
 }
