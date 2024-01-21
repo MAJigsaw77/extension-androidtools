@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.PorterDuff;
 import android.media.MediaCodecList;
 import android.media.MediaFormat;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -72,7 +74,7 @@ public class Tools extends Extension
 		return granted.toArray(new String[granted.size()]);
 	}
 
-	public static void makeToastText(final String message, final int duration, final int gravity, final int xOffset, final int yOffset)
+	public static void makeToastText(final String message, final int duration, final int gravity, final int xOffset, final int yOffset, final int bgColor, final int txtColor)
 	{
 		mainActivity.runOnUiThread(new Runnable()
 		{
@@ -80,6 +82,12 @@ public class Tools extends Extension
 			public void run()
 			{
 				Toast toast = Toast.makeText(mainContext, message, duration);
+
+				toast.getView().getBackground().setColorFilter(bgColor, PorterDuff.Mode.SRC_IN);
+
+				TextView text = toast.getView().findViewById(android.R.id.message);
+
+				text.setTextColor(txtColor);
 
 				if (gravity >= 0)
 					toast.setGravity(gravity, xOffset, yOffset);
