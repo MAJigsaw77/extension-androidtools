@@ -223,7 +223,7 @@ public class Tools extends Extension
 
 	public static BatteryManager getBatteryManager()
 	{
-		return (BatteryManager) Context.getSystemService(Context.BATTERY_SERVICE);
+		return (BatteryManager) Extension.mainContext.getSystemService(Context.BATTERY_SERVICE);
 	}
 
 	public static void initCallBack(HaxeObject hobject)
