@@ -17,7 +17,7 @@ class BatteryManager
 
 	public function new():Void
 	{
-		constructor = JNI.createStaticMethod('android/os/BatteryManager', '<init>', '()V');
+		constructor = getBatteryManager_jni();
 	}
 
 	public function isCharging():Bool
@@ -29,4 +29,6 @@ class BatteryManager
 	{
 		return JNI.callMember(JNI.createMemberMethod('android/os/BatteryManager', 'getIntProperty', '(I)I'), constructor, [id]);
 	}
+
+	private static var getBatteryManager_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getBatteryManager', '()Landroid/os/BatteryManager;');
 }
