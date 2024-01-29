@@ -13,7 +13,7 @@ class Toast
 	/**
 	 * Makes a toast text.
 	 */
-	public static function makeText(text:String, duration:Int, ?gravity:Int = -1, ?xOffset:Int = 0, ?yOffset:Int = 0, ?bgColor:Int = 0xFF000000):Void
+	public static inline function makeText(text:String, duration:Int, ?gravity:Int = -1, ?xOffset:Int = 0, ?yOffset:Int = 0):Void
 	{
 		makeText_jni(text, duration, gravity, xOffset, yOffset);
 	}

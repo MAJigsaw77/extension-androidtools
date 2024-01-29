@@ -20,7 +20,7 @@ class Environment
 	/**
 	 * Return the user data directory.
 	 */
-	public static function getDataDirectory():String
+	public static inline function getDataDirectory():String
 	{
 		return getAbsolutePath_jni(getDataDirectory_jni());
 	}
@@ -28,7 +28,7 @@ class Environment
 	/**
 	 * Return the download/cache content directory.
 	 */
-	public static function getDownloadCacheDirectory():String
+	public static inline function getDownloadCacheDirectory():String
 	{
 		return getAbsolutePath_jni(getDownloadCacheDirectory_jni());
 	}
@@ -36,7 +36,7 @@ class Environment
 	/**
 	 * Return the primary shared/external storage directory.
 	 */
-	public static function getExternalStorageDirectory():String
+	public static inline function getExternalStorageDirectory():String
 	{
 		return getAbsolutePath_jni(getExternalStorageDirectory_jni());
 	}
@@ -44,7 +44,7 @@ class Environment
 	/**
 	 * Returns the current state of the primary shared/external storage media.
 	 */
-	public static function getExternalStorageState():String
+	public static inline function getExternalStorageState():String
 	{
 		return getExternalStorageState_jni();
 	}
@@ -53,7 +53,7 @@ class Environment
 	 * Return root of the 'system' partition holding the core Android OS.
 	 * Always present and mounted read-only.
 	 */
-	public static function getRootDirectory():String
+	public static inline function getRootDirectory():String
 	{
 		return getAbsolutePath_jni(getRootDirectory_jni());
 	}

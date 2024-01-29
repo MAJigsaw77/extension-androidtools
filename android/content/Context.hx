@@ -7,27 +7,27 @@ import lime.system.JNI;
 
 class Context
 {
-	public static function getFilesDir():String
+	public static inline function getFilesDir():String
 	{
 		return getAbsolutePath_jni(getFilesDir_jni());
 	}
 
-	public static function getExternalFilesDir(type:String = null):String
+	public static inline function getExternalFilesDir(type:String = null):String
 	{
 		return getAbsolutePath_jni(getExternalFilesDir_jni(type));
 	}
 
-	public static function getCacheDir():String
+	public static inline function getCacheDir():String
 	{
 		return getAbsolutePath_jni(getCacheDir_jni());
 	}
 
-	public static function getExternalCacheDir():String
+	public static inline function getExternalCacheDir():String
 	{
 		return getAbsolutePath_jni(getExternalCacheDir_jni());
 	}
 
-	public static function getObbDir():String
+	public static inline function getObbDir():String
 	{
 		return getAbsolutePath_jni(getObbDir_jni());
 	}

@@ -218,7 +218,7 @@ class Permissions
 	 * Checks whether the app already has the given permission.
 	 * Returns the granted permissions.
 	 */
-	public static function getGrantedPermissions():Array<String>
+	public static inline function getGrantedPermissions():Array<String>
 	{
 		return getGrantedPermissions_jni();
 	}
@@ -229,7 +229,7 @@ class Permissions
 	 * @param permission the permission.
 	 * @param requestCode the code that should be requested.
 	 */
-	public static function requestPermission(permission:String, requestCode:Int = 1):Void
+	public static inline function requestPermission(permission:String, requestCode:Int = 1):Void
 	{
 		requestPermission_jni(permission, requestCode);
 	}

@@ -57,7 +57,7 @@ class Build
 	 * Returns the version string for the radio firmware.
 	 * May return null (if, for instance, the radio is not currently on).
 	 */
-	public static function getRadioVersion():String
+	public static inline function getRadioVersion():String
 	{
 		return getRadioVersion_jni();
 	}
