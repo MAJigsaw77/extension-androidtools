@@ -48,6 +48,14 @@ class Tools
 	}
 
 	/**
+	 * Shows a minimal notification with a title and message.
+	 */
+	public static inline function showNotification(title:String, message:String, ?channelID:String = 'unknown_channel', ?channelName:String = 'Unknown Channel', ?ID:Int = 1):Void
+	{
+		showNotification_jni(title, message, channelID, channelName, ID);
+	}
+
+	/**
 	 * Sets Activity's Title by the `title`.
 	 */
 	public static inline function setActivityTitle(title:String):Bool
@@ -100,6 +108,7 @@ class Tools
 	@:noCompletion private static var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V');
 	@:noCompletion private static var isRooted_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z');
 	@:noCompletion private static var isDolbyAtmos_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isDolbyAtmos', '()Z');
+	@:noCompletion private static var showNotification_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'showNotification', '(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V');
 	@:noCompletion private static var setActivityTitle_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'setActivityTitle', '(Ljava/lang/String;)Z');
 	@:noCompletion private static var minimizeWindow_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'minimizeWindow', '()V');
 	@:noCompletion private static var isAndroidTV_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isAndroidTV', '()Z');
