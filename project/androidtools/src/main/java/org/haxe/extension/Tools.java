@@ -1,6 +1,6 @@
 package org.haxe.extension;
 
-import android.app.Notification.Builder;
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -214,18 +214,19 @@ public class Tools extends Extension
 			{
 				try
 				{
-					NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+					NotificationManager notificationManager = (NotificationManager) mainContext.getSystemService(Context.NOTIFICATION_SERVICE);
 
 					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-					{
-						NotificationChannel channel = new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT);
-						notificationManager.createNotificationChannel(channel);
-					}
+						notificationManager.createNotificationChannel(new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT));
 
-					Builder builder = new Builder(context, CHANNEL_ID);
+					Notification.Builder builder = new Notification.Builder(mainContext, channelID);
+					builder.setWhen(System.currentTimeMillis());
+					builder.setAutoCancel(true);
 					builder.setContentTitle(title);
 					builder.setContentText(message);
-					notificationManager.notify(ID, (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN > 0) ? builder.getNotification() : builder.build());
+					builder.setDefaults(Notification.DEFAULT_SOUND);
+
+					notificationManager.notify(ID, builder.build());
 				}
 				catch (Exception e)
 				{
