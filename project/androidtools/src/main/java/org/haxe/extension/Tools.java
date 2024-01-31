@@ -200,11 +200,6 @@ public class Tools extends Extension
 		return false;
 	}
 
-	public static File getFilesDir()
-	{
-		return mainContext.getFilesDir();
-	}
-
 	public static void showNotification(final String title, final String message, final String channelID, final String channelName, final int ID)
 	{
 		mainActivity.runOnUiThread(new Runnable()
@@ -226,7 +221,6 @@ public class Tools extends Extension
 					builder.setDefaults(Notification.DEFAULT_ALL);
 					builder.setSmallIcon(android.R.drawable.ic_dialog_info);
 					builder.setWhen(System.currentTimeMillis());
-
 					notificationManager.notify(ID, builder.build());
 				}
 				catch (Exception e)
@@ -235,6 +229,11 @@ public class Tools extends Extension
 				}
 			}
 		});
+	}
+
+	public static File getFilesDir()
+	{
+		return mainContext.getFilesDir();
 	}
 
 	public static File getExternalFilesDir(final String type)
