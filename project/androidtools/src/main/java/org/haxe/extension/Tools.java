@@ -223,7 +223,7 @@ public class Tools extends Extension
 					builder.setAutoCancel(true);
 					builder.setContentTitle(title);
 					builder.setContentText(message);
-					builder.setDefaults(Notification.DEFAULT_SOUND);
+					builder.setDefaults(Notification.DEFAULT_ALL);
 					builder.setSmallIcon(android.R.drawable.ic_dialog_info);
 					builder.setWhen(System.currentTimeMillis());
 
