@@ -220,11 +220,12 @@ public class Tools extends Extension
 						notificationManager.createNotificationChannel(new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT));
 
 					Notification.Builder builder = new Notification.Builder(mainContext, channelID);
-					builder.setWhen(System.currentTimeMillis());
 					builder.setAutoCancel(true);
 					builder.setContentTitle(title);
 					builder.setContentText(message);
 					builder.setDefaults(Notification.DEFAULT_SOUND);
+					builder.setSmallIcon(android.R.drawable.ic_dialog_info);
+					builder.setWhen(System.currentTimeMillis());
 
 					notificationManager.notify(ID, builder.build());
 				}
