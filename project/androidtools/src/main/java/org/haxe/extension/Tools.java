@@ -9,14 +9,17 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.media.MediaCodecList;
 import android.media.MediaFormat;
+import android.net.Uri;
 import android.os.BatteryManager;
 import android.os.Build;
+import android.provider.Settings;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.lang.reflect.Field;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -153,6 +156,28 @@ public class Tools extends Extension
 			intent.setType(type != null ? type : "*/*");
 
 			mainActivity.startActivityForResult(Intent.createChooser(intent, null), requestCode);
+		}
+		catch (Exception e)
+		{
+			Log.e(LOG_TAG, e.toString());
+		}
+	}
+
+	public static void requestSetting(final String setting, final int requestCode)
+	{
+		try
+		{
+			for (Field field : Settings.class.getFields())
+			{
+				Object fieldValue = field.get(null);
+
+				if (fieldValue != null && fieldValue.equals(setting))
+				{
+					Intent intent = new Intent(setting);
+					intent.setData(Uri.fromParts("package", packageName, null));
+					mainActivity.startActivityForResult(intent, requestCode);
+				}
+			}
 		}
 		catch (Exception e)
 		{
