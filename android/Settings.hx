@@ -11,7 +11,7 @@ class Settings
 	 * @param setting the setting.
 	 * @param requestCode the code that should be requested.
 	 */
-	public static inline function requestPermission(setting:String, requestCode:Int = 1):Void
+	public static inline function requestSetting(setting:String, requestCode:Int = 1):Void
 	{
 		requestSetting_jni(setting, requestCode);
 	}
