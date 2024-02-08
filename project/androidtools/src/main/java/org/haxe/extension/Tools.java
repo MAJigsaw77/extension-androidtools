@@ -1,5 +1,6 @@
 package org.haxe.extension;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -57,6 +58,11 @@ public class Tools extends Extension
 	public static HaxeObject hobject;
 
 	public static Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+
+	public static void initCallBack(HaxeObject hobject)
+	{
+		Tools.hobject = hobject;
+	}
 
 	public static String[] getGrantedPermissions()
 	{
@@ -279,11 +285,6 @@ public class Tools extends Extension
 		return (BatteryManager) mainContext.getSystemService(Context.BATTERY_SERVICE);
 	}
 
-	public static void initCallBack(HaxeObject hobject)
-	{
-		Tools.hobject = hobject;
-	}
-
 	/**
 	 * Called when an activity you launched exits, giving you the requestCode 
 	 * you started it with, the resultCode it returned, and any additional data 
@@ -292,23 +293,23 @@ public class Tools extends Extension
 	@Override
 	public boolean onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		ArrayMap<String, Object> content = new ArrayMap<String, Object>();
-
-		content.put("requestCode", requestCode);
-		content.put("resultCode", resultCode);
-
-		if (data != null && data.getData() != null)
-		{
-			ArrayMap<String, Object> d = new ArrayMap<String, Object>();
-
-			d.put("uri", data.getData().toString());
-			d.put("path", data.getData().getPath());
-
-			content.put("data", d);
-		}
-
 		if (hobject != null)
 		{
+			ArrayMap<String, Object> content = new ArrayMap<String, Object>();
+
+			content.put("requestCode", requestCode);
+			content.put("resultCode", resultCode);
+
+			if (data != null && data.getData() != null)
+			{
+				ArrayMap<String, Object> d = new ArrayMap<String, Object>();
+
+				d.put("uri", data.getData().toString());
+				d.put("path", data.getData().getPath());
+
+				content.put("data", d);
+			}
+
 			hobject.call("onActivityResult", new Object[] {
 				gson.toJson(content)
 			});
@@ -323,14 +324,14 @@ public class Tools extends Extension
 	@Override
 	public boolean onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
 	{
-		ArrayMap<String, Object> content = new ArrayMap<String, Object>();
-
-		content.put("requestCode", requestCode);
-		content.put("permissions", permissions);
-		content.put("grantResults", grantResults);
-
 		if (hobject != null)
 		{
+			ArrayMap<String, Object> content = new ArrayMap<String, Object>();
+
+			content.put("requestCode", requestCode);
+			content.put("permissions", permissions);
+			content.put("grantResults", grantResults);
+
 			hobject.call("onRequestPermissionsResult", new Object[] {
 				gson.toJson(content)
 			});
