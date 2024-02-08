@@ -150,22 +150,6 @@ public class Tools extends Extension
 		}
 	}
 
-	public static void openFileBrowser(final String action, final String type, final int requestCode)
-	{
-		try
-		{
-			Intent intent = new Intent(action);
-			intent.addCategory(Intent.CATEGORY_OPENABLE);
-			intent.setType(type != null ? type : "*/*");
-
-			mainActivity.startActivityForResult(Intent.createChooser(intent, null), requestCode);
-		}
-		catch (Exception e)
-		{
-			Log.e(LOG_TAG, e.toString());
-		}
-	}
-
 	public static void requestSetting(final String setting, final int requestCode)
 	{
 		try
@@ -300,19 +284,7 @@ public class Tools extends Extension
 			content.put("resultCode", resultCode);
 
 			if (data != null && data.getData() != null)
-			{
-				ArrayMap<String, Object> d = new ArrayMap<String, Object>();
-
-				Uri uri = data.getData();
-	
-				d.put("uri", uri.toString());
-
-				File file = new File(uri.getPath());
-
-				d.put("path", file.getAbsolutePath());
-
-				content.put("data", d);
-			}
+				content.put("uri", data.getData().toString());
 
 			hobject.call("onActivityResult", new Object[] {
 				gson.toJson(content)
