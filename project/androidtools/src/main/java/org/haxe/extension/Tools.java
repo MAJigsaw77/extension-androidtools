@@ -1,6 +1,5 @@
 package org.haxe.extension;
 
-import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -304,8 +303,13 @@ public class Tools extends Extension
 			{
 				ArrayMap<String, Object> d = new ArrayMap<String, Object>();
 
-				d.put("uri", data.getData().toString());
-				d.put("path", data.getData().getPath());
+				Uri uri = data.getData();
+	
+				d.put("uri", uri.toString());
+
+				File file = new File(uri.getPath());
+
+				d.put("path", file.getAbsolutePath());
 
 				content.put("data", d);
 			}
