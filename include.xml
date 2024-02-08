@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension xmlns="https://lime.openfl.org/project/1.0.4" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://lime.openfl.org/project/1.0.4 https://lime.openfl.org/xsd/project-1.0.4.xsd">
+<extension
+	xmlns="http://lime.openfl.org/project/1.0.4"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://lime.openfl.org/project/1.0.4 http://lime.openfl.org/xsd/project-1.0.4.xsd">
 
-	<dependency name="androidtools" path="project/androidtools" if="android" />
+	<section if="android">
+		<dependency name="androidtools" path="project/androidtools" />
 
-	<config>
-		<android extension="org.haxe.extension.Tools" />
-	</config>
+		<config:android extension="org.haxe.extension.Tools" />
+	</section>
 
 </extension>
