@@ -5,14 +5,15 @@ package android.callback;
 #end
 import android.callback.CallBackEvent;
 import haxe.Json;
+import lime.app.Event;
 import lime.system.JNI;
-import openfl.events.EventDispatcher;
 
 using StringTools;
 
 class CallBack
 {
-	@:noCompletion private static var dispatcher:EventDispatcher = new EventDispatcher();
+	public static var onActivityResult(default, null):Event<Dynamic->Void>;
+	public static var onRequestPermissionsResult(default, null):Event<Dynamic->Void>;
 
 	@:noCompletion private static var initialized:Bool = false;
 
@@ -21,29 +22,12 @@ class CallBack
 		if (initialized)
 			return;
 
+		onActivityResult = new Event<Dynamic->Void>();
+		onRequestPermissionsResult = new Event<Dynamic->Void>();
+
 		initCallBack_jni(new CallBackHandler());
 
 		initialized = true;
-	}
-
-	public static function addEventListener(type:String, listener:Dynamic, useCapture:Bool = false, priority:Int = 0, useWeakReference:Bool = false):Void
-	{
-		dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
-	}
-
-	public static function removeEventListener(type:String, listener:Dynamic, useCapture:Bool = false):Void
-	{
-		dispatcher.removeEventListener(type, listener, useCapture);
-	}
-
-	public static function dispatchEvent(event:CallBackEvent):Void
-	{
-		dispatcher.dispatchEvent(event);
-	}
-
-	public static function hasEventListener(type:String):Bool
-	{
-		return dispatcher.hasEventListener(type);
 	}
 
 	@:noCompletion private static var initCallBack_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'initCallBack', '(Lorg/haxe/lime/HaxeObject;)V');
@@ -61,9 +45,8 @@ class CallBack
 		if (content != null && content.length > 0)
 			return;
 
-		final daEvent:CallBackEvent = new CallBackEvent(CallBackEvent.ACTIVITY_RESULT, Json.parse(content.trim()));
-
-		CallBack.dispatchEvent(daEvent);
+		if (CallBack.onActivityResult != null)
+			CallBack.onActivityResult.dispatch(Json.parse(content.trim()));
 	}
 
 	#if (lime >= "8.0.0")
@@ -74,8 +57,7 @@ class CallBack
 		if (content != null && content.length > 0)
 			return;
 
-		final daEvent:CallBackEvent = new CallBackEvent(CallBackEvent.REQUEST_PERMISSIONS_RESULT, Json.parse(content.trim()));
-
-		CallBack.dispatchEvent(daEvent);
+		if (CallBack.onRequestPermissionsResult != null)
+			CallBack.onRequestPermissionsResult.dispatch(Json.parse(content.trim()));
 	}
 }
