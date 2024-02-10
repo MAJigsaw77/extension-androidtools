@@ -1,9 +1,11 @@
 package org.haxe.extension;
 
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -54,13 +56,13 @@ public class Tools extends Extension
 {
 	public static final String LOG_TAG = "Tools";
 
-	public static HaxeObject hobject;
+	public static HaxeObject cbObject;
 
-	public static Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+	public static Gson gson;
 
-	public static void initCallBack(HaxeObject hobject)
+	public static void initCallBack(HaxeObject cbObject)
 	{
-		Tools.hobject = hobject;
+		Tools.cbObject = cbObject;
 	}
 
 	public static String[] getGrantedPermissions()
@@ -96,6 +98,41 @@ public class Tools extends Extension
 					toast.setGravity(gravity, xOffset, yOffset);
 
 				toast.show();
+			}
+		});
+	}
+
+	public static void showAlertDialog(final String title, final String message)
+	{
+		mainActivity.runOnUiThread(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				AlertDialog.Builder builder = new AlertDialog.Builder(mainContext, android.R.style.Theme_Material_Dialog_Alert);
+
+				if (title != null)
+					builder.setTitle(title);
+
+				builder.setMessage(message);
+				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener()
+				{
+					@Override
+					public void onClick(DialogInterface dialog, int which)
+					{
+						dialog.dismiss(); // Dismiss the dialog when "OK" is clicked
+					}
+				});
+				builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+				{
+					@Override
+					public void onClick(DialogInterface dialog, int which)
+					{
+						dialog.dismiss(); // Dismiss the dialog when "OK" is clicked
+					}
+				});
+				builder.setCancelable(false);
+				builder.create().show();
 			}
 		});
 	}
@@ -286,7 +323,10 @@ public class Tools extends Extension
 			if (data != null && data.getData() != null)
 				content.put("uri", data.getData().toString());
 
-			hobject.call("onActivityResult", new Object[] {
+			if (gson == null)
+				gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+
+			cbObject.call("onActivityResult", new Object[] {
 				gson.toJson(content)
 			});
 		}
@@ -308,7 +348,10 @@ public class Tools extends Extension
 			content.put("permissions", permissions);
 			content.put("grantResults", grantResults);
 
-			hobject.call("onRequestPermissionsResult", new Object[] {
+			if (gson == null)
+				gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+
+			cbObject.call("onRequestPermissionsResult", new Object[] {
 				gson.toJson(content)
 			});
 		}
