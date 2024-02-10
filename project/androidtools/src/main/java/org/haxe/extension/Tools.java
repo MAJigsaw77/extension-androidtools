@@ -17,6 +17,8 @@ import android.os.Build;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -60,7 +62,7 @@ public class Tools extends Extension
 
 	public static Gson gson;
 
-	public static void initCallBack(HaxeObject cbObject)
+	public static void initCallBack(final HaxeObject cbObject)
 	{
 		Tools.cbObject = cbObject;
 	}
@@ -102,7 +104,7 @@ public class Tools extends Extension
 		});
 	}
 
-	public static void showAlertDialog(final String title, final String message)
+	public static void showAlertDialog(final String title, final String message, final String positiveLabel, final HaxeObject positiveObject, final String negativeLabel, final HaxeObject negativeObject)
 	{
 		mainActivity.runOnUiThread(new Runnable()
 		{
@@ -114,23 +116,44 @@ public class Tools extends Extension
 				if (title != null)
 					builder.setTitle(title);
 
-				builder.setMessage(message);
-				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener()
+				TextView textView = new TextView(mainContext);
+				textView.setText(message);
+				
+				ScrollView scrollView = new ScrollView(mainContext);
+				scrollView.addView(textView);
+				
+				builder.setView(scrollView);
+
+				if (positiveLabel != null)
 				{
-					@Override
-					public void onClick(DialogInterface dialog, int which)
+					builder.setPositiveButton(positiveLabel, new DialogInterface.OnClickListener()
 					{
-						dialog.dismiss(); // Dismiss the dialog when "OK" is clicked
-					}
-				});
-				builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+						@Override
+						public void onClick(DialogInterface dialog, int which)
+						{
+							dialog.dismiss();
+
+							if (positiveObject != null)
+								positiveObject.call("onClick", new Object[] {});
+						}
+					});
+				}
+				
+				if (negativeLabel != null)
 				{
-					@Override
-					public void onClick(DialogInterface dialog, int which)
+					builder.setNegativeButton(negativeLabel, new DialogInterface.OnClickListener()
 					{
-						dialog.dismiss(); // Dismiss the dialog when "OK" is clicked
-					}
-				});
+						@Override
+						public void onClick(DialogInterface dialog, int which)
+						{
+							dialog.dismiss();
+
+							if (negativeObject != null)
+								negativeObject.call("onClick", new Object[] {});
+						}
+					});
+				}
+
 				builder.setCancelable(false);
 				builder.create().show();
 			}
