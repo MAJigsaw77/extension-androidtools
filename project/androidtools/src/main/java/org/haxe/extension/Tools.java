@@ -313,7 +313,7 @@ public class Tools extends Extension
 	@Override
 	public boolean onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		if (hobject != null)
+		if (cbObject != null)
 		{
 			ArrayMap<String, Object> content = new ArrayMap<String, Object>();
 
@@ -340,7 +340,7 @@ public class Tools extends Extension
 	@Override
 	public boolean onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
 	{
-		if (hobject != null)
+		if (cbObject != null)
 		{
 			ArrayMap<String, Object> content = new ArrayMap<String, Object>();
 
