@@ -17,6 +17,7 @@ import android.os.Build;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -116,12 +117,14 @@ public class Tools extends Extension
 				if (title != null)
 					builder.setTitle(title);
 
-				TextView textView = new TextView(mainContext);
-				textView.setText(message);
-				
+				TextView messageView = new TextView(mainContext);
+				messageView.setPadding(20, 20, 20, 20);
+				messageView.setText(message);
+
 				ScrollView scrollView = new ScrollView(mainContext);
-				scrollView.addView(textView);
-				
+				scrollView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 300));
+				scrollView.addView(messageView);
+
 				builder.setView(scrollView);
 
 				if (positiveLabel != null)
