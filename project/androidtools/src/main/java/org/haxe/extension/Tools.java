@@ -111,7 +111,7 @@ public class Tools extends Extension
 			@Override
 			public void run()
 			{
-				AlertDialog.Builder builder = new AlertDialog.Builder(mainContext, android.R.style.Theme_Material_Dialog_Alert);
+				AlertDialog.Builder builder = new AlertDialog.Builder(mainContext);
 
 				if (title != null)
 					builder.setTitle(title);
