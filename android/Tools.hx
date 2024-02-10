@@ -3,6 +3,7 @@ package android;
 #if (!android && !native && macro)
 #error 'extension-androidtools is not supported on your current platform'
 #end
+import lime.app.Event;
 import lime.system.JNI;
 
 class Tools
@@ -34,9 +35,15 @@ class Tools
 	/**
 	 * Launches a app by the `packageName`.
 	 */
-	public static inline function showAlertDialog(title:String, message:String):Void
+	public static function showAlertDialog(title:String, message:String, ?positiveButton:ButtonData, ?negativeButton:ButtonData):Void
 	{
-		showAlertDialog_jni(title, message);
+		if (positiveButton == null)
+			positiveButton = {name: null, func: null};
+
+		if (negativeButton == null)
+			negativeButton = {name: null, func: null};
+
+		showAlertDialog_jni(title, message, positiveButton.name, new ButtonListener(positiveButton.func), negativeButton.name, new ButtonListener(negativeButton.func));
 	}
 
 	/**
@@ -114,7 +121,7 @@ class Tools
 	@:noCompletion private static var enableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'enableAppSecure', '()V');
 	@:noCompletion private static var disableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'disableAppSecure', '()V');
 	@:noCompletion private static var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V');
-	@:noCompletion private static var showAlertDialog_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'showAlertDialog', '(Ljava/lang/String;Ljava/lang/String;)V');
+	@:noCompletion private static var showAlertDialog_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'showAlertDialog', '(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Lorg/haxe/lime/HaxeObject;)V');
 	@:noCompletion private static var isRooted_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z');
 	@:noCompletion private static var isDolbyAtmos_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isDolbyAtmos', '()Z');
 	@:noCompletion private static var showNotification_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'showNotification', '(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V');
@@ -124,4 +131,28 @@ class Tools
 	@:noCompletion private static var isTablet_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isTablet', '()Z');
 	@:noCompletion private static var isChromeBook_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isChromeBook', '()Z');
 	@:noCompletion private static var isDexMode_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'isDeXMode', '()Z');
+}
+
+@:noCompletion private typedef ButtonData = {
+	name:String,
+	func:Void->Void
+}
+
+@:noCompletion private class ButtonListener #if (lime >= "8.0.0") implements JNISafety #end
+{
+	private var onClickEvent:Event<Void->Void> = new Event<Void->Void>();
+
+	public function new(clickCallback:Void->Void):Void
+	{
+		if (clickCallback != null)
+			onClickEvent.add(clickCallback);
+	}
+
+	#if (lime >= "8.0.0")
+	@:runOnMainThread
+	#end
+	public function onClick():Void
+	{
+		onClickEvent.dispatch();
+	}
 }
