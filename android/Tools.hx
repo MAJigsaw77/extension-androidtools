@@ -32,6 +32,14 @@ class Tools
 	}
 
 	/**
+	 * Launches a app by the `packageName`.
+	 */
+	public static inline function showAlertDialog(title:String, message:String):Void
+	{
+		showAlertDialog_jni(title, message);
+	}
+
+	/**
 	 * @returns `true` If the device have root.
 	 */
 	public static inline function isRooted():Bool
@@ -106,6 +114,7 @@ class Tools
 	@:noCompletion private static var enableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'enableAppSecure', '()V');
 	@:noCompletion private static var disableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'disableAppSecure', '()V');
 	@:noCompletion private static var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V');
+	@:noCompletion private static var showAlertDialog_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'showAlertDialog', '(Ljava/lang/String;Ljava/lang/String;)V');
 	@:noCompletion private static var isRooted_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z');
 	@:noCompletion private static var isDolbyAtmos_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isDolbyAtmos', '()Z');
 	@:noCompletion private static var showNotification_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'showNotification', '(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V');
