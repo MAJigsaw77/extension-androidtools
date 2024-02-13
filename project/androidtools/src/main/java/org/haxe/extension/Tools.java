@@ -95,12 +95,19 @@ public class Tools extends Extension
 			@Override
 			public void run()
 			{
-				Toast toast = Toast.makeText(mainContext, message, duration);
+				try
+				{
+					Toast toast = Toast.makeText(mainContext, message, duration);
 
-				if (gravity >= 0)
-					toast.setGravity(gravity, xOffset, yOffset);
+					if (gravity >= 0)
+						toast.setGravity(gravity, xOffset, yOffset);
 
-				toast.show();
+					toast.show();
+				}
+				catch (Exception e)
+				{
+					Log.e(LOG_TAG, e.toString());
+				}
 			}
 		});
 	}
@@ -112,53 +119,60 @@ public class Tools extends Extension
 			@Override
 			public void run()
 			{
-				AlertDialog.Builder builder = new AlertDialog.Builder(mainContext, android.R.style.Theme_Material_Dialog_Alert);
-
-				if (title != null)
-					builder.setTitle(title);
-
-				TextView messageView = new TextView(mainContext);
-				messageView.setPadding(20, 20, 20, 20);
-				messageView.setText(message);
-
-				ScrollView scrollView = new ScrollView(mainContext);
-				scrollView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 300));
-				scrollView.addView(messageView);
-
-				builder.setView(scrollView);
-
-				if (positiveLabel != null)
+				try
 				{
-					builder.setPositiveButton(positiveLabel, new DialogInterface.OnClickListener()
-					{
-						@Override
-						public void onClick(DialogInterface dialog, int which)
-						{
-							dialog.dismiss();
+					AlertDialog.Builder builder = new AlertDialog.Builder(mainContext, android.R.style.Theme_Material_Dialog_Alert);
 
-							if (positiveObject != null)
-								positiveObject.call("onClick", new Object[] {});
-						}
-					});
-				}
+					if (title != null)
+						builder.setTitle(title);
+
+					TextView messageView = new TextView(mainContext);
+					messageView.setPadding(20, 20, 20, 20);
+					messageView.setText(message);
+
+					ScrollView scrollView = new ScrollView(mainContext);
+					scrollView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 300));
+					scrollView.addView(messageView);
+
+					builder.setView(scrollView);
+
+					if (positiveLabel != null)
+					{
+						builder.setPositiveButton(positiveLabel, new DialogInterface.OnClickListener()
+						{
+							@Override
+							public void onClick(DialogInterface dialog, int which)
+							{
+								dialog.dismiss();
+
+								if (positiveObject != null)
+									positiveObject.call("onClick", new Object[] {});
+							}
+						});
+					}
 				
-				if (negativeLabel != null)
-				{
-					builder.setNegativeButton(negativeLabel, new DialogInterface.OnClickListener()
+					if (negativeLabel != null)
 					{
-						@Override
-						public void onClick(DialogInterface dialog, int which)
+						builder.setNegativeButton(negativeLabel, new DialogInterface.OnClickListener()
 						{
-							dialog.dismiss();
+							@Override
+							public void onClick(DialogInterface dialog, int which)
+							{
+								dialog.dismiss();
 
-							if (negativeObject != null)
-								negativeObject.call("onClick", new Object[] {});
-						}
-					});
+								if (negativeObject != null)
+									negativeObject.call("onClick", new Object[] {});
+							}
+						});
+					}
+
+					builder.setCancelable(false);
+					builder.create().show();
 				}
-
-				builder.setCancelable(false);
-				builder.create().show();
+				catch (Exception e)
+				{
+					Log.e(LOG_TAG, e.toString());
+				}
 			}
 		});
 	}
