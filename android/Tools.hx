@@ -105,9 +105,9 @@ class Tools
 	/**
 	 * @returns whether the device is a ChromeBook.
 	 */
-	public static inline function isChromeBook():Bool
+	public static inline function isChromebook():Bool
 	{
-		return isChromeBook_jni();
+		return isChromebook_jni();
 	}
 
 	/**
@@ -129,7 +129,7 @@ class Tools
 	@:noCompletion private static var minimizeWindow_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'minimizeWindow', '()V');
 	@:noCompletion private static var isAndroidTV_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'isAndroidTV', '()Z');
 	@:noCompletion private static var isTablet_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'isTablet', '()Z');
-	@:noCompletion private static var isChromeBook_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'isChromeBook', '()Z');
+	@:noCompletion private static var isChromebook_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'isChromebook', '()Z');
 	@:noCompletion private static var isDexMode_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'isDeXMode', '()Z');
 }
 
