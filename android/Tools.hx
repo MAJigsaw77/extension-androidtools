@@ -3,16 +3,25 @@ package android;
 #if (!android && !native && macro)
 #error 'extension-androidtools is not supported on your current platform'
 #end
+import android.Permissions;
 import lime.app.Event;
 import lime.system.JNI;
+import lime.utils.Log;
 
 class Tools
 {
 	/**
-	 * Prompt the user to install a specific APK file.
+	 * Prompt the user to install a specific .apk file.
 	 */
 	public static function installApplication(apkName:String, ?directory:String):Void
 	{
+		if (!Permissions.getGrantedPermissions().contains(Permissions.REQUEST_INSTALL_PACKAGES))
+		{
+			Log.warn('You must have the "REQUEST_INSTALL_PACKAGES" granted in order to install a .apk file.');
+
+			return;
+		}
+		
 		installApplication_jni(directory != null ? directory : Sys.getCwd(), apkName);
 	}
 
