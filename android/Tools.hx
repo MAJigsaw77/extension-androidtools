@@ -11,18 +11,18 @@ import lime.utils.Log;
 class Tools
 {
 	/**
-	 * Prompt the user to install a specific .apk file.
+	 * Prompt the user to install a specific APK file.
 	 */
-	public static function installApplication(apkName:String, ?directory:String):Void
+	public static function installApplication(path:String):Void
 	{
 		if (!Permissions.getGrantedPermissions().contains(Permissions.REQUEST_INSTALL_PACKAGES))
 		{
-			Log.warn('You must have the "REQUEST_INSTALL_PACKAGES" granted in order to install a .apk file.');
+			Log.warn('You must have the "REQUEST_INSTALL_PACKAGES" granted in order to install a APK file.');
 
 			return;
 		}
 		
-		installApplication_jni(directory != null ? directory : Sys.getCwd(), apkName);
+		installApplication_jni(path);
 	}
 
 	/**
@@ -135,7 +135,7 @@ class Tools
 		return isDexMode_jni();
 	}
 
-	@:noCompletion private static var installApplication_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'installApplication', '(Ljava/lang/String;Ljava/lang/String;)V');
+	@:noCompletion private static var installApplication_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'installApplication', '(Ljava/lang/String;)V');
 	@:noCompletion private static var enableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'enableAppSecure', '()V');
 	@:noCompletion private static var disableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'disableAppSecure', '()V');
 	@:noCompletion private static var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V');

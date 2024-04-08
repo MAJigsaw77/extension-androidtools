@@ -178,11 +178,11 @@ public class Tools extends Extension
 		});
 	}
 
-	public static void installApplication(String directory, String appName)
+	public static void installPackage(final String path)
 	{
 		try
 		{
-			File file = new File(directory, appName + ".apk");
+			File file = new File(path);
 
 			if (file.exists())
 			{
