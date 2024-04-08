@@ -13,7 +13,7 @@ class Tools
 	 */
 	public static function installApplication(apkName:String, ?directory:String):Void
 	{
-		installApplication_jni(directory, directory != null ? directory : Sys.getCwd());
+		installApplication_jni(directory != null ? directory : Sys.getCwd(), apkName);
 	}
 
 	/**
