@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.core.content.FileProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.File;
@@ -28,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.haxe.extension.Extension;
 import org.haxe.lime.HaxeObject;
-import androidx.core.content.FileProvider;
 
 /* 
 	You can use the Android Extension class in order to hook
@@ -176,6 +176,35 @@ public class Tools extends Extension
 				}
 			}
 		});
+	}
+
+	public static void installApplication(String directory, String appName)
+	{
+		try
+		{
+			File file = new File(directory, appName + ".apk");
+
+			if (file.exists())
+			{
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+
+				Uri contentUri;
+
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+					contentUri = FileProvider.getUriForFile(mainContext, packageName + ".provider", file);
+				else
+					contentUri = Uri.fromFile(file);
+
+				intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+				mainContext.startActivity(intent);
+			}
+		}
+		catch (Exception e)
+		{
+			Log.e(LOG_TAG, e.toString());
+		}
 	}
 
 	public static void enableAppSecure()
@@ -344,28 +373,6 @@ public class Tools extends Extension
 	public static BatteryManager getBatteryManager()
 	{
 		return (BatteryManager) mainContext.getSystemService(Context.BATTERY_SERVICE);
-	}
-
-	public static void installAPK(String cwd, String appName) {
-		try {
-			File file = new File(cwd, appName + ".apk");
-			if (file.exists()) {
-				Intent intent = new Intent(Intent.ACTION_VIEW);
-				Uri contentUri;
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-					contentUri = FileProvider.getUriForFile(mainContext,
-							mainContext.getApplicationContext().getPackageName() + ".provider", file);
-				} else {
-					contentUri = Uri.fromFile(file);
-				}
-				intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
-				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-				mainContext.startActivity(intent);
-			}
-		} catch (Exception e) {
-			Log.e(LOG_TAG, e.toString());
-		}
 	}
 
 	/**
