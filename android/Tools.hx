@@ -16,7 +16,7 @@ class Tools
 	public static function installPackage(path:String):Void
 	{
 		if (!installPackage_jni(path))
-			Log.warn('You must have the "REQUEST_INSTALL_PACKAGES" granted in order to install a APK file.');
+			Log.warn('"REQUEST_INSTALL_PACKAGES" permission and "Install apps from external sources" setting must be granted to this app in order to install a ${haxe.io.Path.extension(path).toUpperCase()} file.');
 	}
 
 	/**
