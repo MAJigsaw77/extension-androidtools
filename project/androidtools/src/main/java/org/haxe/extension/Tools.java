@@ -185,7 +185,7 @@ public class Tools extends Extension
 			boolean retVal = true;
 			// return false only if the application dosen't have the necessary permissions or an Exception accured
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-				retVal = mainContext.getPackageManager().canRequestPackageInstalls()
+				retVal = mainContext.getPackageManager().canRequestPackageInstalls();
 
 			File file = new File(path);
 			Uri contentUri;
