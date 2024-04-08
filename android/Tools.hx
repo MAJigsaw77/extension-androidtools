@@ -15,14 +15,8 @@ class Tools
 	 */
 	public static function installPackage(path:String):Void
 	{
-		if (!Permissions.getGrantedPermissions().contains(Permissions.REQUEST_INSTALL_PACKAGES))
-		{
+		if (!installPackage_jni(path))
 			Log.warn('You must have the "REQUEST_INSTALL_PACKAGES" granted in order to install a APK file.');
-
-			return;
-		}
-		
-		installPackage_jni(path);
 	}
 
 	/**
@@ -135,7 +129,7 @@ class Tools
 		return isDexMode_jni();
 	}
 
-	@:noCompletion private static var installPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'installPackage', '(Ljava/lang/String;)V');
+	@:noCompletion private static var installPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'installPackage', '(Ljava/lang/String;)Z');
 	@:noCompletion private static var enableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'enableAppSecure', '()V');
 	@:noCompletion private static var disableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'disableAppSecure', '()V');
 	@:noCompletion private static var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V');
