@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.haxe.extension.Extension;
 import org.haxe.lime.HaxeObject;
+import androidx.core.content.FileProvider;
 
 /* 
 	You can use the Android Extension class in order to hook
