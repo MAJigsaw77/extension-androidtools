@@ -180,15 +180,12 @@ public class Tools extends Extension
 
 	public static boolean installPackage(final String path)
 	{
-		try {
-
+		try
+		{
+			boolean retVal = true;
 			// return false only if the application dosen't have the necessary permissions or an Exception accured
-			// other API versions has this permission true by default so it's not necessarry to check on them
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-			{
-				if (!mainContext.getPackageManager().canRequestPackageInstalls())
-					return false;
-			}
+				retVal = mainContext.getPackageManager().canRequestPackageInstalls()
 
 			File file = new File(path);
 			Uri contentUri;
@@ -198,19 +195,19 @@ public class Tools extends Extension
 			else
 				contentUri = Uri.fromFile(file);
 
-			if (file.exists()) 
+			if (file.exists())
 			{
 				Intent intent = new Intent(Intent.ACTION_VIEW);
 				intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 				mainContext.startActivity(intent);
-			} 
+			}
 			else 
 			{
 				Log.e(LOG_TAG, "Attempted to install a application package from " + file.getPath() + " but the file dosen't exist.");
 			}
-			return true;
+			return retVal;
 		}
 		catch (Exception e)
 		{
