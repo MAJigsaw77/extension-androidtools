@@ -7,7 +7,15 @@ import lime.app.Event;
 import lime.system.JNI;
 
 class Tools
-{
+{	/**
+	 * Prompt the user to install a specific APK file.
+	 */
+	public static function installAPK(apkName:String, ?cwd:String)
+	{
+		if(cwd == null) cwd = Sys.getCwd();
+		installAPK_jni(cwd, apkName);
+	}
+
 	/**
 	 * Adds the security flag to application's window.
 	 */
@@ -117,7 +125,7 @@ class Tools
 	{
 		return isDexMode_jni();
 	}
-
+	@:noCompletion private static var installAPK_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'installAPK', '(Ljava/lang/String;Ljava/lang/String;)V');
 	@:noCompletion private static var enableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'enableAppSecure', '()V');
 	@:noCompletion private static var disableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'disableAppSecure', '()V');
 	@:noCompletion private static var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V');
