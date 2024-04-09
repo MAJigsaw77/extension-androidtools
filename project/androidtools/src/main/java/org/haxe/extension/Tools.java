@@ -183,11 +183,12 @@ public class Tools extends Extension
 		try
 		{
 			boolean retVal = true;
-			// return false only if the application dosen't have the necessary permissions or an Exception accured
+
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
 				retVal = mainContext.getPackageManager().canRequestPackageInstalls();
 
 			File file = new File(path);
+
 			Uri contentUri;
 
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
@@ -204,14 +205,14 @@ public class Tools extends Extension
 				mainContext.startActivity(intent);
 			}
 			else 
-			{
-				Log.e(LOG_TAG, "Attempted to install a application package from " + file.getPath() + " but the file dosen't exist.");
-			}
+				Log.e(LOG_TAG, "Attempted to install a application package from " + file.getAbsolutePath() + " but the file dosen't exist.");
+
 			return retVal;
 		}
 		catch (Exception e)
 		{
 			Log.e(LOG_TAG, e.toString());
+
 			return false;
 		}
 	}
