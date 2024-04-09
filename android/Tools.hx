@@ -4,6 +4,7 @@ package android;
 #error 'extension-androidtools is not supported on your current platform'
 #end
 import android.Permissions;
+import haxe.io.Path;
 import lime.app.Event;
 import lime.system.JNI;
 import lime.utils.Log;
@@ -16,7 +17,7 @@ class Tools
 	public static function installPackage(path:String):Void
 	{
 		if (!installPackage_jni(path))
-			Log.warn('"REQUEST_INSTALL_PACKAGES" permission and "Install apps from external sources" setting must be granted to this app in order to install a ${haxe.io.Path.extension(path).toUpperCase()} file.');
+			Log.warn('"REQUEST_INSTALL_PACKAGES" permission and "Install apps from external sources" setting must be granted to this app in order to install a ${Path.extension(path).toUpperCase()} file.');
 	}
 
 	/**
