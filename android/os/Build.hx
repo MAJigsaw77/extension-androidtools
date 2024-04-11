@@ -123,7 +123,7 @@ class Build
 
 	/**
 	 * Gets the hardware serial number, if available.
-	 * Requires android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE
+	 * Requires android.permission.READ_PRIVILEGED_PHONE_STATE
 	 */
 	public static inline function getSerial():String
 	{
