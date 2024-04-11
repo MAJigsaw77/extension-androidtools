@@ -111,7 +111,8 @@ class Environment
 	@:noCompletion private static var getRootDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getRootDirectory', '()Ljava/io/File;');
 	@:noCompletion private static var isExternalStorageManager_jni:Dynamic = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) ? JNI.createStaticMethod('android/os/Environment',
 		'isExternalStorageManager', '()Z') : () -> return true;
-	@:noCompletion private static var isExternalStorageEmulated_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'isExternalStorageEmulated', '()Z');
+	@:noCompletion private static var isExternalStorageEmulated_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'isExternalStorageEmulated',
+		'()Z');
 	@:noCompletion private static var isExternalStorageLegacy_jni:Dynamic = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) ? JNI.createStaticMethod('android/os/Environment',
 		'isExternalStorageLegacy', '()Z') : () -> return true;
 	@:noCompletion private static var isExternalStorageRemovable_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'isExternalStorageRemovable',

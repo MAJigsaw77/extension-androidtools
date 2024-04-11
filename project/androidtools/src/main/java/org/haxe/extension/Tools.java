@@ -370,6 +370,16 @@ public class Tools extends Extension
 		return mainContext.getCacheDir();
 	}
 
+	public static File getCodeCacheDir()
+	{
+		return mainContext.getCodeCacheDir();
+	}
+
+	public static File getNoBackupFilesDir()
+	{
+		return mainContext.getNoBackupFilesDir();
+	}
+
 	public static File getExternalCacheDir()
 	{
 		return mainContext.getExternalCacheDir();
