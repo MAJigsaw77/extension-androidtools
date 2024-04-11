@@ -16,5 +16,6 @@ class Settings
 		requestSetting_jni(setting, requestCode);
 	}
 
-	@:noCompletion private static var requestSetting_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'requestSetting', '(Ljava/lang/String;I)V');
+	@:noCompletion private static var requestSetting_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'requestSetting',
+		'(Ljava/lang/String;I)V');
 }
