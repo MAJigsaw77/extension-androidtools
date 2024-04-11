@@ -94,40 +94,40 @@ class VERSION
 	public static final SDK_INT:Int = JNI.createStaticField("android/os/Build$VERSION", 'SDK_INT', 'I').get();
 }
 
-class VERSION_CODES
+enum abstract VERSION_CODES(Int) from Int to Int
 {
-	public static final BASE:Int = 1;
-	public static final BASE_1_1:Int = 2;
-	public static final CUPCAKE:Int = 3;
-	public static final DONUT:Int = 4;
-	public static final ECLAIR:Int = 5;
-	public static final ECLAIR_0_1:Int = 6;
-	public static final ECLAIR_MR1:Int = 7;
-	public static final FROYO:Int = 8;
-	public static final GINGERBREAD:Int = 9;
-	public static final GINGERBREAD_MR1:Int = 10;
-	public static final HONEYCOMB:Int = 11;
-	public static final HONEYCOMB_MR1:Int = 12;
-	public static final HONEYCOMB_MR2:Int = 13;
-	public static final ICE_CREAM_SANDWICH:Int = 14;
-	public static final ICE_CREAM_SANDWICH_MR1:Int = 15;
-	public static final JELLY_BEAN:Int = 16;
-	public static final JELLY_BEAN_MR1:Int = 17;
-	public static final JELLY_BEAN_MR2:Int = 18;
-	public static final KITKAT:Int = 19;
-	public static final KITKAT_WATCH:Int = 20;
-	public static final LOLLIPOP:Int = 21;
-	public static final LOLLIPOP_MR1:Int = 22;
-	public static final M:Int = 23;
-	public static final N:Int = 24;
-	public static final N_MR1:Int = 25;
-	public static final O:Int = 26;
-	public static final O_MR1:Int = 27;
-	public static final P:Int = 28;
-	public static final Q:Int = 29;
-	public static final R:Int = 30;
-	public static final S:Int = 31;
-	public static final S_V2:Int = 32;
-	public static final TIRAMISU:Int = 33;
-	public static final UPSIDE_DOWN_CAKE:Int = 34;
+	var BASE = 1;
+	var BASE_1_1 = 2;
+	var CUPCAKE = 3;
+	var DONUT = 4;
+	var ECLAIR = 5;
+	var ECLAIR_0_1 = 6;
+	var ECLAIR_MR1 = 7;
+	var FROYO = 8;
+	var GINGERBREAD = 9;
+	var GINGERBREAD_MR1 = 10;
+	var HONEYCOMB = 11;
+	var HONEYCOMB_MR1 = 12;
+	var HONEYCOMB_MR2 = 13;
+	var ICE_CREAM_SANDWICH = 14;
+	var ICE_CREAM_SANDWICH_MR1 = 15;
+	var JELLY_BEAN = 16;
+	var JELLY_BEAN_MR1 = 17;
+	var JELLY_BEAN_MR2 = 18;
+	var KITKAT = 19;
+	var KITKAT_WATCH = 20;
+	var LOLLIPOP = 21;
+	var LOLLIPOP_MR1 = 22;
+	var M = 23;
+	var N = 24;
+	var N_MR1 = 25;
+	var O = 26;
+	var O_MR1 = 27;
+	var P = 28;
+	var Q = 29;
+	var R = 30;
+	var S = 31;
+	var S_V2 = 32;
+	var TIRAMISU = 33;
+	var UPSIDE_DOWN_CAKE = 34;
 }
