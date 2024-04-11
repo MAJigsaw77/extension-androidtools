@@ -1,6 +1,6 @@
 package android.callback;
 
-#if (!android && !native && macro)
+#if (!android && !native)
 #error 'extension-androidtools is not supported on your current platform'
 #end
 import android.callback.CallBackEvent;
