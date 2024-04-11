@@ -101,7 +101,7 @@ class Build
 	/**
 	 * The time at which the build was produced, given in milliseconds since the UNIX epoch.
 	 */
-	public static final TIME:haxe.Int64 = JNI.createStaticField('android/os/Build', 'TIME', 'J').get();
+	public static final TIME:Int = JNI.createStaticField('android/os/Build', 'TIME', 'J').get();
 
 	/**
 	 * The type of build, like "user" or "eng".
