@@ -159,7 +159,7 @@ class VERSION
 	 * 
 	 * Possible non-zero values are defined in ``Build.VERSION_CODES`` starting with ``Build.VERSION_CODES.R``.
 	 */
-	public static final MEDIA_PERFORMANCE_CLASS:Int = JNI.createStaticField("android/os/Build$VERSION", 'MEDIA_PERFORMANCE_CLASS', 'I').get();
+	public static final MEDIA_PERFORMANCE_CLASS:Int = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) ? JNI.createStaticField("android/os/Build$VERSION", 'MEDIA_PERFORMANCE_CLASS', 'I').get() : 0;
 
 	/**
 	 * The user-visible version string.
