@@ -31,6 +31,5 @@ class BatteryManager
 	}
 
 	@:noCompletion
-	private static var getBatteryManager_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getBatteryManager',
-		'()Landroid/os/BatteryManager;');
+	private static var getBatteryManager_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getBatteryManager', '()Landroid/os/BatteryManager;');
 }

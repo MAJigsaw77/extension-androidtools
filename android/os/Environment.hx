@@ -101,32 +101,40 @@ class Environment
 
 	@:noCompletion
 	private static var getDataDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getDataDirectory', '()Ljava/io/File;');
+
 	@:noCompletion
 	private static var getDownloadCacheDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getDownloadCacheDirectory',
 		'()Ljava/io/File;');
+
 	@:noCompletion
-	private static var getExternalStorageDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment',
-		'getExternalStorageDirectory', '()Ljava/io/File;');
+	private static var getExternalStorageDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getExternalStorageDirectory',
+		'()Ljava/io/File;');
+
 	@:noCompletion
 	private static var getStorageDirectory_jni:Dynamic = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) ? JNI.createStaticMethod('android/os/Environment',
 		'getStorageDirectory', '()Ljava/io/File;') : getExternalStorageDirectory_jni();
+
 	@:noCompletion
 	private static var getExternalStorageState_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getExternalStorageState',
 		'()Ljava/lang/String;');
+
 	@:noCompletion
 	private static var getRootDirectory_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getRootDirectory', '()Ljava/io/File;');
+
 	@:noCompletion
 	private static var isExternalStorageManager_jni:Dynamic = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) ? JNI.createStaticMethod('android/os/Environment',
 		'isExternalStorageManager', '()Z') : () -> return true;
+
 	@:noCompletion
-	private static var isExternalStorageEmulated_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'isExternalStorageEmulated',
-		'()Z');
+	private static var isExternalStorageEmulated_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'isExternalStorageEmulated', '()Z');
+
 	@:noCompletion
 	private static var isExternalStorageLegacy_jni:Dynamic = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) ? JNI.createStaticMethod('android/os/Environment',
 		'isExternalStorageLegacy', '()Z') : () -> return true;
+
 	@:noCompletion
-	private static var isExternalStorageRemovable_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'isExternalStorageRemovable',
-		'()Z');
+	private static var isExternalStorageRemovable_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'isExternalStorageRemovable', '()Z');
+
 	@:noCompletion
 	private static var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
 }

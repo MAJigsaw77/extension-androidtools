@@ -44,21 +44,26 @@ class Context
 
 	@:noCompletion
 	private static var getFilesDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getFilesDir', '()Ljava/io/File;');
+
 	@:noCompletion
 	private static var getExternalFilesDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getExternalFilesDir',
 		'(Ljava/lang/String;)Ljava/io/File;');
+
 	@:noCompletion
 	private static var getCacheDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getCacheDir', '()Ljava/io/File;');
+
 	@:noCompletion
 	private static var getCodeCacheDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getCodeCacheDir', '()Ljava/io/File;');
+
 	@:noCompletion
-	private static var getNoBackupFilesDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getNoBackupFilesDir',
-		'()Ljava/io/File;');
+	private static var getNoBackupFilesDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getNoBackupFilesDir', '()Ljava/io/File;');
+
 	@:noCompletion
-	private static var getExternalCacheDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getExternalCacheDir',
-		'()Ljava/io/File;');
+	private static var getExternalCacheDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getExternalCacheDir', '()Ljava/io/File;');
+
 	@:noCompletion
 	private static var getObbDir_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getObbDir', '()Ljava/io/File;');
+
 	@:noCompletion
 	private static var getAbsolutePath_jni:Dynamic = JNI.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;');
 }
