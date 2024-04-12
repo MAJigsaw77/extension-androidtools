@@ -112,7 +112,7 @@ class Environment
 
 	@:noCompletion
 	private static var getStorageDirectory_jni:Dynamic = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) ? JNI.createStaticMethod('android/os/Environment',
-		'getStorageDirectory', '()Ljava/io/File;') : getExternalStorageDirectory_jni();
+		'getStorageDirectory', '()Ljava/io/File;') : () -> return '/storage';
 
 	@:noCompletion
 	private static var getExternalStorageState_jni:Dynamic = JNI.createStaticMethod('android/os/Environment', 'getExternalStorageState',
