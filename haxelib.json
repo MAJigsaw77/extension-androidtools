@@ -8,7 +8,7 @@
 		"haxe",
 		"jni"
 	],
-	"description":"A Haxe/Lime extension that add's some functions from Java to Haxe using JNI.",
+	"description":"A Haxe/Lime extension that incorporates Java functions through JNI.",
 	"version":"1.9.0",
 	"releasenote":"More optimization and added some new features.",
 	"contributors":[
