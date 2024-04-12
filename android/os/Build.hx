@@ -130,8 +130,10 @@ class Build
 		return getSerial_jni();
 	}
 
-	@:noCompletion private static var getRadioVersion_jni:Dynamic = JNI.createStaticMethod('android/os/Build', 'getRadioVersion', '()Ljava/lang/String;');
-	@:noCompletion private static var getSerial_jni:Dynamic = JNI.createStaticMethod('android/os/Build', 'getSerial', '()Ljava/lang/String;');
+	@:noCompletion
+	private static var getRadioVersion_jni:Dynamic = JNI.createStaticMethod('android/os/Build', 'getRadioVersion', '()Ljava/lang/String;');
+	@:noCompletion
+	private static var getSerial_jni:Dynamic = JNI.createStaticMethod('android/os/Build', 'getSerial', '()Ljava/lang/String;');
 }
 
 class VERSION

@@ -132,24 +132,38 @@ class Tools
 		return isDexMode_jni();
 	}
 
-	@:noCompletion private static var installPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'installPackage',
+	@:noCompletion
+	private static var installPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'installPackage',
 		'(Ljava/lang/String;)Z');
-	@:noCompletion private static var enableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'enableAppSecure', '()V');
-	@:noCompletion private static var disableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'disableAppSecure', '()V');
-	@:noCompletion private static var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V');
-	@:noCompletion private static var showAlertDialog_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'showAlertDialog',
+	@:noCompletion
+	private static var enableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'enableAppSecure', '()V');
+	@:noCompletion
+	private static var disableAppSecure_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'disableAppSecure', '()V');
+	@:noCompletion
+	private static var launchPackage_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'launchPackage', '(Ljava/lang/String;I)V');
+	@:noCompletion
+	private static var showAlertDialog_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'showAlertDialog',
 		'(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/haxe/lime/HaxeObject;Ljava/lang/String;Lorg/haxe/lime/HaxeObject;)V');
-	@:noCompletion private static var isRooted_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z');
-	@:noCompletion private static var isDolbyAtmos_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isDolbyAtmos', '()Z');
-	@:noCompletion private static var showNotification_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'showNotification',
+	@:noCompletion
+	private static var isRooted_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z');
+	@:noCompletion
+	private static var isDolbyAtmos_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'isDolbyAtmos', '()Z');
+	@:noCompletion
+	private static var showNotification_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'showNotification',
 		'(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V');
-	@:noCompletion private static var setActivityTitle_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'setActivityTitle',
+	@:noCompletion
+	private static var setActivityTitle_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'setActivityTitle',
 		'(Ljava/lang/String;)Z');
-	@:noCompletion private static var minimizeWindow_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'minimizeWindow', '()V');
-	@:noCompletion private static var isAndroidTV_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'isAndroidTV', '()Z');
-	@:noCompletion private static var isTablet_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'isTablet', '()Z');
-	@:noCompletion private static var isChromebook_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'isChromebook', '()Z');
-	@:noCompletion private static var isDexMode_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'isDeXMode', '()Z');
+	@:noCompletion
+	private static var minimizeWindow_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'minimizeWindow', '()V');
+	@:noCompletion
+	private static var isAndroidTV_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'isAndroidTV', '()Z');
+	@:noCompletion
+	private static var isTablet_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'isTablet', '()Z');
+	@:noCompletion
+	private static var isChromebook_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'isChromebook', '()Z');
+	@:noCompletion
+	private static var isDexMode_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'isDeXMode', '()Z');
 }
 
 @:noCompletion private typedef ButtonData =

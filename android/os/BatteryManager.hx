@@ -30,6 +30,7 @@ class BatteryManager
 		return JNI.callMember(JNI.createMemberMethod('android/os/BatteryManager', 'getIntProperty', '(I)I'), constructor, [id]);
 	}
 
-	@:noCompletion private static var getBatteryManager_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getBatteryManager',
+	@:noCompletion
+	private static var getBatteryManager_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getBatteryManager',
 		'()Landroid/os/BatteryManager;');
 }

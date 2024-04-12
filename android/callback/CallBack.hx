@@ -15,7 +15,8 @@ class CallBack
 	public static var onActivityResult(default, null):Event<Dynamic->Void>;
 	public static var onRequestPermissionsResult(default, null):Event<Dynamic->Void>;
 
-	@:noCompletion private static var initialized:Bool = false;
+	@:noCompletion
+	private static var initialized:Bool = false;
 
 	public static function init():Void
 	{
@@ -30,7 +31,8 @@ class CallBack
 		initialized = true;
 	}
 
-	@:noCompletion private static var initCallBack_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'initCallBack',
+	@:noCompletion
+	private static var initCallBack_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'initCallBack',
 		'(Lorg/haxe/lime/HaxeObject;)V');
 }
 

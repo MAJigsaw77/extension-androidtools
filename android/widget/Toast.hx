@@ -18,5 +18,6 @@ class Toast
 		makeText_jni(text, duration, gravity, xOffset, yOffset);
 	}
 
-	@:noCompletion private static var makeText_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'makeToastText', '(Ljava/lang/String;IIII)V');
+	@:noCompletion
+	private static var makeText_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'makeToastText', '(Ljava/lang/String;IIII)V');
 }
