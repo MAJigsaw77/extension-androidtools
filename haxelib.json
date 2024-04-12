@@ -1,20 +1,20 @@
 {
-	"name":"extension-androidtools",
-	"url":"https://github.com/MAJigsaw77/extension-androidtools",
-	"license":"MIT",
-	"tags":[
+	"name": "extension-androidtools",
+	"url": "https://github.com/MAJigsaw77/extension-androidtools",
+	"license": "MIT",
+	"tags": [
 		"android",
 		"java",
 		"haxe",
 		"jni"
 	],
-	"description":"A Haxe/Lime extension that incorporates Java functions through JNI.",
-	"version":"1.9.0",
-	"releasenote":"More optimization and added some new features.",
-	"contributors":[
+	"description": "A Haxe/Lime extension that incorporates Java functions through JNI.",
+	"version": "1.9.0",
+	"releasenote": "More optimization and added some new features.",
+	"contributors": [
 		"MAJigsaw77"
 	],
-	"dependencies":{
+	"dependencies": {
 		"hxcpp":"",
 		"lime":""
 	}
