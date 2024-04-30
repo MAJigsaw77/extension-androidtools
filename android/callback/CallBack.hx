@@ -35,7 +35,8 @@ class CallBack
 	private static var initCallBack_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'initCallBack', '(Lorg/haxe/lime/HaxeObject;)V');
 }
 
-@:noCompletion private class CallBackHandler #if (lime >= "8.0.0") implements JNISafety #end
+@:noCompletion
+private class CallBackHandler #if (lime >= "8.0.0") implements JNISafety #end
 {
 	public function new():Void {}
 

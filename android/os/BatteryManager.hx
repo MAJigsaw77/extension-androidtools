@@ -13,7 +13,8 @@ class BatteryManager
 	public static final BATTERY_PROPERTY_CAPACITY:Int = 4;
 	public static final BATTERY_PROPERTY_ENERGY_COUNTER:Int = 5;
 
-	@:noCompletion private var constructor:Dynamic;
+	@:noCompletion
+	private var constructor:Dynamic;
 
 	public function new():Void
 	{

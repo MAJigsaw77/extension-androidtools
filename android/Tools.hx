@@ -177,13 +177,15 @@ class Tools
 	private static var isDexMode_jni:Dynamic = JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'isDeXMode', '()Z');
 }
 
-@:noCompletion private typedef ButtonData =
+@:noCompletion
+private typedef ButtonData =
 {
 	name:String,
 	func:Void->Void
 }
 
-@:noCompletion private class ButtonListener #if (lime >= "8.0.0") implements JNISafety #end
+@:noCompletion
+private class ButtonListener #if (lime >= "8.0.0") implements JNISafety #end
 {
 	private var onClickEvent:Event<Void->Void> = new Event<Void->Void>();
 
