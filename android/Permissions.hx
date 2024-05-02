@@ -27,10 +27,7 @@ class Permissions
 	 */
 	public static inline function requestPermission(permission:String, requestCode:Int = 1):Void
 	{
-		if (!permission.startsWith('android.permission.'))
-			permission = 'android.permission.$permission';
-
-		requestPermission_jni(permission, requestCode);
+		requestPermission_jni(!permission.startsWith('android.permission.') ? 'android.permission.$permission' : permission, requestCode);
 	}
 
 	@:noCompletion
