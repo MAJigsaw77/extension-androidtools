@@ -45,7 +45,7 @@ private class CallBackHandler #if (lime >= "8.0.0") implements JNISafety #end
 	#end
 	public function onActivityResult(content:String):Void
 	{
-		if (content == null || content.length < 0)
+		if (content == null || content.length <= 0)
 			return;
 
 		if (CallBack.onActivityResult != null)
@@ -57,7 +57,7 @@ private class CallBackHandler #if (lime >= "8.0.0") implements JNISafety #end
 	#end
 	public function onRequestPermissionsResult(content:String):Void
 	{
-		if (content == null || content.length < 0)
+		if (content == null || content.length <= 0)
 			return;
 
 		if (CallBack.onRequestPermissionsResult != null)
