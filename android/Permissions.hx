@@ -5,6 +5,8 @@ package android;
 #end
 import lime.system.JNI;
 
+using StringTools;
+
 class Permissions
 {
 	/**
@@ -25,6 +27,7 @@ class Permissions
 	 */
 	public static inline function requestPermission(permission:String, requestCode:Int = 1):Void
 	{
+		if (!permission.startsWith('android.permission.')) permission = 'android.permission.' + permission;
 		requestPermission_jni(permission, requestCode);
 	}
 
