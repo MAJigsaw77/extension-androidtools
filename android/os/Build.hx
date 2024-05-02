@@ -113,7 +113,7 @@ class Build
 	public static final USER:String = JNI.createStaticField('android/os/Build', 'USER', 'Ljava/lang/String;').get();
 
 	/**
-	 * Returns the version string for the radio firmware.
+	 * @return the version string for the radio firmware.
 	 * May return null (if, for instance, the radio is not currently on).
 	 */
 	public static inline function getRadioVersion():String

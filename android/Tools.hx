@@ -60,7 +60,7 @@ class Tools
 	}
 
 	/**
-	 * @returns `true` If the device have root.
+	 * @return `true` If the device have root.
 	 */
 	public static inline function isRooted():Bool
 	{
@@ -68,7 +68,7 @@ class Tools
 	}
 
 	/**
-	 * @returns `true` If the device has Dolby Atmos.
+	 * @return `true` If the device has Dolby Atmos.
 	 */
 	public static inline function isDolbyAtmos():Bool
 	{
@@ -101,7 +101,7 @@ class Tools
 	}
 
 	/**
-	 * @returns whether the device is running Android TV.
+	 * @return whether the device is running Android TV.
 	 */
 	public static inline function isAndroidTV():Bool
 	{
@@ -109,7 +109,7 @@ class Tools
 	}
 
 	/**
-	 * @returns whether the device is a Tablet.
+	 * @return whether the device is a Tablet.
 	 */
 	public static inline function isTablet():Bool
 	{
@@ -117,7 +117,7 @@ class Tools
 	}
 
 	/**
-	 * @returns whether the device is a ChromeBook.
+	 * @return whether the device is a ChromeBook.
 	 */
 	public static inline function isChromebook():Bool
 	{
@@ -125,7 +125,7 @@ class Tools
 	}
 
 	/**
-	 * @returns whether the device is running in Dex Mode.
+	 * @return whether the device is running in Dex Mode.
 	 */
 	public static inline function isDeXMode():Bool
 	{

@@ -12,7 +12,7 @@ class Permissions
 	/**
 	 * Checks whether the app already has the given permission.
 	 *
-	 * Returns the granted permissions.
+	 * @return the granted permissions.
 	 */
 	public static inline function getGrantedPermissions():Array<String>
 	{

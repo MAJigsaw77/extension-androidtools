@@ -51,7 +51,7 @@ class Environment
 	}
 
 	/**
-	 * Returns the current state of the primary shared/external storage media.
+	 * @return the current state of the primary shared/external storage media.
 	 */
 	public static inline function getExternalStorageState():String
 	{
@@ -68,7 +68,7 @@ class Environment
 	}
 
 	/**
-	 * Returns whether the primary shared/external storage media is emulated.
+	 * @return whether the primary shared/external storage media is emulated.
 	 */
 	public static inline function isExternalStorageEmulated():Bool
 	{
@@ -76,7 +76,7 @@ class Environment
 	}
 
 	/**
-	 * Returns whether the calling app has All Files Access on the primary shared/external storage media.
+	 * @return whether the calling app has All Files Access on the primary shared/external storage media.
 	 */
 	public static inline function isExternalStorageManager():Bool
 	{
@@ -84,7 +84,7 @@ class Environment
 	}
 
 	/**
-	 * Returns whether the shared/external storage media is a legacy view that includes files not owned by the app.
+	 * @return whether the shared/external storage media is a legacy view that includes files not owned by the app.
 	 */
 	public static inline function isExternalStorageLegacy():Bool
 	{
@@ -92,7 +92,7 @@ class Environment
 	}
 
 	/**
-	 * Returns whether the primary shared/external storage media is physically removable.
+	 * @return whether the primary shared/external storage media is physically removable.
 	 */
 	public static inline function isExternalStorageRemovable():Bool
 	{
