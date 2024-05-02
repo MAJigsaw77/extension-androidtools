@@ -15,10 +15,7 @@ class Settings
 	 */
 	public static inline function requestSetting(setting:String, requestCode:Int = 1):Void
 	{
-		if (!setting.startsWith('android.settings.'))
-			setting = 'android.settings.$setting';
-
-		requestSetting_jni(setting, requestCode);
+		requestSetting_jni(!setting.startsWith('android.settings.') ? 'android.settings.$setting' : setting, requestCode);
 	}
 
 	@:noCompletion
