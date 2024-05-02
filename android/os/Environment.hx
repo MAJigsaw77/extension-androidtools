@@ -18,7 +18,7 @@ class Environment
 	public static final UNMOUNTED:String = 'unmounted';
 
 	/**
-	 * Return the user data directory.
+	 * @return the user data directory.
 	 */
 	public static inline function getDataDirectory():String
 	{
@@ -26,7 +26,7 @@ class Environment
 	}
 
 	/**
-	 * Return the download/cache content directory.
+	 * @return the download/cache content directory.
 	 */
 	public static inline function getDownloadCacheDirectory():String
 	{
@@ -34,7 +34,7 @@ class Environment
 	}
 
 	/**
-	 * Return the primary shared/external storage directory.
+	 * @return the primary shared/external storage directory.
 	 */
 	public static inline function getExternalStorageDirectory():String
 	{
@@ -42,8 +42,7 @@ class Environment
 	}
 
 	/**
-	 * Return root directory where all external storage devices will be mounted.
-	 * For example, ``getExternalStorageDirectory()`` will appear under this location.
+	 * @return the root directory where all external storage devices will be mounted.
 	 */
 	public static inline function getStorageDirectory():String
 	{
@@ -59,8 +58,7 @@ class Environment
 	}
 
 	/**
-	 * Return root of the 'system' partition holding the core Android OS.
-	 * Always present and mounted read-only.
+	 * @return root of the 'system' partition holding the core Android OS.
 	 */
 	public static inline function getRootDirectory():String
 	{

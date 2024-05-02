@@ -113,8 +113,7 @@ class Build
 	public static final USER:String = JNI.createStaticField('android/os/Build', 'USER', 'Ljava/lang/String;').get();
 
 	/**
-	 * @return the version string for the radio firmware.
-	 * May return null (if, for instance, the radio is not currently on).
+	 * The version of the radio firmware, may return null (if, for instance, the radio is not currently on).
 	 */
 	public static inline function getRadioVersion():String
 	{
@@ -123,6 +122,7 @@ class Build
 
 	/**
 	 * Gets the hardware serial number, if available.
+	 *
 	 * Requires android.permission.READ_PRIVILEGED_PHONE_STATE
 	 */
 	public static inline function getSerial():String
@@ -151,6 +151,7 @@ class VERSION
 
 	/**
 	 * The internal value used by the underlying source control to represent this build.
+	 *
 	 * E.g., a perforce changelist number or a git hash.
 	 */
 	public static final INCREMENTAL:String = JNI.createStaticField("android/os/Build$VERSION", 'INCREMENTAL', 'Ljava/lang/String;').get();
@@ -202,6 +203,7 @@ class VERSION
 
 	/**
 	 * The user-visible security patch level.
+	 *
 	 * This value represents the date when the device most recently applied a security patch.
 	 */
 	public static final SECURITY_PATCH:String = JNI.createStaticField("android/os/Build$VERSION", 'SECURITY_PATCH', 'Ljava/lang/String;').get();
