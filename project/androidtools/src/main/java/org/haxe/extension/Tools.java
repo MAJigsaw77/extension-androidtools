@@ -271,12 +271,9 @@ public class Tools extends Extension
 	{
 		try
 		{
-			if (setting.startsWith("android.settings."))
-			{
-				Intent intent = new Intent(setting);
-				intent.setData(Uri.fromParts("package", packageName, null));
-				mainActivity.startActivityForResult(intent, requestCode);
-			}
+			Intent intent = new Intent(setting);
+			intent.setData(Uri.fromParts("package", packageName, null));
+			mainActivity.startActivityForResult(intent, requestCode);
 		}
 		catch (Exception e)
 		{
