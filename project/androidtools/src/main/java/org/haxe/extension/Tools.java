@@ -75,7 +75,7 @@ public class Tools extends Extension
 
 		try
 		{
-			PackageInfo info = (PackageInfo) mainContext.getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+			PackageInfo info = mainContext.getPackageManager().getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(PackageManager.GET_PERMISSIONS));
 
 			for (int i = 0; i < info.requestedPermissions.length; i++)
 				if ((info.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0)
@@ -122,7 +122,12 @@ public class Tools extends Extension
 			{
 				try
 				{
-					AlertDialog.Builder builder = new AlertDialog.Builder(mainContext, android.R.style.Theme_Material_Dialog_Alert);
+					AlertDialog.Builder builder;
+
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+						builder = new AlertDialog.Builder(mainContext, android.R.style.Theme_Material_Dialog_Alert);
+					else
+						builder = new AlertDialog.Builder(mainContext);
 
 					if (title != null)
 						builder.setTitle(title);
@@ -151,7 +156,7 @@ public class Tools extends Extension
 							}
 						});
 					}
-				
+
 					if (negativeLabel != null)
 					{
 						builder.setNegativeButton(negativeLabel, new DialogInterface.OnClickListener()
@@ -333,15 +338,18 @@ public class Tools extends Extension
 					NotificationManager notificationManager = (NotificationManager) mainContext.getSystemService(Context.NOTIFICATION_SERVICE);
 
 					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-						notificationManager.createNotificationChannel(new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT));
+					{
+						NotificationChannel channel = new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+						notificationManager.createNotificationChannel(channel);
+					}
 
-					Notification.Builder builder = new Notification.Builder(mainContext, channelID);
-					builder.setAutoCancel(true);
-					builder.setContentTitle(title);
-					builder.setContentText(message);
-					builder.setDefaults(Notification.DEFAULT_ALL);
-					builder.setSmallIcon(android.R.drawable.ic_dialog_info);
-					builder.setWhen(System.currentTimeMillis());
+					NotificationCompat.Builder builder = new NotificationCompat.Builder(mainContext, channelID)
+							.setSmallIcon(android.R.drawable.ic_dialog_info)
+							.setContentTitle(title)
+							.setContentText(message)
+							.setPriority(NotificationCompat.PRIORITY_DEFAULT)
+							.setAutoCancel(true);
+
 					notificationManager.notify(ID, builder.build());
 				}
 				catch (Exception e)
