@@ -20,14 +20,17 @@ class JNICache
 	 * @param className The name of the Java class containing the method.
 	 * @param methodName The name of the method.
 	 * @param signature The method signature in JNI format.
+	 * @param cache Whether to cache the result (default true).
 	 * @return A dynamic reference to the static method.
 	 */
-	public static function createStaticMethod(className:String, methodName:String, signature:String):Dynamic
+	public static function createStaticMethod(className:String, methodName:String, signature:String, cache:Bool = true):Dynamic
 	{
 		final key:String = '$className::$methodName::$signature';
 
-		if (!staticMethodCache.exists(key))
+		if (cache && !staticMethodCache.exists(key))
 			staticMethodCache.set(key, JNI.createStaticMethod(className, methodName, signature));
+		else if (!cache)
+			return JNI.createStaticMethod(className, methodName, signature);
 
 		return staticMethodCache.get(key);
 	}
@@ -37,14 +40,17 @@ class JNICache
 	 * @param className The name of the Java class containing the method.
 	 * @param methodName The name of the method.
 	 * @param signature The method signature in JNI format.
+	 * @param cache Whether to cache the result (default true).
 	 * @return A dynamic reference to the member method.
 	 */
-	public static function createMemberMethod(className:String, methodName:String, signature:String):Dynamic
+	public static function createMemberMethod(className:String, methodName:String, signature:String, cache:Bool = true):Dynamic
 	{
 		final key:String = '$className::$methodName::$signature';
 
-		if (!memberMethodCache.exists(key))
+		if (cache && !memberMethodCache.exists(key))
 			memberMethodCache.set(key, JNI.createMemberMethod(className, methodName, signature));
+		else if (!cache)
+			return JNI.createMemberMethod(className, methodName, signature);
 
 		return memberMethodCache.get(key);
 	}
@@ -54,14 +60,17 @@ class JNICache
 	 * @param className The name of the Java class containing the field.
 	 * @param fieldName The name of the field.
 	 * @param signature The field signature in JNI format.
+	 * @param cache Whether to cache the result (default true).
 	 * @return A reference to the static field.
 	 */
-	public static function createStaticField(className:String, fieldName:String, signature:String):JNIStaticField
+	public static function createStaticField(className:String, fieldName:String, signature:String, cache:Bool = true):JNIStaticField
 	{
 		final key:String = '$className::$fieldName::$signature';
 
-		if (!staticFieldCache.exists(key))
+		if (cache && !staticFieldCache.exists(key))
 			staticFieldCache.set(key, JNI.createStaticField(className, fieldName, signature));
+		else if (!cache)
+			return JNI.createStaticField(className, fieldName, signature);
 
 		return staticFieldCache.get(key);
 	}
@@ -71,14 +80,17 @@ class JNICache
 	 * @param className The name of the Java class containing the field.
 	 * @param fieldName The name of the field.
 	 * @param signature The field signature in JNI format.
+	 * @param cache Whether to cache the result (default true).
 	 * @return A reference to the member field.
 	 */
-	public static function createMemberField(className:String, fieldName:String, signature:String):JNIMemberField
+	public static function createMemberField(className:String, fieldName:String, signature:String, cache:Bool = true):JNIMemberField
 	{
 		final key:String = '$className::$fieldName::$signature';
 
-		if (!memberFieldCache.exists(key))
+		if (cache && !memberFieldCache.exists(key))
 			memberFieldCache.set(key, JNI.createMemberField(className, fieldName, signature));
+		else if (!cache)
+			return JNI.createMemberField(className, fieldName, signature);
 
 		return memberFieldCache.get(key);
 	}
