@@ -3,26 +3,33 @@ package android;
 #if (!android && !native)
 #error 'extension-androidtools is not supported on your current platform'
 #end
+import android.jni.JNICache;
 import android.Permissions;
 import haxe.io.Path;
 import lime.app.Event;
 import lime.system.JNI;
 import lime.utils.Log;
-import android.jni.JNICache;
 
+/**
+ * A utility class for interacting with native Android functionality via JNI.
+ */
 class Tools
 {
 	/**
 	 * Prompt the user to install a specific APK file.
+	 *
+	 * @param path The absolute path to the APK file.
 	 */
 	public static function installPackage(path:String):Void
 	{
 		if (!JNICache.createStaticMethod('org/haxe/extension/Tools', 'installPackage', '(Ljava/lang/String;)Z')(path))
-			Log.warn('"REQUEST_INSTALL_PACKAGES" permission and "Install apps from external sources" setting must be granted to this app in order to install a ${Path.extension(path).toUpperCase()} file.');
+			Log.warn('"REQUEST_INSTALL_PACKAGES" permission and "Install apps from external sources" setting must be granted to this app in order to install a '
+				+ Path.extension(path).toUpperCase()
+				+ ' file.');
 	}
 
 	/**
-	 * Adds the security flag to application's window.
+	 * Adds the security flag to the application's window.
 	 */
 	public static inline function enableAppSecure():Void
 	{
@@ -30,7 +37,7 @@ class Tools
 	}
 
 	/**
-	 * Clears the security flag from application's window.
+	 * Clears the security flag from the application's window.
 	 */
 	public static inline function disableAppSecure():Void
 	{
@@ -38,7 +45,10 @@ class Tools
 	}
 
 	/**
-	 * Launches an app by the `packageName`.
+	 * Launches an application by its package name.
+	 *
+	 * @param packageName The package name of the application to launch.
+	 * @param requestCode The request code to pass along with the launch request.
 	 */
 	public static inline function launchPackage(packageName:String, requestCode:Int = 1):Void
 	{
@@ -46,7 +56,12 @@ class Tools
 	}
 
 	/**
-	 * Shows an alert dialog with optional buttons.
+	 * Shows an alert dialog with optional positive and negative buttons.
+	 *
+	 * @param title The title of the alert dialog.
+	 * @param message The message content of the alert dialog.
+	 * @param positiveButton Optional data for the positive button.
+	 * @param negativeButton Optional data for the negative button.
 	 */
 	public static function showAlertDialog(title:String, message:String, ?positiveButton:ButtonData, ?negativeButton:ButtonData):Void
 	{
@@ -62,7 +77,9 @@ class Tools
 	}
 
 	/**
-	 * @return `true` if the device is rooted.
+	 * Checks if the device is rooted.
+	 *
+	 * @return `true` if the device is rooted; `false` otherwise.
 	 */
 	public static inline function isRooted():Bool
 	{
@@ -70,7 +87,9 @@ class Tools
 	}
 
 	/**
-	 * @return `true` if the device has Dolby Atmos.
+	 * Checks if the device has Dolby Atmos support.
+	 *
+	 * @return `true` if the device has Dolby Atmos support; `false` otherwise.
 	 */
 	public static inline function isDolbyAtmos():Bool
 	{
@@ -79,6 +98,12 @@ class Tools
 
 	/**
 	 * Shows a minimal notification with a title and message.
+	 *
+	 * @param title The title of the notification.
+	 * @param message The message content of the notification.
+	 * @param channelID Optional ID of the notification channel.
+	 * @param channelName Optional name of the notification channel.
+	 * @param ID Optional unique ID for the notification.
 	 */
 	public static inline function showNotification(title:String, message:String, ?channelID:String = 'unknown_channel',
 			?channelName:String = 'Unknown Channel', ?ID:Int = 1):Void
@@ -88,7 +113,10 @@ class Tools
 	}
 
 	/**
-	 * Sets Activity's Title by the `title`.
+	 * Sets the activity's title.
+	 *
+	 * @param title The title to set for the activity.
+	 * @return `true` if the title was successfully set; `false` otherwise.
 	 */
 	public static inline function setActivityTitle(title:String):Bool
 	{
@@ -96,7 +124,7 @@ class Tools
 	}
 
 	/**
-	 * Minimizes app's window.
+	 * Minimizes the application's window.
 	 */
 	public static inline function minimizeWindow():Void
 	{
@@ -104,7 +132,9 @@ class Tools
 	}
 
 	/**
-	 * @return whether the device is running Android TV.
+	 * Checks if the device is running Android TV.
+	 *
+	 * @return `true` if the device is running Android TV; `false` otherwise.
 	 */
 	public static inline function isAndroidTV():Bool
 	{
@@ -112,7 +142,9 @@ class Tools
 	}
 
 	/**
-	 * @return whether the device is a Tablet.
+	 * Checks if the device is a tablet.
+	 *
+	 * @return `true` if the device is a tablet; `false` otherwise.
 	 */
 	public static inline function isTablet():Bool
 	{
@@ -120,7 +152,9 @@ class Tools
 	}
 
 	/**
-	 * @return whether the device is a ChromeBook.
+	 * Checks if the device is a Chromebook.
+	 *
+	 * @return `true` if the device is a Chromebook; `false` otherwise.
 	 */
 	public static inline function isChromebook():Bool
 	{
@@ -128,7 +162,9 @@ class Tools
 	}
 
 	/**
-	 * @return whether the device is running in Dex Mode.
+	 * Checks if the device is running in DeX Mode.
+	 *
+	 * @return `true` if the device is running in DeX Mode; `false` otherwise.
 	 */
 	public static inline function isDeXMode():Bool
 	{
@@ -136,18 +172,31 @@ class Tools
 	}
 }
 
+/**
+ * Data structure for defining button properties in an alert dialog.
+ */
 @:noCompletion
 private typedef ButtonData =
 {
 	name:String,
+	// The name or label of the button.
 	func:Void->Void
+	// The callback function to execute when the button is clicked.
 }
 
+/**
+ * Listener class for handling button click events in an alert dialog.
+ */
 @:noCompletion
 private class ButtonListener #if (lime >= "8.0.0") implements JNISafety #end
 {
 	private var onClickEvent:Event<Void->Void> = new Event<Void->Void>();
 
+	/**
+	 * Creates a new button listener with a specified callback function.
+	 *
+	 * @param clickCallback The function to execute when the button is clicked.
+	 */
 	public function new(clickCallback:Void->Void):Void
 	{
 		if (clickCallback != null)
