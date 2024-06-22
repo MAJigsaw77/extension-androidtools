@@ -4,6 +4,7 @@ package android.content;
 #error 'extension-androidtools is not supported on your current platform'
 #end
 import android.jni.JNICache;
+import lime.system.JNI;
 
 /**
  * This class provides access to directories associated with the application context using JNI calls.
@@ -85,10 +86,11 @@ class Context
 	 * Retrieves the absolute path from a given File object.
 	 *
 	 * @param file A File object for which to retrieve the absolute path.
+	 *
 	 * @return The absolute path of the File object.
 	 */
 	private static inline function getAbsolutePath(file:Dynamic):String
 	{
-		return JNICache.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;')(file);
+		return JNI.callMember(JNICache.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;'), file, []);
 	}
 }
