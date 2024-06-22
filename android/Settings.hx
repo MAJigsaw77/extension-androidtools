@@ -4,20 +4,25 @@ package android;
 #error 'extension-androidtools is not supported on your current platform'
 #end
 import lime.system.JNI;
+import android.jni.JNICache;
 
 using StringTools;
 
+/**
+ * A utility class for interacting with Android settings via JNI.
+ */
 class Settings
 {
 	/** 
-	 * @param setting the setting.
-	 * @param requestCode the code that should be requested.
+	 * Requests a specific Android setting using JNI.
+	 *
+	 * @param setting The name of the setting. If it does not start with 'android.settings.',
+	 *                it will be prefixed with that string automatically.
+	 * @param requestCode The request code to be passed to the JNI method.
 	 */
 	public static inline function requestSetting(setting:String, requestCode:Int = 1):Void
 	{
-		requestSetting_jni(!setting.startsWith('android.settings.') ? 'android.settings.$setting' : setting, requestCode);
+		JNICache.createStaticMethod('org/haxe/extension/Tools', 'requestSetting',
+			'(Ljava/lang/String;I)V')(!setting.startsWith('android.settings.') ? 'android.settings.$setting' : setting, requestCode);
 	}
-
-	@:noCompletion
-	private static var requestSetting_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'requestSetting', '(Ljava/lang/String;I)V');
 }
