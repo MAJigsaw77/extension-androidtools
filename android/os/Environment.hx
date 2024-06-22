@@ -4,6 +4,7 @@ package android.os;
 #error 'extension-androidtools is not supported on your current platform'
 #end
 import android.jni.JNICache;
+import lime.system.JNI;
 
 /**
  * This class provides access to environment variables and directories on the device
@@ -166,6 +167,6 @@ class Environment
 	 */
 	private static inline function getAbsolutePath(file:Dynamic):String
 	{
-		return JNICache.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;')(file);
+		return JNI.callMember(JNICache.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;'), file, []);
 	}
 }
