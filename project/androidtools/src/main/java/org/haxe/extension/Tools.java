@@ -30,7 +30,7 @@ import java.util.List;
 import org.haxe.extension.Extension;
 import org.haxe.lime.HaxeObject;
 
-/* 
+/*
 	You can use the Android Extension class in order to hook
 	into the Android activity lifecycle. This is not required
 	for standard Java code, this is designed for when you need
@@ -46,7 +46,7 @@ import org.haxe.lime.HaxeObject;
 	- Extension.mainView (android.view.View)
 
 	You can also make references to static or instance methods
-	and properties on Java classes. These classes can be included 
+	and properties on Java classes. These classes can be included
 	as single files using <java path="to/File.java" /> within your
 	project, or use the full Android Library Project format (such
 	as this example) in order to include your own AndroidManifest
@@ -75,7 +75,7 @@ public class Tools extends Extension
 
 		try
 		{
-			PackageInfo info = mainContext.getPackageManager().getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(PackageManager.GET_PERMISSIONS));
+			PackageInfo info = (PackageInfo) mainContext.getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
 
 			for (int i = 0; i < info.requestedPermissions.length; i++)
 				if ((info.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0)
@@ -122,12 +122,7 @@ public class Tools extends Extension
 			{
 				try
 				{
-					AlertDialog.Builder builder;
-
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-						builder = new AlertDialog.Builder(mainContext, android.R.style.Theme_Material_Dialog_Alert);
-					else
-						builder = new AlertDialog.Builder(mainContext);
+					AlertDialog.Builder builder = new AlertDialog.Builder(mainContext, android.R.style.Theme_Material_Dialog_Alert);
 
 					if (title != null)
 						builder.setTitle(title);
@@ -209,7 +204,7 @@ public class Tools extends Extension
 				intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 				mainContext.startActivity(intent);
 			}
-			else 
+			else
 				Log.e(LOG_TAG, "Attempted to install a application package from " + file.getAbsolutePath() + " but the file dosen't exist.");
 
 			return retVal;
@@ -338,18 +333,15 @@ public class Tools extends Extension
 					NotificationManager notificationManager = (NotificationManager) mainContext.getSystemService(Context.NOTIFICATION_SERVICE);
 
 					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-					{
-						NotificationChannel channel = new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT);
-						notificationManager.createNotificationChannel(channel);
-					}
+						notificationManager.createNotificationChannel(new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT));
 
-					NotificationCompat.Builder builder = new NotificationCompat.Builder(mainContext, channelID)
-							.setSmallIcon(android.R.drawable.ic_dialog_info)
-							.setContentTitle(title)
-							.setContentText(message)
-							.setPriority(NotificationCompat.PRIORITY_DEFAULT)
-							.setAutoCancel(true);
-
+					Notification.Builder builder = new Notification.Builder(mainContext, channelID);
+					builder.setAutoCancel(true);
+					builder.setContentTitle(title);
+					builder.setContentText(message);
+					builder.setDefaults(Notification.DEFAULT_ALL);
+					builder.setSmallIcon(android.R.drawable.ic_dialog_info);
+					builder.setWhen(System.currentTimeMillis());
 					notificationManager.notify(ID, builder.build());
 				}
 				catch (Exception e)
@@ -401,8 +393,8 @@ public class Tools extends Extension
 	}
 
 	/**
-	 * Called when an activity you launched exits, giving you the requestCode 
-	 * you started it with, the resultCode it returned, and any additional data 
+	 * Called when an activity you launched exits, giving you the requestCode
+	 * you started it with, the resultCode it returned, and any additional data
 	 * from it.
 	 */
 	@Override

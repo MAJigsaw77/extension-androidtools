@@ -3,36 +3,34 @@ package android;
 #if (!android && !native)
 #error 'extension-androidtools is not supported on your current platform'
 #end
-import lime.system.JNI;
+import android.jni.JNICache;
 
 using StringTools;
 
+/**
+ * Utility class for handling Android permissions via JNI.
+ */
 class Permissions
 {
 	/**
-	 * Checks whether the app already has the given permission.
+	 * Retrieves the list of permissions granted to the application.
 	 *
-	 * @return the granted permissions.
+	 * @return An array of granted permissions.
 	 */
 	public static inline function getGrantedPermissions():Array<String>
 	{
-		return getGrantedPermissions_jni();
+		return JNICache.createStaticMethod('org/haxe/extension/Tools', 'getGrantedPermissions', '()[Ljava/lang/String;')();
 	}
 
 	/**
-	 * Displays a dialog requesting the given permission.
-	 * 
-	 * @param permission the permission.
-	 * @param requestCode the code that should be requested.
+	 * Requests a specific permission from the user via a dialog.
+	 *
+	 * @param permission The permission to request. This should be in the format 'android.permission.PERMISSION_NAME'.
+	 * @param requestCode The request code to associate with this permission request.
 	 */
 	public static inline function requestPermission(permission:String, requestCode:Int = 1):Void
 	{
-		requestPermission_jni(!permission.startsWith('android.permission.') ? 'android.permission.$permission' : permission, requestCode);
+		JNICache.createStaticMethod('org/haxe/lime/GameActivity', 'requestPermission',
+			'(Ljava/lang/String;I)V')(!permission.startsWith('android.permission.') ? 'android.permission.$permission' : permission, requestCode);
 	}
-
-	@:noCompletion
-	private static var getGrantedPermissions_jni:Dynamic = JNI.createStaticMethod('org/haxe/extension/Tools', 'getGrantedPermissions', '()[Ljava/lang/String;');
-
-	@:noCompletion
-	private static var requestPermission_jni:Dynamic = JNI.createStaticMethod('org/haxe/lime/GameActivity', 'requestPermission', '(Ljava/lang/String;I)V');
 }
