@@ -4,7 +4,6 @@ package android.os;
 #error 'extension-androidtools is not supported on your current platform'
 #end
 import android.jni.JNICache;
-import lime.system.JNI;
 
 /**
  * Utility class providing access to various build-related information via JNI.

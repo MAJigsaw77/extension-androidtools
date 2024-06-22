@@ -3,7 +3,6 @@ package android;
 #if (!android && !native)
 #error 'extension-androidtools is not supported on your current platform'
 #end
-import lime.system.JNI;
 import android.jni.JNICache;
 
 using StringTools;
