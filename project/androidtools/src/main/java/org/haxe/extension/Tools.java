@@ -59,36 +59,52 @@ import org.haxe.lime.HaxeObject;
 public class Tools extends Extension
 {
 	public static final String LOG_TAG = "Tools";
-
 	public static HaxeObject cbObject;
-
 	public static Gson gson;
 
+	/**
+	 * Initializes the callback object for handling Haxe callbacks.
+	 *
+	 * @param cbObject The HaxeObject instance to handle callbacks.
+	 */
 	public static void initCallBack(final HaxeObject cbObject)
 	{
 		Tools.cbObject = cbObject;
 	}
 
+	/**
+	 * Retrieves the list of permissions that have been granted to the application.
+	 *
+	 * @return An array of strings representing granted permissions.
+	 */
 	public static String[] getGrantedPermissions()
 	{
 		List<String> granted = new ArrayList<String>();
 
-		try
-		{
+		try {
 			PackageInfo info = (PackageInfo) mainContext.getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
 
-			for (int i = 0; i < info.requestedPermissions.length; i++)
-				if ((info.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0)
+			for (int i = 0; i < info.requestedPermissions.length; i++) {
+				if ((info.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0) {
 					granted.add(info.requestedPermissions[i]);
-		}
-		catch (Exception e)
-		{
+				}
+			}
+		} catch (Exception e) {
 			Log.e(LOG_TAG, e.toString());
 		}
 
 		return granted.toArray(new String[granted.size()]);
 	}
 
+	/**
+	 * Displays a toast message on the screen.
+	 *
+	 * @param message  The message to display.
+	 * @param duration The duration of the toast message.
+	 * @param gravity  The gravity of the toast message.
+	 * @param xOffset  The horizontal offset from the gravity point.
+	 * @param yOffset  The vertical offset from the gravity point.
+	 */
 	public static void makeToastText(final String message, final int duration, final int gravity, final int xOffset, final int yOffset)
 	{
 		mainActivity.runOnUiThread(new Runnable()
@@ -113,10 +129,20 @@ public class Tools extends Extension
 		});
 	}
 
+	/**
+	 * Shows an alert dialog with optional positive and negative buttons.
+	 *
+	 * @param title          The title of the alert dialog (optional).
+	 * @param message        The message to display in the alert dialog.
+	 * @param positiveLabel  The label for the positive button (optional).
+	 * @param positiveObject The HaxeObject to call when the positive button is clicked (optional).
+	 * @param negativeLabel  The label for the negative button (optional).
+	 * @param negativeObject The HaxeObject to call when the negative button is clicked (optional).
+	 */
 	public static void showAlertDialog(final String title, final String message, final String positiveLabel, final HaxeObject positiveObject, final String negativeLabel, final HaxeObject negativeObject)
 	{
 		mainActivity.runOnUiThread(new Runnable()
-		{
+			{
 			@Override
 			public void run()
 			{
@@ -147,7 +173,7 @@ public class Tools extends Extension
 								dialog.dismiss();
 
 								if (positiveObject != null)
-									positiveObject.call("onClick", new Object[] {});
+									positiveObject.call("onClick", new Object[]{});
 							}
 						});
 					}
@@ -162,7 +188,7 @@ public class Tools extends Extension
 								dialog.dismiss();
 
 								if (negativeObject != null)
-									negativeObject.call("onClick", new Object[] {});
+									negativeObject.call("onClick", new Object[]{});
 							}
 						});
 					}
@@ -178,6 +204,12 @@ public class Tools extends Extension
 		});
 	}
 
+	/**
+	 * Installs an application package from the specified path.
+	 *
+	 * @param path The path to the application package (.apk file).
+	 * @return true if the installation was successful, false otherwise.
+	 */
 	public static boolean installPackage(final String path)
 	{
 		try
@@ -191,7 +223,7 @@ public class Tools extends Extension
 
 			Uri contentUri;
 
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) 
 				contentUri = FileProvider.getUriForFile(mainContext, packageName + ".provider", file);
 			else
 				contentUri = Uri.fromFile(file);
@@ -205,7 +237,7 @@ public class Tools extends Extension
 				mainContext.startActivity(intent);
 			}
 			else
-				Log.e(LOG_TAG, "Attempted to install a application package from " + file.getAbsolutePath() + " but the file dosen't exist.");
+				Log.e(LOG_TAG, "Attempted to install an application package from " + file.getAbsolutePath() + " but the file doesn't exist.");
 
 			return retVal;
 		}
@@ -217,123 +249,129 @@ public class Tools extends Extension
 		}
 	}
 
-	public static void enableAppSecure()
-	{
-		mainActivity.runOnUiThread(new Runnable()
-		{
+	/**
+	 * Enables secure mode for the application window.
+	 */
+	public static void enableAppSecure() {
+		mainActivity.runOnUiThread(new Runnable() {
 			@Override
-			public void run()
-			{
-				try
-				{
+			public void run() {
+				try {
 					mainActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
-				}
-				catch (Exception e)
-				{
+				} catch (Exception e) {
 					Log.e(LOG_TAG, e.toString());
 				}
 			}
 		});
 	}
 
-	public static void disableAppSecure()
-	{
-		mainActivity.runOnUiThread(new Runnable()
-		{
+	/**
+	 * Disables secure mode for the application window.
+	 */
+	public static void disableAppSecure() {
+		mainActivity.runOnUiThread(new Runnable() {
 			@Override
-			public void run()
-			{
-				try
-				{
+			public void run() {
+				try {
 					mainActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
-				}
-				catch (Exception e)
-				{
+				} catch (Exception e) {
 					Log.e(LOG_TAG, e.toString());
 				}
 			}
 		});
 	}
 
-	public static void launchPackage(final String packageName, final int requestCode)
-	{
-		try
-		{
+	/**
+	 * Launches an application package by its package name.
+	 *
+	 * @param packageName The package name of the application to launch.
+	 * @param requestCode The request code to identify the request.
+	 */
+	public static void launchPackage(final String packageName, final int requestCode) {
+		try {
 			mainActivity.startActivityForResult(mainActivity.getPackageManager().getLaunchIntentForPackage(packageName), requestCode);
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			Log.e(LOG_TAG, e.toString());
 		}
 	}
 
-	public static void requestSetting(final String setting, final int requestCode)
-	{
-		try
-		{
+	/**
+	 * Requests a specific system setting.
+	 *
+	 * @param setting     The setting to request.
+	 * @param requestCode The request code to identify the request.
+	 */
+	public static void requestSetting(final String setting, final int requestCode) {
+		try {
 			Intent intent = new Intent(setting);
 			intent.setData(Uri.fromParts("package", packageName, null));
 			mainActivity.startActivityForResult(intent, requestCode);
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			Log.e(LOG_TAG, e.toString());
 		}
 	}
 
-	public static boolean isRooted()
-	{
-		try
-		{
+/**
+	 * Checks whether the device is rooted.
+	 *
+	 * @return true if the device is rooted, false otherwise.
+	 */
+	public static boolean isRooted() {
+		try {
 			Process execute = Runtime.getRuntime().exec("su");
-
 			execute.waitFor();
 
-			if (execute.exitValue() != 255)
+			if (execute.exitValue() != 255) {
 				return true;
-		}
-		catch (Exception e)
-		{
+			}
+		} catch (Exception e) {
 			Log.e(LOG_TAG, e.toString());
 		}
 
 		return false;
 	}
 
-	public static boolean isDolbyAtmos()
-	{
-		try
-		{
+	/**
+	 * Checks whether Dolby Atmos is supported on the device.
+	 *
+	 * @return true if Dolby Atmos is supported, false otherwise.
+	 */
+	public static boolean isDolbyAtmos() {
+		try {
 			MediaFormat format = new MediaFormat();
-
 			format.setString(MediaFormat.KEY_MIME, "audio/eac3-joc"); // or "audio/ac4"
 
 			MediaCodecList codecList = new MediaCodecList(MediaCodecList.ALL_CODECS);
 
-			if (codecList.findDecoderForFormat(format) != null)
+			if (codecList.findDecoderForFormat(format) != null) {
 				return true;
-		}
-		catch (Exception e)
-		{
+			}
+		} catch (Exception e) {
 			Log.e(LOG_TAG, e.toString());
 		}
 
 		return false;
 	}
 
-	public static void showNotification(final String title, final String message, final String channelID, final String channelName, final int ID)
-	{
-		mainActivity.runOnUiThread(new Runnable()
-		{
+	/**
+	 * Shows a notification on the device.
+	 *
+	 * @param title     The title of the notification.
+	 * @param message   The message text of the notification.
+	 * @param channelID The ID of the notification channel.
+	 * @param channelName The name of the notification channel.
+	 * @param ID        The ID of the notification.
+	 */
+	public static void showNotification(final String title, final String message, final String channelID, final String channelName, final int ID) {
+		mainActivity.runOnUiThread(new Runnable() {
 			@Override
-			public void run()
-			{
-				try
-				{
+			public void run() {
+				try {
 					NotificationManager notificationManager = (NotificationManager) mainContext.getSystemService(Context.NOTIFICATION_SERVICE);
 
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 						notificationManager.createNotificationChannel(new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT));
+					}
 
 					Notification.Builder builder = new Notification.Builder(mainContext, channelID);
 					builder.setAutoCancel(true);
@@ -343,52 +381,121 @@ public class Tools extends Extension
 					builder.setSmallIcon(android.R.drawable.ic_dialog_info);
 					builder.setWhen(System.currentTimeMillis());
 					notificationManager.notify(ID, builder.build());
-				}
-				catch (Exception e)
-				{
+				} catch (Exception e) {
 					Log.e(LOG_TAG, e.toString());
 				}
 			}
 		});
 	}
 
-	public static File getFilesDir()
-	{
+	/**
+	 * Retrieves the application's private files directory.
+	 *
+	 * @return A File object representing the application's private files directory.
+	 */
+	public static File getFilesDir() {
 		return mainContext.getFilesDir();
+		// Added in API level 1
 	}
 
-	public static File getExternalFilesDir(final String type)
-	{
+	/**
+	 * Retrieves the primary external storage directory for an application.
+	 *
+	 * @param type The type of files directory to return. May be null for the primary files directory.
+	 * @return A File object representing the primary external storage directory for the application.
+	 */
+	public static File getExternalFilesDir(final String type) {
 		return mainContext.getExternalFilesDir(type);
+		// Added in API level 8
 	}
 
-	public static File getCacheDir()
-	{
+	/**
+	 * Retrieves absolute paths to application-specific directories on all shared/external storage devices.
+	 *
+	 * @param type The type of files directory to return. May be null for the primary files directory.
+	 * @return An array of File objects representing the absolute paths to application-specific directories on all shared/external storage devices.
+	 */
+	public static File[] getExternalFilesDirs(final String type) {
+		return mainContext.getExternalFilesDirs(type);
+		// Added in API level 19
+	}
+
+	/**
+	 * Retrieves the application's cache directory.
+	 *
+	 * @return A File object representing the application's cache directory.
+	 */
+	public static File getCacheDir() {
 		return mainContext.getCacheDir();
+		// Added in API level 1
 	}
 
-	public static File getCodeCacheDir()
-	{
-		return mainContext.getCodeCacheDir();
-	}
-
-	public static File getNoBackupFilesDir()
-	{
-		return mainContext.getNoBackupFilesDir();
-	}
-
-	public static File getExternalCacheDir()
-	{
+	/**
+	 * Retrieves the primary external storage directory for the application's cache files.
+	 *
+	 * @return A File object representing the primary external storage directory for the application's cache files.
+	 */
+	public static File getExternalCacheDir() {
 		return mainContext.getExternalCacheDir();
+		// Added in API level 8
 	}
 
-	public static File getObbDir()
-	{
+	/**
+	 * Retrieves absolute paths to application-specific cache directories on all shared/external storage devices.
+	 *
+	 * @return An array of File objects representing the absolute paths to application-specific cache directories on all shared/external storage devices.
+	 */
+	public static File[] getExternalCacheDirs() {
+		return mainContext.getExternalCacheDirs();
+		// Added in API level 19
+	}
+
+	/**
+	 * Retrieves the application's code cache directory.
+	 *
+	 * @return A File object representing the application's code cache directory.
+	 */
+	public static File getCodeCacheDir() {
+		return mainContext.getCodeCacheDir();
+		// Added in API level 21
+	}
+
+	/**
+	 * Retrieves the application's directory for storing files that should not be backed up to the cloud.
+	 *
+	 * @return A File object representing the application's directory for storing files that should not be backed up to the cloud.
+	 */
+	public static File getNoBackupFilesDir() {
+		return mainContext.getNoBackupFilesDir();
+		// Added in API level 21
+	}
+
+	/**
+	 * Retrieves the application's OBB (Opaque Binary Blob) directory.
+	 *
+	 * @return A File object representing the application's OBB directory.
+	 */
+	public static File getObbDir() {
 		return mainContext.getObbDir();
+		// Added in API level 9
 	}
 
-	public static BatteryManager getBatteryManager()
-	{
+	/**
+	 * Retrieves absolute paths to application-specific OBB directories on all shared/external storage devices.
+	 *
+	 * @return An array of File objects representing the absolute paths to application-specific OBB directories on all shared/external storage devices.
+	 */
+	public static File[] getObbDirs() {
+		return mainContext.getObbDirs();
+		// Added in API level 19
+	}
+
+	/**
+	 * Retrieves the BatteryManager system service for managing battery-related information.
+	 *
+	 * @return A BatteryManager object for managing battery-related information.
+	 */
+	public static BatteryManager getBatteryManager() {
 		return (BatteryManager) mainContext.getSystemService(Context.BATTERY_SERVICE);
 	}
 
@@ -396,26 +503,29 @@ public class Tools extends Extension
 	 * Called when an activity you launched exits, giving you the requestCode
 	 * you started it with, the resultCode it returned, and any additional data
 	 * from it.
+	 *
+	 * @param requestCode The integer request code originally supplied to startActivityForResult(), allowing you to identify who this result came from.
+	 * @param resultCode  The integer result code returned by the child activity through its setResult().
+	 * @param data        An Intent, which can return result data to the caller (various data can be attached to Intent "extras").
+	 * @return true if the result was handled successfully, false otherwise.
 	 */
 	@Override
-	public boolean onActivityResult(int requestCode, int resultCode, Intent data)
-	{
-		if (cbObject != null)
-		{
+	public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (cbObject != null) {
 			ArrayMap<String, Object> content = new ArrayMap<String, Object>();
 
 			content.put("requestCode", requestCode);
 			content.put("resultCode", resultCode);
 
-			if (data != null && data.getData() != null)
+			if (data != null && data.getData() != null) {
 				content.put("uri", data.getData().toString());
+			}
 
-			if (gson == null)
+			if (gson == null) {
 				gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+			}
 
-			cbObject.call("onActivityResult", new Object[] {
-				gson.toJson(content)
-			});
+			cbObject.call("onActivityResult", new Object[]{gson.toJson(content)});
 		}
 
 		return true;
@@ -423,24 +533,26 @@ public class Tools extends Extension
 
 	/**
 	 * Callback for the result from requesting permissions.
+	 *
+	 * @param requestCode  The request code passed in requestPermissions(android.app.Activity, String[], int).
+	 * @param permissions  The requested permissions. Never null.
+	 * @param grantResults The grant results for the corresponding permissions which is either PERMISSION_GRANTED or PERMISSION_DENIED. Never null.
+	 * @return true if the permission request was handled successfully, false otherwise.
 	 */
 	@Override
-	public boolean onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
-	{
-		if (cbObject != null)
-		{
+	public boolean onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		if (cbObject != null) {
 			ArrayMap<String, Object> content = new ArrayMap<String, Object>();
 
 			content.put("requestCode", requestCode);
 			content.put("permissions", permissions);
 			content.put("grantResults", grantResults);
 
-			if (gson == null)
+			if (gson == null) {
 				gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+			}
 
-			cbObject.call("onRequestPermissionsResult", new Object[] {
-				gson.toJson(content)
-			});
+			cbObject.call("onRequestPermissionsResult", new Object[]{gson.toJson(content)});
 		}
 
 		return true;
