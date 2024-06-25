@@ -257,5 +257,5 @@ class VERSION_CODES
 	public static final S_V2:Int = 32;
 	public static final TIRAMISU:Int = 33;
 	public static final UPSIDE_DOWN_CAKE:Int = 34;
-	public static final VANILLA_ICE_CREAM:Int = 10000;
+	public static final VANILLA_ICE_CREAM:Int = 35;
 }
