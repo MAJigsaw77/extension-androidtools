@@ -6,7 +6,7 @@ package android.callback;
 import android.jni.JNICache;
 import haxe.Json;
 import lime.app.Event;
-import lime.system.JNI.JNISafety;
+import lime.system.JNI;
 
 using StringTools;
 
