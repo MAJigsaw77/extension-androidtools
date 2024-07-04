@@ -17,6 +17,7 @@ class JNICache
 
 	/**
 	 * Retrieves or creates a cached static method reference.
+	 *
 	 * @param className The name of the Java class containing the method.
 	 * @param methodName The name of the method.
 	 * @param signature The method signature in JNI format.
@@ -37,6 +38,7 @@ class JNICache
 
 	/**
 	 * Retrieves or creates a cached member method reference.
+	 *
 	 * @param className The name of the Java class containing the method.
 	 * @param methodName The name of the method.
 	 * @param signature The method signature in JNI format.
@@ -57,6 +59,7 @@ class JNICache
 
 	/**
 	 * Retrieves or creates a cached static field reference.
+	 *
 	 * @param className The name of the Java class containing the field.
 	 * @param fieldName The name of the field.
 	 * @param signature The field signature in JNI format.
@@ -77,6 +80,7 @@ class JNICache
 
 	/**
 	 * Retrieves or creates a cached member field reference.
+	 *
 	 * @param className The name of the Java class containing the field.
 	 * @param fieldName The name of the field.
 	 * @param signature The field signature in JNI format.
