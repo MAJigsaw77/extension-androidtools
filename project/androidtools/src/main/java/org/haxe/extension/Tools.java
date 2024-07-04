@@ -227,7 +227,7 @@ public class Tools extends Extension
 			if (file.exists())
 			{
 				Intent intent = new Intent(Intent.ACTION_VIEW);
-				intent.setDataAndType(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N ? FileProvider.getUriForFile(mainContext, packageName + ".provider", file), "application/vnd.android.package-archive") : Uri.fromFile(file);
+				intent.setDataAndType(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N ? FileProvider.getUriForFile(mainContext, packageName + ".provider", file) : Uri.fromFile(file), "application/vnd.android.package-archive");
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 				mainContext.startActivity(intent);
