@@ -83,7 +83,7 @@ public class Tools extends Extension
 
 		try
 		{
-			PackageInfo info = (PackageInfo) mainContext.getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+			final PackageInfo info = (PackageInfo) mainContext.getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
 
 			for (int i = 0; i < info.requestedPermissions.length; i++)
 			{
@@ -117,7 +117,7 @@ public class Tools extends Extension
 			{
 				try
 				{
-					Toast toast = Toast.makeText(mainContext, message, duration);
+					final Toast toast = Toast.makeText(mainContext, message, duration);
 
 					if (gravity >= 0)
 						toast.setGravity(gravity, xOffset, yOffset);
@@ -144,6 +144,8 @@ public class Tools extends Extension
 	 */
 	public static void showAlertDialog(final String title, final String message, final String positiveLabel, final HaxeObject positiveObject, final String negativeLabel, final HaxeObject negativeObject)
 	{
+		final Object lock = new Object();
+
 		mainActivity.runOnUiThread(new Runnable()
 		{
 			@Override
@@ -151,10 +153,12 @@ public class Tools extends Extension
 			{
 				try
 				{
-					AlertDialog.Builder builder = new AlertDialog.Builder(mainContext, android.R.style.Theme_Material_Dialog_Alert);
+					final AlertDialog.Builder builder = new AlertDialog.Builder(mainContext, android.R.style.Theme_Material_Dialog_Alert);
 
 					if (title != null)
 						builder.setTitle(title);
+
+					builder.setCancelable(false);
 
 					TextView messageView = new TextView(mainContext);
 					messageView.setPadding(20, 20, 20, 20);
@@ -196,8 +200,19 @@ public class Tools extends Extension
 						});
 					}
 
-					builder.setCancelable(false);
-					builder.create().show();
+					final AlertDialog dialog = builder.create();
+					dialog.setOnDismissListener(new DialogInterface.OnDismissListener()
+					{
+						@Override
+						public void onDismiss(DialogInterface dialog)
+						{
+							synchronized (lock)
+							{
+								lock.notify();
+							}
+						}
+					});
+					dialog.show();
 				}
 				catch (Exception e)
 				{
@@ -205,6 +220,18 @@ public class Tools extends Extension
 				}
 			}
 		});
+
+		synchronized (lock)
+		{
+			try
+			{
+				lock.wait();
+			}
+			catch (InterruptedException e)
+			{
+				Log.e(LOG_TAG, e.toString());
+			}
+		}
 	}
 
 	/**
@@ -222,7 +249,7 @@ public class Tools extends Extension
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
 				retVal = mainContext.getPackageManager().canRequestPackageInstalls();
 
-			File file = new File(path);
+			final File file = new File(path);
 
 			if (file.exists())
 			{
@@ -316,7 +343,7 @@ public class Tools extends Extension
 	{
 		try
 		{
-			Intent intent = new Intent(setting);
+			final Intent intent = new Intent(setting);
 			intent.setData(Uri.fromParts("package", packageName, null));
 			mainActivity.startActivityForResult(intent, requestCode);
 		}
@@ -335,7 +362,8 @@ public class Tools extends Extension
 	{
 		try
 		{
-			Process execute = Runtime.getRuntime().exec("su");
+			final Process execute = Runtime.getRuntime().exec("su");
+
 			execute.waitFor();
 
 			if (execute.exitValue() != 255)
@@ -358,10 +386,11 @@ public class Tools extends Extension
 	{
 		try
 		{
-			MediaFormat format = new MediaFormat();
+			final MediaFormat format = new MediaFormat();
+
 			format.setString(MediaFormat.KEY_MIME, "audio/eac3-joc"); // or "audio/ac4"
 
-			MediaCodecList codecList = new MediaCodecList(MediaCodecList.ALL_CODECS);
+			final MediaCodecList codecList = new MediaCodecList(MediaCodecList.ALL_CODECS);
 
 			if (codecList.findDecoderForFormat(format) != null)
 				return true;
@@ -392,12 +421,12 @@ public class Tools extends Extension
 			{
 				try
 				{
-					NotificationManager notificationManager = (NotificationManager) mainContext.getSystemService(Context.NOTIFICATION_SERVICE);
+					final NotificationManager notificationManager = (NotificationManager) mainContext.getSystemService(Context.NOTIFICATION_SERVICE);
 
 					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
 						notificationManager.createNotificationChannel(new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT));
 
-					Notification.Builder builder = new Notification.Builder(mainContext, channelID);
+					final Notification.Builder builder = new Notification.Builder(mainContext, channelID);
 					builder.setAutoCancel(true);
 					builder.setContentTitle(title);
 					builder.setContentText(message);
@@ -541,7 +570,7 @@ public class Tools extends Extension
 	{
 		if (cbObject != null)
 		{
-			ArrayMap<String, Object> content = new ArrayMap<String, Object>();
+			final ArrayMap<String, Object> content = new ArrayMap<String, Object>();
 
 			content.put("requestCode", requestCode);
 			content.put("resultCode", resultCode);
@@ -571,7 +600,7 @@ public class Tools extends Extension
 	{
 		if (cbObject != null)
 		{
-			ArrayMap<String, Object> content = new ArrayMap<String, Object>();
+			final ArrayMap<String, Object> content = new ArrayMap<String, Object>();
 
 			content.put("requestCode", requestCode);
 			content.put("permissions", permissions);
