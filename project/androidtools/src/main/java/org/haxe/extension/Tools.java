@@ -102,11 +102,11 @@ public class Tools extends Extension
 	/**
 	 * Displays a toast message on the screen.
 	 *
-	 * @param message  The message to display.
+	 * @param message The message to display.
 	 * @param duration The duration of the toast message.
-	 * @param gravity  The gravity of the toast message.
-	 * @param xOffset  The horizontal offset from the gravity point.
-	 * @param yOffset  The vertical offset from the gravity point.
+	 * @param gravity The gravity of the toast message.
+	 * @param xOffset The horizontal offset from the gravity point.
+	 * @param yOffset The vertical offset from the gravity point.
 	 */
 	public static void makeToastText(final String message, final int duration, final int gravity, final int xOffset, final int yOffset)
 	{
@@ -135,11 +135,11 @@ public class Tools extends Extension
 	/**
 	 * Shows an alert dialog with optional positive and negative buttons.
 	 *
-	 * @param title          The title of the alert dialog (optional).
-	 * @param message        The message to display in the alert dialog.
-	 * @param positiveLabel  The label for the positive button (optional).
+	 * @param title The title of the alert dialog (optional).
+	 * @param message The message to display in the alert dialog.
+	 * @param positiveLabel The label for the positive button (optional).
 	 * @param positiveObject The HaxeObject to call when the positive button is clicked (optional).
-	 * @param negativeLabel  The label for the negative button (optional).
+	 * @param negativeLabel The label for the negative button (optional).
 	 * @param negativeObject The HaxeObject to call when the negative button is clicked (optional).
 	 */
 	public static void showAlertDialog(final String title, final String message, final String positiveLabel, final HaxeObject positiveObject, final String negativeLabel, final HaxeObject negativeObject)
@@ -336,7 +336,7 @@ public class Tools extends Extension
 	/**
 	 * Requests a specific system setting.
 	 *
-	 * @param setting     The setting to request.
+	 * @param setting The setting to request.
 	 * @param requestCode The request code to identify the request.
 	 */
 	public static void requestSetting(final String setting, final int requestCode)
@@ -406,11 +406,11 @@ public class Tools extends Extension
 	/**
 	 * Shows a notification on the device.
 	 *
-	 * @param title     The title of the notification.
-	 * @param message   The message text of the notification.
+	 * @param title The title of the notification.
+	 * @param message The message text of the notification.
 	 * @param channelID The ID of the notification channel.
 	 * @param channelName The name of the notification channel.
-	 * @param ID        The ID of the notification.
+	 * @param ID The ID of the notification.
 	 */
 	public static void showNotification(final String title, final String message, final String channelID, final String channelName, final int ID)
 	{
@@ -555,16 +555,6 @@ public class Tools extends Extension
 		return (BatteryManager) mainContext.getSystemService(Context.BATTERY_SERVICE);
 	}
 
-	/**
-	 * Called when an activity you launched exits, giving you the requestCode
-	 * you started it with, the resultCode it returned, and any additional data
-	 * from it.
-	 *
-	 * @param requestCode The integer request code originally supplied to startActivityForResult(), allowing you to identify who this result came from.
-	 * @param resultCode  The integer result code returned by the child activity through its setResult().
-	 * @param data        An Intent, which can return result data to the caller (various data can be attached to Intent "extras").
-	 * @return true if the result was handled successfully, false otherwise.
-	 */
 	@Override
 	public boolean onActivityResult(int requestCode, int resultCode, Intent data)
 	{
@@ -587,14 +577,6 @@ public class Tools extends Extension
 		return true;
 	}
 
-	/**
-	 * Callback for the result from requesting permissions.
-	 *
-	 * @param requestCode  The request code passed in requestPermissions(android.app.Activity, String[], int).
-	 * @param permissions  The requested permissions. Never null.
-	 * @param grantResults The grant results for the corresponding permissions which is either PERMISSION_GRANTED or PERMISSION_DENIED. Never null.
-	 * @return true if the permission request was handled successfully, false otherwise.
-	 */
 	@Override
 	public boolean onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
 	{
