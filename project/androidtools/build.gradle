@@ -22,10 +22,5 @@ dependencies
 		exclude group: 'org.jetbrains.kotlin'
 	}
 
-	implementation('androidx.fragment:fragment:1.7.1')
-	{
-		exclude group: 'org.jetbrains.kotlin'
-	}
-
 	implementation('com.google.code.gson:gson:2.11.0')
 }
