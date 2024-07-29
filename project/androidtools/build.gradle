@@ -17,8 +17,15 @@ dependencies
 {
 	implementation project(':deps:extension-api')
 
-	implementation 'androidx.core:core:1.13.1'
-	implementation 'androidx.fragment:fragment:1.8.2'
+	implementation('androidx.core:core:1.13.1')
+	{
+		exclude group: 'org.jetbrains.kotlin'
+	}
 
-	implementation 'com.google.code.gson:gson:2.11.0'
+	implementation('androidx.fragment:fragment:1.7.1')
+	{
+		exclude group: 'org.jetbrains.kotlin'
+	}
+
+	implementation('com.google.code.gson:gson:2.11.0')
 }
