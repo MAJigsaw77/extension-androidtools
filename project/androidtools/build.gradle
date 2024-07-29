@@ -17,7 +17,7 @@ dependencies
 {
 	implementation project(':deps:extension-api')
 
-	implementation('androidx.core:core:1.7.0')
+	implementation('androidx.core:core:1.6.0')
 	{
 		exclude group: 'org.jetbrains.kotlin'
 		exclude module: 'kotlin-stdlib'
