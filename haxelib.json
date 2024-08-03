@@ -9,8 +9,8 @@
 		"jni"
 	],
 	"description": "A Haxe/Lime extension that incorporates Java functions through JNI.",
-	"version": "2.1.0",
-	"releasenote": "Implemented JNI Cache for improved callback handling and updated documentation.",
+	"version": "2.1.1",
+	"releasenote": "Various bugs fixes.",
 	"contributors": [
 		"MAJigsaw77"
 	],
