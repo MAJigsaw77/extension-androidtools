@@ -43,7 +43,9 @@ class Context
 	{
 		final dirs:Array<String> = [];
 
-		for (dir in JNICache.createStaticMethod('org.haxe.extension.Tools', 'getExternalFilesDirs', '(Ljava/lang/String;)[Ljava/io/File;')(type))
+		final jniDirs:Array<Dynamic> = JNICache.createStaticMethod('org.haxe.extension.Tools', 'getExternalFilesDirs', '(Ljava/lang/String;)[Ljava/io/File;')(type);
+
+		for (dir in jniDirs)
 			dirs.push(getAbsolutePath(dir));
 
 		return dirs;
@@ -99,7 +101,9 @@ class Context
 	{
 		final dirs:Array<String> = [];
 
-		for (dir in JNICache.createStaticMethod('org.haxe.extension.Tools', 'getExternalCacheDirs', '()[Ljava/io/File;')())
+		final jniDirs:Array<Dynamic> = JNICache.createStaticMethod('org.haxe.extension.Tools', 'getExternalCacheDirs', '()[Ljava/io/File;')();
+
+		for (dir in jniDirs)
 			dirs.push(getAbsolutePath(dir));
 
 		return dirs;
