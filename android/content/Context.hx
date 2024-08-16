@@ -33,6 +33,23 @@ class Context
 	}
 
 	/**
+	 * Retrieves the absolute paths of directories assigned to the application for storing external files.
+	 * This can include multiple directories in cases where there are multiple external storage devices.
+	 *
+	 * @param type Optional type of subdirectory to retrieve (e.g., "Pictures", "Documents").
+	 * @return An array of absolute paths of the external files directories.
+	 */
+	public static inline function getExternalFilesDirs(type:String = null):Array<String>
+	{
+		final dirs:Array<String> = [];
+
+		for (dir in JNICache.createStaticMethod('org.haxe.extension.Tools', 'getExternalFilesDirs', '(Ljava/lang/String;)[Ljava/io/File;')(type))
+			dirs.push(getAbsolutePath(dir));
+
+		return dirs;
+	}
+
+	/**
 	 * Retrieves the absolute path of the directory assigned to the application for storing cached files.
 	 *
 	 * @return The absolute path of the cache directory.
@@ -70,6 +87,22 @@ class Context
 	public static inline function getExternalCacheDir():String
 	{
 		return getAbsolutePath(JNICache.createStaticMethod('org.haxe.extension.Tools', 'getExternalCacheDir', '()Ljava/io/File;')());
+	}
+
+	/**
+	 * Retrieves the absolute paths of directories assigned to the application for storing cached files on external storage.
+	 * This can include multiple directories in cases where there are multiple external storage devices.
+	 *
+	 * @return An array of absolute paths of the external cache directories.
+	 */
+	public static inline function getExternalCacheDirs():Array<String>
+	{
+		final dirs:Array<String> = [];
+
+		for (dir in JNICache.createStaticMethod('org.haxe.extension.Tools', 'getExternalCacheDirs', '()[Ljava/io/File;')())
+			dirs.push(getAbsolutePath(dir));
+
+		return dirs;
 	}
 
 	/**
