@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -326,6 +327,34 @@ public class Tools extends Extension
 		try
 		{
 			mainActivity.startActivityForResult(mainActivity.getPackageManager().getLaunchIntentForPackage(packageName), requestCode);
+		}
+		catch (Exception e)
+		{
+			Log.e(LOG_TAG, e.toString());
+		}
+	}
+
+	/**
+	 * Requests permissions from the user if they are not granted.
+	 *
+	 * @param permissions An array of permission strings to request.
+	 * @param requestCode The request code to identify the request.
+	 */
+	public static void requestPermissions(String[] permissions, int requestCode)
+	{
+		List<String> ungrantedPermissions = new ArrayList<>();
+
+		try
+		{
+        	for (String permission : permissions) {
+        	    if (ActivityCompat.checkSelfPermission(Extension.mainActivity, permission) != PackageManager.PERMISSION_GRANTED) {
+        	        ungrantedPermissions.add(permission);
+        	    }
+        	}
+
+        	if (!ungrantedPermissions.isEmpty()) {
+        	    ActivityCompat.requestPermissions(Extension.mainActivity, ungrantedPermissions.toArray(new String[0]), requestCode);
+       		}
 		}
 		catch (Exception e)
 		{

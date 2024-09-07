@@ -25,12 +25,16 @@ class Permissions
 	/**
 	 * Requests a specific permission from the user via a dialog.
 	 *
-	 * @param permission The permission to request. This should be in the format 'android.permission.PERMISSION_NAME'.
+	 * @param permissions The permissions to request. This should be in the format ['android.permission.PERMISSION_NAME'].
 	 * @param requestCode The request code to associate with this permission request.
 	 */
-	public static inline function requestPermission(permission:String, requestCode:Int = 1):Void
+	public static inline function requestPermissions(permissions:Array<String>, requestCode:Int = 1):Void
 	{
-		JNICache.createStaticMethod('org/haxe/lime/GameActivity', 'requestPermission',
-			'(Ljava/lang/String;I)V')(!permission.startsWith('android.permission.') ? 'android.permission.$permission' : permission, requestCode);
+		for (i in 0...permissions.length)
+			if (!permissions[i].startsWith('android.permission.'))
+				permissions[i] = 'android.permission.${permissions[i]}';
+
+		JNICache.createStaticMethod('org/haxe/extension/Tools', 'requestPermissions',
+			'([Ljava/lang/String;I)V')(permissions, requestCode);
 	}
 }
