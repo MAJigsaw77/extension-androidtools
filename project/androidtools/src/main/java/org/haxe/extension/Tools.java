@@ -350,8 +350,8 @@ public class Tools extends Extension
 				if (ActivityCompat.checkSelfPermission(Extension.mainActivity, permission) != PackageManager.PERMISSION_GRANTED) {
 					ungrantedPermissions.add(permission);
 				}
-        	}
-			
+        		}
+
 			if (!ungrantedPermissions.isEmpty()) {
 				ActivityCompat.requestPermissions(Extension.mainActivity, ungrantedPermissions.toArray(new String[0]), requestCode);
 			}
