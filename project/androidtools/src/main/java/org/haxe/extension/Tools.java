@@ -346,15 +346,15 @@ public class Tools extends Extension
 
 		try
 		{
-        	for (String permission : permissions) {
-        	    if (ActivityCompat.checkSelfPermission(Extension.mainActivity, permission) != PackageManager.PERMISSION_GRANTED) {
-        	        ungrantedPermissions.add(permission);
-        	    }
+			for (String permission : permissions) {
+				if (ActivityCompat.checkSelfPermission(Extension.mainActivity, permission) != PackageManager.PERMISSION_GRANTED) {
+					ungrantedPermissions.add(permission);
+				}
         	}
-
-        	if (!ungrantedPermissions.isEmpty()) {
-        	    ActivityCompat.requestPermissions(Extension.mainActivity, ungrantedPermissions.toArray(new String[0]), requestCode);
-       		}
+			
+			if (!ungrantedPermissions.isEmpty()) {
+				ActivityCompat.requestPermissions(Extension.mainActivity, ungrantedPermissions.toArray(new String[0]), requestCode);
+			}
 		}
 		catch (Exception e)
 		{
