@@ -10,9 +10,16 @@ import lime.system.JNI;
  */
 class JNICache
 {
+	@:noCompletion
 	private static var staticMethodCache:Map<String, Dynamic> = [];
+
+	@:noCompletion
 	private static var memberMethodCache:Map<String, Dynamic> = [];
+
+	@:noCompletion
 	private static var staticFieldCache:Map<String, JNIStaticField> = [];
+
+	@:noCompletion
 	private static var memberFieldCache:Map<String, JNIMemberField> = [];
 
 	/**

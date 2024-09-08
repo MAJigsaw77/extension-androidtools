@@ -165,6 +165,7 @@ class Environment
 	 *
 	 * @return The absolute path of the File object.
 	 */
+	@:noCompletion
 	private static inline function getAbsolutePath(file:Dynamic):String
 	{
 		return JNI.callMember(JNICache.createMemberMethod('java/io/File', 'getAbsolutePath', '()Ljava/lang/String;'), file, []);
