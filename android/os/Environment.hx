@@ -135,7 +135,7 @@ class Environment
 	 */
 	public static inline function isExternalStorageManager():Bool
 	{
-		return JNICache.createStaticMethod('android.os.Environment', 'isExternalStorageManager', '()Z')();
+		return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) ? JNICache.createStaticMethod('android.os.Environment', 'isExternalStorageManager', '()Z')() : true;
 	}
 
 	/**
