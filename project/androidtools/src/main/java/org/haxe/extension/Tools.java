@@ -21,7 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -84,7 +83,12 @@ public class Tools extends Extension
 
 		try
 		{
-			final PackageInfo info = (PackageInfo) mainContext.getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+			final PackageInfo info;
+
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+				info = (PackageInfo) mainContext.getPackageManager().getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(PackageManager.GET_PERMISSIONS));
+			else
+				info = (PackageInfo) mainContext.getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
 
 			for (int i = 0; i < info.requestedPermissions.length; i++)
 			{
@@ -278,7 +282,8 @@ public class Tools extends Extension
 	 */
 	public static void enableAppSecure()
 	{
-		mainActivity.runOnUiThread(new Runnable() {
+		mainActivity.runOnUiThread(new Runnable()
+		{
 			@Override
 			public void run()
 			{
@@ -346,15 +351,14 @@ public class Tools extends Extension
 
 		try
 		{
-			for (String permission : permissions) {
-				if (ActivityCompat.checkSelfPermission(Extension.mainActivity, permission) != PackageManager.PERMISSION_GRANTED) {
+			for (String permission : permissions)
+			{
+				if (Extension.mainActivity.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED)
 					ungrantedPermissions.add(permission);
-				}
         		}
 
-			if (!ungrantedPermissions.isEmpty()) {
-				ActivityCompat.requestPermissions(Extension.mainActivity, ungrantedPermissions.toArray(new String[0]), requestCode);
-			}
+			if (!ungrantedPermissions.isEmpty())
+				Extension.mainActivity.requestPermissions(ungrantedPermissions.toArray(new String[0]), requestCode);
 		}
 		catch (Exception e)
 		{
