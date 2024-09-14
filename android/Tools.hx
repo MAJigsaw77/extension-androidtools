@@ -9,6 +9,9 @@ import haxe.io.Path;
 import lime.app.Event;
 import lime.system.JNI;
 import lime.utils.Log;
+#if sys
+import sys.io.Process;
+#end
 
 /**
  * A utility class for interacting with native Android functionality via JNI.
@@ -76,6 +79,7 @@ class Tools
 				positiveButton.name, new ButtonListener(positiveButton.func), negativeButton.name, new ButtonListener(negativeButton.func));
 	}
 
+	#if sys
 	/**
 	 * Checks if the device is rooted.
 	 *
@@ -83,8 +87,13 @@ class Tools
 	 */
 	public static inline function isRooted():Bool
 	{
-		return JNICache.createStaticMethod('org/haxe/extension/Tools', 'isRooted', '()Z')();
+		final process:Process = new Process('su');
+
+		final exitCode:Null<Int> = process.exitCode(true);
+
+		return exitCode != null && exitCode != 255;
 	}
+	#end
 
 	/**
 	 * Checks if the device has Dolby Atmos support.
