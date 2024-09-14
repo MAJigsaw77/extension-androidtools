@@ -452,7 +452,7 @@ public class Tools extends Extension
 					builder.setAutoCancel(true);
 					builder.setContentTitle(title);
 					builder.setContentText(message);
-					builder.setSmallIcon(android.R.drawable.icon);
+					builder.setSmallIcon(R.drawable.icon);
 					builder.setWhen(System.currentTimeMillis());
 					notificationManager.notify(ID, builder.build());
 				}
