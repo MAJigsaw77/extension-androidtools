@@ -259,7 +259,12 @@ public class Tools extends Extension
 			if (file.exists())
 			{
 				Intent intent = new Intent(Intent.ACTION_VIEW);
-				intent.setDataAndType(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N ? FileProvider.getUriForFile(mainContext, packageName + ".provider", file) : Uri.fromFile(file), "application/vnd.android.package-archive");
+
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+					intent.setDataAndType(FileProvider.getUriForFile(mainContext, packageName + ".provider", file), "application/vnd.android.package-archive");
+				else
+					intent.setDataAndType(intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 				mainContext.startActivity(intent);
@@ -387,30 +392,6 @@ public class Tools extends Extension
 	}
 
 	/**
-	 * Checks whether the device is rooted.
-	 *
-	 * @return true if the device is rooted, false otherwise.
-	 */
-	public static boolean isRooted()
-	{
-		try
-		{
-			final Process execute = Runtime.getRuntime().exec("su");
-
-			execute.waitFor();
-
-			if (execute.exitValue() != 255)
-				return true;
-		}
-		catch (Exception e)
-		{
-			Log.e(LOG_TAG, e.toString());
-		}
-
-		return false;
-	}
-
-	/**
 	 * Checks whether Dolby Atmos is supported on the device.
 	 *
 	 * @return true if Dolby Atmos is supported, false otherwise.
@@ -419,13 +400,15 @@ public class Tools extends Extension
 	{
 		try
 		{
-			final MediaFormat format = new MediaFormat();
+			final MediaFormat formatEac3 = new MediaFormat();
+			format.setString(MediaFormat.KEY_MIME, "audio/eac3-joc");
 
-			format.setString(MediaFormat.KEY_MIME, "audio/eac3-joc"); // or "audio/ac4"
+			final MediaFormat formatAc4 = new MediaFormat();
+			format.setString(MediaFormat.KEY_MIME, "audio/ac4");
 
 			final MediaCodecList codecList = new MediaCodecList(MediaCodecList.ALL_CODECS);
 
-			if (codecList.findDecoderForFormat(format) != null)
+			if (codecList.findDecoderForFormat(formatEac3) != null || codecList.findDecoderForFormat(formatAc4) != null)
 				return true;
 		}
 		catch (Exception e)
