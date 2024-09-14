@@ -442,12 +442,17 @@ public class Tools extends Extension
 					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
 						notificationManager.createNotificationChannel(new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT));
 
-					final Notification.Builder builder = new Notification.Builder(mainContext, channelID);
+					final Notification.Builder builder;
+
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+						builder = new Notification.Builder(mainContext, channelID);
+					else
+						builder = new Notification.Builder(mainContext);
+
 					builder.setAutoCancel(true);
 					builder.setContentTitle(title);
 					builder.setContentText(message);
-					builder.setDefaults(Notification.DEFAULT_ALL);
-					builder.setSmallIcon(android.R.drawable.ic_dialog_info);
+					builder.setSmallIcon(R.drawable.icon);
 					builder.setWhen(System.currentTimeMillis());
 					notificationManager.notify(ID, builder.build());
 				}
