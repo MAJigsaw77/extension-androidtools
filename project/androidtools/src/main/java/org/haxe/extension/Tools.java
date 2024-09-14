@@ -263,7 +263,7 @@ public class Tools extends Extension
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
 					intent.setDataAndType(FileProvider.getUriForFile(mainContext, packageName + ".provider", file), "application/vnd.android.package-archive");
 				else
-					intent.setDataAndType(intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+					intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
 
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
