@@ -401,10 +401,10 @@ public class Tools extends Extension
 		try
 		{
 			final MediaFormat formatEac3 = new MediaFormat();
-			format.setString(MediaFormat.KEY_MIME, "audio/eac3-joc");
+			formatEac3.setString(MediaFormat.KEY_MIME, "audio/eac3-joc");
 
 			final MediaFormat formatAc4 = new MediaFormat();
-			format.setString(MediaFormat.KEY_MIME, "audio/ac4");
+			formatAc4.setString(MediaFormat.KEY_MIME, "audio/ac4");
 
 			final MediaCodecList codecList = new MediaCodecList(MediaCodecList.ALL_CODECS);
 
