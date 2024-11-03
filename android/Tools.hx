@@ -143,6 +143,9 @@ class Tools
 
 		for (rectangle in cutoutRectangles)
 		{
+			if (rectangle == null)
+				continue;
+
 			final top:Int = JNICache.createMemberField('android/graphics/Rect', 'top', 'I').get(rectangle);
 			final left:Int = JNICache.createMemberField('android/graphics/Rect', 'left', 'I').get(rectangle);
 			final right:Int = JNICache.createMemberField('android/graphics/Rect', 'right', 'I').get(rectangle);
