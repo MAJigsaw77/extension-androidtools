@@ -122,6 +122,16 @@ class Tools
 			'(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V')(title, message, channelID, channelName, ID);
 	}
 
+	/**
+	 * Retrieves the dimensions of display cutouts (notches) as an array of rectangles.
+	 *
+	 * On devices with Android 9.0 (Pie) or higher, this function returns the areas of the screen 
+	 * occupied by display cutouts, such as notches or camera holes. Each cutout is represented 
+	 * by a `lime.math.Rectangle` object indicating its position and size.
+	 *
+	 * @return An array of `lime.math.Rectangle` objects representing the cutout areas. If there 
+	 *         are no cutouts or if the device does not support cutouts, an empty array is returned.
+	 */
 	public static function getCutoutDimensions():Array<Rectangle>
 	{
 		final cutoutRectangles:Array<Dynamic> = JNICache.createStaticMethod('org/haxe/extension/Tools', 'getCutoutDimensions', '()[Landroid/graphics/Rect;')();
