@@ -133,10 +133,10 @@ class Tools
 
 		for (rectangle in cutoutRectangles)
 		{
-			final top:Int = JNI.callMember(JNICache.createMemberField('android/graphics/Rect', 'top', 'I'), rectangle, []);
-			final left:Int = JNI.callMember(JNICache.createMemberField('android/graphics/Rect', 'left', 'I'), rectangle, []);
-			final right:Int = JNI.callMember(JNICache.createMemberField('android/graphics/Rect', 'right', 'I'), rectangle, []);
-			final bottom:Int = JNI.callMember(JNICache.createMemberField('android/graphics/Rect', 'bottom', 'I'), rectangle, []);
+			final top:Int = JNICache.createMemberField('android/graphics/Rect', 'top', 'I').get(rectangle);
+			final left:Int = JNICache.createMemberField('android/graphics/Rect', 'left', 'I').get(rectangle);
+			final right:Int = JNICache.createMemberField('android/graphics/Rect', 'right', 'I').get(rectangle);
+			final bottom:Int = JNICache.createMemberField('android/graphics/Rect', 'bottom', 'I').get(rectangle);
 
 			rectangles.push(new Rectangle(left, top, right - left, bottom - top));
 		}
