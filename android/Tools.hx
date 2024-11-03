@@ -7,6 +7,7 @@ import android.jni.JNICache;
 import android.Permissions;
 import haxe.io.Path;
 import lime.app.Event;
+import lime.math.Rectangle;
 import lime.system.JNI;
 import lime.utils.Log;
 #if sys
@@ -85,7 +86,7 @@ class Tools
 	 *
 	 * @return `true` if the device is rooted; `false` otherwise.
 	 */
-	public static inline function isRooted():Bool
+	public static function isRooted():Bool
 	{
 		final process:Process = new Process('su');
 
@@ -121,6 +122,28 @@ class Tools
 			'(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V')(title, message, channelID, channelName, ID);
 	}
 
+	public static function getCutoutDimensions():Array<Rectangle>
+	{
+		final cutoutRectangles:Array<Dynamic> = JNICache.createStaticMethod('org/haxe/extension/Tools', 'getCutoutDimensions', '()[Landroid/graphics/Rect;')();
+
+		if (cutoutRectangles == null || cutoutRectangles.length == 0)
+			return [];
+
+		final rectangles:Array<Rectangle> = [];
+
+		for (rectangle in cutoutRectangles)
+		{
+			final top:Int = JNI.callMember(JNICache.createMemberField('android/graphics/Rect', 'top', 'I'), rectangle, []);
+			final left:Int = JNI.callMember(JNICache.createMemberField('android/graphics/Rect', 'left', 'I'), rectangle, []);
+			final right:Int = JNI.callMember(JNICache.createMemberField('android/graphics/Rect', 'right', 'I'), rectangle, []);
+			final bottom:Int = JNI.callMember(JNICache.createMemberField('android/graphics/Rect', 'bottom', 'I'), rectangle, []);
+
+			rectangles.push(new Rectangle(left, top, right - left, bottom - top));
+		}
+
+		return rectangles;
+	}
+	
 	/**
 	 * Sets the activity's title.
 	 *
