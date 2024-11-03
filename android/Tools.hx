@@ -7,6 +7,7 @@ import android.jni.JNICache;
 import android.Permissions;
 import haxe.io.Path;
 import lime.app.Event;
+import lime.math.Rectangle;
 import lime.system.JNI;
 import lime.utils.Log;
 #if sys
@@ -85,7 +86,7 @@ class Tools
 	 *
 	 * @return `true` if the device is rooted; `false` otherwise.
 	 */
-	public static inline function isRooted():Bool
+	public static function isRooted():Bool
 	{
 		final process:Process = new Process('su');
 
@@ -121,6 +122,41 @@ class Tools
 			'(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V')(title, message, channelID, channelName, ID);
 	}
 
+	/**
+	 * Retrieves the dimensions of display cutouts (notches) as an array of rectangles.
+	 *
+	 * On devices with Android 9.0 (Pie) or higher, this function returns the areas of the screen 
+	 * occupied by display cutouts, such as notches or camera holes. Each cutout is represented 
+	 * by a `lime.math.Rectangle` object indicating its position and size.
+	 *
+	 * @return An array of `lime.math.Rectangle` objects representing the cutout areas. If there 
+	 *         are no cutouts or if the device does not support cutouts, an empty array is returned.
+	 */
+	public static function getCutoutDimensions():Array<Rectangle>
+	{
+		final cutoutRectangles:Array<Dynamic> = JNICache.createStaticMethod('org/haxe/extension/Tools', 'getCutoutDimensions', '()[Landroid/graphics/Rect;')();
+
+		if (cutoutRectangles == null || cutoutRectangles.length == 0)
+			return [];
+
+		final rectangles:Array<Rectangle> = [];
+
+		for (rectangle in cutoutRectangles)
+		{
+			if (rectangle == null)
+				continue;
+
+			final top:Int = JNICache.createMemberField('android/graphics/Rect', 'top', 'I').get(rectangle);
+			final left:Int = JNICache.createMemberField('android/graphics/Rect', 'left', 'I').get(rectangle);
+			final right:Int = JNICache.createMemberField('android/graphics/Rect', 'right', 'I').get(rectangle);
+			final bottom:Int = JNICache.createMemberField('android/graphics/Rect', 'bottom', 'I').get(rectangle);
+
+			rectangles.push(new Rectangle(left, top, right - left, bottom - top));
+		}
+
+		return rectangles;
+	}
+	
 	/**
 	 * Sets the activity's title.
 	 *

@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Rect;
 import android.media.MediaCodecList;
 import android.media.MediaFormat;
 import android.net.Uri;
@@ -16,7 +17,11 @@ import android.os.BatteryManager;
 import android.os.Build;
 import android.util.ArrayMap;
 import android.util.Log;
+import android.util.DisplayMetrics;
+import android.view.DisplayCutout;
+import android.view.WindowInsets;
 import android.view.WindowManager;
+import android.view.WindowMetrics;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -462,6 +467,36 @@ public class Tools extends Extension
 				}
 			}
 		});
+	}
+
+	/**
+	 * Retrieves the bounding rectangles for the display cutout (notch) if present.
+	 * Each rectangle represents an area of the display that is obstructed by the cutout.
+	 *
+	 * @return An array of Rect objects representing the bounding rectangles of the display cutout.
+	 *         Returns an empty array if there is no cutout or if cutouts are not supported on the device.
+	 */
+	public static Rect[] getCutoutDimensions()
+	{
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P)
+		{
+			WindowInsets insets = mainActivity.getWindow().getDecorView().getRootWindowInsets();
+
+			if (insets != null)
+			{
+				DisplayCutout cutout = insets.getDisplayCutout();
+				
+				if (cutout != null)
+				{
+					List<Rect> boundingRects = cutout.getBoundingRects();
+
+					if (boundingRects != null && !boundingRects.isEmpty())
+						return boundingRects.toArray(new Rect[0]);
+				}
+			}
+		}
+
+		return new Rect[0];
 	}
 
 	/**
