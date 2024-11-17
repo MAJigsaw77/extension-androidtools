@@ -53,6 +53,7 @@ class CallBack
 /**
  * Internal class to handle native callback events.
  */
+@:keep
 @:noCompletion
 private class CallBackHandler #if (lime >= "8.0.0") implements JNISafety #end
 {
