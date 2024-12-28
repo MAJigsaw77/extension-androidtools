@@ -27,13 +27,14 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.core.content.FileProvider;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import org.haxe.extension.Extension;
 import org.haxe.lime.HaxeObject;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /*
 	You can use the Android Extension class in order to hook
@@ -64,8 +65,8 @@ import org.haxe.lime.HaxeObject;
 public class Tools extends Extension
 {
 	public static final String LOG_TAG = "Tools";
+
 	public static HaxeObject cbObject;
-	public static Gson gson;
 
 	/**
 	 * Initializes the callback object for handling Haxe callbacks.
@@ -616,18 +617,22 @@ public class Tools extends Extension
 	{
 		if (cbObject != null)
 		{
-			final ArrayMap<String, Object> content = new ArrayMap<String, Object>();
+			try
+			{
+				JSONObject content = new JSONObject();
 
-			content.put("requestCode", requestCode);
-			content.put("resultCode", resultCode);
+				content.put("requestCode", requestCode);
+				content.put("resultCode", resultCode);
 
-			if (data != null && data.getData() != null)
-				content.put("uri", data.getData().toString());
+				if (data != null && data.getData() != null)
+					content.put("uri", data.getData().toString());
 
-			if (gson == null)
-				gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
-
-			cbObject.call("onActivityResult", new Object[]{gson.toJson(content)});
+				cbObject.call("onActivityResult", new Object[]{content.toString()});
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
 		}
 
 		return true;
@@ -638,16 +643,32 @@ public class Tools extends Extension
 	{
 		if (cbObject != null)
 		{
-			final ArrayMap<String, Object> content = new ArrayMap<String, Object>();
+			try
+			{
+				JSONObject content = new JSONObject();
 
-			content.put("requestCode", requestCode);
-			content.put("permissions", permissions);
-			content.put("grantResults", grantResults);
+				content.put("requestCode", requestCode);
 
-			if (gson == null)
-				gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+				JSONArray permissionsArray = new JSONArray();
 
-			cbObject.call("onRequestPermissionsResult", new Object[]{gson.toJson(content)});
+				for (String permission : permissions)
+					permissionsArray.put(permission);
+
+				content.put("permissions", permissionsArray);
+				
+				JSONArray grantResultsArray = new JSONArray();
+
+				for (int result : grantResults)
+					grantResultsArray.put(result);
+
+				content.put("grantResults", grantResultsArray);
+
+				cbObject.call("onRequestPermissionsResult", new Object[]{content.toString()});
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
 		}
 
 		return true;
