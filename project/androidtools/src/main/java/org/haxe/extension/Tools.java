@@ -91,7 +91,7 @@ public class Tools extends Extension
 		{
 			final PackageInfo info;
 
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+			if (Build.VERSION.SDK_INT >= 33)
 				info = (PackageInfo) mainContext.getPackageManager().getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(PackageManager.GET_PERMISSIONS));
 			else
 				info = (PackageInfo) mainContext.getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
@@ -257,7 +257,7 @@ public class Tools extends Extension
 		{
 			boolean retVal = true;
 
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+			if (Build.VERSION.SDK_INT >= 26)
 				retVal = mainContext.getPackageManager().canRequestPackageInstalls();
 
 			final File file = new File(path);
@@ -266,7 +266,7 @@ public class Tools extends Extension
 			{
 				Intent intent = new Intent(Intent.ACTION_VIEW);
 
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+				if (Build.VERSION.SDK_INT >= 24)
 					intent.setDataAndType(FileProvider.getUriForFile(mainContext, packageName + ".provider", file), "application/vnd.android.package-archive");
 				else
 					intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
@@ -445,12 +445,12 @@ public class Tools extends Extension
 				{
 					final NotificationManager notificationManager = (NotificationManager) mainContext.getSystemService(Context.NOTIFICATION_SERVICE);
 
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+					if (Build.VERSION.SDK_INT >= 26)
 						notificationManager.createNotificationChannel(new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT));
 
 					final Notification.Builder builder;
 
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+					if (Build.VERSION.SDK_INT >= 26)
 						builder = new Notification.Builder(mainContext, channelID);
 					else
 						builder = new Notification.Builder(mainContext);
