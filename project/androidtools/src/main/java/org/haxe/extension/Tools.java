@@ -89,12 +89,7 @@ public class Tools extends Extension
 
 		try
 		{
-			final PackageInfo info;
-
-			if (Build.VERSION.SDK_INT >= 33)
-				info = (PackageInfo) mainContext.getPackageManager().getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(PackageManager.GET_PERMISSIONS));
-			else
-				info = (PackageInfo) mainContext.getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+			final PackageInfo info = (PackageInfo) mainContext.getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
 
 			for (int i = 0; i < info.requestedPermissions.length; i++)
 			{
@@ -486,7 +481,7 @@ public class Tools extends Extension
 			if (insets != null)
 			{
 				DisplayCutout cutout = insets.getDisplayCutout();
-				
+
 				if (cutout != null)
 				{
 					List<Rect> boundingRects = cutout.getBoundingRects();
