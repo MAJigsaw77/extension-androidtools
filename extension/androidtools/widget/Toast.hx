@@ -1,9 +1,9 @@
-package android.widget;
+package extension.androidtools.widget;
 
 #if (!android && !native)
 #error 'extension-androidtools is not supported on your current platform'
 #end
-import android.jni.JNICache;
+import extension.androidtools.jni.JNICache;
 
 /**
  * Utility class for displaying toast messages on Android via JNI.
@@ -31,6 +31,9 @@ class Toast
 	 */
 	public static inline function makeText(text:String, duration:Int, ?gravity:Int = -1, ?xOffset:Int = 0, ?yOffset:Int = 0):Void
 	{
-		JNICache.createStaticMethod('org/haxe/extension/Tools', 'makeToastText', '(Ljava/lang/String;IIII)V')(text, duration, gravity, xOffset, yOffset);
+		final makeToastTextJNI:Null<Dynamic> = JNICache.createStaticMethod('org/haxe/extension/Tools', 'makeToastText', '(Ljava/lang/String;IIII)V');
+
+		if (makeToastTextJNI != null)
+			makeToastTextJNI(text, duration, gravity, xOffset, yOffset);
 	}
 }

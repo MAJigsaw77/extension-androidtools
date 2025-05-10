@@ -1,8 +1,6 @@
-package android.jni;
+package extension.androidtools.jni;
 
-#if (!android && !native)
-#error 'extension-androidtools is not supported on your current platform'
-#end
+#if android
 import lime.system.JNI;
 
 /**
@@ -24,15 +22,18 @@ class JNICache
 
 	/**
 	 * Retrieves or creates a cached static method reference.
-	 *
+	 * 
 	 * @param className The name of the Java class containing the method.
 	 * @param methodName The name of the method.
 	 * @param signature The method signature in JNI format.
 	 * @param cache Whether to cache the result (default true).
 	 * @return A dynamic reference to the static method.
 	 */
-	public static function createStaticMethod(className:String, methodName:String, signature:String, cache:Bool = true):Dynamic
+	public static function createStaticMethod(className:String, methodName:String, signature:String, cache:Bool = true):Null<Dynamic>
 	{
+		@:privateAccess
+		className = JNI.transformClassName(className);
+
 		final key:String = '$className::$methodName::$signature';
 
 		if (cache && !staticMethodCache.exists(key))
@@ -45,15 +46,18 @@ class JNICache
 
 	/**
 	 * Retrieves or creates a cached member method reference.
-	 *
+	 * 
 	 * @param className The name of the Java class containing the method.
 	 * @param methodName The name of the method.
 	 * @param signature The method signature in JNI format.
 	 * @param cache Whether to cache the result (default true).
 	 * @return A dynamic reference to the member method.
 	 */
-	public static function createMemberMethod(className:String, methodName:String, signature:String, cache:Bool = true):Dynamic
+	public static function createMemberMethod(className:String, methodName:String, signature:String, cache:Bool = true):Null<Dynamic>
 	{
+		@:privateAccess
+		className = JNI.transformClassName(className);
+
 		final key:String = '$className::$methodName::$signature';
 
 		if (cache && !memberMethodCache.exists(key))
@@ -66,15 +70,18 @@ class JNICache
 
 	/**
 	 * Retrieves or creates a cached static field reference.
-	 *
+	 * 
 	 * @param className The name of the Java class containing the field.
 	 * @param fieldName The name of the field.
 	 * @param signature The field signature in JNI format.
 	 * @param cache Whether to cache the result (default true).
 	 * @return A reference to the static field.
 	 */
-	public static function createStaticField(className:String, fieldName:String, signature:String, cache:Bool = true):JNIStaticField
+	public static function createStaticField(className:String, fieldName:String, signature:String, cache:Bool = true):Null<JNIStaticField>
 	{
+		@:privateAccess
+		className = JNI.transformClassName(className);
+
 		final key:String = '$className::$fieldName::$signature';
 
 		if (cache && !staticFieldCache.exists(key))
@@ -87,15 +94,18 @@ class JNICache
 
 	/**
 	 * Retrieves or creates a cached member field reference.
-	 *
+	 * 
 	 * @param className The name of the Java class containing the field.
 	 * @param fieldName The name of the field.
 	 * @param signature The field signature in JNI format.
 	 * @param cache Whether to cache the result (default true).
 	 * @return A reference to the member field.
 	 */
-	public static function createMemberField(className:String, fieldName:String, signature:String, cache:Bool = true):JNIMemberField
+	public static function createMemberField(className:String, fieldName:String, signature:String, cache:Bool = true):Null<JNIMemberField>
 	{
+		@:privateAccess
+		className = JNI.transformClassName(className);
+
 		final key:String = '$className::$fieldName::$signature';
 
 		if (cache && !memberFieldCache.exists(key))
@@ -106,3 +116,4 @@ class JNICache
 		return memberFieldCache.get(key);
 	}
 }
+#end

@@ -5,9 +5,8 @@
 	xsi:schemaLocation="http://lime.openfl.org/project/1.0.4 http://lime.openfl.org/xsd/project-1.0.4.xsd">
 
 	<section if="android">
-		<dependency name="androidtools" path="project/androidtools" />
+		<dependency name="extension-androidtools" path="project/androidtools" />
 
 		<config:android extension="org.haxe.extension.Tools" />
 	</section>
-
 </extension>

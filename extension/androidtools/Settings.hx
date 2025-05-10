@@ -1,9 +1,9 @@
-package android;
+package extension.androidtools;
 
 #if (!android && !native)
 #error 'extension-androidtools is not supported on your current platform'
 #end
-import android.jni.JNICache;
+import extension.androidtools.jni.JNICache;
 
 using StringTools;
 
@@ -21,7 +21,9 @@ class Settings
 	 */
 	public static inline function requestSetting(setting:String, requestCode:Int = 1):Void
 	{
-		JNICache.createStaticMethod('org/haxe/extension/Tools', 'requestSetting',
-			'(Ljava/lang/String;I)V')(!setting.startsWith('android.settings.') ? 'android.settings.$setting' : setting, requestCode);
+		final requestSettingJNI:Null<Dynamic> = JNICache.createStaticMethod('org/haxe/extension/Tools', 'requestSetting', '(Ljava/lang/String;I)V');
+
+		if (requestSettingJNI != null)
+			requestSettingJNI(!setting.startsWith('android.settings.') ? 'android.settings.$setting' : setting, requestCode);
 	}
 }
