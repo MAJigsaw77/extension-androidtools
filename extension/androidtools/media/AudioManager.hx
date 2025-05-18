@@ -1,6 +1,6 @@
 package extension.androidtools.media;
 
-import android.jni.JNICache;
+import extension.androidtools.jni.JNICache;
 import cpp.RawPointer;
 import lime.app.Event;
 import lime.system.JNI;
