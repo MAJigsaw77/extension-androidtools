@@ -1,4 +1,4 @@
-package android.media;
+package extension.androidtools.media;
 
 import android.jni.JNICache;
 import cpp.RawPointer;
@@ -8,7 +8,6 @@ import lime.system.JNI;
 #if (!android && !native)
 #error 'extension-androidtools is not supported on your current platform'
 #end
-
 
 /**
  * Utility class for managing volume and ringer mode control.
@@ -239,7 +238,7 @@ class AudioManager
 		if (callback != null)
 			onFocusChangeListener.addCallback(callback);
 
-        return JNI.callMember(JNICache.createMemberMethod('android/media/AudioManager', 'requestAudioFocus', "(Landroid/media/AudioManager\x24OnAudioFocusChangeListener;II)I"), constructor, [focusListener, streamType, durationHint]);
+        return JNI.callMember(JNICache.createMemberMethod('android/media/AudioManager', 'requestAudioFocus', "(Landroid/media/AudioManager$OnAudioFocusChangeListener;II)I"), constructor, [focusListener, streamType, durationHint]);
     }
 
 	/**
@@ -250,7 +249,7 @@ class AudioManager
 		if (callback != null)
 			onFocusChangeListener.addCallback(callback);
 
-        return JNI.callMember(JNICache.createMemberMethod('android/media/AudioManager', 'abandonAudioFocus', "(Landroid/media/AudioManager\x24OnAudioFocusChangeListener;)I"), constructor, [focusListener]);
+        return JNI.callMember(JNICache.createMemberMethod('android/media/AudioManager', 'abandonAudioFocus', "(Landroid/media/AudioManager$OnAudioFocusChangeListener;)I"), constructor, [focusListener]);
     }
 }
 
