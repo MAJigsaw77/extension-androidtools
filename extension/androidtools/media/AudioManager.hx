@@ -1,7 +1,6 @@
 package extension.androidtools.media;
 
 import extension.androidtools.jni.JNICache;
-import cpp.RawPointer;
 import lime.app.Event;
 import lime.system.JNI;
 
@@ -188,10 +187,7 @@ class AudioManager
     public static final AUDIOFOCUS_REQUEST_DELAYED:Int = 2;
     
     @:noCompletion
-	private var constructor:Dynamic;
-
-	@:noCompletion
-	private var focusListener:Dynamic;
+	private var constructor:Null<Dynamic>;
 
 	private var onFocusChangeListener:OnAudioFocusChangeListener;
 
@@ -200,10 +196,14 @@ class AudioManager
 	 */
 	public function new():Void
 	{
-		constructor = JNICache.createStaticMethod('org/haxe/extension/Tools', 'getAudioManager', '()Landroid/media/AudioManager;')();
+		final constructorJNI:Null<Dynamic> = JNICache.createStaticMethod('org/haxe/extension/Tools', 'getAudioManager', '()Landroid/media/AudioManager;');
+		
+		if (constructorJNI != null)
+		{
+			constructor = constructorJNI();
+		}
 
-		focusListener = JNICache.createStaticMethod('org/haxe/extension/Tools', 'createAudioFocusCallback',
-				"(Lorg/haxe/lime/HaxeObject;)Ljava/lang/Object;")(onFocusChangeListener = new OnAudioFocusChangeListener());
+		onFocusChangeListener = new OnAudioFocusChangeListener();
 	}
 
     /**
@@ -211,7 +211,13 @@ class AudioManager
 	 */
 	public function adjustStreamVolume(streamType:Int, direction:Int, flags:Int):Void
 	{
-		JNI.callMember(JNICache.createMemberMethod('android/media/AudioManager', 'adjustStreamVolume', '(III)V'), constructor, [streamType, direction, flags]);
+		if (constructor == null)
+			return;
+
+		final adjustStreamVolumeJNI:Null<Dynamic> = JNICache.createMemberMethod('android/media/AudioManager', 'adjustStreamVolume', '(III)V');
+
+		if (adjustStreamVolumeJNI != null)
+			JNI.callMember(adjustStreamVolumeJNI, constructor, [streamType, direction, flags]);
 	}
 
     /**
@@ -219,7 +225,19 @@ class AudioManager
 	 */
 	public function getStreamVolume(streamType:Int):Int
     {
-        return JNI.callMember(JNICache.createMemberMethod('android/media/AudioManager', 'getStreamVolume', '(I)I'), constructor, [streamType]);
+		if (constructor == null)
+			return 0;
+
+		final getStreamVolumeJNI:Null<Dynamic> = JNICache.createMemberMethod('android/media/AudioManager', 'getStreamVolume', '(I)I');
+
+		if (getStreamVolumeJNI != null)
+		{
+        	return JNI.callMember(getStreamVolumeJNI, constructor, [streamType]);
+		}
+		else
+		{
+			return 0;
+		}
     }
 
 	/**
@@ -235,10 +253,22 @@ class AudioManager
 	 */
 	public function requestAudioFocus(?callback:Int->Void, streamType:Int, durationHint:Int):Int
     {
+		if (constructor == null && onFocusChangeListener.focusListenerJNI == null)
+			return 0;
+
 		if (callback != null)
 			onFocusChangeListener.addCallback(callback);
 
-        return JNI.callMember(JNICache.createMemberMethod('android/media/AudioManager', 'requestAudioFocus', "(Landroid/media/AudioManager$OnAudioFocusChangeListener;II)I"), constructor, [focusListener, streamType, durationHint]);
+		final requestAudioFocusJNI:Null<Dynamic> = JNICache.createMemberMethod('android/media/AudioManager', 'requestAudioFocus', "(Landroid/media/AudioManager$OnAudioFocusChangeListener;II)I");
+
+		if (requestAudioFocusJNI != null)
+		{
+        	return JNI.callMember(requestAudioFocusJNI, constructor, [onFocusChangeListener.focusListenerJNI, streamType, durationHint]);
+		}
+		else
+		{
+			return 0;
+		}
     }
 
 	/**
@@ -246,10 +276,22 @@ class AudioManager
 	 */
 	public function abandonAudioFocus(?callback:Int->Void):Int
     {
+		if (constructor == null && onFocusChangeListener.focusListenerJNI == null)
+			return 0;
+		
 		if (callback != null)
 			onFocusChangeListener.addCallback(callback);
 
-        return JNI.callMember(JNICache.createMemberMethod('android/media/AudioManager', 'abandonAudioFocus', "(Landroid/media/AudioManager$OnAudioFocusChangeListener;)I"), constructor, [focusListener]);
+		final abandonAudioFocusJNI:Null<Dynamic> = JNICache.createMemberMethod('android/media/AudioManager', 'abandonAudioFocus', "(Landroid/media/AudioManager$OnAudioFocusChangeListener;)I");
+
+		if (abandonAudioFocusJNI != null)
+		{
+        	return JNI.callMember(JNICache.createMemberMethod('android/media/AudioManager', 'abandonAudioFocus', "(Landroid/media/AudioManager$OnAudioFocusChangeListener;)I"), constructor, [onFocusChangeListener.focusListenerJNI]);
+		}
+		else
+		{
+			return 0;
+		}
     }
 }
 
@@ -261,6 +303,9 @@ private class OnAudioFocusChangeListener #if (lime >= "8.0.0") implements JNISaf
 {
 	private var onFocusChangeEvent:Event<Int->Void> = new Event<Int->Void>();
 
+	@:noCompletion
+	public var focusListenerJNI(default, null):Null<Dynamic>;
+
 	/**
 	 * Creates a new audio focus listener with a specified callback function.
 	 *
@@ -270,6 +315,14 @@ private class OnAudioFocusChangeListener #if (lime >= "8.0.0") implements JNISaf
 	{
 		if (focusChange != null)
 			onFocusChangeEvent.add(focusChange);
+
+		final createAudioFocusCallbackJNI:Null<Dynamic> =  JNICache.createStaticMethod('org/haxe/extension/Tools', 'createAudioFocusCallback',
+				"(Lorg/haxe/lime/HaxeObject;)Ljava/lang/Object;");
+
+		if (createAudioFocusCallbackJNI != null)
+		{
+			focusListenerJNI = createAudioFocusCallbackJNI(this);
+		}
 	}
 
 	public function addCallback(focusChange:Int->Void) 
