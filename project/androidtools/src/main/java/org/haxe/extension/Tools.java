@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Rect;
+import android.media.AudioManager;
 import android.media.MediaCodecList;
 import android.media.MediaFormat;
 import android.net.Uri;
@@ -605,6 +606,32 @@ public class Tools extends Extension
 	public static BatteryManager getBatteryManager()
 	{
 		return (BatteryManager) mainContext.getSystemService(Context.BATTERY_SERVICE);
+	}
+
+	/**
+	 * Retrieves the AudioManager system service for managing volume and ringer mode control.
+	 *
+	 * @return A AudioManager object for managing volume and ringer mode control.
+	 */
+	public static AudioManager getAudioManager()
+	{
+		return (AudioManager) mainContext.getSystemService(Context.AUDIO_SERVICE);
+	}
+
+	/**
+	 * Creates the callback for focus changes.
+	 *
+	 * @return A OnAudioFocusChangeListener object for receiving callbacks.
+	 */
+	public static Object createAudioFocusCallback(final HaxeObject haxeObject)
+	{
+		return new AudioManager.OnAudioFocusChangeListener() {
+			@Override
+			public void onAudioFocusChange(int focusChange) {
+				if (haxeObject != null)
+					haxeObject.call1("onAudioFocusChange", focusChange);
+			}
+		};
 	}
 
 	@Override
