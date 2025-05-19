@@ -439,4 +439,5 @@ class VERSION_CODES
 	public static var TIRAMISU:Int = 33;
 	public static var UPSIDE_DOWN_CAKE:Int = 34;
 	public static var VANILLA_ICE_CREAM:Int = 35;
+	public static var BAKLAVA:Int = 36;
 }
