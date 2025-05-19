@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Rect;
+import android.media.AudioManager;
 import android.media.MediaCodecList;
 import android.media.MediaFormat;
 import android.net.Uri;
@@ -361,7 +362,7 @@ public class Tools extends Extension
 			{
 				if (Extension.mainActivity.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED)
 					ungrantedPermissions.add(permission);
-        		}
+				}
 
 			if (!ungrantedPermissions.isEmpty())
 				Extension.mainActivity.requestPermissions(ungrantedPermissions.toArray(new String[0]), requestCode);
@@ -470,7 +471,7 @@ public class Tools extends Extension
 	 * Each rectangle represents an area of the display that is obstructed by the cutout.
 	 *
 	 * @return An array of Rect objects representing the bounding rectangles of the display cutout.
-	 *         Returns an empty array if there is no cutout or if cutouts are not supported on the device.
+	 *		 Returns an empty array if there is no cutout or if cutouts are not supported on the device.
 	 */
 	public static Rect[] getCutoutDimensions()
 	{
@@ -598,13 +599,112 @@ public class Tools extends Extension
 	}
 
 	/**
-	 * Retrieves the BatteryManager system service for managing battery-related information.
+	 * Adjusts the volume of a specified audio stream.
 	 *
-	 * @return A BatteryManager object for managing battery-related information.
+	 * @param streamType The type of audio stream to adjust (e.g., AudioManager.STREAM_MUSIC).
+	 * @param direction The direction to adjust the volume (e.g., AudioManager.ADJUST_RAISE, AudioManager.ADJUST_LOWER).
+	 * @param flags Additional operation flags (e.g., AudioManager.FLAG_SHOW_UI).
 	 */
-	public static BatteryManager getBatteryManager()
+	public static void adjustStreamVolume(final int streamType, final int direction, final int flags)
 	{
-		return (BatteryManager) mainContext.getSystemService(Context.BATTERY_SERVICE);
+		try
+		{
+			final AudioManager audioManager = (AudioManager) mainContext.getSystemService(Context.AUDIO_SERVICE);
+
+			audioManager.adjustStreamVolume(streamType, direction, flags);
+		}
+		catch (Exception e)
+		{
+			Log.e(LOG_TAG, e.toString());
+		}
+	}
+
+	/**
+	 * Retrieves the current volume index for a specified audio stream.
+	 *
+	 * @param streamType The type of audio stream (e.g., AudioManager.STREAM_MUSIC).
+	 * @return The current volume index for the specified stream, or 0 if an error occurs.
+	 */
+	public static int getStreamVolume(final int streamType)
+	{
+		try
+		{
+			final AudioManager audioManager = (AudioManager) mainContext.getSystemService(Context.AUDIO_SERVICE);
+
+			return audioManager.getStreamVolume(streamType);
+		}
+		catch (Exception e)
+		{
+			Log.e(LOG_TAG, e.toString());
+		}
+
+		return 0;
+	}
+
+	/**
+	 * Requests audio focus for a given stream and duration, and sets up a callback for focus changes.
+	 *
+	 * @param haxeCallbackObject The HaxeObject to receive audio focus change callbacks.
+	 * @param streamType The type of audio stream for which focus is requested.
+	 * @param durationHint The duration of the audio focus request (e.g., AudioManager.AUDIOFOCUS_GAIN).
+	 * @return The result of the audio focus request (e.g., AudioManager.AUDIOFOCUS_REQUEST_GRANTED or AUDIOFOCUS_REQUEST_FAILED).
+	 */
+	public static int requestAudioFocus(final HaxeObject haxeCallbackObject, final int streamType, final int durationHint)
+	{
+		try
+		{
+			final AudioManager audioManager = (AudioManager) mainContext.getSystemService(Context.AUDIO_SERVICE);
+
+			final AudioManager.OnAudioFocusChangeListener focusChangeListener = new AudioManager.OnAudioFocusChangeListener()
+			{
+				@Override
+				public void onAudioFocusChange(int focusChange)
+				{
+					if (haxeCallbackObject != null)
+						haxeCallbackObject.call1("onAudioFocusChange", focusChange);
+				}
+			};
+
+			return audioManager.requestAudioFocus(focusChangeListener, streamType, durationHint);
+		}
+		catch (Exception e)
+		{
+			Log.e(LOG_TAG, e.toString());
+		}
+
+		return AudioManager.AUDIOFOCUS_REQUEST_FAILED;
+	}
+
+	/**
+	 * Abandons audio focus for the given HaxeObject callback.
+	 *
+	 * @param haxeCallbackObject The HaxeObject that was used to request audio focus.
+	 * @return The result of the abandon audio focus request (e.g., AudioManager.AUDIOFOCUS_REQUEST_GRANTED or AUDIOFOCUS_REQUEST_FAILED).
+	 */
+	public static int abandonAudioFocus(final HaxeObject haxeCallbackObject)
+	{
+		try
+		{
+			final AudioManager audioManager = (AudioManager) mainContext.getSystemService(Context.AUDIO_SERVICE);
+
+			final AudioManager.OnAudioFocusChangeListener focusChangeListener = new AudioManager.OnAudioFocusChangeListener()
+			{
+				@Override
+				public void onAudioFocusChange(int focusChange)
+				{
+					if (haxeCallbackObject != null)
+						haxeCallbackObject.call1("onAudioFocusChange", focusChange);
+				}
+			};
+
+			return audioManager.abandonAudioFocus(focusChangeListener);
+		}
+		catch (Exception e)
+		{
+			Log.e(LOG_TAG, e.toString());
+		}
+
+		return AudioManager.AUDIOFOCUS_REQUEST_FAILED;
 	}
 
 	@Override
