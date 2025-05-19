@@ -163,12 +163,12 @@ class Tools
 
 				if (topJNI != null && leftJNI != null && rightJNI != null && bottomJNI != null)
 				{
-					final rectangle:Rectangle = new Rectangle();
-					rectangle.top = topJNI.get(rectangle);
-					rectangle.left = leftJNI.get(rectangle);
-					rectangle.right = rightJNI.get(rectangle);
-					rectangle.bottom = bottomJNI.get(rectangle);
-					rectangles.push(rectangle);
+					final top:Int = topJNI.get(rectangle);
+					final left:Int = leftJNI.get(rectangle);
+					final right:Int = rightJNI.get(rectangle);
+					final bottom:Int = bottomJNI.get(rectangle);
+
+					rectangles.push(new Rectangle(left, top, right - left, bottom - top));
 				}
 			}
 
